@@ -1,0 +1,1706 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="使用文本聚类自动构建多方面的用户画像并将其应用于专家发现和过滤问题, SongX64">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>使用文本聚类自动构建多方面的用户画像并将其应用于专家发现和过滤问题 | SongX64</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+   <style>
+    body{
+       background-image: url(https://gitee.com/songx86/SongPicBed/raw/master/img/fd039245d688d43f5595595b7d1ed21b0ef43b5f.jpg);
+       background-repeat:no-repeat;
+       background-size:cover;
+       background-attachment:fixed;
+    }
+</style>
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">SongX64</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">SongX64</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">使用文本聚类自动构建多方面的用户画像并将其应用于专家发现和过滤问题</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E7%A7%91%E7%A0%94/">
+                                <span class="chip bg-color">科研</span>
+                            </a>
+                        
+                            <a href="/tags/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91/">
+                                <span class="chip bg-color">论文翻译</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%94%A8%E6%88%B7%E7%94%BB%E5%83%8F/">
+                                <span class="chip bg-color">用户画像</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E7%A7%91%E7%A0%94/" class="post-category">
+                                科研
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-09-30
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    11.3k
+                </div>
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="使用文本聚类自动构建多方面的用户画像并将其应用于专家发现和过滤问题"><a href="#使用文本聚类自动构建多方面的用户画像并将其应用于专家发现和过滤问题" class="headerlink" title="使用文本聚类自动构建多方面的用户画像并将其应用于专家发现和过滤问题"></a>使用文本聚类自动构建多方面的用户画像并将其应用于专家发现和过滤问题</h1><p>2019年文章</p>
+<p>关键字：</p>
+<ul>
+<li>聚类 </li>
+<li>基于内容的推荐 </li>
+<li>专家发现</li>
+<li> 过滤</li>
+<li> 用户分析</li>
+</ul>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>在当今的信息时代，我们不仅对访问多媒体对象（如文档，视频等）感兴趣，而且还对寻找专业专家，人物或名人（可能出于专业需求或娱乐目的）感兴趣。</p>
+<p>信息访问系统需要能够提取和利用有关此类个体的各种信息源（通常为文本格式），并通常以用户画像/用户数据/配置文件的形式以合适的方式表示它们。</p>
+<p>在本文中，我们通过<strong>聚类专家文本源以构建画像</strong>并捕获专家感兴趣的不同隐藏主题，从机器学习的角度解决了基于画像的<strong>专家推荐和文档过滤</strong>的问题。然后，专家将通过多方面画像来表示。</p>
+<p>我们的实验表明，这是提高专家发现和文档过滤性能的有效技术。</p>
+<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h2><h3 id="背景问题："><a href="#背景问题：" class="headerlink" title="背景问题："></a>背景问题：</h3><p>万维网的内容极其广泛多样，因此一个常见的搜索任务是<strong>寻找能够帮助我们解决特定问题的人</strong>。</p>
+<blockquote>
+<p>例如，我们可以寻找医生来治疗特定的疾病，寻找建筑工人来修理漏水的屋顶，或者寻找政治家来讨论当地的问题，以便找到解决方案。</p>
+</blockquote>
+<p>这种类型的信息搜索是建立在更广泛的<strong>专家发现领域</strong>[1]的基础上的，用户可以在给定的领域找到专家。</p>
+<h3 id="存储表示：文档"><a href="#存储表示：文档" class="headerlink" title="存储表示：文档"></a>存储表示：文档</h3><p>为了使这项任务成功，<strong>专家有必要以某种方式在检索系统中来进行表示</strong>。最专业和准确的方法是考虑专家的个人资料，因为这些资料存储了最具代表性的关键词来定义他们的专业领域。</p>
+<blockquote>
+<p>这些简介将通过考虑最能代表专家的文件来建立:</p>
+<p>例如，对于科学家来说，这将是他们的期刊或会议出版物；对于作家来说，他们出版的书；对于程序员来说，他们写的源代码；对于律师来说，他们审理的法庭案件；对于政治家来说，他们在议会会议上的干预。</p>
+</blockquote>
+<p>有了所有这些文档，系统可以通过为专家的专业领域选择最佳<strong>关键词</strong>来自动建立专家档案。然后，专家查找系统将使用该信息源来匹配以查询形式表示的用户信息需求。</p>
+<h3 id="查找问题：两种"><a href="#查找问题：两种" class="headerlink" title="查找问题：两种"></a>查找问题：两种</h3><p>基本上有两个主要问题与查找使用画像的相关人员有关:</p>
+<ul>
+<li>给定一组专家或专业人员，问题在于返回最适合<strong>用户所表达需求</strong>的人员（通常以短查询的形式）。<br>在这种情况下，只会<strong>推荐排名最高的</strong>。这被认为是专家发现的问题，或更广泛地说是==<strong>基于内容的推荐</strong>==[2]。<br>在这种情况下，我们只需要排名最高的专家，因为这些专家与查询最相关。</li>
+<li>当==新文档==第一次到达系统时（以长查询为模型的情况），目的是<strong>确定应由哪些专家接收该文档</strong>。<br>这是一个==过滤问题==[3]，此处的目的是找到每个相关人员，而不考虑其排名。</li>
+</ul>
+<p>尽管这两个问题都可以看作是同一枚硬币的“两面” [4]，并且可以用相似的方法解决，但在本文中，我们将证明在它们的配方和解决方案方面确实存在差异。</p>
+<h3 id="问题：为什么要多面画像"><a href="#问题：为什么要多面画像" class="headerlink" title="问题：为什么要多面画像"></a>问题：为什么要多面画像</h3><p>在本文中，我们将认为专家的专业领域通常<strong>不限于单个主题</strong>：</p>
+<blockquote>
+<p>例如，科学家虽然专攻信息检索，但也可能会沿着不同的研究方向发表论文（例如检索模型，个性化，推荐系统等）或政客可以坐在三个不同的议会委员会（例如，农业，环境和经济）中，并与这些领域有联系。</p>
+</blockquote>
+<p>如果从所有专家的文档中建立一个个人资料，则他们所有感兴趣的主题都将混在其中。这可能导致较一般的主题优先于较特殊的主题，因此，个人资料无法正确反映专家的兴趣，并且可能意味着在搜索特定主题时找不到这些兴趣。</p>
+<p>因此，一种解决方案可能是认为==用户画像不是整体的==，而是<strong>包含其他用户画像或子用户画像的多面结构</strong>，每个用户画像或子用户画像都与不同的主题相关。这样，上面的政治家将由三个子用户画像代表。</p>
+<h3 id="举例：议会会员"><a href="#举例：议会会员" class="headerlink" title="举例：议会会员"></a>举例：议会会员</h3><p>沿着这些思路，本文的作者进行了研究，以在议会中寻找相关人员。</p>
+<p>在最初的方法中，从国会议员的演说中为国会议员建立了简介，然后可用于查找相关国会议员[5]。</p>
+<p>这些画像是通过考虑他们所有的处置措施（intervention？）来创建的，为每一个议员建立一个整体的用户画像。</p>
+<p>由于国会议员的许多演讲来自专门的议会委员会，因此在复合画像中被认为是，根据国会议员对她/他所属委员会的干预，每个国会议员可以拥有各种子画像。</p>
+<p>本文证明，从个人档案性能和可解释性两方面来看，这种组织用户画像的方法对于推荐问题而言更为有趣。</p>
+<p>在本文中，我们走得更远，因为我们的目标是==确定使用机器学习技术（更具体地说是集群）是否可以自动发现用户感兴趣的不同主题并在此基础上构建子画像==。</p>
+<p>如果没有明确的文档<strong>关联</strong>，或者如果没有文档的关联，<strong>自动发现主题（组）</strong>将特别有用，因为它不是推荐或筛选任务中最佳性能的最佳选择（主题应该呗划分和一起分组在相同的子画像中），这在议会上下文中非常普遍。</p>
+<blockquote>
+<p> 例如，如果我们考虑一个出于政治原因而成立的议会委员会，以同时涵盖农业，畜牧业和渔业的三个领域，那么对该议员的所有议员干预都将包含在同一子用户画像中，尽管它们可能代表不同的主题。</p>
+</blockquote>
+<p>此外，委员会的结构通常随<strong>任期</strong>而变化，因此，根据这些委员会将国会议员的干预归类，可以在任何给定时间提供取决于组织政治决策的主题分布。</p>
+<p>最后，通过考虑从上一学期学到的集群主题，可以减少任期开始时的冷启动问题，即尚无委员会存在。</p>
+<p>在本文中，我们将展示==聚类==是一种合适的技术，该技术可用于从文档中发现隐藏的主题并创建表示用户兴趣的复合用户画像。</p>
+<p>我们的实验结果还表明，聚类技术如何成功地应用于<strong>专家推荐</strong>和<strong>过滤问题</strong>，以构建<strong>多方面的用户画像</strong>，其中每个<strong>子用户画像</strong>均从与用户相关的文档中获取并分组在一起。可以从统一的角度解决这两个问题，因为从概念上讲，<strong>在两种情况下，给定查询，结果都是要推荐或推荐的专家用户的排名。</strong></p>
+<p>我们还研究了将聚类应用于文档集的两种方法：</p>
+<ul>
+<li>一种全局方法，其中通过考虑所有专家的文档进行聚类；</li>
+<li>局部方法，只对每个专家的文档进行聚类。</li>
+</ul>
+<h3 id="文章结构"><a href="#文章结构" class="headerlink" title="文章结构"></a>文章结构</h3><p>为了描述如何将聚类应用于这些问题及其性能，本文的组织方式如下：</p>
+<ul>
+<li>第2节介绍了有关用户用户画像和聚类的介绍性信息，以便对本文的其余部分进行背景介绍。</li>
+<li>第3节包含本文的核心，并描述了用于构建子用户画像的聚类建议。</li>
+<li>第4节介绍了实验设计和相应的结果，并讨论了主要发现；</li>
+<li>第5节回顾了现有技术，提出了类似的方法，并通过强调我们的贡献来研究这些方法与我们的建议之间的区别；</li>
+<li>最后，最后一部分概述了我们的主要结论和未来的研究方向。</li>
+</ul>
+<h2 id="2-背景知识"><a href="#2-背景知识" class="headerlink" title="2. 背景知识"></a>2. 背景知识</h2><p>鉴于本文的背景是将用户画像的构造和使用，信息访问以及聚类方法的应用结合起来以更准确地组织此类用户画像，</p>
+<p>在本节中，我们将介绍与这两个主题及其组合有关的一些概念和技术。</p>
+<p>第5节将详细介绍现有技术。</p>
+<h3 id="2-1-用户画像"><a href="#2-1-用户画像" class="headerlink" title="2.1 用户画像"></a>2.1 用户画像</h3><h4 id="用户画像概念"><a href="#用户画像概念" class="headerlink" title="用户画像概念"></a>用户画像概念</h4><p>用户画像可以==定义==为用户模型的表示，存储用户的基本信息（例如年龄，性别或位置），知识，背景和技能，行为和互动，上下文信息，兴趣或偏好和意图[7,8]  。</p>
+<p>学习用户画像的过程称为用户画像构建：</p>
+<ul>
+<li>它基于==显式==收集信息（用户明确表达其兴趣或偏好[9]）</li>
+<li>==隐式==收集信息（系统负责通过基本分析浏览数据来自动检测用户感兴趣的信息项）。</li>
+</ul>
+<p>本文关注的是==<strong>主要表达兴趣的个人资料</strong>==，因此需要一种有效的方法来有效地表示他们的兴趣。  </p>
+<h4 id="用户画像的表示"><a href="#用户画像的表示" class="headerlink" title="用户画像的表示"></a>用户画像的表示</h4><h5 id="机器学习，关键词方法"><a href="#机器学习，关键词方法" class="headerlink" title="机器学习，关键词方法"></a>机器学习，关键词方法</h5><p>Gauch等人在[9]中认为概况通常可以==用关键词，语义网络或概念来表示用户画像==。</p>
+<p>同时，基于<strong>机器学习和数据挖掘的智能技术</strong>也被用来代表用户模型[7]。他们专注于<strong>基于关键字的用户画像</strong>，存储从用于构建它们的来源（文档，网页，任何类型的项目的文字描述等）中<strong>提取的相关单词</strong>的列表。对这些关键词或术语进行加权以反映其对用户的重要性，并且通常建模为加权向量（例如，通过使用TF–IDF加权方案[2]）。</p>
+<h5 id="抽象概念"><a href="#抽象概念" class="headerlink" title="抽象概念"></a>抽象概念</h5><p>兴趣也可以表达为<strong>抽象概念</strong>而不是关键字。在第5节中将讨论通过组合不同元素（例如，主题和关键字）构建的更详细的用户画像表示形式。</p>
+<p>尽管可以获得基于知识的用户画像（可能是用户兴趣的人类可读表示形式），但它们无法成功推荐或过滤问题，<strong>尤其是涉及代表演讲和口头讨论的文档时。</strong></p>
+<p>在计算机科学的广泛领域中，用户画像被认为是用户精准营销的基本工具[8]，更具体地说，[7]指出了与信息访问相关的各个领域。考虑到本文的背景，这些包括个性化信息检索[10]，推荐系统[11]和专家发现[12]。</p>
+<h3 id="2-2-聚类"><a href="#2-2-聚类" class="headerlink" title="2.2 聚类"></a>2.2 聚类</h3><p>从一般的角度来看，聚类分析的主要目的是试图==在未标记数据集的实例上找到一个通用结构，以便将它们分成具有相似特征的组（集群）==[13]。</p>
+<h4 id="聚类方法"><a href="#聚类方法" class="headerlink" title="聚类方法"></a>聚类方法</h4><p>在所有现有的各种聚类技术中[14-16]，我们应该强调两个主要的族。</p>
+<hr>
+<p>其中第一个是<strong>基于连接的聚类或基于层次聚类</strong>[13,17-19]。</p>
+<p>这将构建一个距离树（或树状图），以表示以下事实：同一分支中的项目比其他分支中的项目根据其接近程度更相似。</p>
+<p>根据树状图的构建方式，第一个家族分为两个不同的类别：</p>
+<ul>
+<li><p>凝聚方法[20]，其中每个实例在开始时都属于一个独立的集群，而成对的相似集群以与凝聚相同的方式递归组合嵌套算法（AGNES，[13]）</p>
+<blockquote>
+<p>凝聚层次聚类：AGNES算法(自底向上)<br>首先将每个对象作为一个簇，然后合并这些原子簇为越来越大的簇，直到某个终结条件被满足</p>
+</blockquote>
+</li>
+<li><p>分裂方法[21]，其中所有实例均始于一个独特的簇，该簇按照与分裂分析聚类类似的相似性，根据相似性递归分为两个不同的组（例如DIANA  [13]） 。</p>
+<blockquote>
+<p>分裂层次聚类：DIANA算法(自顶向下)<br>首先将所有对象置于一个簇中，然后逐渐细分为越来越小的簇，直到达到了某个终结条件。</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<p>第二类是<strong>基于质心的聚类</strong>。</p>
+<p>其中，不同的聚类围绕一个中间点成形，该中间点不一定是数据集的实例，并且每个项目被分配给中间点在附近的聚类[22，23]。</p>
+<p>我们将着重于两种不同的方法来比较不同方法中的数据行为。</p>
+<p><strong>K-Means (分散性聚类)</strong> [24，25]算法通过将n个实例分成K个不同的组，并将每个实例迭代地分配给具有最近平均值的组，并在每次迭代后重新计算组平均值点来工作。</p>
+<p><strong>PAM</strong>  [13，26]算法函数也与前一个相似，尽管PAM中聚类的中点是代表聚类中值的一个实例。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_19596835/article/details/78303744">K-means和PAM聚类算法Python实现及对比</a></p>
+<ul>
+<li><p>K-means（K均值划分）聚类</p>
+</li>
+<li><p>PAM（Partition Around Medoids）是K-medoid（K中心点划分）的基础算法</p>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>K近邻与K-means算法区别</p>
+<p>K近邻是一种分类算法，属于有监督范围，需要样本标签；<br>而K-means是无监督学习算法，属于聚类</p>
+<ul>
+<li><p>K近邻的算法流程：<br>① 确定计算点与各分类点的距离；<br>②选取K个机理最近的点<br>③选取K个点中，属于某一类点数最多的类作为归类点</p>
+</li>
+<li><p>K-means算法的流程：<br>①确定K个聚类中心<br>②针对某一个计算点，计算其与每个聚类中心的距离，选取距离最小聚类类别，将该点判为该聚类。<br>③利用均值重新计算该聚类的中心。返回新的聚类</p>
+</li>
+</ul>
+</blockquote>
+<h4 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h4><p>除了这组经典的聚类方法之外，我们可以在文献中找到其他技术，这些技术并不完全是聚类算法，而是试图捕捉数据的<strong>潜在语义</strong>，并且可以适应或应用于这个问题。</p>
+<p>在文本文档集合的上下文中，第一个例子是潜在狄利克雷分配(LDA)  [27，28]，这是一种主要用于自然语言处理的算法。LDA是一个三层层次的贝叶斯模型。它从文档集合中找到<strong>潜在的主题</strong>，并为每个文档分配主题的概率分布以及每个主题的术语的概率分布。</p>
+<p>另一个例子是自组织特征映射(SOM)，这是一个有效的工具，通过将数据的<strong>维度减少到低维度</strong>(通常是二维)映射来提供高维空间的数据可视化。SOM实现了一个人工神经网络，该网络使用无监督数据集进行训练，目标是<strong>浓缩训练集的所有信息</strong>，同时保留数据之间最重要的拓扑和度量关系，创建输入空间的某种抽象[29]。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_38347387/article/details/80342662">SOM算法简介</a><br>SOM是一类“无监督学习”模型，一般的用法是将高维的input数据在低维的空间表示[1]，因此SOM天然是一种降维方法。除了降维，SOM还可以用于数据可视化，以及聚类等应用中。</p>
+</blockquote>
+<h4 id="总结表"><a href="#总结表" class="headerlink" title="总结表"></a>总结表</h4><p>表1总结了所考虑的六种算法的主要特征。关于许多聚类算法的更详细的研究，包括它们的优点和缺点，见[30]。</p>
+<blockquote>
+<p>表1 所考虑算法的主要特征。<br>    | 算法    | 系列     | 类型       |<br>    | ——- | ——– | ———- |<br>    | AGNES   | 层次     | 聚集       |<br>    | DIANA   | 层次     | 划分       |<br>    | K-MEANS | 基于质心 | 基于均值   |<br>    | PAM     | 基于质心 | 基于中值   |<br>    | LDA     | 主题模型 | 贝叶斯网络 |<br>    | SOM     | 神经网络 | 竞争学习   |</p>
+</blockquote>
+<h4 id="聚类的类别个数"><a href="#聚类的类别个数" class="headerlink" title="聚类的类别个数"></a>聚类的类别个数</h4><p>在数据聚类分析中，一个重要的问题是<strong>建立聚类的个数以及如何计算</strong>。</p>
+<p>有许多方法可以估计最适合数据集的聚类数。</p>
+<p>在众所周知的问题中，很常见的是<strong>自然地确定聚类的数量</strong>，以便获得定义明确的组的数量，但是在其他情况下，这是非常困难的，因为没有关于这个数量的线索。</p>
+<p>更具体地说，<strong>在文本数据库中，确定聚类数的另一种方法是考虑n(文档总数)、m(术语总数)和t(相应文档术语矩阵中非零条目的数量)的值</strong>。然后将<strong>簇数k定义为k  = mn/t</strong> [31]。确定该参数值的另一个突出方法是用一般有效的方法<strong>√n/2</strong> [13]计算。</p>
+<h4 id="聚类的评估"><a href="#聚类的评估" class="headerlink" title="聚类的评估"></a>聚类的评估</h4><p>关于聚类过程质量的评估，典型的评估措施试图最大化聚类内的相似性，即放置在同一聚类中的文档必须非常相似，并且最小化每个聚类间的相似性，即放置在不同聚类中的文档必须非常不相似。</p>
+<blockquote>
+<p>同类紧密程度：同类内之间，其中每个文档之间相似性最大</p>
+<p>类间分散程度：类与类之间，每个类之间的相似性最小</p>
+</blockquote>
+<p>这就是众所周知的<strong>轮廓系数</strong>[32]的情况，它计算给定对象与最近簇的对象的平均距离，并从其自身簇中减去对象相对于元素的平均距离(所有对象的平均距离)。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wangxiaopeng0329/article/details/53542606">聚类评估算法-轮廓系数（Silhouette Coefficient ）</a></p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/643534-20180806003425095-366653197.png" alt="img"><br>o与o所属的簇内其他对象之间的平均距离a(o):</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/643534-20180806003305230-1291457275.png" alt="img"></p>
+<p>b(o)是o到不包含o的所有簇的最小平均距离：</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/643534-20180806003351617-1844924092.png" alt="img"></p>
+<p>轮廓系数的值在-1和1之间。(1好，-1不好)</p>
+<p>当o的轮廓系数值接近1时，包含o的簇是紧凑的，并且o远离其他簇，这是一种可取的情况。</p>
+<p>当轮廓系数的值为负时，这意味在期望情况下，o距离其他簇的对象比距离与自己同在簇的对象更近，许多情况下，这很糟糕，应当避免。</p>
+</blockquote>
+<p>另一个例子是 戴维森堡丁指数(DBI) [33]，它是群内距离和群间距离之间的比率(也是平均值)。它确定了集群的紧密程度和分离程度。这些被称为内部有效性度量，因为它们只使用数据集和结果聚类的信息进行计算。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/a841454735/article/details/80237257">聚类算法评价指标——Davies-Bouldin指数(Dbi)</a></p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/643534-20180806003007015-1288206809.png" alt="img"><br>DBI值越小越好</p>
+</blockquote>
+<p>另一种方法是根据应用领域进行外部评估。在那些聚类只是正在构建的系统的一部分的情况下，评估聚类算法如何影响系统的全局行为是很重要的[34]。在此，聚类质量将通过使用该<strong>信息检索(IR)领域中的标准度量获得的推荐的质量</strong>来间接测量(参见第4节)。</p>
+<h2 id="3-通过对文档进行聚类来构建多方面用户画像"><a href="#3-通过对文档进行聚类来构建多方面用户画像" class="headerlink" title="3. 通过对文档进行聚类来构建多方面用户画像"></a>3. 通过对文档进行聚类来构建多方面用户画像</h2><p>正如我们在本文简介中提到的那样，由于用户可能对许多不同的主题感兴趣，并且他们的用户画像由<strong>一组概念或包含加权术语的主题</strong>组成，因此我们可以说用户画像是<strong>多方面</strong>的，因为它尝试捕获与用户相关联的文档集中包含的不同方面。</p>
+<p>在本文中，一个用户画像的每一面将会被称为<strong>子画像</strong>。</p>
+<p>这些多面的用户画像与整体式用户画像相反，在整体式用户画像中，底层主题并不明确。</p>
+<p>在大多数情况下，这些<strong>概念是隐藏</strong>的，即它们隐含在文档集中。这意味着需要一个<strong>自动提取或学习它们的过程</strong>。</p>
+<p>在我们的案例中，我们应用了<strong>聚类分析</strong>。这个想法是将文档集聚类，以获得k组文档。</p>
+<h3 id="3-1-文档聚类"><a href="#3-1-文档聚类" class="headerlink" title="3.1 文档聚类"></a>3.1 文档聚类</h3><p>当要聚类的<strong>对象是文本</strong>时，就像我们的情况一样，这个过程称为<strong>文档聚类</strong>。</p>
+<p>这种机器学习技术第一次应用于信息检索是在40多年前，其目的是提高检索过程的效率，由此产生了基于聚类的检索模型[35]。</p>
+<p>一旦文档被聚类并且相关文档被放置在同一组中，给定由用户提交的查询，这将面对聚类的代表，并且系统将返回属于那些其代表最接近查询的聚类的文档。</p>
+<p>应用这种基于聚类的检索模型的基本假设是<strong>聚类假设，即“紧密关联的文档往往与相同的请求相关”</strong>[36]。</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20201005151946809.png" alt="image-20201005151946809"></p>
+<pre><code class="mermaid">graph TD
+ 1(文档集合)--&gt;A&gt;预处理] --&gt;2(预处理后的集合)--&gt;B&gt;特征选择]--&gt;
+ 
+ 3(降维后的集合)--&gt;c&gt;文档术语矩阵格式]--&gt;4(文档划分矩阵)--&gt;d&gt;聚类]--&gt;5(文档聚类)--&gt;e&gt;信息检索任务] 
+ 
+</code></pre>
+<p>图1示出了应用于信息检索聚类的一般过程。</p>
+<p>给定要对其执行聚类的文档集合，第一步是对其进行==预处理==，这可能包括标记化(提取标记或术语，通常在非字母字符处进行拆分)、停止单词移除(移除集合中最常见的单词，如虚词)和词干(移除单词后缀，并将单词保留在其词汇词干中)。</p>
+<p>下一步可能是==特征(术语)的降维==，因为我们正在处理一个高维问题[37]，通常移除非常罕见的术语(那些出现在少于给定百分比的文档中的术语)。</p>
+<p>==文档术语矩阵的构建==是流程的下一步。<br><strong>行对应于集合中的文档，列对应于术语。</strong><br>因此，文档由包含列中集合中不同术语的向量表示。如果文档包含一个术语，则在相应的单元格中会有一个反映该术语在该文本中的重要性的权重(通常使用TF-IDF方案)，否则为0.0。</p>
+<p><strong>该矩阵</strong>通常非常稀疏，它将和要生成的<strong>聚类数量</strong>，作为==聚类算法的输入==。作为输出，它将在这样数量的聚类中提供语料库的划分，</p>
+<p>并且在每个聚类中，所有文档之间的相似度很高（可以说聚类中的所有文档都处理相同的主题），而与文档与来自其他集群的文档之间的相似度较低。</p>
+<p>这些集群可以应用于许多IR任务[38]，例如，文档组织和浏览，文本摘要，文档检索等。</p>
+<h3 id="3-2-全局和局部的聚类方法"><a href="#3-2-全局和局部的聚类方法" class="headerlink" title="3.2 全局和局部的聚类方法"></a>3.2 全局和局部的聚类方法</h3><p>为了基于用户文档的内容创建用户个人资料，我们可以考虑两种将用户文档聚类的方法。</p>
+<p>第一种是==局部方法==，它为每个用户在局部查找基础文档组，即仅考虑他们的文档。</p>
+<p>另一种方法是==全局方法==，因为它对每个用户的所有文档执行聚类过程。</p>
+<p>第一种方法<strong>捕获特定用户的主题</strong>，而第二种方法尝试找到通常<strong>每个用户都共享的通用概念</strong>。</p>
+<p>这意味着在本地群集中，学习到的组对每个用户都是独占的，因此仅包含该用户的文档。在全局群集中，群集将包含来自不同用户的文档。</p>
+<p>因此，通过将每个全局群集中属于给定用户的文档进行分组，可以从此全局群集中获得每个用户的特定群集。</p>
+<p>图2说明了这两种方法。</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20201005200932158.png" alt="image-20201005200932158"></p>
+<p>应当注意，在局部方法中，对于给定的用户，实例的数量等于与其<strong>相关联的文档的数量</strong>。对系统中的<strong>每个用户重复集群过程</strong>，因此所有用户都将获得自己的集群。</p>
+<p>另一方面，在全局方法中，实例数是<strong>系统中的文档数</strong>，并且<strong>聚类算法仅执行一次</strong>。</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20201005202052528.png" alt="image-20201005202052528"></p>
+<p>图3中，左侧的图显示了所有用户X的文档的排列以及它们如何被分组为相似文档的局部簇。通过此聚合，将为用户构建三个子用户画像。</p>
+<p>就将所有用户（X，Y和Z）的文档合并到聚类算法中的全局方法而言，中间的图显示了找到的假设组。集群c2，c3，c5和c6在它们集成了来自不同用户的文档的意义上是异构的。</p>
+<p>如果我们再次关注用户X，则遵循此全局方法要构建的用户画像的数量将取决于文档所属的集群的数量。</p>
+<p>右侧的图，我们可以看到为X考虑了新的群集，因此X的群集的最终数量为6，因此，这将是与此用户相关联的子用户画像的数量。</p>
+<h3 id="3-3-从集群建立子画像"><a href="#3-3-从集群建立子画像" class="headerlink" title="3.3 从集群建立子画像"></a>3.3 从集群建立子画像</h3><p>在本地方法和全局方法中，无监督学习过程的==最终输出==都是从给定用户到群集的每个文档的关联。</p>
+<p>在同一集群中分组在一起的用户的所有文档都应该处理相同的概念。</p>
+<p>然后，我们将从与用户相关联的每个群集中构建一个子画像。</p>
+<p>为此，对于每个用户和给定的群集，通过编译<strong>同一群集中包含的所有文档</strong>来创建“<strong>宏文档</strong>”。该文档将对应一个子用户画像。</p>
+<p>生成一个新文档集合，其中包含来自所有用户的所有子用户画像文档。这将被索引以供信息检索系统（IRS）使用。</p>
+<p>当查询提交到系统时，它返回一个排名，在该排名中，来自同一用户的不同子画像可能会分布在整个系统中。</p>
+<p>正如我们向专家推荐的那样，最终排名必须由用户组成，因此有必要使用某种<strong>融合策略</strong>为每个用户计算最终得分，同时考虑排名中所有不同的子画像。</p>
+<p>图4说明了此过程。</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20201006095300455.png" alt="image-20201006095300455"></p>
+<h2 id="4-评估"><a href="#4-评估" class="headerlink" title="4. 评估"></a>4. 评估</h2><p>本文解决了寻找人（专家）的一般问题，但我们的<strong>评估将集中在议会环境</strong>上。基本目标是根据公民提出的查询找到相关的国会议员（MP），或确定哪些国会议员可能对阅读系统收到的新文档感兴趣。</p>
+<p>为了做到这一点，我们选择了<strong>以议员的身份来代表国会议员的利益</strong>，该简介将在议员对公开议会会议上<strong>提出的政治倡议</strong>进行干预的基础上建立。更具体地说，让我们考虑到这样一个事实，即<strong>国会议员可能会参加多个委员会</strong>，而且就议员人数而言，这些委员会的人数较少，并且涵盖了更具体的主题。由于<strong>用户可能对几个政治主题（例如农业，教育，经济等）感兴趣</strong>，因此，<strong>目的是为每个国会议员创建子画像</strong>，以代表国会议员对这些不同主题的兴趣。</p>
+<p>该评估的<strong>总体目标是确定文本聚类是否是自动识别用户感兴趣的不同主题的有效工具，以及向他们推荐专家并为他们过滤信息是否有用</strong>。为了实现这一目标，我们建议通过本节中描述的评估来回答以下特定的研究问题：</p>
+<ul>
+<li>RQ1：文本聚类是否是一种适当的技术，可以通过考虑议会背景的特定特征来自动提取某个人感兴趣的主题？</li>
+<li>RQ2：基于聚类的子画像是否对筛选和推荐任务有效？</li>
+<li>RQ3：在局部和全局范围内构建集群之间有什么区别吗？</li>
+<li>RQ4：集群数量与推荐质量相关吗？</li>
+<li>RQ5：这些任务的最佳群集算法是什么？</li>
+</ul>
+<p>因此，在本节中，我们将描述实验设计以及在此评估阶段进行的实验结果。</p>
+<h3 id="4-1-测试集"><a href="#4-1-测试集" class="headerlink" title="4.1 测试集"></a>4.1 测试集</h3><p>我们用于实验的数据集是<strong>西班牙安达卢西亚议会的议会会议记录的集合</strong>，更具体地说是属于第八届任期的会议记录。1<a target="_blank" rel="noopener" href="http://irutai2.ugr.es/ColeccionPA/legislatura8.tgz">数据集下载</a></p>
+<p>这是根据委员会和全体会议上讨论的倡议组织的，其中包括共有5258条记录，涉及12633项干预措施。有26个不同的委员会，共有132名发言人。</p>
+<p>出于实验目的，我们仅选择了具有至少10种干预措施的国会议员。</p>
+<h3 id="4-2-推荐器和筛选系统概述"><a href="#4-2-推荐器和筛选系统概述" class="headerlink" title="4.2 推荐器和筛选系统概述"></a>4.2 推荐器和筛选系统概述</h3><h4 id="检索模型"><a href="#检索模型" class="headerlink" title="检索模型"></a>检索模型</h4><p>为了推荐给 市民查询 或 要过滤文档 的议员，我们使用了开源<a target="_blank" rel="noopener" href="https://lucene.apache.org/">Apache Lucene Library 2</a>，将众所周知的<strong>BM25模型</strong>实现为检索模型[39]。</p>
+<p><strong>对于每个$ MP_i $，索引器的输入是其子画像的集合。</strong>例如，要为$MP_5$索引的文档是三个群集c1，c2和c3（因此总共3个，分别称为$MP_{5_c1}$，$MP_{5_c2}$和$MP_{5_c3}$）的子画像。</p>
+<blockquote>
+<p><em>Lucene</em>是<em>apache</em>软件基金会4 jakarta项目组的一个子项目，是一个开放源代码的全文检索引擎工具包，但它不是一个完整的全文检索引擎，而是一个全文检索引擎的架构，提供了完整的查询引擎和索引引擎，部分文本分析引擎（英文与德文两种西方语言）。</p>
+</blockquote>
+<blockquote>
+<p>bm25 是一种用来评价搜索词和文档之间相关性的算法，它是一种基于<strong>概率检索模型</strong>提出的算法</p>
+</blockquote>
+<h4 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h4><p>使用在Lucene西班牙<strong>文本分析器</strong>中实现的词干分析器，可以过滤掉这些词中包含的术语，删除停用词，并将其简化为词根。然后删除少于1％的干预措施中出现的任何术语。</p>
+<p>给定查询，将<strong>MP子画像的排名作为输出</strong>给出。</p>
+<p>但是，由于<strong>最终目标是根据MP与查询的相关性对MP进行排名</strong>，因此通过考虑[6]中介绍的CombLgDCS方法对原始排名进行过滤。此策略通过<strong>汇总其子画像</strong>的不同分数，但根据其在排名中的对数进行贬值，为每个$MP_i$计算单个分数。公式如下：</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20201006121510757.png" alt="image-20201006121510757"></p>
+<ul>
+<li>$MP_i$是一个议员，</li>
+<li>q是一个用户查询</li>
+<li>$MP_{i_cj}$是此政治人物排名中的一个子画像，</li>
+<li>$s(MP_{i_cj})$表示其得分值（画像与查询q之间的相似性），</li>
+<li>$rank(MP_{i_cj})$是$MP_{i_cj}$子画像在排名中的位置。</li>
+</ul>
+<p>一旦为每个MP计算了分数，它们就会相应地得出一个排名。</p>
+<h3 id="4-3-聚类算法"><a href="#4-3-聚类算法" class="headerlink" title="4.3 聚类算法"></a>4.3 聚类算法</h3><p>在我们的实验中，我们测试了以下聚类算法的R实现：</p>
+<ul>
+<li>作为分层方法的AGNES和DIANA（分别为自底向上和自顶向下），</li>
+<li>作为基于质心的方法的K-Means和PAM，</li>
+<li>最后是分别是<br>基于生成统计模型的潜在的Dirichlet分配（LDA）方法和<br>基于人工神经网络的自组织图（SOM）方法</li>
+</ul>
+<p>选择这些算法是因为它们是最新的聚类方法，或者已在聚类过程中使用。</p>
+<ol>
+<li>基于质心的方法和分层方法都使用余弦相似度来计算个体之间的距离。</li>
+<li>对于用于聚类的LDA算法[27]，一旦该算法找到了所有文档的主题分布，便会将每个文档分配给与其最可能的主题相关联的聚类。</li>
+<li>关于SOM，它也可以用于将相似数据分组在一起。<br>一旦获得SOM输出，并且<strong>每个文档都与一个神经元相关联</strong>，就会有一组<strong>权重向量</strong>，它们代表<strong>神经元在数据离散空间中的位置</strong>，并且可以使用任何聚类根据它们的相似性对这些向量进行分组的方法，从而创建实际数据的相似实例的群集，这些群集附加到群集的神经元。</li>
+</ol>
+<p>在我们的案例中，我们将<strong>SOM与K-Means算法（称为SOM-KM）</strong>结合使用，因为它已被视为一般聚类任务中的最新技术[40-42]。</p>
+<h3 id="4-4-选择聚类数量"><a href="#4-4-选择聚类数量" class="headerlink" title="4.4 选择聚类数量"></a>4.4 选择聚类数量</h3><p>正如我们已经提到的，在应用聚类的任何问题中，作为<strong>输出给出的聚类数k</strong>都是重要的问题。理想的情况是自动选择最佳值，但这并不容易。</p>
+<p>在我们的实验中，我们尝试了不同的方法，其中<strong>k是固定的</strong>或<strong>通过考虑一些依赖于集合的数据自动计算得出</strong>。更具体地说，我们使用以下替代方法进行了实验：</p>
+<ul>
+<li><p>k = #Com（常量） ⇒ </p>
+<ul>
+<li>对于全局群集，这表示安达卢西亚议会第八届任期的<strong>委员会数目，即26</strong>。</li>
+<li>对于局部群集，此数目特定于每个国会议员，是<strong>每个国会议员MP参加的委员会的数目：平均为6.02个委员会，标准差为4.52。</strong></li>
+</ul>
+<p>将此值设置为k的目的是确定聚类算法能够重现官方委员会给出的议会倡议组的程度，这被视为基本事实。</p>
+</li>
+<li><p>k = m * n / t ⇒</p>
+<ul>
+<li>m =安达卢西亚议会集合中的术语数； </li>
+<li>n =集合中的干预次数；</li>
+<li>t =文档项矩阵中非零条目的数量。</li>
+</ul>
+<p>这适用于两种聚类方法，尽管m，n和t的值将取决于其相应的类型。</p>
+<ul>
+<li>在全局聚类的情况下，<br>m为4208；<br>MP干预的总数（n）为10025（干预总数的80％（训练分区），<br>t = 1,702,296。</li>
+<li>对于局部聚类，这些数字有所不同，因为它们取决于每个MP干预的数量，但是平均，<br>m = 3427.45±2056.15，<br>n = 58.11±58.55，<br>t = 12106.66±12064.64。</li>
+</ul>
+<p>全局聚类的k的最终值为k = 24，而局部局部的k的最终值为15.85±9.67。</p>
+</li>
+<li><p>$k =\sqrt{n/2}$ ⇒</p>
+<ul>
+<li>对于全局聚类，该值是70，通过考虑n = 10025（干预总数的80％-训练分区）计算得出，</li>
+<li>而对于局部聚类，则为a的干预数量给定MP对每个政客而言都是特定的，则平均值为4.25±2.60。</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-5-实验环境"><a href="#4-5-实验环境" class="headerlink" title="4.5 实验环境"></a>4.5 实验环境</h3><p>这组倡议集合被随机分为一个训练集（80％）和一个测试集（20％）。</p>
+<p>训练集用于从获得的聚类开始构建MP子画像，而测试集用于评估目的。</p>
+<p>此过程重复五次，在本文中，报告的结果为平均值。换句话说，我们使用重复的保留重采样方法。</p>
+<p>我们将使用<strong>倡议的内容（全文）作为过滤过程的查询</strong>（在这种情况下，我们的<strong>目标是将倡议分发给可能感兴趣的任何MP</strong>）</p>
+<p>以及<strong>MP的倡议标题推荐方法</strong>（例如，目的是找到一个可以与之交谈的国会议员，因此我们可能希望获得排名最高的相关国会议员）。</p>
+<p>在这两种情况下，并着重于相关判断，由于<strong>目标是找到可能熟悉该主题的国会议员</strong>，因此每个查询的基本事实仅包括那些参加其相应倡议的国会议员。</p>
+<p>由于可以很合理地假设一项倡议也可能与其他未参与计划的议员相关且感兴趣，因此我们可以说，这是一个相当保守的假设，需要评估，尤其是对于过滤任务。</p>
+<p>给定查询，搜索引擎将返回MP排名。因此，为了评估质量，我们将使用众所周知的<strong>精度和召回率指标</strong>，<strong>重点关注前10个结果</strong>（分别为p @ 10 /用户画像前10/ 和r @ 10 / 排名前10/）。我们还将考虑<strong>归一化DCG</strong>（Discounted Cumulative Gain（DCG）是衡量排名质量的一种方法）[43]（ndcg @ 10），以便考虑相关文件的排名</p>
+<p>为了确定学习子画像是否是表示MP画像的好方法，我们选择将结果与三个不同的基准进行比较：</p>
+<ul>
+<li><strong>每个MP的单个用户画像</strong>（整体用户画像）。从国会议员对他们所有不同倡议的干预中，只会为他们建立一个档案。此用户画像将包含他们感兴趣的所有主题。我们可以说<strong>k = 1</strong>。</li>
+<li>根据每个MP所涉及的委员会为其构建了几个子用户画像（<strong>基于委员会的子用户画像</strong>）。通过考虑他们的差异委员会干预，每个国会议员将具有不同的关联子用户画像。委员会的干预将成为建立相应子用户画像的输入。从实践的角度来看，如果给定的国会议员参加了k个委员会，则其档案将包括k个子用户画像。</li>
+<li>国会议员参与的每个计划的一个子用户画像（<strong>基于干预/倡议的子用户画像</strong>）。这是极端情况，每个国会议员<strong>对一项倡议</strong>的干预都将包括其自己的子用户画像。因此，与MP相关的子用户画像的数量将与她/他的主动干预的数量相同。</li>
+</ul>
+<p>这些基准背后的基本思想是有两种极端情况（即，每位国会议员有一个画像简介，或与其干预措施的数量一样多的画像），中间则有一个，由他们参加的委员会确定子简介的数量。预期的情况是，MP推荐和筛选任务在基于聚类的子用户画像中将比基线获得的性能更好。</p>
+<h3 id="4-6-结果"><a href="#4-6-结果" class="headerlink" title="4.6 结果"></a>4.6 结果</h3><p>在以下各节中，我们将介绍实验结果并回答以下研究问题：</p>
+<h4 id="4-6-1-RQ1：文本聚类是否是一种合适的技术，可以在议会中自动提取主题？"><a href="#4-6-1-RQ1：文本聚类是否是一种合适的技术，可以在议会中自动提取主题？" class="headerlink" title="4.6.1 RQ1：文本聚类是否是一种合适的技术，可以在议会中自动提取主题？"></a>4.6.1 RQ1：文本聚类是否是一种合适的技术，可以在议会中自动提取主题？</h4><p>为了回答第一个研究问题，我们将展示集群如何涵盖会议中讨论的<strong>政治主题</strong>，同时考虑到针对特定国会议员的定性分析和针对<strong>委员会</strong>的广泛定性分析。</p>
+<p>个体定性分析。<br>该分析考虑了伊兹奎尔达·尤尼达（Izquierda Unida）政党的国会议员。我们之所以选择他，是因为他是一名多产议员（在第八届任期中，他在172个不同的会议上讲话）涵盖了广泛的主题（在全体会议上有97项干预措施，他还参加了14个专门委员会或工作组的干预，其余75项干预措施） 。那么，国会议员“真正”感兴趣的主题是什么？可以说，这些问题与他所参加的委员会有关，但是为了国会议员的利益，有些话题比其他话题更具力量是很常见的。</p>
+<p>为了量化这个想法，我们可以在表2中看到第二列，在这里，我们显示了他不同干预措施的规模（以术语的百分比表示）（请注意，一半的权重位于全体会议上，其中可能讨论几个主题）。请注意，从这些数据中我们可以看到他专注于平等与社会福利，文化与健康（代表他在委员会中的干预措施的70％，即不考虑全体会议）。</p>
+<blockquote>
+<p>表2 MP干预措施在任期内的分布（按个人资料的大小）。<br>第二列显示了考虑到议会中的实际会议的“真实”分配。<br>第三列显示了考虑学习集群的分布。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>实际分配</th>
+<th></th>
+<th>聚集</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>全体会议委员会</td>
+<td>0.500</td>
+<td></td>
+</tr>
+<tr>
+<td>性别平等和社会福利</td>
+<td>0.128</td>
+<td>0.286</td>
+</tr>
+<tr>
+<td>文化</td>
+<td>0.121</td>
+<td>0.151</td>
+</tr>
+<tr>
+<td>健康</td>
+<td>0.103</td>
+<td>0.144</td>
+</tr>
+<tr>
+<td>总统职位</td>
+<td>0.046</td>
+<td></td>
+</tr>
+<tr>
+<td>旅游和商业</td>
+<td>0.018</td>
+<td>0.021</td>
+</tr>
+<tr>
+<td>欧洲事务</td>
+<td>0.015</td>
+<td>0.052</td>
+</tr>
+<tr>
+<td>公共工作和住房</td>
+<td>0.011</td>
+<td>0.013</td>
+</tr>
+<tr>
+<td>公共工作和运输</td>
+<td>0.010</td>
+<td>0.030</td>
+</tr>
+<tr>
+<td>技术，科学和商业</td>
+<td>0.009</td>
+<td>0.063</td>
+</tr>
+<tr>
+<td>贸易，技术与科学</td>
+<td>0.009</td>
+<td></td>
+</tr>
+<tr>
+<td>治理</td>
+<td>0.008</td>
+<td></td>
+</tr>
+<tr>
+<td>司法</td>
+<td>0.008</td>
+<td></td>
+</tr>
+<tr>
+<td>广播电视</td>
+<td>0.007</td>
+<td>0.016</td>
+</tr>
+<tr>
+<td>环境</td>
+<td>0.005</td>
+<td></td>
+</tr>
+<tr>
+<td>经济话题</td>
+<td></td>
+<td>0.139</td>
+</tr>
+<tr>
+<td>性别暴力话题</td>
+<td></td>
+<td>0.066</td>
+</tr>
+<tr>
+<td>劳工运动话题</td>
+<td></td>
+<td>0.007</td>
+</tr>
+<tr>
+<td>教育话题</td>
+<td></td>
+<td>0.007</td>
+</tr>
+<tr>
+<td>年轻人话题</td>
+<td></td>
+<td>0.006</td>
+</tr>
+</tbody></table>
+<p>让我们首先考虑那些不执行任何聚类算法的情况，即，整体式和基于委员会的用户画像。着眼于整体用户画像，我们发现它由与议会程序相关的术语所占据，这些术语难以识别国会议员所感兴趣的主题，如图5左侧的单词cloud所示。</p>
+<p>另一方面，如果我们考虑基于委员会的子用户画像，例如参见图5中从“性别平等和社会福利委员会Gender Equality and Social Welfare Committee”获得的正确词云，尽管与该委员会相关，但与委员会相关的术语仍占主导地位议会中出现了一些用语，但出现频率较低。着重于全体会议上的大量干预措施，我们之前与给定主题没有任何关联，因此它们以较大的轮廓加入，显示出与基于整体的轮廓相同的模式。</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20201006134706409.png" alt="image-20201006134706409"></p>
+<blockquote>
+<p>图5. 不同配置文件的词云表示形式：左图显示了Monolithic（所有干预措施都形成一个唯一的配置文件），右图显示了基于委员会的配置文件，该配置文件是使用“性别平等和社会福利委员会——Gender Equality and Social Welfare Committee ”的数据获得的。</p>
+</blockquote>
+<p>现在，<strong>我们将集中讨论应用聚类算法（尤其是全局K均值）后获得的结果，K值等于26</strong>。<br>在这种情况下，MP的所有干预（包括全体会议）均分布在14个26个候选集群。表2的最后一列显示了每个群集的大小（以术语的百分比表示）。<br>为了<strong>确定每个群集的主要主题</strong>，一种逻辑方法是查看群集中最常见的术语，即那些对此贡献最大，并为集群分配他们建议的主题，出现不同的情况：</p>
+<ul>
+<li>如图6的左侧所示，红色字样暗示该集群与文化有关，因此可以在集群中的文档和给定委员会之间找到1对1匹配。</li>
+<li>同样，一个委员会可以分为不同的主题，即1对n。例如，如图6右侧的图形所示，聚类能够发现“性别暴力”作为新话题。该集群中的干预措施与“性别平等和社会福利”委员会高度相关，但是集群能够区分“性别暴力”和“社会福利”。</li>
+<li>将两个不同的委员会以2对1的方式加入集群：“技术，科学和商业”，“贸易，技术和科学” 这两个高度相关的委员会的干预措施被归为同一集群。</li>
+<li>发现横向主题，从n对1：存在由多个委员会干预的集群，例如“经济”主题，代表了国会议员的横向兴趣。本主题包括全体会议和大量委员会的发言。这反映出经济是所有政治活动所共有的多学科主题，尽管没有明确说明。</li>
+<li>在其他情况下，全局集群仅包含该MP的一个干预，因此可以认为它们代表MP兴趣的边缘主题（表2中的最后三行）。</li>
+</ul>
+<blockquote>
+<p>图6. 使用全局K均值作为聚类方法的两个不同学习配置文件的词云表示形式。 （有关此图例中颜色参考的解释，请参考本文的网络版本。）</p>
+</blockquote>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20201006145147030.png" alt="image-20201006145147030"></p>
+<p>因此，可以说，聚类能够确定国会议员所关注的话题，而不仅仅是他所担任的委员会。此外，它可以帮助在全体会议上将他的发言分配给各个主题。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">SongX64</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://SongX64.github.io/2020/09/30/1004%E4%BD%BF%E7%94%A8%E6%96%87%E6%9C%AC%E8%81%9A%E7%B1%BB%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BA%E5%A4%9A%E9%9D%A2%E7%94%A8%E6%88%B7%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%B9%B6%E5%B0%86%E5%85%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%93%E5%AE%B6%E6%8E%A8%E8%8D%90%E5%92%8C%E8%BF%87%E6%BB%A4%E9%97%AE%E9%A2%98/">https://SongX64.github.io/2020/09/30/1004%E4%BD%BF%E7%94%A8%E6%96%87%E6%9C%AC%E8%81%9A%E7%B1%BB%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BA%E5%A4%9A%E9%9D%A2%E7%94%A8%E6%88%B7%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%B9%B6%E5%B0%86%E5%85%B6%E5%BA%94%E7%94%A8%E4%BA%8E%E4%B8%93%E5%AE%B6%E6%8E%A8%E8%8D%90%E5%92%8C%E8%BF%87%E6%BB%A4%E9%97%AE%E9%A2%98/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">SongX64</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E7%A7%91%E7%A0%94/">
+                                    <span class="chip bg-color">科研</span>
+                                </a>
+                            
+                                <a href="/tags/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91/">
+                                    <span class="chip bg-color">论文翻译</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%94%A8%E6%88%B7%E7%94%BB%E5%83%8F/">
+                                    <span class="chip bg-color">用户画像</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/09/30/1109%E8%82%96%E4%BB%B0%E5%8D%8E%E7%94%A8%E6%88%B7%E7%94%BB%E5%83%8F/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="基于知识图谱的用户理解">
+                        
+                        <span class="card-title">基于知识图谱的用户理解</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            将知识图谱应用于用户画像的一个报告，复旦大学肖仰华教授
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-09-30
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%A7%91%E7%A0%94/" class="post-category">
+                                    科研
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%A7%91%E7%A0%94/">
+                        <span class="chip bg-color">科研</span>
+                    </a>
+                    
+                    <a href="/tags/Knowledge-Graph/">
+                        <span class="chip bg-color">Knowledge Graph</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%94%A8%E6%88%B7%E7%94%BB%E5%83%8F/">
+                        <span class="chip bg-color">用户画像</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/05/30/SemanticUI/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Semantic UI编写简单首页">
+                        
+                        <span class="card-title">Semantic UI编写简单首页</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            关于Mybatis的简单使用教程
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-30
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/" class="post-category">
+                                    前端
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%89%8D%E7%AB%AF/">
+                        <span class="chip bg-color">前端</span>
+                    </a>
+                    
+                    <a href="/tags/SematicUI/">
+                        <span class="chip bg-color">SematicUI</span>
+                    </a>
+                    
+                    <a href="/tags/Bootstrap/">
+                        <span class="chip bg-color">Bootstrap</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2020-2021</span>
+            
+            <span id="year">2020</span>
+            <a href="/about" target="_blank">SongX64</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/SongX64" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:song.x64@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=song-x64@qq.com" class="tooltipped" target="_blank" data-tooltip="QQ联系我: song-x64@qq.com" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
+
+</html>

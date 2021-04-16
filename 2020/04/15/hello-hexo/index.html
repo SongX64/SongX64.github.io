@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello,Hexo——关于Hexo部署CSS样式出错的解决, SongX64的Blog">
+    <meta name="keywords" content="Hello,Hexo——关于Hexo部署CSS样式出错的解决, SongX64">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hello,Hexo——关于Hexo部署CSS样式出错的解决 | SongX64的Blog</title>
+    <title>Hello,Hexo——关于Hexo部署CSS样式出错的解决 | SongX64</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -33,6 +33,16 @@
 
 
 
+   <style>
+    body{
+       background-image: url(https://gitee.com/songx86/SongPicBed/raw/master/img/fd039245d688d43f5595595b7d1ed21b0ef43b5f.jpg);
+       background-repeat:no-repeat;
+       background-size:cover;
+       background-attachment:fixed;
+    }
+</style>
+
+
 
 <body>
     <header class="navbar-fixed">
@@ -43,7 +53,7 @@
                     
                     <img src="/medias/logo.png" class="logo-img" alt="LOGO">
                     
-                    <span class="logo-span">SongX64的Blog</span>
+                    <span class="logo-span">SongX64</span>
                 </a>
             </div>
             
@@ -142,7 +152,7 @@
         
         <img src="/medias/logo.png" class="logo-img circle responsive-img">
         
-        <div class="logo-name">SongX64的Blog</div>
+        <div class="logo-name">SongX64</div>
         <div class="logo-desc">
             
             Never really desperate, only the lost of the soul.
@@ -463,6 +473,11 @@
                 
 
                 
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    881
+                </div>
+                
 
                 
 
@@ -510,8 +525,11 @@
 <p>git Failed to connect to 127.0.0.1 port xxxx: Connection refused</p>
 </blockquote>
 <p>解决：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查一下代理：</span></span><br><span class="line">git config --global http.proxy</span><br><span class="line"><span class="comment"># 有没有呢，有就取消</span></span><br><span class="line">git config --global --<span class="built_in">unset</span> http.proxy</span><br></pre></td></tr></table></figure>
-
+<pre><code class="bash"># 查一下代理：
+git config --global http.proxy
+# 有没有呢，有就取消
+git config --global --unset http.proxy
+</code></pre>
 <p>取消之后再进行推送就可以了。</p>
 <hr>
 <h2 id="最终解决问题"><a href="#最终解决问题" class="headerlink" title="最终解决问题"></a>最终解决问题</h2><p>最终不乱搞了，决定对症下药。</p>
@@ -521,11 +539,25 @@
 <p>于是怀疑是路径的问题，再次尝试访问：<code>https://songx64.github.io/libs/awesome/css/all.css</code> ，然后发现可以正常加载CSS文件，如下图：</p>
 <p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210416174950122.png" alt="image-20210416174950122"></p>
 <p>于是找到了症状所在。这是路径配置的不对啊，于是去查看 <code>_config.yml</code> 文件，找到URL所在位置：</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## Set your site url here. For example, if you use GitHub Page, set url as &#x27;https://username.github.io/project&#x27;</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">https://SongX64.github.io／SongX64.github.io</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">:year/:month/:day/:title/</span></span><br><span class="line"><span class="attr">permalink_defaults:</span></span><br><span class="line"><span class="attr">pretty_urls:</span></span><br><span class="line">  <span class="attr">trailing_index:</span> <span class="literal">true</span> <span class="comment"># Set to false to remove trailing &#x27;index.html&#x27; from permalinks</span></span><br><span class="line">  <span class="attr">trailing_html:</span> <span class="literal">true</span> <span class="comment"># Set to false to remove trailing &#x27;.html&#x27; from permalinks</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="yml"># URL
+## Set your site url here. For example, if you use GitHub Page, set url as &#39;https://username.github.io/project&#39;
+url: https://SongX64.github.io／SongX64.github.io
+permalink: :year/:month/:day/:title/
+permalink_defaults:
+pretty_urls:
+  trailing_index: true # Set to false to remove trailing &#39;index.html&#39; from permalinks
+  trailing_html: true # Set to false to remove trailing &#39;.html&#39; from permalinks
+</code></pre>
 <p>将其中 <code>url</code> 更改为：</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## Set your site url here. For example, if you use GitHub Page, set url as &#x27;https://username.github.io/project&#x27;</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">https://SongX64.github.io</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">:year/:month/:day/:title/</span></span><br><span class="line"><span class="attr">permalink_defaults:</span></span><br><span class="line"><span class="attr">pretty_urls:</span></span><br><span class="line">  <span class="attr">trailing_index:</span> <span class="literal">true</span> <span class="comment"># Set to false to remove trailing &#x27;index.html&#x27; from permalinks</span></span><br><span class="line">  <span class="attr">trailing_html:</span> <span class="literal">true</span> <span class="comment"># Set to false to remove trailing &#x27;.html&#x27; from permalinks</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="yml"># URL
+## Set your site url here. For example, if you use GitHub Page, set url as &#39;https://username.github.io/project&#39;
+url: https://SongX64.github.io
+permalink: :year/:month/:day/:title/
+permalink_defaults:
+pretty_urls:
+  trailing_index: true # Set to false to remove trailing &#39;index.html&#39; from permalinks
+  trailing_html: true # Set to false to remove trailing &#39;.html&#39; from permalinks
+</code></pre>
 <p>然后！还有一个重点的地方！！！</p>
 <p>==<strong>Github页面有延迟！！！</strong>==</p>
 <p>==<strong>Github页面有延迟！！！</strong>==</p>
@@ -779,32 +811,56 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/04/16/hello-world/">
+                <a href="/2020/05/12/MybatisPlus%E7%9A%84%E4%BD%BF%E7%94%A8/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="Mybatis-Plus的使用">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">Mybatis-Plus的使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            关于Mybatis的简单使用教程
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-04-16
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-12
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            SongX64
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%90%8E%E7%AB%AF/" class="post-category">
+                                    后端
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                        <span class="chip bg-color">数据库</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%B8%B8%E7%94%A8%E7%BB%84%E4%BB%B6/">
+                        <span class="chip bg-color">常用组件</span>
+                    </a>
+                    
+                    <a href="/tags/Springboot/">
+                        <span class="chip bg-color">Springboot</span>
+                    </a>
+                    
+                    <a href="/tags/Mybatis/">
+                        <span class="chip bg-color">Mybatis</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -813,27 +869,27 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/04/15/hello-hexo/">
+                <a href="/2020/04/14/hello-world/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Hello,Hexo——关于Hexo部署CSS样式出错的解决">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="Hello,World">
                         
-                        <span class="card-title">Hello,Hexo——关于Hexo部署CSS样式出错的解决</span>
+                        <span class="card-title">Hello,World</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            搭建Hexo博客后的第一篇尝试
+                            Hexo教程，默认生成
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-15
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-14
                             </span>
                         <span class="publish-author">
                             
@@ -847,7 +903,6 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -1046,9 +1101,9 @@
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2019-2021</span>
+                <span id="year">2020-2021</span>
             
-            <span id="year">2019</span>
+            <span id="year">2020</span>
             <a href="/about" target="_blank">SongX64</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
             |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
@@ -1076,13 +1131,13 @@
             
         </div>
         <div class="col s12 m4 l4 social-link social-statis">
-    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <a href="https://github.com/SongX64" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
         <i class="fab fa-github"></i>
     </a>
 
 
 
-    <a href="mailto:1181062873@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+    <a href="mailto:song.x64@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
         <i class="fas fa-envelope-open"></i>
     </a>
 
@@ -1092,7 +1147,7 @@
 
 
 
-    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=song-x64@qq.com" class="tooltipped" target="_blank" data-tooltip="QQ联系我: song-x64@qq.com" data-position="top" data-delay="50">
         <i class="fab fa-qq"></i>
     </a>
 
@@ -1273,6 +1328,6 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
 
 </html>

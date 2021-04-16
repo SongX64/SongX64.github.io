@@ -1,0 +1,1610 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="用于推荐系统的知识图卷积网络, SongX64">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>用于推荐系统的知识图卷积网络 | SongX64</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+   <style>
+    body{
+       background-image: url(https://gitee.com/songx86/SongPicBed/raw/master/img/fd039245d688d43f5595595b7d1ed21b0ef43b5f.jpg);
+       background-repeat:no-repeat;
+       background-size:cover;
+       background-attachment:fixed;
+    }
+</style>
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">SongX64</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">SongX64</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">用于推荐系统的知识图卷积网络</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E7%A7%91%E7%A0%94/">
+                                <span class="chip bg-color">科研</span>
+                            </a>
+                        
+                            <a href="/tags/Knowledge-Graph/">
+                                <span class="chip bg-color">Knowledge Graph</span>
+                            </a>
+                        
+                            <a href="/tags/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91/">
+                                <span class="chip bg-color">论文翻译</span>
+                            </a>
+                        
+                            <a href="/tags/Recommendation/">
+                                <span class="chip bg-color">Recommendation</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E7%A7%91%E7%A0%94/" class="post-category">
+                                科研
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-04-01
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    8.3k
+                </div>
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="用于推荐系统的知识图卷积网络"><a href="#用于推荐系统的知识图卷积网络" class="headerlink" title="用于推荐系统的知识图卷积网络"></a>用于推荐系统的知识图卷积网络</h1><h2 id="论文信息"><a href="#论文信息" class="headerlink" title="论文信息"></a>论文信息</h2><p>arXiv:1904.12575v1 [cs.IR] 18 Mar 2019</p>
+<p>WWW ‘19: The Web Conference San Francisco CA USA May, 2019, pp. 3307-3313, 2019.</p>
+<p>2019年WWW会议，国际万维网会议，A类交叉会议</p>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>为了==减轻基于协作过滤的稀疏和冷启动问题==，研究人员和工程师通常收集==用户和项目的属性==，并设计精细算法以利用这些附加信息。通常，该属性不是相互隔绝的而是彼此连接的，这可以从知识图（KG）中得到。</p>
+<p>在本文中，我们提出了==知识图形卷积网络（KGCN）==，一个端到端框架，通过在KG上挖掘它们的关联属性有效地捕获项目间的相关性。</p>
+<p>为了自动发现KG的==高阶结构信息和语义信息==，我们对<strong>KG中每个实体的邻居</strong>进行取样得到其表示，然后使用偏重bias结合邻近信息来进行计算一个给定实体的表示。</p>
+<p>可以将接收领域扩展到距离频率的多个跳跃，以模拟高阶邻近信息并捕获用户的潜在的长距离兴趣。</p>
+<p>此外，我们以小批次方式实现提出的KGCN，这使我们的模型能够在大型数据集和KG上运行。</p>
+<p>我们将拟议的模型应用于关于电影，书籍和音乐推荐的三个数据集，实验结果表明我们的方法优于强大的推荐基线。</p>
+<h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><ul>
+<li>推荐系统</li>
+<li>知识图谱</li>
+<li>图卷积网络</li>
+</ul>
+<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h2><h3 id="推荐问题"><a href="#推荐问题" class="headerlink" title="推荐问题"></a>推荐问题</h3><p>随着互联网技术的推进，人们可以访问大量的在线内容，如新闻[25]，电影[5]和商品[26]。</p>
+<p>在线平台的一个臭名昭着的问题是，物品的数量可以压倒用户。为了减轻信息过多的影响，可以用<strong>推荐系统（RS）</strong>来搜索并推荐一小部分物品以满足用户的个性化兴趣。</p>
+<p>传统推荐技术是协作滤波（CF），其分配用户和项目的基于ID的表示向量，然后通过特定操作（如内部产品[16]或神经网络）进行模拟它们的交互[8]。</p>
+<p>然而，==基于CF的方法通常遭受用户项目交互的稀疏性和冷启动问题==。为了解决这些限制，研究人员通常转向具有丰富的功能，其中==用户和物品的属性==用于补偿稀疏性并提高建议的性能[3,17]。</p>
+<h3 id="知识图谱用于推荐"><a href="#知识图谱用于推荐" class="headerlink" title="知识图谱用于推荐"></a>知识图谱用于推荐</h3><p>最近的一些研究[9,18,19,22-24]比简单地使用属性进一步走了一步：</p>
+<p>它们指出了该==属性不是被隔绝的，而是彼此联系，这形成了知识图（kg）==。</p>
+<p>通常，kg是指向的异构图，其中节点对应于实体（项目或项目属性）和边缘对应于关系。</p>
+<p>与无功的方法相比，==将KG纳入推荐中的提议==，其中三种方式有利于结果[18]：</p>
+<ol>
+<li>KG项目中的丰富语义相关性可以帮助探索其潜在的连接并提高结果的精度; </li>
+<li>KG各种关系对于合理地扩展用户的兴趣以及增加推荐物品的多样性有助于扩展用户的兴趣; </li>
+<li>kg连接用户的历史上最受欢迎和推荐的项目，从而为推荐系统带来可解释性。</li>
+</ol>
+<p>尽管有上述好处，但由于其高维度和异质性，利用KG在RS中是相当挑战。</p>
+<h3 id="知识图片嵌入方法"><a href="#知识图片嵌入方法" class="headerlink" title="知识图片嵌入方法"></a>知识图片嵌入方法</h3><p>一种可行的方式是通过==知识图形嵌入（KGE）方法[20]预处理KG==，将其映射实体和与低维表示向量的关系[9,19,23]。</p>
+<p>然而，普通使用的KGE方法侧重于建模严格的语义相关性（例如，Transe [1]和Transr [12]假设头+关系=尾部），其更适合于图形应用程序，例如KG完成和链接预测比推荐。</p>
+<h3 id="知识图谱结构图形算法"><a href="#知识图谱结构图形算法" class="headerlink" title="知识图谱结构图形算法"></a>知识图谱结构图形算法</h3><p>一种更自然和直观的方式是==利用KG结构直接设计图形算法==。</p>
+<p>1.FMG</p>
+<p>例如，每个[22]和FMG [24]将kg作为异构信息网络，并提取基于元路径/元图的潜在特征，以表示用户和项目之间的连接沿不同类型的关系路径/图形。</p>
+<p>然而，每次和FMG严重依赖于手动设计的元路径或元图，这几乎不会在现实中最佳。 </p>
+<p>2.RippleNet</p>
+<p>Ripplenet [18]是一种类似的内存网络型模型，可在KG中传播用户的潜在偏好，并探讨其分层兴趣。但注意，关系的重要性在突破平板上略微表征，因为关系R的嵌入矩阵几乎不能接受训练，以捕获二次形式的$V^⊤Rh$（v和h是两个实体的嵌入矢量）的重要特征。另外，Ripple集合的大小可以随着KG大小的增加而不可预测的，这引起了巨大的计算和存储开销。</p>
+<h3 id="本文提出KGCN"><a href="#本文提出KGCN" class="headerlink" title="本文提出KGCN"></a>本文提出KGCN</h3><p>在本文中，我们调查了KG结合推荐的问题。</p>
+<p>我们的设计目标是在KG中自动捕获高阶结构和语义信息。</p>
+<p>灵感来自图卷积网络（GCN）1，尝试将卷积概括为图形域，我们向推荐系统提出<strong>知识图形卷积网络（KGCN）</strong>。</p>
+<p>当计算KG中给定实体的表示时，==KGCN的关键概念是聚合和合并邻居信息==。</p>
+<p>这种设计具有两个<strong>优点</strong>：</p>
+<p>（1）通过邻域聚合的操作，成功捕获<strong>本地接近结构</strong>并将其存储在每个实体中。</p>
+<p>（2）邻居被依赖于<strong>连接关系</strong>和特定用户的<strong>分数加权</strong>，其特征在于KG和用户的个性化兴趣的语义信息。</p>
+<p>请注意，在最坏情况下，一个实体的邻居size可能会非常非常的大。因此，我们将==每个节点的<strong>固定尺寸邻域</strong>==作为接收领域进行采样，这使得kgcn的成本可预测。</p>
+<p>给定实体的<strong>邻域定义</strong>也可以分层扩展到多跳（多个跳跃？就是多走几次节点？）之外，以建模<strong>高阶实体依赖关系</strong>并捕捉用户的潜在<strong>远程兴趣</strong>。</p>
+<h3 id="数据集及结果"><a href="#数据集及结果" class="headerlink" title="数据集及结果"></a>数据集及结果</h3><p>根据实验，我们将KGCN应用于三个数据集:MovieLens-20M(电影)、Book-Crossing (书籍)和Last.FM(音乐)。<br>实验结果表明，与最先进的推荐基准相比，KGCN在电影、书籍和音乐推荐中的平均AUC增益分别为4.4%、8.1%和6.2%。</p>
+<h3 id="本文贡献"><a href="#本文贡献" class="headerlink" title="本文贡献"></a>本文贡献</h3><p>我们在本文中的贡献总结如下:</p>
+<ul>
+<li>我们提出了知识图卷积网络，这是一个端到端的框架，用于为推荐系统探索用户对知识图的偏好。通过扩展KG中每个实体的接受域，KGCN能够捕捉用户的高阶个性化兴趣。</li>
+<li>我们在三个真实世界的推荐场景中进行实验。结果证明了KGCN最小二乘法在最先进的基线上的有效性。</li>
+<li>我们向研究人员发布KGCN代码和数据集(知识图)，以验证报告的结果并进行进一步的研究。代码和数据可在<a target="_blank" rel="noopener" href="https://github.com/hwwang55/KGCN%E8%8E%B7%E5%BE%97">https://github.com/hwwang55/KGCN获得</a>  (<a href="F:\AWork\2021论文\Demo\KGCN-master">本地文件夹在这</a>)</li>
+</ul>
+<h2 id="2-相关工作"><a href="#2-相关工作" class="headerlink" title="2. 相关工作"></a>2. 相关工作</h2><h3 id="本文方法"><a href="#本文方法" class="headerlink" title="本文方法"></a>本文方法</h3><p>我们的方法在概念上受到GCN（图卷积网络）的启发。</p>
+<p>一般来说，GCN可以分为==光谱方法和非光谱方法==。</p>
+<p>谱方法表示图形，并在谱空间中执行卷积。</p>
+<p>例如，布鲁纳等人[2]定义了傅立叶域中的卷积，并计算了图拉普拉斯的特征分解，</p>
+<p>德费拉德等人[4]通过图拉普拉斯的切比雪夫展开来近似卷积滤波器，</p>
+<p>Kipf等人[10]通过谱图卷积的局部一阶近似提出了卷积结构。</p>
+<p>相比之下，非谱方法直接对原始图进行操作，并为节点组定义卷积。</p>
+<p>为了处理不同大小的邻域并保持CNN的权重共享特性，研究人员建议为每个节点度学习一个权重矩阵[6]，从图中提取局部连通区域[13]，或者采样一组固定大小的邻域作为支持大小[7]。</p>
+<p>我们的工作可以看作是一种==特殊类型图(即知识图)的非谱方法==。</p>
+<p>我们的方法也连接到PinSage [21]和GAT [15]。</p>
+<p>但是请注意，PinSage和GAT都是为同构图设计的。</p>
+<p>我们的工作与文献的主要区别在于，我们借助==异构知识图==为推荐系统提供了一个新的视角。</p>
+<hr>
+<h3 id="相关知识：关于图卷积网络"><a href="#相关知识：关于图卷积网络" class="headerlink" title="相关知识：关于图卷积网络"></a>相关知识：关于图卷积网络</h3><p>GCN的概念首次提出于ICLR2017（成文于2016年）</p>
+<h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>回忆一下，我们做图像识别，对象是图片，是一个二维的结构，于是人们发明了<strong>CNN这种神奇的模型来提取图片的特征</strong>。<br>CNN的核心在于它的kernel，kernel是一个个小窗口，<strong>在图片上平移，通过卷积的方式来提取特征</strong>。<br>这里的关键在于<strong>图片结构上的平移不变性</strong>：一个小窗口无论移动到图片的哪一个位置，其内部的结构都是一模一样的，因此CNN可以实现参数共享。<br>这就是CNN的精髓所在。</p>
+<p>再回忆一下RNN系列，它的对象是<strong>自然语言这样的序列信息</strong>，是一个<strong>一维的结构</strong>，RNN就是专门针对这些序列的结构而设计的，通过各种门的操作，使得<strong>序列前后的信息互相影响</strong>，从而很好地捕捉序列的特征。</p>
+<p>图（这里应该是数据结构图Graph）的结构一般来说是十分不规则的，可以认为是无限维的一种数据，所以它没有平移不变性。<br><strong>每一个节点的周围结构可能都是独一无二的</strong>，这种结构的数据，就让传统的CNN、RNN瞬间失效。所以很多学者从上个世纪就开始研究怎么处理这类数据了。这里涌现出了很多方法，例如GNN、DeepWalk、node2vec等等，GCN只是其中一种，这里只讲GCN，其他的后面有空再讨论。</p>
+<p>==GCN，图卷积神经网络，实际上跟CNN的作用一样，就是一个<strong>特征提取器</strong>，只不过它的对象是图数据==。<br>GCN精妙地设计了一种从图数据中提取特征的方法，从而让我们可以使用这些特征去对图数据进行<br>==节点分类（node classification）、图分类（graph classification）、边预测（link prediction），还可以顺便得到图的嵌入表示（graph embedding）==，可见用途广泛。<br>因此现在人们脑洞大开，让GCN到各个领域中发光发热。</p>
+<h4 id="数学表示"><a href="#数学表示" class="headerlink" title="数学表示"></a>数学表示</h4><p>假设我们手头有一批图数据，其中有<strong>N个节点（node）</strong>，每个节点都有自己的<strong>特征</strong>，我们设这些<strong>节点的特征</strong>组成一个<strong>N×D维的矩阵X</strong>，然后各个<strong>节点之间的关系</strong>也会形成一个<strong>N×N维的矩阵A</strong>，也称为邻接矩阵（adjacency matrix）。X和A便是我们模型的输入。</p>
+<ul>
+<li>N个节点</li>
+<li>节点特征矩阵：$N \times D$ 维矩阵 X</li>
+<li>节点关系矩阵：$N \times N$ 维矩阵A，邻接矩阵</li>
+<li>输入：节点特征矩阵X，节点关系矩阵A</li>
+</ul>
+<p>GCN也是一个神经网络层，它的层与层之间的传播方式是：</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/d6fffc4911a546698c9b031c04fa314a.png" alt="img"></p>
+<p>这个公式中：</p>
+<ul>
+<li>$\tilde A = A + I$，I是单位矩阵</li>
+<li>$\tilde D$是$\tilde A$的度矩阵（degree matrix），公式为</li>
+<li>H是每一层的特征，对于输入层的话，H就是X</li>
+<li>σ是非线性激活函数</li>
+</ul>
+<p>我们先不用考虑为什么要这样去设计一个公式。我们现在只用知道：</p>
+<p>这个部分，是可以事先算好的，因为D波浪由A计算而来，而A是我们的输入之一。==A输入可以计算得到D，在第一层时H就是X，σ 是给出的激活函数，W是参数矩阵==</p>
+<p>所以对于不需要去了解数学原理、只想应用GCN来解决实际问题的人来说，你只用知道：哦，这个GCN设计了一个牛逼的公式，用这个公式就可以很好地提取图的特征。这就够了，毕竟不是什么事情都需要知道内部原理，这是根据需求决定的。</p>
+<h4 id="直观例子"><a href="#直观例子" class="headerlink" title="直观例子"></a>直观例子</h4><p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/b63b19781f1b4b118feec2888a228fee.jpeg" alt="img"></p>
+<p>上图中的GCN输入一个图，通过若干层GCN每个node的特征从X变成了Z，但是，无论中间有多少层，node之间的连接关系，即A，都是共享的。</p>
+<p>假设我们构造一个两层的GCN，激活函数分别采用ReLU和Softmax，则整体的<strong>正向传播的公式</strong>为：</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/672cc909cfe348a7a4ae55cdf7dcaafe.png" alt="img"></p>
+<p>最后，我们针对所有带标签的节点计算cross entropy损失函数：</p>
+<p><img src="http://5b0988e595225.cdn.sohucs.com/images/20190922/c76fc77cc22142e5892f9975e4f2084a.png" alt="img"></p>
+<p>就可以训练一个node classification的模型了。由于即使只有很少的node有标签也能训练，作者称他们的方法为==半监督分类==。</p>
+<p>当然，==你也可以用这个方法去做graph classification、link prediction，只是把损失函数给变化一下即可==。</p>
+<p>公式中的与对称归一化拉普拉斯矩阵十分类似，而在谱图卷积的核心就是使用对称归一化拉普拉斯矩阵，这也是GCN的卷积叫法的来历。</p>
+<h4 id="GCN-有多牛"><a href="#GCN-有多牛" class="headerlink" title="GCN 有多牛"></a>GCN 有多牛</h4><p>在看了上面的公式以及训练方法之后，我并没有觉得GCN有多么特别，无非就是一个设计巧妙的公式嘛，也许我不用这么复杂的公式，多加一点训练数据或者把模型做深，也可能达到媲美的效果呢。</p>
+<p>但是一直到我读到了论文的附录部分，我才顿时发现：GCN原来这么牛啊！</p>
+<p>为啥呢？</p>
+<p>因为即使不训练，==完全使用随机初始化的参数W==，GCN提取出来的特征就以及十分优秀了！这跟CNN不训练是完全不一样的，后者不训练是根本得不到什么有效特征的。</p>
+<p>还没训练就已经效果这么好，那给==少量的标注信息==，GCN的效果就会更加出色。</p>
+<ol>
+<li>对于很多网络，我们可能==没有节点的特征==，这个时候可以使用GCN吗？答案是可以的，如论文中作者对那个俱乐部网络，采用的方法就是<strong>用单位矩阵 I 替换特征矩阵 X</strong>。</li>
+<li>我==没有任何的节点类别的标注==，或者什么其他的标注信息，可以使用GCN吗？当然，就如前面讲的，<strong>不训练的GCN，也可以用来提取graph embedding，而且效果还不错</strong>。</li>
+<li>GCN网络的层数多少比较好？论文的作者做过GCN网络深度的对比研究，在他们的实验中发现，==GCN层数不宜多，2-3层的效果就很好了==。</li>
+</ol>
+<hr>
+<h2 id="3-知识图卷积网络"><a href="#3-知识图卷积网络" class="headerlink" title="3. 知识图卷积网络"></a>3. 知识图卷积网络</h2><p>在这一节中，我们介绍提出的KGCN模型。</p>
+<ol>
+<li>我们首先提出了知识图感知推荐问题。</li>
+<li>然后我们展示了单层KGCN的设计。</li>
+<li>最后，我们介绍了完整的KGCN学习算法，以及它的具体实现。</li>
+</ol>
+<h3 id="3-1-问题提出"><a href="#3-1-问题提出" class="headerlink" title="3.1 问题提出"></a>3.1 问题提出</h3><p>我们将知识图感知推荐问题公式化如下。</p>
+<p>在一个典型的推荐场景中，我们有一组==M个用户==U = {u1，u2，…，uM}和一组==N项==V = {v1，v2，…，vN}。</p>
+<p>根据用户的==隐反馈==定义的==用户-项目交互矩阵==Y ∈ RM×Nis，其中yuv= 1表示用户u参与项目v，如点击、浏览或购买；otherwiseyuv= 0。</p>
+<p>此外，我们还有一个==知识图G==，它由实体-关系-实体三元组(h，r，t)组成。这里h ∈ E，r ∈ R，t ∈ E表示知识三元组的头，关系，尾，E和R分别是知识图中实体和关系的集合。</p>
+<p>例如，三部曲(冰与火之歌，书.书.作者，乔治·马丁)陈述了乔治·马丁写《冰与火之歌》这本书的事实。</p>
+<p>在很多推荐场景中，一个item v ∈ V对应一个实体e ∈ E，比如在书籍推荐中，“冰与火之歌”这一项也作为同名实体出现在知识图中。</p>
+<ul>
+<li>用户user，物品item</li>
+<li>隐反馈矩阵Y，1是交互，0是无交互</li>
+<li>知识图G，其中的三元组(h,r,t)</li>
+<li>一个item就对应一个知识图G中的实体e</li>
+</ul>
+<p>给定用户-项目交互矩阵Y和知识图G，我们旨在预测用户u是否对他以前没有交互过的项目有潜在兴趣。</p>
+<p>我们的目标是学习一个预测函数$\hat y _{uv} = \mathcal F(u,v | \Theta,Y,G) $，其中$\hat y _{uv}$表示用户u将参与项目v的概率，θ表示函数F的模型参数。</p>
+<ul>
+<li>输入：隐反馈矩阵Y，知识图G</li>
+<li>目标：$\hat y _{uv} = \mathcal F(u,v | \Theta,Y,G) $<ul>
+<li>$\hat y _{uv}$表示用户 u 将参与项目 v 的==概率==</li>
+<li>θ表示函数F的==模型参数==</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-2-KGCN层"><a href="#3-2-KGCN层" class="headerlink" title="3.2 KGCN层"></a>3.2 KGCN层</h3><p>KGCN被用来在知识图中捕捉实体之间的高阶结构邻近性。</p>
+<p>在这一小节中，我们首先描述==单个KGCN层==。</p>
+<p>考虑用户u和项目(实体)v的候选对。</p>
+<p>我们用N (v)来表示直接连接到实体v的其他实体集合，和$r_{e_i,e_j}$来表示 实体$e_i$和$e_j$之间的关系。</p>
+<ul>
+<li>用户u，实体v</li>
+<li>N(v)：实体v的邻居实体集合</li>
+<li>$r_{e_i,e_j}$ ：实体$e_i$和$e_j$之间的关系</li>
+</ul>
+<p>我们还使用函数$\mathcal g : \mathbb R^d \times \mathbb R ^d \rightarrow \mathbb R$​ (例如内积)来计算==用户和关系之间的分数==：</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210402172958608.png" alt="image-20210402172958608"></p>
+<p>其中$u ∈ \mathbb R^d$和$r ∈ \mathbb R^d$分别表示用户u和关系R，d是表示的维数。一般来说，$\pi _r ^u$表征关系对用户的重要性。</p>
+<p><strong>例如，一个用户可能对与他历史上喜欢的电影共享同一“明星”的电影有更多的潜在兴趣，而另一个用户可能更关心电影的“流派”。</strong></p>
+<ul>
+<li>$\pi _r ^u$：代表关系对于用户的重要性（比如“actor_is”、“type_is”）关系</li>
+<li>u：用户，$u ∈ \mathbb R^d$，d维数</li>
+<li>r：关系，$r ∈ \mathbb R^d$，d维数</li>
+</ul>
+<p>为了==刻画物品v的拓扑邻近结构==，我们计算了==v的邻域的线性组合==:</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210402201234277.png" alt="image-20210402201234277"></p>
+<p>其中，$\tilde \pi <em>{r</em>{v,e}} ^u$是==标准化的用户关系得分==：</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210402201405937.png" alt="image-20210402201405937"></p>
+<p>当计算一个实体的邻域表示时，<strong>用户-关系分数充当个性化过滤器</strong>，因为我们聚集带有偏差的邻居来代表那些特定用户的分数。</p>
+<ul>
+<li>e为实体v的邻域中的实体；</li>
+<li>r是实体v与邻居e的关系</li>
+<li></li>
+</ul>
+<p>在现实世界的知识图中，N (e)的大小在所有实体中可能有很大的不同。</p>
+<p>为了保持每批的计算模式固定和更高效，我们为==每个实体统一采样一组固定大小的邻居==，而不是使用它的全部邻居。</p>
+<p>具体来说，我们将==实体的邻域==表示计算为$v^u _{S(v)}$ ，其中$S(v) = {e | e \sim N(v)}$ 且$|S(v)| = K $ 是一个可配置的常量。</p>
+<p>在KGCN，S(v)也被称为实体v的(单层)感受野，因为v的最终表征对这些位置很敏感。</p>
+<p>图1a给出了给定实体的两层感受野的说明性例子，其中K被设置为2。</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210402204045871.png" alt="image-20210402204045871"><br>(A)KG中蓝色实体的两层感受野(绿色实体)</p>
+<p>KGCN层的最后一步是将实体表示 v 及其邻域表示$v^u_{s(v)}$ ==聚合成单个向量==。</p>
+<p>我们在KGCN中实现了三种类型的聚合器agg：$\mathbb R ^d \times \mathbb R ^d \rightarrow \mathbb R ^d $ ：</p>
+<ul>
+<li>Sum（求和）聚合器取两个表示向量之和，然后进行非线性变换<br><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210402204501093.png" alt="image-20210402204501093"><br>其中W和b分别是变换权重和偏置，σ是像ReLU这样的非线性函数。</li>
+<li>Concat（连接）聚合器[7]在应用非线性变换之前首先连接两个表示向量：<br><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210402204622757.png" alt="image-20210402204622757"></li>
+<li>Neighbor（邻居）聚合器[15]直接将实体v的邻域表示作为输出表示：<br><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210402204724792.png" alt="image-20210402204724792"></li>
+</ul>
+<p>聚合是KGCN中的关键步骤，因为==项目的表示通过聚合与其邻居绑定在一起==。我们将在实验中对这三个聚合器进行评估。</p>
+<h3 id="3-3-学习算法"><a href="#3-3-学习算法" class="headerlink" title="3.3 学习算法"></a>3.3 学习算法</h3><p>通过==单个KGCN层==，<strong>实体的最终表示依赖于其自身及其直接邻居</strong>，我们将其命名为<strong>1阶实体表示</strong>。</p>
+<p>将KGCN从一层扩展到多层，以更广、更深的方式合理挖掘用户的潜在兴趣，这是理所当然的。</p>
+<p>该技术是直观的：将每个实体的初始表示(0阶表示)传播给它的邻居，得到1阶实体表示，然后我们可以重复这个过程，即进一步传播和聚合1阶表示，得到2阶表示。</p>
+<p>一般而言，<strong>实体的h阶表示是其自身及其邻居的初始表示的混合，最远可达h跳</strong>。</p>
+<p>这是KGCN的一个重要属性，我们将在下一小节中讨论。</p>
+<p>上述步骤的形式描述在算法1中给出。</p>
+<p>h表示接受场的最大深度(或者等效地，聚合迭代的次数)，由表示向量附加的后缀[h]表示h阶。</p>
+<p>对于给定的用户-项目对(u，v)(第2行)，</p>
+<p>我们首先以逐层迭代的方式计算感受野(第3行，13-19行)。</p>
+<p>然后将聚合重复H次(第5行)：</p>
+<p>在迭代h中，我们计算每个实体e∈M[h]的邻域表示(第7行)，</p>
+<p>然后将其与其自己的表示EU[h−1]聚合，</p>
+<p>以获得要在下一次迭代中使用的表示(第8行)。</p>
+<p>最终的H阶实体表示被表示为vu(行9)，</p>
+<p>它与用于预测概率的用户表示u一起被馈送到函数f：rd×rd→R中：</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210402210950370.png" alt="image-20210402210950370"></p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210402214108717.png" alt="image-20210402214108717"></p>
+<hr>
+<p>算法1：KGCN算法</p>
+<hr>
+<ul>
+<li>输入：<ul>
+<li>交互矩阵Y；</li>
+<li>知识图谱G(E,R)；</li>
+<li>邻域抽样图S：$S:e \rightarrow 2^\xi $ ;</li>
+<li>可训练参数：${u}<em>{u \in \mathcal U},{e}</em>{e \in \mathcal E},{r}<em>{r \in \mathcal R},{W_i,b_i}</em>{i=1}^H $ ；</li>
+<li>超参数：H，d，g(·)，f(·)，σ(·)，agg(·)</li>
+</ul>
+</li>
+<li>输出：<ul>
+<li>预测函数 $\hat y _{uv} = \mathcal F(u,v | \Theta,Y,G) $</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>while (KGCN 不收敛时) do<br>    for (u,v) in Y do<br>        ${M[i]}^H_{i=0} \leftarrow $ 获取感受野(v)；</p>
+<p>​        $e^u[0] \leftarrow e , \forall e \in M[0]$</p>
+<hr>
+<p>图1B示出了一次迭代中的KGCN算法，其中给定节点的实体表示Vu[h]和邻域表示(绿色节点)混合以形成其用于下一迭代(蓝色节点)的表示。</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210402211024736.png" alt="image-20210402211024736"></p>
+<p>(B)KGCN的框架</p>
+<p>注意，算法1遍历所有可能的用户项对（第2行）。为了使计算更有效，我们在训练期间使用负面采样策略。完整的损失函数如下：</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210402214229685.png" alt="image-20210402214229685"></p>
+<p>其中$\mathcal L$是交叉熵损失函数(cross-entropy loss)，P是负的采样分布，$T^u$为用户u的负样本数。</p>
+<p>在本文中，$T^u = |{v:y_{uv}=1}|$并且P遵循均匀分布。最后一个块是L2正则化矩阵。</p>
+<h2 id="4-实验"><a href="#4-实验" class="headerlink" title="4. 实验"></a>4. 实验</h2><h3 id="4-1-数据集"><a href="#4-1-数据集" class="headerlink" title="4.1 数据集"></a>4.1 数据集</h3><p>我们在我们的电影，书籍和音乐推荐的实验中使用以下三个数据集：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://grouplens.org/datasets/movielens/">MOVIELENS-20M</a>：一个在电影推荐中广泛使用的基准数据集，其中MOVIELENS网站上的大约2000万只显式评级（从1到5）组成。</li>
+<li><a target="_blank" rel="noopener" href="http://www2.informatik.uni-freiburg.de/~cziegler/BX/">Book-Crossing</a>：含有100万条书籍评级（从0到10），来自于Book-Crossing社区</li>
+<li><a target="_blank" rel="noopener" href="https://grouplens.org/datasets/hetrec-2011/">Last.FM</a>：包含来自Last.fm在线音乐系统的一组2,000个用户的听音乐信息。</li>
+</ul>
+<p>由于三个数据集是显反馈，我们将它们==转换为隐反馈==，其中每个条目被标记为1表示用户积极评分，标记为0的表示用户消极评分。</p>
+<p>对于Movielens-20m的积极评分的==阈值==为4，而由于其稀疏性没有为BookCrossing和Last.fm设置阈值。</p>
+<p>我们使用<a target="_blank" rel="noopener" href="https://searchengineland.com/library/bing/bing-satori">Microsoft Satori</a>来构建每个数据集的知识图谱。</p>
+<p>我们首先从整个KG选择一个三元组，置信水平大于0.9。</p>
+<p>给出Sub-KG，我们收集所有有效电影/书籍/音乐的的StaoriID，什么是有效呢，就是通过书籍/电影/音乐的名字与三元组的尾相匹配，比如(head，film.film.name,tail)，(head,book.book.title,tail)，(head,type.object.name,tail)。</p>
+<p>具有多个匹配或没有匹配实体的项目被排除，因为其过于简单。</p>
+<p>然后，我们将项目ID与所有三元组匹配，并从Sub-kg中选择所有匹配的三元组。</p>
+<p>三个数据集的基本统计信息如表1所示。</p>
+<p>表1：三个数据集的基本统计和超参数设置(K:邻居采样大小，d:嵌入维数，H:感受野深度，λ: L2正则化权重，η:学习率)。<br><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210407111819265.png" alt="image-20210407111819265"></p>
+<h3 id="4-2-Baselines"><a href="#4-2-Baselines" class="headerlink" title="4.2 Baselines"></a>4.2 Baselines</h3><p>我们将建议的KGCN与以下基线进行比较，其中前两个基线是无KG的，而其余的都是有KG使用的方法。基线的超参数设置将在下一小节中介绍。</p>
+<ul>
+<li>SVD[11]：是一个经典的基于CF的模型，使用内积来建模用户-项目交互。（我们尝试过NCF [8]，即用神经网络代替内积，但结果不如SVD。由于SVD和NCF相似，我们在这里只呈现更好的一个。）</li>
+<li>LibFM [14]：是CTR场景中基于特征的分解模型。我们连接 user ID 和 item ID 作为LibFM的输入。</li>
+<li>LibFM + TransE：通过将TransE [1]学习的实体表示，附加到每个用户-项目对，来扩展LibFM</li>
+<li>PER [22]：将KG视为异构信息网络，并提取基于元路径的特征，来表示用户和项目之间的连通性</li>
+<li>CKE [23]将CF与结构、文本和视觉知识结合在一个统一的推荐框架中。在本文中，我们将CKE实现为CF加上一个结构知识模块。</li>
+<li>RippleNet [18]是一种类似内存网络的方法，它将用户的偏好传播到KG上进行推荐。</li>
+</ul>
+<h3 id="4-3-实验设置"><a href="#4-3-实验设置" class="headerlink" title="4.3 实验设置"></a>4.3 实验设置</h3><p>在KGCN，我们设置函数 g 和 f 为内积，σ在不是最后一层的时候用ReLU，在最后一层的时候用tanh。</p>
+<p>表1提供了其他超参数设置。</p>
+<p>超参数是通过在验证集上优化AUC（<a target="_blank" rel="noopener" href="https://blog.csdn.net/liweibin1994/article/details/79462554">模型评估指标</a>）来确定的。</p>
+<p>对于每个数据集，训练集、评估集和测试集的比例为6 : 2 : 2。</p>
+<p>每个实验重复3次，并报告平均性能。</p>
+<p>我们在两个实验场景中评估了我们的方法:</p>
+<p>(1)在点击率预测中，我们应用训练好的模型来预测测试集中的每个交互。我们使用UC和F1来评估CTR预测。</p>
+<p>(2)在top-K推荐中，我们使用训练好的模型为测试集中的每个用户选择预测点击概率最高的K个项目，选择Recall@K对推荐集进行评价。</p>
+<p>所有可训练参数均采用亚当算法优化。</p>
+<blockquote>
+<p>Adam算法：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/luoxuexiong/article/details/90412213">什么是Adam算法</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/323747423">Adam算法详解</a></p>
+</blockquote>
+<p>KGCN-LS的代码是在Python 3.6、TensorFlow 1.12.0和NumPy 1.14.3下实现的</p>
+<p>基线的超参数设置如下。</p>
+<ul>
+<li><p>对于SVD，我们使用无偏版本(即，预测评级被建模为$r_{pq}= p^⊤q$).</p>
+<ul>
+<li>四个数据集的维数和学习率分别设置为:<ul>
+<li>对于MovieLens-20M和Book-Crossing，d = 8，η = 0.5；</li>
+<li>对于Last.FM，d = 8，η = 0.1；</li>
+<li>对于LibFM，维数为{1，1，8}，训练批次数epochs为50。TransE的维度是32。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>对于PER，我们使用手动设计的<code>user-item-attribute-item</code>路径作为特征</p>
+<ul>
+<li>MovieLens-20M<ul>
+<li>“user-movie-director-movie”</li>
+<li>“user-movie-genre-movie”</li>
+<li>“user-movie-star-movie” </li>
+</ul>
+</li>
+<li>Book-Crossing<ul>
+<li>“user-book-author-book” </li>
+<li>“user-book-genrebook” </li>
+</ul>
+</li>
+<li>Last.FM</li>
+<li>“user-musician-date_of_birth-musician”(date of birth is 离散化的)</li>
+<li>“user-musician-country-musician”,</li>
+<li>“user-musician-genre-musician” </li>
+</ul>
+</li>
+<li><p>对于CKE</p>
+<ul>
+<li>三个数据集的维数分别为64、128、64。</li>
+<li>对于所有数据集，KG部分的训练权重为0.1</li>
+<li>学习率和SVD一样。</li>
+</ul>
+</li>
+<li><p>对于RippleNet</p>
+</li>
+<li><p>MovieLens-20M：d = 8，H = 2，λ1 = 106，λ2= 0.01，η= 0.01；</p>
+</li>
+<li><p>Last.FM：d = 16，H = 3，λ1 = 105，λ2= 0.02，η = 0.005。</p>
+</li>
+<li><p>其他超参数与他们在原始论文中报告的相同，或在他们的代码中默认。</p>
+</li>
+</ul>
+<h3 id="4-4-结果"><a href="#4-4-结果" class="headerlink" title="4.4 结果"></a>4.4 结果</h3><h4 id="对比结果"><a href="#对比结果" class="headerlink" title="对比结果"></a>对比结果</h4><p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210408170732277.png" alt="image-20210408170732277"></p>
+<p>CTR预测和top-K推荐的结果分别显示在表2和图2中(为了清楚起见，图2中没有绘制SVD、LibFM和KGCN的其他变量)。我们观察到以下情况:</p>
+<ul>
+<li>总的来说，我们发现KGCN在书籍和音乐方面的进步高于电影。这表明，KGCN可以很好地解决稀疏的场景，因为BookCrossing和Last.FM比MovieLens20M要稀疏得多。</li>
+<li>无KG基线(SVD和LibFM)的性能实际上优于两个KG感知基线(PER和CKE)，这表明PER和CKE不能充分利用具有手动设计的元路径和TransRlike正则化的KG。</li>
+<li>LibFM + TransE在大多数情况下都比LibFM好，说明KG的引入总体上对推荐是有帮助的。</li>
+<li>在所有基线中，PER表现最差，因为很难在现实中定义最佳元路径。</li>
+<li>与其他基线相比，RippleNet显示出强大的性能。请注意，RippleNet还使用多跳邻域结构，有趣的是，这表明在KG中捕获邻近信息对于推荐至关重要。</li>
+</ul>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210408170704265.png" alt="image-20210408170704265"></p>
+<h4 id="三种KGCN聚合器"><a href="#三种KGCN聚合器" class="headerlink" title="三种KGCN聚合器"></a>三种KGCN聚合器</h4><p>表2中的最后四行总结了KGCN变体的性能。</p>
+<p>前三个(和、串联、相邻)对应于前面部分介绍的不同聚合器，而最后一个变体KGCN-avg是KGCN-sum的简化情况，其中邻域表示被直接平均而没有用户关系分数(即vu N(v)=˝ e∈N(v)e而不是Eq)。(2)).</p>
+<p>因此，KGCN-平均用于检验“注意机制”的功效。从结果中我们发现:</p>
+<ul>
+<li>KGCN的表现明显优于所有基线，但它们的表现略有不同:==KGCN-sum总体表现最好==，而KGCNneighbor的表现在Book-Crossing和Last.FM上有明显差距。这可能是因为邻居聚合器仅使用邻域表示，因此从实体本身丢失了有用的信息。</li>
+<li>KGCN-avg的表现比KGCN-sum差，尤其是在Bookcross和最Last.fm稀少的。这表明捕捉用户的个性化偏好和KG的语义信息确实有利于推荐。</li>
+</ul>
+<h4 id="邻居采样大小影响"><a href="#邻居采样大小影响" class="headerlink" title="邻居采样大小影响"></a>邻居采样大小影响</h4><p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210408170836586.png" alt="image-20210408170836586"><br>表3不同相邻样本大小KGCN曲线的AUC结果</p>
+<p>4.4.1==邻居采样大小==的影响。我们通过改变样本邻居的大小来研究KG的使用效果。从表3中，我们观察到==当K = 4或8时，KGCN达到最佳性能==。这是因为太小的K没有足够的容量来合并邻域信息，而太大的K容易被噪声误导。</p>
+<h4 id="感受野深度影响"><a href="#感受野深度影响" class="headerlink" title="感受野深度影响"></a>感受野深度影响</h4><p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210408170922909.png" alt="image-20210408170922909"></p>
+<p>4.4.2==感受野深度==的影响。我们研究了KGCN感受野深度的影响。结果如表4所示，==表明与k相比，KGCN对H更敏感。当H = 3或4时，我们观察到严重的模型崩溃的发生==，因为较大的H会给模型带来大量噪声。这也符合我们的直觉，因为当推断项目间相似性时，过长的关系链没有什么意义。根据实验结果，==1或2的H对于真实情况是足够的==。</p>
+<h4 id="嵌入维度影响"><a href="#嵌入维度影响" class="headerlink" title="嵌入维度影响"></a>嵌入维度影响</h4><p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210408171052321.png" alt="image-20210408171052321"></p>
+<p>4.4.3==嵌入维度==的影响。最后，我们检验了嵌入维度对KGCN绩效的影响。表5中的结果相当直观:==最初增加d可以提高性能==，因为较大的d可以编码更多的用户和实体信息，而==过大的d==会受到==过度拟合==的不利影响。</p>
+<h2 id="5-总结展望"><a href="#5-总结展望" class="headerlink" title="5. 总结展望"></a>5. 总结展望</h2><p>提出了一种用于推荐系统的知识图卷积网络。</p>
+<p>KGCN将非谱GCN方法扩展到知识图，有选择地、有偏见地聚集邻域信息，不仅能学习知识图的结构信息和语义信息，还能学习用户的个性化和潜在兴趣。</p>
+<p>我们还以小批量方式实现了所提出的方法，该方法能够在大数据集和知识图上操作。</p>
+<p>通过在真实数据集上的大量实验，KGCN在电影、书籍和音乐推荐方面的表现一直优于最先进的基线。</p>
+<p>我们指出了未来工作的三条途径。</p>
+<ul>
+<li>(1)在这项工作中，我们从一个实体的邻居那里==统一取样==，以构建其感受野。探索==非均匀采样==(如重要性采样)是未来工作的一个重要方向。</li>
+<li>(2)本文(和所有文献)集中于建模==item-end的KGs==。未来工作的一个有趣的方向是研究利用==user-edn的KGs==是否有助于提高推荐的性能。</li>
+<li>(3)设计一种算法来很好地==结合两端的KGs==也是一个很有前途的方向。</li>
+</ul>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">SongX64</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://SongX64.github.io/2021/04/01/0401%E5%B0%86%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C%E7%94%A8%E4%BA%8E%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">https://SongX64.github.io/2021/04/01/0401%E5%B0%86%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C%E7%94%A8%E4%BA%8E%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">SongX64</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E7%A7%91%E7%A0%94/">
+                                    <span class="chip bg-color">科研</span>
+                                </a>
+                            
+                                <a href="/tags/Knowledge-Graph/">
+                                    <span class="chip bg-color">Knowledge Graph</span>
+                                </a>
+                            
+                                <a href="/tags/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91/">
+                                    <span class="chip bg-color">论文翻译</span>
+                                </a>
+                            
+                                <a href="/tags/Recommendation/">
+                                    <span class="chip bg-color">Recommendation</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/04/16/1204%E7%94%A8%E4%BA%8E%E7%A7%BB%E5%8A%A8%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E7%9A%84%E7%9F%A5%E8%AF%86%E5%9B%BE%E5%A2%9E%E5%BC%BA%E5%9E%8B%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93%E6%8E%A8%E8%8D%90/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        
+                        <span class="card-title"></span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-04-16
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            SongX64
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/03/19/0319%E5%B5%8C%E5%85%A5%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8D%8F%E4%BD%9C%E7%9F%A5%E8%AF%86%E5%BA%93/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="嵌入推荐系统的协作知识库">
+                        
+                        <span class="card-title">嵌入推荐系统的协作知识库</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            高引论文，将知识库用于推荐系统
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-19
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%A7%91%E7%A0%94/" class="post-category">
+                                    科研
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%A7%91%E7%A0%94/">
+                        <span class="chip bg-color">科研</span>
+                    </a>
+                    
+                    <a href="/tags/Knowledge-Graph/">
+                        <span class="chip bg-color">Knowledge Graph</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91/">
+                        <span class="chip bg-color">论文翻译</span>
+                    </a>
+                    
+                    <a href="/tags/Recommendation/">
+                        <span class="chip bg-color">Recommendation</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2020-2021</span>
+            
+            <span id="year">2020</span>
+            <a href="/about" target="_blank">SongX64</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/SongX64" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:song.x64@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=song-x64@qq.com" class="tooltipped" target="_blank" data-tooltip="QQ联系我: song-x64@qq.com" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
+
+</html>
