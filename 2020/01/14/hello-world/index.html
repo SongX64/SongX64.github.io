@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello,Hexo——关于Hexo部署CSS样式出错的解决, SongX64">
+    <meta name="keywords" content="Hello,World, SongX64">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hello,Hexo——关于Hexo部署CSS样式出错的解决 | SongX64</title>
+    <title>Hello,World | SongX64</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -298,12 +298,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hello,Hexo——关于Hexo部署CSS样式出错的解决</h1>
+                    <h1 class="description center-align post-title">Hello,World</h1>
                 </div>
             </div>
         </div>
@@ -444,7 +444,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-04-15
+                    2020-01-14
                 </div>
                 
 
@@ -453,7 +453,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    881
+                    75
                 </div>
                 
 
@@ -470,84 +470,19 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Hello，Hexo"><a href="#Hello，Hexo" class="headerlink" title="Hello，Hexo"></a>Hello，Hexo</h1><p>瞎整乱整，终于花了一晚上搭建了自己的博客。</p>
-<p>于是写第一篇来测试一下情况如何。明天再开始正式更新。</p>
-<hr>
-<p>于是，第二天，出毛病了。</p>
-<h2 id="无CSS样式"><a href="#无CSS样式" class="headerlink" title="无CSS样式"></a>无CSS样式</h2><p>hexo部署到Github 出错了，为啥呢？</p>
-<hr>
-<p>在本地预览是有样式的，但是部署到github上就没有css样式了。</p>
-<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210416162335627.png" alt="image-20210416162335627"></p>
-<p>尝试解决方法，在_config.yml文件中加上了root字段。然后再更新一下。</p>
-<hr>
-<p>然后又报Git推送错误了？</p>
-<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210416162352648.png" alt="Git报错"></p>
-<p>。。。直接无语，IE代理错误，还是我图床一看读不出图片来了才发现。再推送一遍试试</p>
-<hr>
-<h2 id="NodeJS更新"><a href="#NodeJS更新" class="headerlink" title="NodeJS更新"></a>NodeJS更新</h2><p>还是不行，没有样式。决定根据网上的方法，更新NodeJS版本试一下。我的是v12，稳定版是v14，最新版是v15。</p>
-<p>开始看用命令方法，管理工具n更新，尝试了一下不行。。。报错</p>
-<blockquote>
-<p>“bash”‘ 不是内部或外部命令，也不是可运行的程序 或批处理文件。”</p>
-</blockquote>
-<p>然后看的有两种方法解决：</p>
-<ul>
-<li>安装gnvm</li>
-<li>直接下载安装包覆盖安装</li>
-</ul>
-<p>图方便，用了第二种覆盖安装。。因为第一种说的可能错不少，所以说就没再尝试。</p>
-<p>再推送一次试试。。</p>
-<p>为啥还是没有样式啊！！快炸了</p>
-<hr>
-<h2 id="解决git推送问题"><a href="#解决git推送问题" class="headerlink" title="解决git推送问题"></a>解决git推送问题</h2><p>运行<code>hexo d</code> 后，git报错。</p>
-<blockquote>
-<p>git Failed to connect to 127.0.0.1 port xxxx: Connection refused</p>
-</blockquote>
-<p>解决：</p>
-<pre><code class="bash"># 查一下代理：
-git config --global http.proxy
-# 有没有呢，有就取消
-git config --global --unset http.proxy
+                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
 </code></pre>
-<p>取消之后再进行推送就可以了。</p>
-<hr>
-<h2 id="最终解决问题"><a href="#最终解决问题" class="headerlink" title="最终解决问题"></a>最终解决问题</h2><p>最终不乱搞了，决定对症下药。</p>
-<p>先去浏览器F12打开控制台，然后查看网络请求。</p>
-<p>因为没有样式嘛，所以说<strong>直接去看<code>.css</code>文件的请求路径</strong>。</p>
-<p>然后发现<strong>它请求的路径</strong>是：<code>https://songx64.github.io/songx64.github.io/libs/awesome/css/all.css</code> ，然后访问了一下这个地址，发现==跳转回到我的主页==了。并没有CSS文件。</p>
-<p>于是怀疑是路径的问题，再次尝试访问：<code>https://songx64.github.io/libs/awesome/css/all.css</code> ，然后发现可以正常加载CSS文件，如下图：</p>
-<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210416174950122.png" alt="image-20210416174950122"></p>
-<p>于是找到了症状所在。这是路径配置的不对啊，于是去查看 <code>_config.yml</code> 文件，找到URL所在位置：</p>
-<pre><code class="yml"># URL
-## Set your site url here. For example, if you use GitHub Page, set url as &#39;https://username.github.io/project&#39;
-url: https://SongX64.github.io／SongX64.github.io
-permalink: :year/:month/:day/:title/
-permalink_defaults:
-pretty_urls:
-  trailing_index: true # Set to false to remove trailing &#39;index.html&#39; from permalinks
-  trailing_html: true # Set to false to remove trailing &#39;.html&#39; from permalinks
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server
 </code></pre>
-<p>将其中 <code>url</code> 更改为：</p>
-<pre><code class="yml"># URL
-## Set your site url here. For example, if you use GitHub Page, set url as &#39;https://username.github.io/project&#39;
-url: https://SongX64.github.io
-permalink: :year/:month/:day/:title/
-permalink_defaults:
-pretty_urls:
-  trailing_index: true # Set to false to remove trailing &#39;index.html&#39; from permalinks
-  trailing_html: true # Set to false to remove trailing &#39;.html&#39; from permalinks
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate
 </code></pre>
-<p>然后！还有一个重点的地方！！！</p>
-<p>==<strong>Github页面有延迟！！！</strong>==</p>
-<p>==<strong>Github页面有延迟！！！</strong>==</p>
-<p>==<strong>Github页面有延迟！！！</strong>==</p>
-<p>说不定之前我某次都改好了。。。然后直接刷新，一看没变又乱改了。</p>
-<p>脑袋灵光一现，是不是Github反应太慢了的问题，于是去上个厕所，回来一看，正常了。</p>
-<p>这是我修复后的正常的，可以看到获取的路径正常了。</p>
-<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210416174651514.png" alt="image-20210416174651514"></p>
-<p>然后访问，成功！</p>
-<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210416175435228.png" alt="image-20210416175435228"></p>
-<p>开始愉快的博客之旅吧。接下来就是自定义主题瞎整一堆了。。。</p>
-<p>果然，还是不能只看网上的解决方法啊，还是得自己思考对症下药。下次一定。</p>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
+</code></pre>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 
                 
             </div>
@@ -574,7 +509,7 @@ pretty_urls:
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://SongX64.github.io/2020/04/15/hello-hexo/">https://SongX64.github.io/2020/04/15/hello-hexo/</a>
+                    <a href="https://SongX64.github.io/2020/01/14/hello-world/">https://SongX64.github.io/2020/01/14/hello-world/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -789,78 +724,25 @@ pretty_urls:
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/04/15/Bootdo%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/">
+                <a href="/2020/01/15/hello-hexo/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="初学习Java脚手架使用——代码生成功能，以Bootdo为例">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Hello,Hexo——关于Hexo部署CSS样式出错的解决">
                         
-                        <span class="card-title">初学习Java脚手架使用——代码生成功能，以Bootdo为例</span>
+                        <span class="card-title">Hello,Hexo——关于Hexo部署CSS样式出错的解决</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            使用第三方开源脚手架Bootdo，学习一下怎么使用代码生成功能
+                            搭建Hexo博客后的第一篇尝试
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-15
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-01-15
                         </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%90%8E%E7%AB%AF/" class="post-category">
-                                    后端
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E5%90%8E%E7%AB%AF/">
-                        <span class="chip bg-color">后端</span>
-                    </a>
-                    
-                    <a href="/tags/Java/">
-                        <span class="chip bg-color">Java</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/04/14/hello-world/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="Hello,World">
-                        
-                        <span class="card-title">Hello,World</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            Hexo教程，默认生成
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-14
-                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -878,6 +760,63 @@ pretty_urls:
                     
                     <a href="/tags/%E6%9D%82%E9%A1%B9/">
                         <span class="chip bg-color">杂项</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/05/30/jQuery%E5%AD%A6%E4%B9%A0/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="jQuery基础复习回忆">
+                        
+                        <span class="card-title">jQuery基础复习回忆</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            前端忘得差不多了，再简单的学习回忆一下
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-05-30
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/" class="post-category">
+                                    前端
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%89%8D%E7%AB%AF/">
+                        <span class="chip bg-color">前端</span>
+                    </a>
+                    
+                    <a href="/tags/jQuery/">
+                        <span class="chip bg-color">jQuery</span>
+                    </a>
+                    
+                    <a href="/tags/JS/">
+                        <span class="chip bg-color">JS</span>
                     </a>
                     
                 </div>
@@ -1049,7 +988,7 @@ pretty_urls:
         <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
                    server="netease"
                    type="playlist"
-                   id="503838841"
+                   id="767683882"
                    fixed='true'
                    autoplay='false'
                    theme='#42b983'
