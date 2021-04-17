@@ -1,0 +1,2546 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Vue简单了解及前后端分离, SongX64">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Vue简单了解及前后端分离 | SongX64</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+   <style>
+    body{
+       background-image: url(https://gitee.com/songx86/SongPicBed/raw/master/img/fd039245d688d43f5595595b7d1ed21b0ef43b5f.jpg);
+       background-repeat:no-repeat;
+       background-size:cover;
+       background-attachment:fixed;
+    }
+</style>
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">SongX64</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">SongX64</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Vue简单了解及前后端分离</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%89%8D%E7%AB%AF/">
+                                <span class="chip bg-color">前端</span>
+                            </a>
+                        
+                            <a href="/tags/Vue/">
+                                <span class="chip bg-color">Vue</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/" class="post-category">
+                                前端
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-01-16
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    12.6k
+                </div>
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="1-安装Node，修改npm镜像源"><a href="#1-安装Node，修改npm镜像源" class="headerlink" title="1. 安装Node，修改npm镜像源"></a><strong>1. 安装Node，修改npm镜像源</strong></h1><h1 id="2-安装依赖"><a href="#2-安装依赖" class="headerlink" title="2. 安装依赖"></a><strong>2. 安装依赖</strong></h1><h2 id="1-全局安装vue依赖的webpack-安装-webpack-cli-依赖"><a href="#1-全局安装vue依赖的webpack-安装-webpack-cli-依赖" class="headerlink" title="(1) 全局安装vue依赖的webpack,安装 webpack-cli 依赖:"></a><strong>(1) 全局安装vue依赖的webpack,安装 webpack-cli 依赖:</strong></h2><pre><code class="bash">npm install webpack webpack-cli -g
+</code></pre>
+<h2 id="2-全局安装vue-cli"><a href="#2-全局安装vue-cli" class="headerlink" title="(2) 全局安装vue-cli"></a><strong>(2) 全局安装vue-cli</strong></h2><pre><code class="bash">npm install --global vue-cli
+</code></pre>
+<p>输入 <strong>webpack -v</strong> 和 <strong>vue -V</strong>，显示版本号则说明安装成功。</p>
+<p>在 <strong>C:\Users\用户名.vue-templates\webpack</strong> 文件夹存储着vue的模板。</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/20200329160641.png" alt="img"></p>
+<p>如图所示，里面doc就是说明文档，template里面是默认的模板。</p>
+<p>额。。。好像这里才是对的 C:\Users\用户名\AppData\Roaming\npm\node_modules\vue-cli</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/20200329160659.png" alt="img"></p>
+<h2 id="3-使用vue-cli创建vue项目"><a href="#3-使用vue-cli创建vue项目" class="headerlink" title="(3) 使用vue-cli创建vue项目"></a><strong>(3) 使用vue-cli创建vue项目</strong></h2><p>先切换到你要创建项目的文件夹下，然后</p>
+<p>vue init webpack 项目名</p>
+<p>会在当前文件夹下创建一个“项目名”的文件夹，里面就是vue的目录结构了。</p>
+<blockquote>
+<p>输入命令后，会跳出几个选项让你回答：</p>
+<p>Project name (baoge)： —–项目名称，直接回车，按照括号中默认名字（注意这里的名字不能有大写字母，如果有会报错Sorry, name can no longer contain capital letters），阮一峰老师博客为什么文件名要小写 ，可以参考一下。</p>
+<p>Project description (A Vue.js project)： —-项目描述，也可直接点击回车，使用默认名字</p>
+<p>Author ()： —-作者，输入你的大名</p>
+<p>接下来会让用户选择：</p>
+<p>Runtime + Compiler: recommended for most users 运行加编译，既然已经说了推荐，就选它了</p>
+<p>Runtime-only: about 6KB lighter min+gzip, but templates (or any Vue-specificHTML) are ONLY allowed in .vue files - render functions are required elsewhere 仅运行时，已经有推荐了就选择第一个了</p>
+<p>Install vue-router? (Y/n) 是否安装vue-router，这是官方的路由，大多数情况下都使用，这里就输入“y”后回车即可。</p>
+<p>Use ESLint to lint your code? (Y/n) 是否使用ESLint管理代码，ESLint是个代码风格管理工具，是用来统一代码风格的，一般项目中都会使用。</p>
+<p>接下来也是选择题Pick an ESLint preset (Use arrow keys) 选择一个ESLint预设，编写vue项目时的代码风格，直接y回车</p>
+<p>Setup unit tests with Karma + Mocha? (Y/n) 是否安装单元测试，我选择安装y回车</p>
+<p>Setup e2e tests with Nightwatch(Y/n)? 是否安装e2e测试 ，我选择安装y回车</p>
+<p>回答完毕后上图就开始构建项目了。</p>
+</blockquote>
+<p>然后安装相关的依赖：</p>
+<p><code>npm install</code></p>
+<p>运行项目：</p>
+<p><code>npm run dev</code></p>
+<p>访问localhost:8080就可以看见欢迎页面了。</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/20200329161159.png" alt="img"></p>
+<p>在配置文件 config里的index.js可以修改端口设置。</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/20200329161155.png" alt="img"></p>
+<h1 id="3-Vue目录结构"><a href="#3-Vue目录结构" class="headerlink" title="3. Vue目录结构"></a><strong>3. Vue目录结构</strong></h1><p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/20200329161151.png" alt="img"></p>
+<p>其中我们最常修改的部分就是 components 文件夹了，几乎所有需要手动编写的代码都在其中。</p>
+<p>分析几个文件，index.html，/src/main.js，/src/App.vue。</p>
+<h2 id="1-index-html"><a href="#1-index-html" class="headerlink" title="(1) index.html"></a><strong>(1) index.html</strong></h2><pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1.0&quot;&gt;
+    &lt;title&gt;wj-vue1&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
+    &lt;!-- built files will be auto injected --&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>就是一个普普通通的 html 文件，让它不平凡的是 <code>&lt;div id=&quot;app&quot;&gt;&lt;/div&gt; </code>，下面有一行注释，构建的文件将会被自动注入，也就是说我们编写的其它的内容都将在这个 div 中展示。</p>
+<p>还有不普通的一点是，整个项目只有这一个 html 文件，所以这是一个 单页面应用，当我们打开这个应用，表面上可以有很多页面，实际上它们都只不过在一个 div 中。</p>
+<h2 id="2-App-vue"><a href="#2-App-vue" class="headerlink" title="(2)App.vue"></a><strong>(2)App.vue</strong></h2><p>我把这个文件称为“根组件”，因为其它的组件又都包含在这个组件中。</p>
+<p>.vue 文件是一种自定义文件类型，在结构上类似 html，一个 .vue 文件即是一个 vue 组件。先看它的初始代码:</p>
+<pre><code class="vue">&lt;template&gt;
+  &lt;div id=&quot;app&quot;&gt;
+    &lt;img src=&quot;./assets/logo.png&quot;&gt;
+    &lt;router-view/&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default &#123;
+  name: &#39;App&#39;
+&#125;
+&lt;/script&gt;
+
+&lt;style&gt;
+#app &#123;
+  font-family: &#39;Avenir&#39;, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+&#125;
+&lt;/style&gt;
+</code></pre>
+<p>大家可能注意到了，这里也有一句 <div id="app">，但跟 index.html 里的那个是没有关系的。这个 id=app 只是跟下面的 css 对应。</p>
+<script>标签里的内容即该组件的脚本，也就是 js 代码，export default 是 ES6 的语法，意思是将这个组件整体导出，之后就可以使用 import 导入组件了。大括号里的内容是这个组件的相关属性。
+
+这个文件最关键的一点其实是第四行， <router-view/>，是一个容器，名字叫“路由视图”，意思是当前路由（ URL）指向的内容将显示在这个容器中。也就是说，其它的组件即使拥有自己的路由（URL，需要在 router 文件夹的 index.js 文件里定义），也只不过表面上是一个单独的页面，实际上只是在根组件 App.vue 中。
+
+## **（3) main.js**
+
+前面我们说 App.vue 里的 <div id="app"> 和 index.html 里的 <div id="app"> 没有关系，那么这两个文件是怎么建立联系的呢？让我们来看入口文件 main.js 的代码
+
+```js
+// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+import Vue from 'vue'
+import App from './App'
+import router from './router'
+
+Vue.config.productionTip = false
+
+/* eslint-disable no-new */
+new Vue({
+  el: '#app',
+  router,
+  components: { App },
+  template: '<App/>'
+})
+```
+
+这里插一嘴，这个 js 文件有的同学可能看着不顺眼，比如没有分号（;），因为是 ES6 的语法，不这么写反而会提示错误，虽说可以把 es-lint 改了或者关了，但我想熟悉一下新的规则也挺好。
+
+最上面 import 了几个模块，其中 vue 模块在 node_modules 中，App 即 App.vue 里定义的组件，router 即 router 文件夹里定义的路由。
+
+Vue.config.productionTip = false ,作用是阻止vue 在启动时生成生产提示。
+
+在这个 js 文件中，我们创建了一个 Vue 对象（实例）:
+
+- el 属性提供一个在页面上已存在的 DOM 元素作为 Vue 对象的挂载目标，
+- router 代表该对象包含 Vue Router，并使用项目中定义的路由。
+- components 表示该对象包含的 Vue 组件，
+- template 是用一个字符串模板作为 Vue 实例的标识使用，类似于定义一个 html 标签。
+
+> *自己总结理解：也就是说，主页面index.html中的div id=app是框架自动注入的内容，通过main.js使用ES6的语法export和import关联起来。这里面的东西来自于App.vue，App.vue又通过router-view标签找到router文件夹下的index.js，这个路由index.js就相当于一个url映射的类，然后里面有映射到components文件夹下的组件，里面的HelloWorld.vue就是最后显示出来的内容。*
+
+Index.html==>>main.js==>>app.vue==>>hello.vue，这个是vue的流动过程，我们在编写自己的vue时，只需要在app.vue中写好跳转便可。
+
+
+
+# **一.后端项目创建**
+
+使用IDEA创建后台的SpringBoot项目。
+
+这里遇到了点问题，使用IDEA创建springboot项目时，出现错误 `Cannot download 'https://start.spring.io': connect timed out`，连接超时。
+
+如图：
+
+![
+
+](https://gitee.com/songx86/SongPicBed/raw/master/img/20200329161401.png)
+
+解决方法：
+
+![img](https://gitee.com/songx86/SongPicBed/raw/master/img/20200329161409.png)
+
+修改这个创建时候的链接地址为：http://start.spring.io
+
+# **二、登录页面开发**
+
+## **1.前后端结合**
+
+注意我们的项目是前后端分离的，这里的结合意思不是就不分离了，是如何把这俩分离的项目串起来用。
+
+前面提到过前后端分离的意思是前后端之间通过 RESTful API 传递 JSON 数据进行交流。不同于 JSP 之类，后端是不涉及页面本身的内容的。
+
+> 何为RESTful：
+>
+> http://www.ruanyifeng.com/blog/2018/10/restful-api-best-practices.html
+>
+> REST：Representational State Transfer（表象层状态转变）
+>
+> 1. 每一个URI代表一种资源；
+>
+> 2. 客户端和服务器之间，传递这种资源的某种表现层；
+>
+> 3. 客户端通过四个HTTP动词（get、post、put、delete），对服务器端资源进行操作，实现”表现层状态转化”。
+
+在开发的时候，前端用前端的服务器（Nginx），后端用后端的服务器（Tomcat）。
+
+当我开发前端内容的时候，可以把前端的请求通过前端服务器转发给后端（称为**反向代理**），这样就能实时观察结果，并且不需要知道后端怎么实现，而只需要知道接口提供的功能，两边的开发人员（两个我）就可以各司其职啦。
+
+关于正向代理和反向代理：
+
+![](https://gitee.com/songx86/SongPicBed/raw/master/img/20200329162938.png)
+
+## **2.前端**
+
+这里使用IDEA来编写的Vue，打开Vue文件时IDEA会自动提示你安装Vue.js功能，然后重启便可识别Vue语法。
+
+同时因为项目创建时使用了ESLint，一个代码规范工具，所以说需要设置一下IDEA以及其格式化代码的快捷键。
+
+设置ESLint，其中eslintrc.js就是那个规范文件，在vue项目的根目录下：
+
+![img](https://gitee.com/songx86/SongPicBed/raw/master/img/20200329161443.png)
+
+设置IDEA的ESLint规范的Format快捷键：
+
+![img](https://gitee.com/songx86/SongPicBed/raw/master/img/20200329161434.png)
+
+然后就可以使用IDEA进行Vue的开发了。
+
+IDEA在package.json上右键菜单，就有那个npm的install以及运行dev：
+
+![img](https://gitee.com/songx86/SongPicBed/raw/master/img/20200329161637.png)
+
+### **（1）Login.vue**
+
+首先，在components文件夹下，新建个组件，Login.vue，其代码如下：
+
+````vue
+<template>
+  <div>
+    <input type="text" v-model="loginForm.username" placeholder="用户名"/>
+    <br/>
+    <br/>
+    <input type="password" v-model="loginForm.password" placeholder="密码"/>
+    <br/>
+    <br/>
+    <button v-on:click="login">登录</button>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Login',
+  data () {
+    return {
+      loginForm: {
+        username: '',
+        password: ''
+      },
+      responseResult: []
+    }
+  },
+  methods: {
+    login () {
+      this.$axios.post(
+        'login', {
+          username: this.loginForm.username,
+          password: this.loginForm.password
+        }
+      ).then(successResponse => {
+        if (successResponse.data.code === 200) {
+          this.$router.replace({path: '/index'})
+        }
+      }
+      ).catch(failResponse => {
+      })
+    }
+  }
+}
+</script>
+<p>````</p>
+<p><strong>代码详解：</strong></p>
+<p>首先Html部分最外层是<code>&lt;template&gt;&lt;/template&gt;</code>标签，包括html的内容；</p>
+<p>这里包括了两个输入框和一个按钮，分别是用户名、密码、登录按钮。</p>
+<p>其中标签中的 v-model是指Vue的数据绑定：</p>
+<blockquote>
+<p>v-model 会忽略所有表单元素的 value、checked、selected attribute 的初始值而总是将 Vue 实例的数据作为数据来源。你应该通过 JavaScript 在组件的 data 选项中声明初始值。</p>
+<p>v-model 在内部为不同的输入元素使用不同的属性并抛出不同的事件：</p>
+<ul>
+<li>text 和 textarea 元素使用 value 属性和 input 事件；</li>
+<li>checkbox 和 radio 使用 checked 属性和 change 事件；</li>
+<li>select 字段将 value 作为 prop 并将 change 作为事件。</li>
+</ul>
+</blockquote>
+<p>v-on:click绑定点击事件</p>
+<blockquote>
+<p>可以用 v-on 指令监听 DOM 事件，并在触发时运行一些 JavaScript 代码</p>
+<p><code>&lt;!-- 方法处理器 --&gt; &lt;button v-on:click=&quot;doThis&quot;&gt;&lt;/button&gt;</code></p>
+</blockquote>
+<p>export default是将这块东西导出为一整块，后面别的js文件中使用import导入；</p>
+<p>=&gt;是箭头函数，a=&gt;{ } 等价于 function(a){ };</p>
+<p><code>this.$axios.post().then().catch()</code>，就是发送一个post请求，然后then接受返回的值进行处理，catch捕捉异常。axios的基本用法在这里：<a target="_blank" rel="noopener" href="https://blog.csdn.net/gao_xu_520/article/details/79726298">https://blog.csdn.net/gao_xu_520/article/details/79726298</a></p>
+<h3 id="（2）Appindex-vue"><a href="#（2）Appindex-vue" class="headerlink" title="（2）Appindex.vue"></a><strong>（2）Appindex.vue</strong></h3><p>在components下新建一个home文件夹，然后新建一个Appindex.vue组件，作为登录后的主页。</p>
+<p>在这里直接用创建的模板，没改什么东西。</p>
+<pre><code class="vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;!--首页--&gt;
+    HelloWorld!!!
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default &#123;
+  name: &#39;Appindex&#39;
+&#125;
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+
+&lt;/style&gt;
+</code></pre>
+<h3 id="（3）添加路由"><a href="#（3）添加路由" class="headerlink" title="（3）添加路由"></a><strong>（3）添加路由</strong></h3><p>修改router下的index.js文件，添加如下Login和AppIndex两块：</p>
+<pre><code class="js">export default new Router(&#123;
+  routes: [
+    // 导入的Login组件，应该是写一下路由路径
+    &#123;
+      path: &#39;/login&#39;,
+      name: &#39;Login&#39;,
+      component: Login
+    &#125;,
+    &#123;
+      path: &#39;/index&#39;,
+      name: &#39;AppIndex&#39;,
+      component: Appindex
+    &#125;,
+    &#123;
+      path: &#39;/&#39;,
+      name: &#39;HelloWorld&#39;,
+      component: HelloWorld
+    &#125;
+  ]
+&#125;)
+</code></pre>
+<p>关于路由：</p>
+<blockquote>
+<p>首先要定义route,  一条路由的实现。它是一个对象，由两个部分组成： path和component.  path 指路径，component 指的是组件。如：{path:’/home’, component: home}</p>
+</blockquote>
+<p>这就是个简单的路由的应用，使用path跳转到相应的组件。</p>
+<h3 id="（4）修改一下main-js"><a href="#（4）修改一下main-js" class="headerlink" title="（4）修改一下main.js"></a><strong>（4）修改一下main.js</strong></h3><p>项目根目录下的main.js：</p>
+<pre><code class="js">// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+import Vue from &#39;vue&#39;
+import App from &#39;./App&#39;
+import router from &#39;./router&#39;
+
+// 这里需要先安装axios：npm install --save axios
+// 设置反向代理，前端请求默认发送到http://localhost:8443/api
+var axios = require(&#39;axios&#39;)
+axios.defaults.baseURL = &#39;http://localhost:8443/api&#39;
+// 全局注册，之后可以在其他组件中通过this.axios发送数据
+Vue.prototype.$axios = axios
+
+Vue.config.productionTip = false
+
+/* eslint-disable no-new */
+new Vue(&#123;
+  el: &#39;#app&#39;,
+  router,
+  components: &#123;App&#125;,
+  template: &#39;&lt;App/&gt;&#39;
+&#125;)
+</code></pre>
+<p>这里这一块用了axios，做了反向代理，把发送的请求都发到 <a target="_blank" rel="noopener" href="http://localhost:8443/api">http://localhost:8443/api</a> 这里。这就是后端的地址。</p>
+<p>大概是定义了一个全局变量axios？然后使用了一个第三方组件。。。</p>
+<h3 id="（5）config-index-js"><a href="#（5）config-index-js" class="headerlink" title="（5）config/index.js"></a><strong>（5）config/index.js</strong></h3><p>为了让后端能够访问到前端的资源，需要配置跨域支持。</p>
+<p>在 config\index.js 中，找到 proxyTable 位置，修改为以下内容</p>
+<pre><code class="js">//配置跨域支持...啥意思？？
+proxyTable: &#123;
+  &#39;^/api&#39;: &#39;&#39;
+&#125;,
+</code></pre>
+<p>跨域：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38128179/article/details/84956552">https://blog.csdn.net/qq_38128179/article/details/84956552</a></p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/20200329162359.png" alt="img"></p>
+<p>关于proxyTable：<a target="_blank" rel="noopener" href="https://blog.csdn.net/aydongzhiping/article/details/81102940">https://blog.csdn.net/aydongzhiping/article/details/81102940</a></p>
+<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a><strong>运行</strong></h3><p>执行 <code>npm run dev</code>，或双击 dev（start 也一样）脚本，查看登录页面效果。</p>
+<p>注意地址是 <code>localhost:8080/#/login</code> ，中间有这个 # 是因为 Vue 的路由使用了 Hash 模式，是单页面应用的经典用法，但连尤雨溪本人都觉得不太好看，所以可以在路由配置中选择使用 History 模式，但会引发一些问题，需要在后端作出处理，所以这里先不更改，之后我单独写一篇关于这个的文章。</p>
+<h2 id="3-后端"><a href="#3-后端" class="headerlink" title="3.后端"></a><strong>3.后端</strong></h2><p>后端目录结构：</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/20200329162300.png" alt="img"></p>
+<h3 id="User"><a href="#User" class="headerlink" title="User"></a>User</h3><p>User是实体类，pojo，里面有username和password以及set/get方法；</p>
+<pre><code class="java">package com.song.wj.pojo;
+//接受前台js对象的类
+public class User &#123;
+    int id;
+    String username;
+    String password;
+    
+    public int getId() &#123; return id;&#125;
+    public void setId(int id) &#123;this.id = id;&#125;
+   public String getUsername() &#123;return username;&#125;
+   public void setUsername(String username) &#123;this.username = username;&#125;
+   public String getPassword() &#123;return password;&#125;
+   public void setPassword(String password) &#123;this.password = password;&#125;
+&#125;
+</code></pre>
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Result是一个用来做相应的类，返回http状态码（成功200，错误400）；</p>
+<pre><code class="java">package com.song.wj.result;
+
+//为了构造reponse的类
+public class Result &#123;
+    private int code;
+    
+    public Result(int code) &#123;this.code = code;&#125;
+    public int getCode() &#123;return code;&#125;
+    public void setCode(int code) &#123;this.code = code;&#125;
+&#125;
+</code></pre>
+<h3 id="LoginController"><a href="#LoginController" class="headerlink" title="LoginController"></a>LoginController</h3><p>LoginController控制类，登录逻辑验证（这里省略import）</p>
+<pre><code class="java">@Controller
+public class LoginController &#123;
+    //这个注解是？跨域？
+    @CrossOrigin
+    @PostMapping(value = &quot;api/login&quot;)
+    @ResponseBody
+    public Result login(@RequestBody User requesterUser) &#123;
+        String username = requesterUser.getUsername();
+        //对html标签进行转义，防止XSS攻击
+        username = HtmlUtils.htmlEscape(username);
+
+        //这里这个Objects.equals?
+        if (!Objects.equals(&quot;admin&quot;, username) || !Objects.equals(&quot;123456&quot;, requesterUser.getPassword())) &#123;
+            String message = &quot;账号密码错误&quot;;
+            System.out.println(&quot;账号密码错误&quot;);
+            return new Result(400);
+
+        &#125; else &#123;
+            System.out.println(&quot;登录成功&quot;);
+            return new Result(200);
+        &#125;
+    &#125;
+
+&#125;
+</code></pre>
+<h3 id="相关问题"><a href="#相关问题" class="headerlink" title="相关问题"></a>相关问题</h3><h4 id="（1）-CrossOrigin"><a href="#（1）-CrossOrigin" class="headerlink" title="（1）@CrossOrigin"></a>（1）@CrossOrigin</h4><p>关于SpringBoot使用@CrossOrigin注解解决跨域问题： <a target="_blank" rel="noopener" href="https://blog.csdn.net/w_linux/article/details/81142413">https://blog.csdn.net/w_linux/article/details/81142413</a></p>
+<h4 id="（2）Object-equals"><a href="#（2）Object-equals" class="headerlink" title="（2）Object.equals"></a>（2）Object.equals</h4><p>关于Object.equals方法：<a target="_blank" rel="noopener" href="https://blog.csdn.net/mr_yangxxx/article/details/79514613">https://blog.csdn.net/mr_yangxxx/article/details/79514613</a></p>
+<h4 id="（3-XSS攻击"><a href="#（3-XSS攻击" class="headerlink" title="（3)XSS攻击"></a>（3)XSS攻击</h4><p>关于对html标签进行转义，防止XSS攻击（Html恶意代码注入攻击）：</p>
+<pre><code class="java">String s = HtmlUtils.htmlEscape(&quot;&lt;div&gt;hello world&lt;/div&gt;&lt;p&gt; &lt;/p&gt;&quot;);   log.info(s); 
+</code></pre>
+<blockquote>
+<p>输出:INFO AdminIndexAction - &amp;lt;div&amp;gt;hello world&amp;lt;/div&amp;gt;&amp;lt;p&amp;gt;&amp;nbsp;&amp;lt;/p&amp;gt;gt;</p>
+</blockquote>
+<pre><code class="java">String s2 = HtmlUtils.htmlUnescape(s);   log.info(s2);   
+</code></pre>
+<blockquote>
+<p>输出: INFO AdminIndexAction - <div>hello world</div><p>&nbsp;</p></p>
+</blockquote>
+<p>也就是说,htmlEscape会将html中的符号，替换为转义字符，从而防止XSS攻击；</p>
+<p>通过这篇文章，希望大家可以直观地感受到前后端分离项目中前后端的过程，之后的功能开发基本思路就是在后端开发 Controller，在前端开发不同的组件，这个顺序可以随意。==实际的项目应该是前后端人员根据功能需求约定好接口，然后齐头并进，以提高开发效率。==</p>
+<h1 id="一-创建数据库"><a href="#一-创建数据库" class="headerlink" title="一.创建数据库"></a><strong>一.创建数据库</strong></h1><p>创建数据库，如图：</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/20200329163119.png" alt="img"></p>
+<p>并插入数据，这里密码暂时明文保存，不安全后面还要改：</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/20200329163126.png" alt="img"></p>
+<h1 id="二、后端"><a href="#二、后端" class="headerlink" title="二、后端"></a><strong>二、后端</strong></h1><p>之前简单验证密码的过程：</p>
+<pre><code class="java">if (!Objects.equals(&quot;admin&quot;, username) || !Objects.equals(&quot;123456&quot;, requestUser.getPassword())) &#123;
+    String message = &quot;账号密码错误&quot;;
+    System.out.println(&quot;test&quot;);
+    return new Result(400);
+&#125; else &#123;
+    return new Result(200);
+&#125;
+</code></pre>
+<p>使用数据库验证的逻辑其实也类似，大概是如下过程：</p>
+<p>第一步，获得前端发送过来的用户名和密码信息</p>
+<p>第二步，查询数据库中是否存在相同的一对用户名和密码</p>
+<p>第三步，如果存在，返回成功代码（200），如果不存在，返回失败代码（400）</p>
+<h2 id="（1）修改pom-xml配置，引入相关包"><a href="#（1）修改pom-xml配置，引入相关包" class="headerlink" title="（1）修改pom.xml配置，引入相关包"></a><strong>（1）修改pom.xml配置，引入相关包</strong></h2><pre><code class="xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+    &lt;groupId&gt;com.evan&lt;/groupId&gt;
+    &lt;artifactId&gt;wj&lt;/artifactId&gt;
+    &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+    &lt;name&gt;wj&lt;/name&gt;
+    &lt;description&gt;White Jotter - Your Mind Palace&lt;/description&gt;
+    &lt;packaging&gt;war&lt;/packaging&gt;
+    &lt;parent&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+        &lt;version&gt;2.1.1.RELEASE&lt;/version&gt;
+        &lt;relativePath/&gt; &lt;!-- lookup parent from repository --&gt;
+    &lt;/parent&gt;
+    &lt;dependencies&gt;
+        &lt;!-- springboot web --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        &lt;!-- springboot tomcat 支持 --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;
+            &lt;scope&gt;provided&lt;/scope&gt;
+        &lt;/dependency&gt;
+        &lt;!-- 热部署 --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;
+            &lt;optional&gt;true&lt;/optional&gt;
+        &lt;/dependency&gt;
+        &lt;!-- jpa--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        &lt;!-- redis --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-data-redis&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        &lt;!-- springboot test --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+            &lt;scope&gt;test&lt;/scope&gt;
+        &lt;/dependency&gt;
+        &lt;!-- thymeleaf --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        &lt;!-- elastic search --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-data-elasticsearch&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        &lt;!-- 用了 elasticsearch 就要加这么一个，不然要com.sun.jna.Native 错误 --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.sun.jna&lt;/groupId&gt;
+            &lt;artifactId&gt;jna&lt;/artifactId&gt;
+            &lt;version&gt;3.0.9&lt;/version&gt;
+        &lt;/dependency&gt;
+
+        &lt;!-- thymeleaf legacyhtml5 模式支持 --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;net.sourceforge.nekohtml&lt;/groupId&gt;
+            &lt;artifactId&gt;nekohtml&lt;/artifactId&gt;
+            &lt;version&gt;1.9.22&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!-- 测试支持 --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;junit&lt;/groupId&gt;
+            &lt;artifactId&gt;junit&lt;/artifactId&gt;
+            &lt;version&gt;4.12&lt;/version&gt;
+            &lt;scope&gt;test&lt;/scope&gt;
+        &lt;/dependency&gt;
+        &lt;!-- tomcat的支持.--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.apache.tomcat.embed&lt;/groupId&gt;
+            &lt;artifactId&gt;tomcat-embed-jasper&lt;/artifactId&gt;
+            &lt;version&gt;8.5.23&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!-- mysql--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;mysql&lt;/groupId&gt;
+            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+            &lt;version&gt;5.1.21&lt;/version&gt;
+        &lt;/dependency&gt;
+
+        &lt;!-- junit --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;junit&lt;/groupId&gt;
+            &lt;artifactId&gt;junit&lt;/artifactId&gt;
+            &lt;version&gt; 4.12&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!-- commons-lang --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;commons-lang&lt;/groupId&gt;
+            &lt;artifactId&gt;commons-lang&lt;/artifactId&gt;
+            &lt;version&gt;2.6&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!-- shiro --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.apache.shiro&lt;/groupId&gt;
+            &lt;artifactId&gt;shiro-spring&lt;/artifactId&gt;
+            &lt;version&gt;1.3.2&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!-- hsqldb --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.hsqldb&lt;/groupId&gt;
+            &lt;artifactId&gt;hsqldb&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+    &lt;properties&gt;
+        &lt;java.version&gt;1.8&lt;/java.version&gt;
+    &lt;/properties&gt;
+    &lt;build&gt;
+        &lt;plugins&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+                &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+            &lt;/plugin&gt;
+        &lt;/plugins&gt;
+    &lt;/build&gt;
+&lt;/project&gt;
+</code></pre>
+<h2 id="（2）修改application-properties，引入数据库配置"><a href="#（2）修改application-properties，引入数据库配置" class="headerlink" title="（2）修改application.properties，引入数据库配置"></a><strong>（2）修改application.properties，引入数据库配置</strong></h2><pre><code class="properties">server.port=8443
+spring.datasource.url=jdbc:mysql://127.0.0.1:3306/white_jotter?characterEncoding=UTF-8
+spring.datasource.username=root
+spring.datasource.password=123456
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+spring.jpa.hibernate.ddl-auto=none
+</code></pre>
+<blockquote>
+<p>在jpa中ddl-auto一共有四种:</p>
+<p>分别为:</p>
+<ul>
+<li>ddl-auto：create —-每次运行该程序，没有表格会新建表格，表内有数据会清空；</li>
+<li>ddl-auto：create-drop —-每次程序结束的时候会清空表</li>
+<li>ddl-auto：update —- 每次运行程序，没有表格会新建表格，表内有数据不会清空，只会更新</li>
+<li>ddl-auto： validate —- 运行程序会校验数据与数据库的字段类型是否相同，不同会报错。</li>
+<li>ddl-auto:    none —- 禁用ddl</li>
+</ul>
+</blockquote>
+<h2 id="（3）登录控制器"><a href="#（3）登录控制器" class="headerlink" title="（3）登录控制器"></a><strong>（3）登录控制器</strong></h2><h3 id="User类："><a href="#User类：" class="headerlink" title="User类："></a><strong>User类：</strong></h3><pre><code class="java">package com.song.wj.pojo;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import javax.persistence.Entity;
+import javax.persistence.*;
+
+@Entity
+@Table(name = &quot;user&quot;)
+@JsonIgnoreProperties(&#123;&quot;handler&quot;, &quot;hibernateLazyInitializer&quot;&#125;)
+
+public class User &#123;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = &quot;id&quot;)
+    int id;
+
+    String username;
+    String password;
+    ……
+&#125;
+</code></pre>
+<p>上面新加了一些注解：</p>
+<ul>
+<li><p>@Entity 表示这是一个实体类</p>
+</li>
+<li><p>@Table(name=“user”) 表示对应的表名是 user （引入的是javax.persistence里面的而不是hibernate里的）</p>
+</li>
+</ul>
+<p>为了简化对数据库的操作，我们使用了 Java Persistence API（JPA）：Java持久层API，是JDK 5.0注解或XML描述对象－关系表的映射关系，并将运行期的实体对象持久化到数据库中。</p>
+<p>对于 <code>@JsonIgnoreProperties(&#123; “handler”,“hibernateLazyInitializer” &#125;)</code>，解释起来比较复杂，下面的话看不懂可以忽略：</p>
+<blockquote>
+<p>因为是做前后端分离，而前后端数据交互用的是 json 格式。 那么 User 对象就会被转换为 json 数据。 而本项目使用 jpa 来做实体类的持久化，jpa 默认会使用 hibernate, 在 jpa 工作过程中，就会创造代理类来继承 User ，并添加 handler 和 hibernateLazyInitializer 这两个无须 json 化的属性，所以这里需要用 JsonIgnoreProperties 把这两个属性忽略掉。</p>
+</blockquote>
+<h3 id="UserDAO"><a href="#UserDAO" class="headerlink" title="UserDAO"></a><strong>UserDAO</strong></h3><p>Data Access Object（数据访问对象，DAO）即用来操作数据库的对象，这个对象可以是我们自己开发的，也可以是框架提供的。这里我们通过继承 JpaRepository 的方式构建 DAO。</p>
+<p>首先新建一个 package，命名为 dao，然后创建 Java Class，命名为 UserDAO，选择种类为 Interface。</p>
+<pre><code class="java">package com.song.wj.dao;
+
+import com.song.wj.pojo.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserDAO extends JpaRepository&lt;User, Integer&gt; &#123;
+    User findByUsername(String username);
+
+    User findByUsernameAndPassword(String username, String password);
+&#125;
+</code></pre>
+<p>这里关键的地方在于方法的名字。由于使用了 JPA，无需手动构建 SQL 语句，而只需要按照规范提供方法的名字即可实现对数据库的增删改查。</p>
+<p>如 <code>findByUsername</code>，就是通过 username 字段查询到对应的行，并返回给 User 类。</p>
+<blockquote>
+<p>关于JPA的使用：<a target="_blank" rel="noopener" href="https://blog.csdn.net/hbtj_1216/article/details/79773839">https://blog.csdn.net/hbtj_1216/article/details/79773839</a></p>
+</blockquote>
+<p>这里我们构建了两个方法，一个是通过用户名查询，一个是通过用户名及密码查询。</p>
+<h3 id="UserService"><a href="#UserService" class="headerlink" title="UserService"></a><strong>UserService</strong></h3><pre><code class="java">package com.song.wj.service;
+
+import com.song.wj.dao.UserDAO;
+import com.song.wj.pojo.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class UserService &#123;
+    @Autowired
+    UserDAO userDAO;
+
+    //通过用户名查询
+    public User getByName(String username) &#123;
+        return userDAO.findByUsername(username);
+
+    &#125;
+
+    //存在的话就是返回true，不存在的返回false
+    public boolean isExist(String username) &#123;
+        User user = getByName(username);
+        return null != user;
+    &#125;
+
+    //用户名和密码查询封装为get
+    public User get(String username, String password) &#123;
+        return userDAO.findByUsernameAndPassword(username, password);
+    &#125;
+
+    public void add(User user) &#123;
+        userDAO.save(user);
+    &#125;
+&#125;
+</code></pre>
+<p>这里实际上是对 UserDAO 进行了二次封装，一般来讲，我们在 DAO 中只定义基础的增删改查操作，而具体的操作，需要由 Service 来完成。当然，由于我们做的操作原本就比较简单，所以这里看起来只是简单地重命名了一下，比如把 “通过用户名及密码查询并获得对象” 这种方法命名为 get。</p>
+<h3 id="LoginController-1"><a href="#LoginController-1" class="headerlink" title="LoginController"></a><strong>LoginController</strong></h3><pre><code class="java">@Controller
+public class LoginController &#123;
+    @Autowired
+    UserService userService;
+
+    @CrossOrigin
+    @PostMapping(value = &quot;/api/login&quot;)
+    @ResponseBody
+    public Result login(@RequestBody User requesterUser) &#123;
+        String username = requesterUser.getUsername();
+        username = HtmlUtils.htmlEscape(username);
+
+        //这样只需要查一次sql（我想的是用户名查一次然后密码还要查一次）
+        User user = userService.get(username, requesterUser.getPassword());
+        if (null == user) &#123;
+            String message = &quot;账号密码错误&quot;;
+            System.out.println(&quot;账号密码错误&quot;);
+            return new Result(400);
+        &#125; else &#123;
+            System.out.println(&quot;登录成功&quot;);
+            return new Result(200);
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>先自动注入了一个Service，然后去数据库里查是否存在这个user。</p>
+<blockquote>
+<p>关于 null == a 和 a == null :</p>
+<p>意思是一样，都是用于判断是否为null</p>
+<p>但是比较而言（设a为比较对象），null== a 更为安全，当你编写代码是很有可能把==写为=，则 a==null变为了a=null，显然这是一个恒为真的，所以会影响你的程序，而且很难查出错误的原因</p>
+</blockquote>
+<p>我们的项目会在很长一段时间内采取这种简单的三层架构（DAO + Service + Controller），希望大家能慢慢体会这三个模块的分工。这里我简单总结一下，先有个初步印象：</p>
+<ul>
+<li>DAO 用于与数据库的直接交互，定义增删改查等操作</li>
+<li>Service 负责业务逻辑，跟功能相关的代码一般写在这里，编写、调用各种方法对 DAO 取得的数据进行操作</li>
+<li>Controller 负责数据交互，即接收前端发送的数据，通过调用 Service 获得处理后的数据并返回</li>
+</ul>
+<p>在实践中我们倾向于让 Controller 显得清凉一些，以方便代码的阅读者寻找分析功能的入口。但由于教程中各个层的迭代并不是同步的，可能会暂时舍弃这个原则，后期会逐渐重构。</p>
+<h1 id="一、引入ElementUI"><a href="#一、引入ElementUI" class="headerlink" title="一、引入ElementUI"></a><strong>一、引入ElementUI</strong></h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a><strong>安装</strong></h2><p>首先在项目文件夹下，执行 npm i element-ui -S 即可</p>
+<h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a><strong>引入</strong></h2><p>在main.js中引入</p>
+<p>引入分为完整引入和按需引入两种模式，按需引入可以缩小项目的体积，这里我们选择完整引入。</p>
+<p>修改后的main.js代码：</p>
+<pre><code class="js">// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+import Vue from &#39;vue&#39;
+import App from &#39;./App&#39;
+import router from &#39;./router&#39;
+import ElementUI from &#39;element-ui&#39;
+import &#39;element-ui/lib/theme-chalk/index.css&#39;
+
+// 这里需要先安装axios：npm install --save axios
+// 设置反向代理，前端请求默认发送到http://localhost:8443/api
+var axios = require(&#39;axios&#39;)
+axios.defaults.baseURL = &#39;http://localhost:8443/api&#39;
+// 全局注册，之后可以在其他组件中通过this.axios发送数据
+Vue.prototype.$axios = axios
+Vue.config.productionTip = false
+
+Vue.use(ElementUI)
+
+/* eslint-disable no-new */
+new Vue(&#123;
+  el: &#39;#app&#39;,
+  render: h =&gt; h(App),
+  router,
+  components: &#123;App&#125;,
+  template: &#39;&lt;App/&gt;&#39;
+&#125;)
+</code></pre>
+<p>增加的代码：</p>
+<pre><code class="js">import ElementUI from &#39;element-ui&#39;
+import &#39;element-ui/lib/theme-chalk/index.css&#39;
+</code></pre>
+<p>引入ElementUI</p>
+<pre><code class="js">Vue.use(ElementUI)
+</code></pre>
+<blockquote>
+<p>关于render:h=&gt;(App) : <a target="_blank" rel="noopener" href="https://www.cnblogs.com/whkl-m/p/6970859.html">https://www.cnblogs.com/whkl-m/p/6970859.html</a></p>
+</blockquote>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a><strong>测试</strong></h2><p>修改Login.vue，将最外层的div改为el-card标签</p>
+<pre><code class="vue">&lt;template&gt;
+  &lt;el-card&gt;
+      &lt;input type=&quot;text&quot; v-model=&quot;loginForm.username&quot; placeholder=&quot;用户名&quot;/&gt;
+      &lt;br/&gt;
+      &lt;br/&gt;
+      &lt;input type=&quot;password&quot; v-model=&quot;loginForm.password&quot; placeholder=&quot;密码&quot;/&gt;
+      &lt;br/&gt;
+      &lt;br/&gt;
+      &lt;button v-on:click=&quot;login&quot;&gt;登录&lt;/button&gt;
+  &lt;/el-card&gt;
+&lt;/template&gt;
+</code></pre>
+<p>可以看到有效果了：</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/20200329163826.png" alt="img"></p>
+<h1 id="二、美化登录页面"><a href="#二、美化登录页面" class="headerlink" title="二、美化登录页面"></a><strong>二、美化登录页面</strong></h1><h2 id="1-删掉V图片"><a href="#1-删掉V图片" class="headerlink" title="1.删掉V图片"></a><strong>1.删掉V图片</strong></h2><p>在App.vue里面：</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/20200329164023.png" alt="img"></p>
+<p>而且不知道为啥App.vue的body会有个8px的margin，所以说在这个App.vue的style里加个让他变0：</p>
+<pre><code class="css">body&#123;  margin: 0px; &#125;
+</code></pre>
+<h2 id="2-修改Login-vue页面"><a href="#2-修改Login-vue页面" class="headerlink" title="2.修改Login.vue页面"></a><strong>2.修改Login.vue页面</strong></h2><p>首先修改一下html代码：</p>
+<pre><code class="html">&lt;template&gt;
+  &lt;body id=&quot;poster&quot;&gt;
+  &lt;el-form class=&quot;login-container&quot; label-position=&quot;left&quot; label-width=&quot;0px&quot;&gt;
+    &lt;h3 class=&quot;login_title&quot;&gt;系统登录&lt;/h3&gt;
+    &lt;el-form-item&gt;
+      &lt;el-input type=&quot;text&quot; v-model=&quot;loginForm.username&quot; auto-complete=&quot;off&quot; placeholder=&quot;用户名&quot;/&gt;
+    &lt;/el-form-item&gt;
+    &lt;el-form-item&gt;
+      &lt;el-input type=&quot;password&quot; v-model=&quot;loginForm.password&quot; auto-complete=&quot;off&quot; placeholder=&quot;密码&quot;/&gt;
+    &lt;/el-form-item&gt;
+    &lt;el-button v-on:click=&quot;login&quot; type=&quot;primary&quot; style=&quot;width: 100%; background: #1861DA;border: none;&quot;&gt;登录
+    &lt;/el-button&gt;
+  &lt;/el-form&gt;
+  &lt;/body&gt;
+&lt;/template&gt;
+</code></pre>
+<p>在最外层加了个id为poster的body，然后修改原来的div变成el-form，调整一下里面的每一项。</p>
+<p>增加一个style设定背景及样式：</p>
+<pre><code class="css">&lt;style scoped&gt;
+  .login-container &#123;
+    border-radius: 15px;
+    background-clip: padding-box;
+    margin: 90px auto;
+    width: 350px;
+    padding: 35px 35px 15px 35px;
+    background: #fff;
+    border: 1px solid #eaeaea;
+    box-shadow: 0 0 25px #cac6c6;
+  &#125;
+
+  .login_title &#123;
+    margin: 0px auto 40px auto;
+    text-align: center;
+    color: #505458;
+  &#125;
+
+  #poster &#123;
+    background:url(&quot;../assets/login_bg.jpg&quot;) no-repeat;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    position: fixed;
+  &#125;
+
+  body&#123;
+    margin: 0px;
+  &#125;
+&lt;/style&gt;
+</code></pre>
+<blockquote>
+<p>这里<style scope>是表示它的样式作用于当下的模块，很好的实现了样式私有化的目的</p>
+<p>相关资料：vue中慎用style的scoped属性，<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39043923/article/details/88687046">https://blog.csdn.net/qq_39043923/article/details/88687046</a></p>
+</blockquote>
+<p>自己偷偷的改了个背景，没用教程里的用了个自己的嘿嘿：</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/20200329164343.png"></p>
+<p>逼格挺高的。。。</p>
+<p>至此，登录页面的开发似乎已经较为完善了，但其实还没有完，因为这个登录页面其实没有用，别人直接输入首页的网址，就可以绕过登录页面。为了让它发挥作用，我们还需要开发一个拦截器。</p>
+<p>接下来的工作：</p>
+<p>一、前端路由的 hash 模式与 history 模式</p>
+<p>二、history 模式下后端错误页面的配置</p>
+<p>三、登录拦截的实现</p>
+<p>为什么要在登录页面上废这么多篇幅呢？因为把这个页面做完，就差不多理解了项目的构成，之后的开发就可以把精力集中在业务功能的实现上了。之后的基本模式，就是前端开发组件、后端开发控制器，调试功能，做起来会很快。</p>
+<h1 id="一、前端路由"><a href="#一、前端路由" class="headerlink" title="一、前端路由"></a><strong>一、前端路由</strong></h1><blockquote>
+<p>什么是前端路由：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39717076/article/details/80650506">https://blog.csdn.net/weixin_39717076/article/details/80650506</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/53064386">https://www.zhihu.com/question/53064386</a></p>
+</blockquote>
+<p>大家如果留心观察就会发现，之前我们做的页面的 URL 里有一个 ==# 号==，这个 # 号有什么含义呢？</p>
+<p>假设在 html 中有这么一段代码：<code>&lt;div id=&quot;test&quot;&gt;This is a test&lt;/div&gt;</code>，如果我们想让页面定位到这个 div 所在的位置，可以加一个超链接<code> &lt;a herf=&quot;#test&quot;&gt;Jump to test</code></a>，这里的 ==# 被称为“锚点”，点击超链接，可以发现网页的 URL 发生了变化，但页面并不会跳转==。</p>
+<p>在互联网流量如此庞大的今天，我们需要==想办法减轻后端服务器的压力==，利用 AJAX，我们可以不重载页面就刷新数据，如果再加上 # 号的特性（即改变 URL 却不请求后端），我们就可以在前端实现页想面的整体变化，而不用每次都去请求后端。</p>
+<p>为了实现前端路由，我们可以监听 # 号后面内容的变化（hashChange），从而动态改变页面内容。URL 的 # 号后面的地址被称为 hash ，估计是哪个大神拍脑袋想的，不用深究。这种实现方式我们称之为 ==Hash 模式==，是非常典型的前端路由方式。</p>
+<p>另一种常用的方式被称为==History 模式==，这种方式使用了 History API，History API 顾名思义就是针对历史记录的 API ，这种模式的原理是先把页面的状态保存到一个对象（state）里，当页面的 URL 变化时找到对应的对象，从而还原这个页面。其实原本人家这个功能是为了方便浏览器前进后退的，不得不说程序员们的脑洞真大。使用了这种模式，就可以摆脱 # 号实现前端路由。</p>
+<p>Vue 已经为我们提供了两种模式的前端路由，无需我们自己去实现。</p>
+<ul>
+<li>Hash模式</li>
+<li>History模式</li>
+</ul>
+<h1 id="二、History模式"><a href="#二、History模式" class="headerlink" title="二、History模式"></a><strong>二、History模式</strong></h1><h2 id="改为History模式"><a href="#改为History模式" class="headerlink" title="改为History模式"></a>改为History模式</h2><p>首先我们把 Vue 中配置的路由从默认的 hash 模式切换为 histroy 模式。打开我们的前端项目 wj-vue，修改 router\index.js，加入 ==<code>mode: &#39;history</code>== 这句话。整体代码如下：</p>
+<pre><code class="js">import Vue from &#39;vue&#39;
+import Router from &#39;vue-router&#39;
+import HelloWorld from &#39;@/components/HelloWorld&#39;
+import Login from &#39;@/components/Login&#39;
+import Appindex from &#39;@/components/home/Appindex&#39;
+
+// 在这里导入Login组件
+Vue.use(Router)
+
+export default new Router(&#123;
+  // 修改前端路由模式为History
+  mode: &#39;history&#39;,
+  routes: [
+    // 导入的Login组件，应该是写一下路由路径
+    &#123;
+      path: &#39;/login&#39;,
+      name: &#39;Login&#39;,
+      component: Login
+    &#125;,
+    &#123;
+      path: &#39;/index&#39;,
+      name: &#39;AppIndex&#39;,
+      component: Appindex
+    &#125;,
+    &#123;
+      path: &#39;/&#39;,
+      name: &#39;HelloWorld&#39;,
+      component: HelloWorld
+    &#125;
+  ]
+&#125;)
+</code></pre>
+<h2 id="部署到后端"><a href="#部署到后端" class="headerlink" title="部署到后端"></a><strong>部署到后端</strong></h2><p>接下来，我们把前端打包后部署在后端。这<strong>不是</strong>前后端分离项目推荐的做法，之前我们讲过其实应该把前后端分别部署在不同的服务器中，但实际上仍有不少项目会选择把前后端<strong>整合</strong>在一起，只使用一个服务器，所以这里我们也提及一下这种方式，但在之后的开发中不会这样部署。</p>
+<p>先在项目目录执行 <code>npm run build</code>，控制台输出如下内容表明执行完毕：</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/20200329164944.png" alt="img"></p>
+<p>这时在项目的 dist 文件夹下生成了 static 文件夹和 index.html 文件，把这两个文件，拷贝到我们后端项目的 <code>wj\src\main\resources\static</code> 文件夹下（而不是template下,是与template同级)，一定要注意这个位置，这时后端配置的静态文件的 path，虽然看起来很诡异，但一般都不作修改。</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/20200329165001.png" alt="img"></p>
+<p>接下来，打开后端项目并运行，访问 <a target="_blank" rel="noopener" href="http://localhost:8443/index.html">http://localhost:8443/index.html</a> ，（注意输入后缀 .html）发现页面是空白的，但确实取到了这个页面，再访问 <a target="_blank" rel="noopener" href="http://localhost:8443/login">http://localhost:8443/login</a> ,发现跳转到了错误页面（White Error Page）。</p>
+<blockquote>
+<p>这时候访问index.html应该是访问的静态资源，而login并无对应的url所以说跳转到404页面。</p>
+</blockquote>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/20200329165009.png" alt="img"></p>
+<p>这里我们回顾一下==单页面应用==的概念，在我们这个项目中，其实只有 index.html 这一个页面，所有的其它内容都是在这个页面里动态渲染的。当我们直接在后端访问 /login 路径时，服务器会后端并没有这个路径对应的内容，所以返回了 Error Page。</p>
+<p>为了获取到我们需要的内容，我们要==想办法触发前端路由==，即在后端添加处理内容，把 通过这个 URL 渲染出的 index.html 返回到浏览器。</p>
+<p>在后端项目中新建一个 package 名为 error，新建实现 ErrorPageRegistrar 接口的类 ErrorConfig，把默认的错误页面设置为 /index.html，代码如下：</p>
+<pre><code class="java">package com.song.wj.error;
+
+import org.springframework.boot.web.server.ErrorPage;
+import org.springframework.boot.web.server.ErrorPageRegistry;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Component;
+
+@Component
+public class ErrorConfig implements org.springframework.boot.web.server.ErrorPageRegistrar &#123;
+
+    @Override
+    public void registerErrorPages(ErrorPageRegistry registry) &#123;
+        ErrorPage error404Page = new ErrorPage(HttpStatus.NOT_FOUND,&quot;/index.html&quot;);
+        registry.addErrorPages(error404Page);
+    &#125;
+&#125;
+</code></pre>
+<p>注意@Component注解，这个是组件的意思，会自动注入到Spring容器中。</p>
+<blockquote>
+<p>1、<a target="_blank" rel="noopener" href="https://my.oschina.net/u/1774615">@controller</a> 控制器（注入服务）</p>
+<p>用于标注控制层，相当于struts中的action层</p>
+<p>2、<a target="_blank" rel="noopener" href="https://my.oschina.net/service">@service</a> 服务（注入dao）</p>
+<p>用于标注服务层，主要用来进行业务的逻辑处理</p>
+<p>3、@repository（实现dao访问）</p>
+<p>用于标注数据访问层，也可以说用于标注数据访问组件，即DAO组件.</p>
+<p>4、<a target="_blank" rel="noopener" href="https://my.oschina.net/u/3907912">@component</a> （把普通pojo实例化到spring容器中，相当于配置文件中的</p>
+<p><code>&lt;bean id=&quot;&quot; class=&quot;&quot;/&gt;</code>）</p>
+</blockquote>
+<p>泛指各种组件，就是说当我们的类不属于各种归类的时候（不属于@Controller、@Services等的时候），我们就可以使用@Component来标注这个类。</p>
+<p>重新启动项目，访问 <a target="_blank" rel="noopener" href="http://localhost:8443/login">http://localhost:8443/login</a> ，成功进入登录页面。</p>
+<blockquote>
+<p>因为默认的错误页面是index.html了，然后index.html前端里面又有vue映射login的路由：<br><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/20200329165156.png" alt="img"><br>就是之前router/index.js了，不过现在被封装到static里面了。所以说能通过login访问到登录页面。而其他的404页面会是空白的因为现在没做处理。</p>
+</blockquote>
+<h1 id="三、后端拦截器"><a href="#三、后端拦截器" class="headerlink" title="三、后端拦截器"></a><strong>三、后端拦截器</strong></h1><p>为了完善登录功能，我们需要限制未登录状态下对核心功能页面的访问。登录拦截可以由多种方式来实现，我们首先讲解后端拦截器的开发。（注意如果==没有把前后端项目整合起来，就没有办法使用这种方式==）</p>
+<p>一个简单拦截器的逻辑如下：</p>
+<ol>
+<li><p>用户访问 URL，检测是否为登录页面，如果是登录页面则不拦截</p>
+</li>
+<li><p>如果用户访问的不是登录页面，检测用户是否已登录，如果未登录则跳转到登录页面</p>
+</li>
+</ol>
+<h2 id="1-LoginController"><a href="#1-LoginController" class="headerlink" title="1.LoginController"></a><strong>1.LoginController</strong></h2><p>首先我们修改 LoginController 的内容。之前我们实现了通过查询数据库验证用户名是否正确，但仅此而已。</p>
+<p>为了保存登录状态，我们可以把用户信息存在 Session 对象中（当用户在应用程序的 Web 页之间跳转时，存储在 Session 对象中的变量不会丢失），这样在访问别的页面时，可以通过判断是否存在用户变量来判断用户是否登录。这是一种比较简单的方式，感兴趣的同学可以尝试别的方法。</p>
+<p>修改后的代码内容如下：</p>
+<pre><code class="java">import javax.servlet.http.HttpSession;
+
+@Controller
+public class LoginController &#123;
+    @Autowired
+    UserService userService;
+
+    @CrossOrigin
+    @PostMapping(value = &quot;/api/login&quot;)
+    @ResponseBody
+    public Result login(@RequestBody User requesterUser, HttpSession session) &#123;
+        String username = requesterUser.getUsername();
+        //对html标签进行转义，防止XSS攻击
+        username = HtmlUtils.htmlEscape(username);
+
+        //这样只需要查一次sql（我想的是用户名查一次然后密码还要查一次）
+        User user = userService.get(username, requesterUser.getPassword());
+        if (null == user) &#123;
+            String message = &quot;账号密码错误&quot;;
+            System.out.println(&quot;账号密码错误&quot;);
+            return new Result(400);
+
+        &#125; else &#123;
+            //登录成功后放到session里（这里用户名和密码都放进去了？！）
+            session.setAttribute(&quot;user&quot;,user);
+            System.out.println(&quot;登录成功&quot;);
+            return new Result(200);
+        &#125;
+    &#125;
+
+&#125;
+</code></pre>
+<p>其实只是添加了一条语句<code> session.setAttribute(&quot;user&quot;, user);</code> 也就是说在登录成功的时候把user放到session里面了。</p>
+<h2 id="2-LoginInterceptor"><a href="#2-LoginInterceptor" class="headerlink" title="2.LoginInterceptor"></a><strong>2.LoginInterceptor</strong></h2><p>新建 package 名为 interceptor，新建类 LoginInterceptor。</p>
+<p>Interceptor 即拦截器，在 Springboot 我们可以直接继承拦截器的接口（在我的SpringBoot版本里改成了<strong>extends</strong> HandlerInterceptorAdapter），然后实现 preHandle 方法。preHandle 方法里的代码会在访问需要拦截的页面时执行。</p>
+<pre><code class="java">package com.song.wj.interceptor;
+
+import com.song.wj.pojo.User;
+import org.apache.commons.lang.StringUtils;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+public class LoginInterceptor extends HandlerInterceptorAdapter &#123;
+    private boolean begingWith(String page, String[] requiredAuthPages) &#123;
+        boolean result = false;
+        for (String requiredAuthPage : requiredAuthPages) &#123;
+            //判断page是否以requiredAuthPage开头
+            if (StringUtils.startsWith(page, requiredAuthPage)) &#123;
+                result = true;
+                break;
+            &#125;
+        &#125;
+        return result;
+    &#125;
+
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception &#123;
+//从session中得到要访问的地址
+        HttpSession session = request.getSession();
+        //从session中得到服务器地址：localhost
+        String contextPath = session.getServletContext().getContextPath();
+        //得到整个uri----localhost/index
+        String uri = request.getRequestURI();
+        //StringUtils是apach的包而不是spring的
+        //这里是去除服务器地址，只剩下/index
+        uri = StringUtils.remove(uri, contextPath + &#39;/&#39;);
+        String page = uri;
+
+//要拦截的页面，登录了才能访问
+        String[] requireAuthPages = new String[]&#123;
+                &quot;index&quot;,
+        &#125;;
+
+//判断当前访问的页面是否要拦截的页面，比如index
+        if (begingWith(page, requireAuthPages)) &#123;
+            //从session中得到user，如果为空就是没登录就跳转到login
+            User user = (User) session.getAttribute(&quot;user&quot;);
+            if (null == user) &#123;
+                response.sendRedirect(&quot;login&quot;);
+                return false;
+            &#125;
+        &#125;
+        return super.preHandle(request, response, handler);
+    &#125;
+&#125;
+</code></pre>
+<p>注释里写的比较清楚了，不再详细说了。</p>
+<p>看起来似乎比较长，其实就是==判断 session 中是否存在 user 属性，如果存在就放行，如果不存在就跳转到 login 页面==。这里使用了一个路径列表（requireAuthPages），可以在里面写下需要拦截的路径。当然我们也可以拦截所有路径，那样就不用写这么多了，但会有逻辑上的问题，就是你访问了 \login 页面，仍然会需要跳转，这样就会引发多次重定向问题。</p>
+<h2 id="3-WebConfigurer"><a href="#3-WebConfigurer" class="headerlink" title="3.WebConfigurer"></a><strong>3.WebConfigurer</strong></h2><p>我们写完了拦截器，但是它却并不会生效，因为我们还没有把它配置到项目中。</p>
+<p>新建 package 名为 config，新建类 MyWebConfigurer，代码如下：</p>
+<pre><code class="java">package com.song.wj.config;
+
+import com.song.wj.interceptor.LoginInterceptor;
+import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+@SpringBootConfiguration
+public class MyWebConfigurer implements WebMvcConfigurer &#123;
+    @Bean
+    public LoginInterceptor getLoginIntercepter()&#123;
+        return new LoginInterceptor();
+    &#125;
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) &#123;
+        registry.addInterceptor(getLoginIntercepter()).addPathPatterns(&quot;/**&quot;).excludePathPatterns(&quot;/index.html&quot;);
+    &#125;
+&#125;
+</code></pre>
+<p>通过这个配置类，我们添加了之前写好的拦截器。这里有一句非常重要的语句，即</p>
+<pre><code class="java">registry.addInterceptor(getLoginIntercepter()).addPathPatterns(&quot;/**&quot;).excludePathPatterns(&quot;/index.html&quot;);
+</code></pre>
+<p>这条语句的作用是对所有路径应用拦截器，除了 /index.html。</p>
+<p>之前我们在拦截器 LoginInterceptor 中配置的路径，即 index，触发的时机是在拦截器生效之后。也就是说，我们访问一个 URL，会首先通过 Configurer 判断是否需要拦截，如果需要，才会触发拦截器 LoginInterceptor，根据我们自定义的规则进行再次判断。</p>
+<p>==/index 与 /index.html 是不同的==，也就是说 /index 会触发拦截器而 /index.html 不会，但根据拦截器 LoginInterceptor 中我们定义的判断条件，以 /index 开头的路径都会被转发，包括 index.html。</p>
+<p>因为我们做的是单页面应用，之前通过配置 ErrorPage，实际上访问所有路径都会重定向到 /index.html 。我们直接在浏览器地址栏输入 /index 会触发拦截器，经过拦截器重定向到 /login，然后 /login 再经过 Configurer 的判断，再次触发拦截器，由于不在需要拦截的路径中，所以被放行，页面则重新定向到了 /index.html，如果没有再 Configurer 中取消对 /index.html 的拦截，则会再次触发拦截器，再次重定向到 /login，引发如下错误（多次重定向）。</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/20200329165557.png" alt="img"></p>
+<h2 id="4-效果检验"><a href="#4-效果检验" class="headerlink" title="4.效果检验"></a><strong>4.效果检验</strong></h2><p>运行后端项目，访问 <a target="_blank" rel="noopener" href="http://localhost:8443/index">http://localhost:8443/index</a> ，发现页面自动跳转到了 <a target="_blank" rel="noopener" href="http://localhost:8443/login">http://localhost:8443/login</a> ，输入用户名和密码登录，跳转到 <a target="_blank" rel="noopener" href="http://localhost:8443/index">http://localhost:8443/index</a> ， 这时可以把浏览器标签关掉，再在一个新标签页输入 <a target="_blank" rel="noopener" href="http://localhost:8443/index">http://localhost:8443/index</a> ，发现不会被拦截。</p>
+<h1 id="四、Vuex与前端登录拦截器"><a href="#四、Vuex与前端登录拦截器" class="headerlink" title="四、Vuex与前端登录拦截器"></a><strong>四、Vuex与前端登录拦截器</strong></h1><p>前面我们使用了后端拦截器，但这种拦截器只有在将前后端项目整合在一起时才能生效，而前后端分离的项目实际上不推荐这么做，接下来我们尝试用前端实现相似的功能。</p>
+<p>实现前端登录器，需要在前端判断用户的登录状态。我们可以像之前那样在组件的 data 中设置一个状态标志，但登录状态应该被视为一个全局属性，而不应该只写在某一组件中。所以我们需要引入一个新的工具——Vuex，它是专门为 Vue 开发的状态管理方案，我们可以把需要在各个组件中传递使用的变量、方法定义在这里。之前我一直没有使用它，所以在不同组件传值的问题上十分头疼，要写很多多余的代码来调用不同组件的值，所以推荐大家从一开始就去熟悉这种管理方式。</p>
+<h2 id="1-引入Vuex"><a href="#1-引入Vuex" class="headerlink" title="1.引入Vuex"></a><strong>1.引入Vuex</strong></h2><p>在我们的项目文件夹中，运行 <code>npm install vuex --save</code>，之后，在 src 目录下新建一个文件夹 store，并在该目录下新建 index.js 文件，在该文件中引入 vue 和 vuex，代码如下：</p>
+<pre><code class="js">import Vue from &#39;vue&#39;
+import Vuex from &#39;vuex&#39;
+
+Vue.use(Vuex)
+</code></pre>
+<p>之后，我们在 index.js 里设置我们需要的状态变量和方法。为了实现登录拦截器，我们需要一个记录用户信息的变量。为了方便日后的扩展（权限认证等），我们使用一个用户对象而不是仅仅使用一个布尔变量。同时，设置一个方法，触发这个方法时可以为我们的用户对象赋值。完整的代码如下：</p>
+<pre><code class="js">import Vue from &#39;vue&#39;
+import Vuex from &#39;vuex&#39;
+
+Vue.use(Vuex)
+
+export default new Vuex.Store(&#123;
+  state: &#123;
+    user: &#123;
+      username: window.localStorage.getItem(&#39;user&#39; || &#39;[]&#39;) == null ? &#39;&#39; : JSON.parse(window.localStorage.getItem(&#39;user&#39; || &#39;[]&#39;)).username
+    &#125;
+  &#125;,
+  mutations: &#123;
+    login (state, user) &#123;
+      state.user = user
+      window.localStorage.setItem(&#39;user&#39;, JSON.stringify(user))
+    &#125;
+  &#125;
+&#125;)
+</code></pre>
+<p>mutations应该是触发器的意思；</p>
+<p>这里我们还用到了 localStorage，即本地存储，在项目打开的时候会判断本地存储中是否有 user 这个对象存在，如果存在就取出来并获得 username 的值，否则则把 username 设置为空。这样我们只要不清除缓存，登录的状态就会一直保存。</p>
+<h2 id="2-修改路由设置"><a href="#2-修改路由设置" class="headerlink" title="2.修改路由设置"></a><strong>2.修改路由设置</strong></h2><p>为了区分页面是否需要拦截，我们需要修改一下 src\router\index.js，在需要拦截的路由中加一条元数据，设置一个 requireAuth 字段如下：</p>
+<pre><code class="js">meta: &#123;
+        requireAuth: true
+      &#125;
+</code></pre>
+<p>完整代码</p>
+<pre><code class="js">import Vue from &#39;vue&#39;
+import Router from &#39;vue-router&#39;
+import HelloWorld from &#39;@/components/HelloWorld&#39;
+import Login from &#39;@/components/Login&#39;
+import Appindex from &#39;@/components/home/Appindex&#39;
+
+// 在这里导入Login组件
+Vue.use(Router)
+
+export default new Router(&#123;
+  // 修改前端路由模式为History
+  mode: &#39;history&#39;,
+  routes: [
+    // 导入的Login组件，应该是写一下路由路径
+    &#123;
+      path: &#39;/login&#39;,
+      name: &#39;Login&#39;,
+      component: Login
+    &#125;,
+    &#123;
+      path: &#39;/index&#39;,
+      name: &#39;AppIndex&#39;,
+      component: Appindex,
+      meta: &#123;
+        requireAuth: true
+      &#125;
+    &#125;,
+    &#123;
+      path: &#39;/&#39;,
+      name: &#39;HelloWorld&#39;,
+      component: HelloWorld
+    &#125;
+  ]
+&#125;)
+</code></pre>
+<blockquote>
+<p>meta属性是啥？</p>
+<p>在html里好像是叫元标签，就是html开头的那个。但是在这里的这个vue的属性好像就是和data一个样，只是在路由里面放个数据，在别的地方可以取出来的。</p>
+</blockquote>
+<h2 id="3-使用钩子函数判断是否拦截"><a href="#3-使用钩子函数判断是否拦截" class="headerlink" title="3.使用钩子函数判断是否拦截"></a><strong>3.使用钩子函数判断是否拦截</strong></h2><p>钩子函数是指在某些时机会被调用的函数。这里我们使用 router.beforeEach()，意思是在访问每一个路由前调用。</p>
+<p>打开 src\main.js ，首先添加对 store 的引用：</p>
+<pre><code class="js">import store from &#39;./store&#39;
+
+/* eslint-disable no-new */
+new Vue(&#123;
+  el: &#39;#app&#39;,
+  render: h =&gt; h(App),
+  router,
+  // 这里加了个store
+  store,
+  components: &#123;App&#125;,
+  template: &#39;&lt;App/&gt;&#39;
+&#125;)
+</code></pre>
+<p>然后就是写钩子函数：</p>
+<pre><code class="js">router.beforeEach((to, from, next) =&gt; &#123;
+  // 判断to这个路由，也就是要去的页面，是否需要权限requireAuth
+  if (to.meta.requireAuth) &#123;
+    // 需要权限的情况
+    // 判断store里面是否有用户名
+    if (store.state.user.username) &#123;
+      // 有用户名，也就是登录了，就可以继续执行了
+      next()
+    &#125; else &#123;
+      // 没有用户名，没登录，重定向到login
+      next(&#123;
+        path: &#39;login&#39;,
+        query: &#123;redirect: to.fullPath&#125;
+      &#125;)
+    &#125;
+  &#125; else &#123;
+    // 不需要权限，直接继续就行
+    next()
+  &#125;
+&#125;)
+</code></pre>
+<p>完整的修改后的main.js</p>
+<pre><code class="js">// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+import Vue from &#39;vue&#39;
+import App from &#39;./App&#39;
+import router from &#39;./router&#39;
+import ElementUI from &#39;element-ui&#39;
+import &#39;element-ui/lib/theme-chalk/index.css&#39;
+import store from &#39;./store&#39;
+
+// 这里需要先安装axios：npm install --save axios
+// 设置反向代理，前端请求默认发送到http://localhost:8443/api
+var axios = require(&#39;axios&#39;)
+axios.defaults.baseURL = &#39;http://localhost:8443/api&#39;
+// 全局注册，之后可以在其他组件中通过this.axios发送数据
+Vue.prototype.$axios = axios
+Vue.config.productionTip = false
+
+Vue.use(ElementUI)
+
+router.beforeEach((to, from, next) =&gt; &#123;
+  // 判断to这个路由，也就是要去的页面，是否需要权限requireAuth
+  if (to.meta.requireAuth) &#123;
+    // 需要权限的情况
+    // 判断store里面是否有用户名
+    if (store.state.user.username) &#123;
+      // 有用户名，也就是登录了，就可以继续执行了
+      next()
+    &#125; else &#123;
+      // 没有用户名，没登录，重定向到login
+      next(&#123;
+        path: &#39;login&#39;,
+        query: &#123;redirect: to.fullPath&#125;
+      &#125;)
+    &#125;
+  &#125; else &#123;
+    // 不需要权限，直接继续就行
+    next()
+  &#125;
+&#125;)
+
+/* eslint-disable no-new */
+new Vue(&#123;
+  el: &#39;#app&#39;,
+  render: h =&gt; h(App),
+  router,
+  // 加了个store
+  store,
+  components: &#123;App&#125;,
+  template: &#39;&lt;App/&gt;&#39;
+&#125;)
+</code></pre>
+<h2 id="4-修改Login-vue"><a href="#4-修改Login-vue" class="headerlink" title="4.修改Login.vue"></a><strong>4.修改Login.vue</strong></h2><p>之前的登录组件中，我们只是判断后端返回的状态码，如果是 200，就重定向到首页。在经过前面的配置后，我们需要修改一下登录逻辑，以最终实现登录拦截。</p>
+<p>修改后的逻辑如下：</p>
+<p>1.点击登录按钮，向后端发送数据</p>
+<p>2.收到后端返回的成功代码时，触发 store 中的 login() 方法，把 loginForm 对象传递给 store 中的 user 对象</p>
+<p>（*这里只是简单的实现，在后端我们可以通过用户名和密码查询数据库，获得 user 表的完整信息，比如用户昵称、用户级别等，返回前端，并传递给 user 对象，以实现更复杂的功能）</p>
+<p>3.获取登录前页面的路径并跳转，如果该路径不存在，则跳转到首页</p>
+<p>修改后的 login() 方法如下：</p>
+<pre><code class="js">methods: &#123;
+  login () &#123;
+    // 指针重定向？_this是指这个Login.vue的vue对象
+    var _this = this
+    console.log(this.$store.state)
+    this.$axios
+      .post(&#39;login&#39;, &#123;
+        username: this.loginForm.username,
+        password: this.loginForm.password
+      &#125;)
+      .then(successResponse =&gt; &#123;
+        if (successResponse.data.code === 200) &#123;
+          // this.$router.replace(&#123;path: &#39;/index&#39;&#125;)
+          // 将loginForm表单提交到store里面的mutations的login方法
+          // 第一个参数是store中的函数名，第二个是提交过去的user
+          _this.$store.commit(&#39;login&#39;, _this.loginForm)
+          // 这个路由重定向，访问的是/根目录或者未知的话就跳转到index，否则就就访问那个页面
+          var path = this.$route.query.redirect
+          console.log(&#39;path === &#39; + path)
+          this.$router.replace(&#123; path: (path === &#39;/&#39; || path === undefined) ? &#39;/index&#39; : path &#125;)
+        &#125; else &#123;
+          alert(&#39;账号或密码错误！&#39;)
+        &#125;
+      &#125;)
+      .catch(failResponse =&gt; &#123;
+        console.log(failResponse.toString())
+        alert(&#39;登录失败&#39;)
+      &#125;)
+  &#125;
+&#125;
+</code></pre>
+<p>==注意！这里的 <code>var path = this.$route.query.redirect</code> 千万要分清router和route！被这个bug坑了半天==</p>
+<h2 id="5-效果检验"><a href="#5-效果检验" class="headerlink" title="5.效果检验"></a><strong>5.效果检验</strong></h2><p>同时运行前后端项目，访问 <a target="_blank" rel="noopener" href="http://localhost:8080/index">http://localhost:8080/index</a> ，发现页面直接跳转到了 <a target="_blank" rel="noopener" href="http://localhost:8080/login?redirect=/index">http://localhost:8080/login?redirect=%2Findex</a></p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/20200329172247.png"></p>
+<p>输入账号密码后登录，成功跳转到 <a target="_blank" rel="noopener" href="http://localhost:8080/index">http://localhost:8080/index</a> ，之后再次访问则无需登录（除非清除缓存）。</p>
+<template>
+  <el-menu
+    :default-active="'/index'"
+    router
+    mode="horizontal"
+    background-color="white"
+    text-color="#222"
+    active-text-color="red"
+    style="min-width: 1300px">
+   <el-menu-item v-for="(item,i) in navList" :key="i" :index="item.name">
+     
+   </el-menu-item>
+    <a href="#nowhere" style="color: #222;float: right;padding: 20px;">更多功能</a>
+    <i class="el-icon-menu" style="float: right; font-size: 45px; color: #222; padding-top: 8px;"></i>
+    <span style="position: absolute;padding-top: 20px;right: 43%;font-size: 20px;font-weight: bold">White Jotter - Your Mind Palace</span>
+  </el-menu>
+</template>
+
+<script>
+export default {
+  name: 'NavMenu',
+  data () {
+    return {
+      navList: [
+        {name: '/index', navItem: '首页'},
+        {name: '/jotter', navItem: '笔记本'},
+        {name: '/library', navItem: '图书馆'},
+        {name: '/admin', navItem: '个人中心'}
+      ]
+    }
+  }
+}
+</script>
+
+<style scoped>
+  a{
+  text-decoration: none;
+}
+  span{
+    pointer-events: none;
+  }
+</style>
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">SongX64</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://SongX64.github.io/2021/01/16/Vue%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3/">https://SongX64.github.io/2021/01/16/Vue%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">SongX64</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E5%89%8D%E7%AB%AF/">
+                                    <span class="chip bg-color">前端</span>
+                                </a>
+                            
+                                <a href="/tags/Vue/">
+                                    <span class="chip bg-color">Vue</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/02/14/Linux%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="Linux环境搭建">
+                        
+                        <span class="card-title">Linux环境搭建</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            在Linux搭建一个前后端分离项目的部署环境
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-02-14
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%90%8E%E7%AB%AF/" class="post-category">
+                                    后端
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%90%8E%E7%AB%AF/">
+                        <span class="chip bg-color">后端</span>
+                    </a>
+                    
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                    <a href="/tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/12/12/SpringBoot%E5%88%9B%E5%BB%BA%E7%88%B6%E5%AD%90%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="SpringBoot创建父子多级项目">
+                        
+                        <span class="card-title">SpringBoot创建父子多级项目</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            SpringBoot创建一个父子级的项目，并上传到git。之后整合常用组件，写了个简单的Controller。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-12
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%90%8E%E7%AB%AF/" class="post-category">
+                                    后端
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%B8%B8%E7%94%A8%E7%BB%84%E4%BB%B6/">
+                        <span class="chip bg-color">常用组件</span>
+                    </a>
+                    
+                    <a href="/tags/Springboot/">
+                        <span class="chip bg-color">Springboot</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2020-2021</span>
+            
+            <span id="year">2020</span>
+            <a href="/about" target="_blank">SongX64</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/SongX64" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:song.x64@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=song-x64@qq.com" class="tooltipped" target="_blank" data-tooltip="QQ联系我: song-x64@qq.com" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
+
+</html>
