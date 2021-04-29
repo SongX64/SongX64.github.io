@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Keras文本处理, SongX64">
+    <meta name="keywords" content="简单理解IOC与AOP, SongX64">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Keras文本处理 | SongX64</title>
+    <title>简单理解IOC与AOP | SongX64</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -298,12 +298,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Keras文本处理</h1>
+                    <h1 class="description center-align post-title">简单理解IOC与AOP</h1>
                 </div>
             </div>
         </div>
@@ -419,24 +419,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E7%A7%91%E7%A0%94/">
-                                <span class="chip bg-color">科研</span>
+                            <a href="/tags/Java/">
+                                <span class="chip bg-color">Java</span>
                             </a>
                         
-                            <a href="/tags/%E5%AE%9E%E9%AA%8C/">
-                                <span class="chip bg-color">实验</span>
-                            </a>
-                        
-                            <a href="/tags/Python/">
-                                <span class="chip bg-color">Python</span>
-                            </a>
-                        
-                            <a href="/tags/Keras/">
-                                <span class="chip bg-color">Keras</span>
-                            </a>
-                        
-                            <a href="/tags/%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86/">
-                                <span class="chip bg-color">文本处理</span>
+                            <a href="/tags/Springboot/">
+                                <span class="chip bg-color">Springboot</span>
                             </a>
                         
                     </div>
@@ -447,8 +435,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E7%A7%91%E7%A0%94/" class="post-category">
-                                科研
+                            <a href="/categories/%E5%90%8E%E7%AB%AF/" class="post-category">
+                                后端
                             </a>
                         
                     </div>
@@ -460,7 +448,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-07-22
+                    2021-02-17
                 </div>
                 
 
@@ -469,7 +457,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.1k
+                    370
                 </div>
                 
 
@@ -486,252 +474,32 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Keras文本处理"><a href="#Keras文本处理" class="headerlink" title="Keras文本处理"></a>Keras文本处理</h1><h2 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h2><p><u>1.只用带标签的数据和标签 不要关键字 用LSTM分一次类 tokennizer</u> </p>
-<p><u>2.Word2vec</u></p>
-<p>3.用标签 + 关键字  用1、2准确度高的方法做  cnn lstm双输入，智能合约放lstm，关键字放CNN</p>
-<p>4.把dataset没有标签的分配标签和关键字，重复上面三个</p>
-<p>5.选出文件最大的前几个，执行4</p>
-<p>结果：  召回率   准确率   F1       迭代次数 2或5代</p>
-<h2 id="Word2Vec"><a href="#Word2Vec" class="headerlink" title="Word2Vec"></a>Word2Vec</h2><h2 id="Tokenizer"><a href="#Tokenizer" class="headerlink" title="Tokenizer"></a>Tokenizer</h2><p>[Keras中文文档——关于文本预处理](<a target="_blank" rel="noopener" href="https://keras-cn.readthedocs.io/en/latest/preprocessing/text/#_1">https://keras-cn.readthedocs.io/en/latest/preprocessing/text/#_1</a> ↩︎)</p>
-<p>Tokenizer是一个用于向量化文本，或<strong>将文本转换为序列</strong>（即<strong>单个字词以及对应下标构成的列表，从1算起</strong>）的类。是用来文本预处理的第一步：<strong>分词</strong>。结合简单形象的例子会更加好理解些。</p>
-<h3 id="1-语法"><a href="#1-语法" class="headerlink" title="1.语法"></a>1.语法</h3><p>官方语法如下：</p>
-<pre><code class="python">keras.preprocessing.text.Tokenizer(num_words=None,
-                                   filters=&#39;!&quot;#$%&amp;()*+,-./:;&lt;=&gt;?@[\]^_`&#123;|&#125;~\t\n&#39;,
-                                   lower=True,
-                                   split=&quot; &quot;,
-                                   char_level=False)
-</code></pre>
-<h4 id="1-1-构造参数"><a href="#1-1-构造参数" class="headerlink" title="1.1 构造参数"></a>1.1 构造参数</h4><ul>
-<li>num_words： <strong>默认是None</strong>，处理所有字词。<pre><code>        但是如果设置成**一个整数**，那么最后返回的是最常见的、出现**频率最高的num_words个字词**。
-</code></pre>
-</li>
-<li>filters：<strong>过滤一些特殊字符</strong>，默认上文的写法就可以了。</li>
-<li>lower：全部转为<strong>小写</strong></li>
-<li>split：字符串，单词的<strong>分隔符</strong>，如空格</li>
-<li><u><em>char_level: 如果为 True, 每个字符将被视为一个标记</em></u></li>
+                <h3 id="解释一下IOC和AOP"><a href="#解释一下IOC和AOP" class="headerlink" title="解释一下IOC和AOP"></a>解释一下IOC和AOP</h3><h5 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h5><p>IOC，控制反转，一种思想。不只是Spring中有。</p>
+<p>Spring中用IOC容器来实现了控制反转。</p>
+<p>将手动新建对象交给了Spring来维护。</p>
+<p>啥叫反转呢，就是本来如果你要新建一个高层的对象，他会依赖底层的。比如Car–&gt;Framework-&gt;Bottom-&gt;Wheel-&gt;size，如果修改size，那么从高到低每一层都需要传入一个size，麻烦的很。但是IOC的话，直接用对象来</p>
+<p>Spring时代用XML文件来配置Bean，SpringBoot时代用注解配置。</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/v2-ee924f8693cff51785ad6637ac5b21c1_r.jpg" alt="img"></p>
+<hr>
+<p>推荐阅读：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/23277575/answer/169698662">https://www.zhihu.com/question/23277575/answer/169698662</a></p>
+<p>例子:1.未改善<br><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/v2-8ec294de7d0f9013788e3fb5c76069ef_r.jpg" alt="img"></p>
+<p>2.需要动态修改size</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/v2-82e0c12a1b26f7979ed9241e169affda_r.jpg" alt="img"><br>这样，每一层都需要传入要给size来对其进行初始化，因为上层会调用底层的构造函数，而这时候需要参数来传入。</p>
+<p>3.依赖注入的方法来实现控制反转</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/v2-99ad2cd809fcb86dd791ff7f65fb1779_r.jpg" alt="img"></p>
+<p>这时候，通过将依赖的对象注入，也就是在当前类的构造函数中<strong>传入此类依赖的底层类</strong>，这样的话就不用再每次都传入底层类的具体参数。修改的话只需要修改底层类就行，而中间类不需要修改。</p>
+<p>4.IOC容器</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/v2-c845802f9187953ed576e0555f76da42_r.jpg" alt="img"></p>
+<p>右面这个New对象的过程，就是IOC容器，被框架所接管了而不用我们手动去修改。</p>
+<p>5.DI的三种方式</p>
+<ul>
+<li>构造函数传递（上面的例子）</li>
+<li>Setter传递</li>
+<li>接口传递</li>
 </ul>
-<h4 id="1-2-返回值"><a href="#1-2-返回值" class="headerlink" title="1.2 返回值"></a>1.2 返回值</h4><p>字符串列表</p>
-<h4 id="1-3-类方法"><a href="#1-3-类方法" class="headerlink" title="1.3 类方法"></a>1.3 类方法</h4><p>下面是相关的类方法，部分示例在下一节中均有描述应用。</p>
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th align="left">参数</th>
-<th>返回值</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>fit_on_texts(texts)</td>
-<td align="left">texts：要用以训练的文本列表</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>texts_to_sequences(texts)</td>
-<td align="left">texts：待转为序列的文本列表</td>
-<td>序列的列表，列表中每个序列对应于一段输入文本</td>
-<td></td>
-</tr>
-<tr>
-<td>texts_to_sequences_generator(texts)</td>
-<td align="left">texts：待转为序列的文本列表</td>
-<td>每次调用返回对应于一段输入文本的序列</td>
-<td>本函数是<code>texts_to_sequences</code>的生成器函数版</td>
-</tr>
-<tr>
-<td>texts_to_matrix(texts, mode)</td>
-<td align="left">texts：待向量化的文本列表 mode：‘binary’，‘count’，‘tfidf’，‘freq’之一，默认为‘binary’</td>
-<td>形如<code>(len(texts), nb_words)</code>的numpy array</td>
-<td></td>
-</tr>
-<tr>
-<td>fit_on_sequences(sequences)</td>
-<td align="left">sequences：要用以训练的序列列表</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>sequences_to_matrix(sequences)</td>
-<td align="left">sequences：待向量化的序列列表 mode：‘binary’，‘count’，‘tfidf’，‘freq’之一，默认为‘binary’</td>
-<td>形如<code>(len(sequences), nb_words)</code>的numpy array</td>
-<td></td>
-</tr>
-</tbody></table>
-<h4 id="1-4-属性"><a href="#1-4-属性" class="headerlink" title="1.4 属性"></a>1.4 属性</h4><ul>
-<li>word_counts:字典，将单词（字符串）映射为它们在<strong>训练期间出现的次数</strong>。仅在调用fit_on_texts之后设置。</li>
-<li>word_docs: 字典，将单词（字符串）映射为它们在<strong>训练期间所出现的文档或文本的数量</strong>。仅在调用fit_on_texts之后设置。</li>
-<li>word_index: 字典，将单词（字符串）映射为它们的<strong>排名或者索引</strong>。仅在调用fit_on_texts之后设置。</li>
-<li>document_count: 整数。分词器被训练的文档（文本或者序列）数量。仅在调用fit_on_texts或fit_on_sequences之后设置。</li>
-</ul>
-<h3 id="2-简单示例"><a href="#2-简单示例" class="headerlink" title="2.简单示例"></a>2.简单示例</h3><pre><code class="python">&gt;&gt;&gt;from keras.preprocessing.text import Tokenizer
-Using TensorFlow backend.
-
-#  创建分词器 Tokenizer 对象
-&gt;&gt;&gt;tokenizer = Tokenizer()
-
-#  text
-&gt;&gt;&gt;text = [&quot;今天 北京 下 雨 了&quot;, &quot;我 今天 加班&quot;]
-
-#  fit_on_texts 方法, 将要训练的文本传入
-&gt;&gt;&gt;tokenizer.fit_on_texts(text)
-
-#  word_counts属性，将单词（字符串）映射为它们在训练期间出现的次数。仅在调用fit_on_texts之后设置。
-&gt;&gt;&gt;tokenizer.word_counts
-OrderedDict([(&#39;今天&#39;, 2),
-             (&#39;北京&#39;, 1),
-             (&#39;下&#39;, 1),
-             (&#39;雨&#39;, 1),
-             (&#39;了&#39;, 2),
-             (&#39;我&#39;, 1),
-             (&#39;加班&#39;, 1)])
-
-#  word_docs属性，将单词（字符串）映射为它们在训练期间所出现的文档或文本的数量。仅在调用fit_on_texts之后设置。
-&gt;&gt;&gt;tokenizer.word_docs
-defaultdict(int, &#123;&#39;下&#39;: 1, &#39;北京&#39;: 1, &#39;今天&#39;: 2, &#39;雨&#39;: 1, &#39;了&#39;: 2, &#39;我&#39;: 1, &#39;加班&#39;: 1&#125;)
-
-#  word_index属性，将单词（字符串）映射为它们的排名或者索引。仅在调用fit_on_texts之后设置。
-&gt;&gt;&gt;tokenizer.word_index
-&#123;&#39;今天&#39;: 1, &#39;了&#39;: 2, &#39;北京&#39;: 3, &#39;下&#39;: 4, &#39;雨&#39;: 5, &#39;我&#39;: 6, &#39;加班&#39;: 7&#125;
-
-#  document_count属性
-&gt;&gt;&gt;tokenizer.document_count
-2
-</code></pre>
-<h3 id="3-常用示例"><a href="#3-常用示例" class="headerlink" title="3.常用示例"></a>3.常用示例</h3><p>  还以上面的tokenizer对象为基础，经常会使用<code>texts_to_sequences()</code>方法 和 序列预处理方法 <code>keras.preprocessing.sequence.pad_sequences</code>一起使用。</p>
-<p>Code.3.1 常用示例</p>
-<pre><code class="python">&gt;&gt;&gt;tokenizer.texts_to_sequences([&quot;下 雨 我 加班&quot;])
-[[4, 5, 6, 7]]
-
-&gt;&gt;&gt;keras.preprocessing.sequence.pad_sequences(tokenizer.texts_to_sequences([&quot;下 雨 我 加班&quot;]), maxlen=20)
-array([[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 5, 6, 7]],dtype=int32)
-</code></pre>
-<p>有关pad_sequences用法见python函数——序列预处理pad_sequences()序列填充</p>
-<blockquote>
-<h2 id="序列预处理pad-sequences-序列填充"><a href="#序列预处理pad-sequences-序列填充" class="headerlink" title="序列预处理pad_sequences()序列填充"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/wcy23580/article/details/84957471">序列预处理pad_sequences()序列填充</a></h2><p>为了实现的简便，keras只能接受长度相同的序列输入。因此如果目前序列长度参差不齐，这时需要使用<strong>pad_sequences()<strong>。该函数是</strong>将序列转化为经过填充以后的一个长度相同的新序列</strong>。</p>
-<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><pre><code class="python">keras.preprocessing.sequence.pad_sequences(sequences, 
-    maxlen=None,
-    dtype=&#39;int32&#39;,
-    padding=&#39;pre&#39;,
-    truncating=&#39;pre&#39;, 
-    value=0.)
-</code></pre>
-<h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><ul>
-<li>sequences：浮点数或整数构成的两层嵌套列表</li>
-<li>maxlen：None或整数，为序列的最大长度。大于此长度的序列将被截短，小于此长度的序列将在后部填0.</li>
-<li>dtype：返回的numpy array的数据类型</li>
-<li>padding：‘pre’或‘post’，确定当需要补0时，在序列的起始还是结尾补`</li>
-<li>truncating：‘pre’或‘post’，确定当需要截断序列时，从起始还是结尾截断</li>
-<li>value：浮点数，此值将在填充时代替默认的填充值0</li>
-</ul>
-<h3 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h3><p>返回的是个2维张量，长度为maxlen</p>
-<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><pre><code class="python">&gt;&gt;&gt;list_1 = [[2,3,4]]
-&gt;&gt;&gt;keras.preprocessing.sequence.pad_sequences(list_1, maxlen=10)
-array([[0, 0, 0, 0, 0, 0, 0, 2, 3, 4]], dtype=int32)
-
-&gt;&gt;&gt;list_2 = [[1,2,3,4,5]]
-&gt;&gt;&gt;keras.preprocessing.sequence.pad_sequences(list_2, maxlen=10)
-array([[0, 0, 0, 0, 0, 1, 2, 3, 4, 5]], dtype=int32)
-</code></pre>
-</blockquote>
-<h1 id="过程总结："><a href="#过程总结：" class="headerlink" title="过程总结："></a>过程总结：</h1><pre><code>1. 下载数据集（或者从文件中加载），读取到一个变量/数组中
-2. 使用Tokenizer，将数组fit进去，生成一个字典
-3. 再使用token.texts_to_sequences,将数据放进去生成序列（数字列表）
-4. 然后可以使用pad_sequences对生成的序列进行长度控制，让他们长度一致
-5. 建立模型，模型中第一个是Embedding词嵌入层，将数字列表转换为向量
-6. 然后中间就开始搭建神经网络，训练，评测即可。
-</code></pre>
-<h2 id="具体："><a href="#具体：" class="headerlink" title="具体："></a>具体：</h2><h3 id="Tokenizer函数"><a href="#Tokenizer函数" class="headerlink" title="Tokenizer函数"></a>Tokenizer函数</h3><pre><code class="python"># tokennizer
-def get_data():
-    all = train_x
-    tokenizer = Tokenizer(num_words=80000)  # 分词MAX_NB_WORDS
-    
-    tokenizer.fit_on_texts(train_x)  # 将数据放入
-    
-    sequences_context = tokenizer.texts_to_sequences(train_x)  # 受num_words影响
-
-    # 词语数据，截取长度
-    data_context = sequence.pad_sequences(sequences_context, maxlen=500)  # 将长度不足 100 的新闻用 0 填充（在前端填充）
-
-    # 标签，改为one-hot
-    labels = utils.to_categorical(np.asarray(label_y))  # 最后将标签处理成 one-hot 向量，比如 6 变成了 [0,0,0,0,0,0,1,0,0,0,0,0,0]，
-    labels_test = utils.to_categorical(np.asarray(label_y))
-    
-    print(&#39;Shape of data tensor:&#39;, data_context.shape)
-    print(&#39;Shape of label tensor:&#39;, labels.shape)
-    return data_context, labels
-# 不用feature
-</code></pre>
-<p>这时候就将文本转换为数字列表了。因为神经网络里面只能输入数字。</p>
-<h3 id="搭建模型，训练数据"><a href="#搭建模型，训练数据" class="headerlink" title="搭建模型，训练数据"></a>搭建模型，训练数据</h3><h4 id="划分为训练集和测试集"><a href="#划分为训练集和测试集" class="headerlink" title="划分为训练集和测试集"></a>划分为训练集和测试集</h4><pre><code class="python"># 训练模型，并保存
-def train():
-    # 通过tokenizer取得数据，标签
-    data_context, labels = data_vector.get_data()
-    # 划分训练和测试集
-    x_train, x_test, y_train, y_test = train_test_split(data_context, labels, test_size=0.2)
-    # 这里搭建好模型就直接一起训练了
-    train_lstm(x_train, y_train, x_test, y_test)
-</code></pre>
-<p>搭建模型和训练的代码放一个函数里了：</p>
-<h4 id="搭建模型"><a href="#搭建模型" class="headerlink" title="搭建模型"></a>搭建模型</h4><pre><code class="python">
-##定义网络结构
-def train_lstm(x_train, y_train, x_test, y_test):
-    print(&#39;train&#39;)
-    model = Sequential()  # or Graph or whatever
-    model.add(Embedding(output_dim=vocab_dim,
-                        input_dim=input_dim,
-                        mask_zero=True,
-                        input_length=input_length))  # Adding Input Length
-    model.add(LSTM(units=50))
-    model.add(Dropout(0.5))
-    model.add(Dense(16))
-    model.add(Activation(&#39;softmax&#39;))
-</code></pre>
-<h4 id="训练模型"><a href="#训练模型" class="headerlink" title="训练模型"></a>训练模型</h4><pre><code class="python">    metrics = Metrics()
-
-    model.compile(loss=&#39;binary_crossentropy&#39;,
-                  optimizer=&#39;adam&#39;, metrics=[&#39;accuracy&#39;])
-
-    model.fit(x_train, y_train,
-              batch_size=batch_size,
-              epochs=n_epoch,
-              validation_data=(x_test, y_test),
-              callbacks=[metrics])
-    score, acc = model.evaluate(x_test, y_test, batch_size=batch_size)
-    print(&#39;Test score:&#39;, score)
-    print(&#39;Test accuracy:&#39;, acc)
-</code></pre>
-<h4 id="存储模型"><a href="#存储模型" class="headerlink" title="存储模型"></a>存储模型</h4><pre><code class="python">   yaml_string = model.to_yaml()
-    with open(&#39;lstm.yml&#39;, &#39;w&#39;) as outfile:
-        outfile.write(yaml.dump(yaml_string, default_flow_style=True))
-    model.save_weights(&#39;lstm.h5&#39;)
-</code></pre>
-<p>其中Metrics是一个回调类,用来输出f1,召回率，准确率：</p>
-<pre><code class="python">class Metrics(Callback):
-    def on_train_begin(self, logs=&#123;&#125;):
-        self.val_f1s = []
-        self.val_recalls = []
-        self.val_precisions = []
-
-    def on_epoch_end(self, epoch, logs=&#123;&#125;):
-        val_predict = (np.asarray(self.model.predict(self.validation_data[0]))).round()  ##.model
-        val_targ = self.validation_data[1]  ###.model
-        _val_f1 = f1_score(val_targ, val_predict, average=&#39;micro&#39;)
-        _val_recall = recall_score(val_targ, val_predict, average=&#39;micro&#39;)  ###
-        _val_precision = precision_score(val_targ, val_predict, average=&#39;micro&#39;)  ###
-        self.val_f1s.append(_val_f1)
-        self.val_recalls.append(_val_recall)
-        self.val_precisions.append(_val_precision)
-        print(&#39;_val_f1: &#39;, _val_f1)
-        print(&#39;_val_recall: &#39;, _val_recall)
-        print(&#39;_val_precision: &#39;, _val_precision)
-        fls.append(_val_f1)
-        rec.append(_val_recall)
-        pre.append(_val_precision)
-        # print(&quot;— val_f1: %f — val_precision: %f — val_recall: %f&quot; %(_val_f1, _val_precision, _val_recall))
-        return
-</code></pre>
-
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/v2-861683acac47577c81f2b7493dd05649_r.jpg" alt="img"></p>
+<hr>
+<h5 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h5>
                 
             </div>
             <hr/>
@@ -757,7 +525,7 @@ def train_lstm(x_train, y_train, x_test, y_test):
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://SongX64.github.io/2020/07/22/keras%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86/">https://SongX64.github.io/2020/07/22/keras%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86/</a>
+                    <a href="https://SongX64.github.io/2021/02/17/%E7%90%86%E8%A7%A3IOC%E4%B8%8EAOP/">https://SongX64.github.io/2021/02/17/%E7%90%86%E8%A7%A3IOC%E4%B8%8EAOP/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -795,24 +563,12 @@ def train_lstm(x_train, y_train, x_test, y_test):
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E7%A7%91%E7%A0%94/">
-                                    <span class="chip bg-color">科研</span>
+                                <a href="/tags/Java/">
+                                    <span class="chip bg-color">Java</span>
                                 </a>
                             
-                                <a href="/tags/%E5%AE%9E%E9%AA%8C/">
-                                    <span class="chip bg-color">实验</span>
-                                </a>
-                            
-                                <a href="/tags/Python/">
-                                    <span class="chip bg-color">Python</span>
-                                </a>
-                            
-                                <a href="/tags/Keras/">
-                                    <span class="chip bg-color">Keras</span>
-                                </a>
-                            
-                                <a href="/tags/%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86/">
-                                    <span class="chip bg-color">文本处理</span>
+                                <a href="/tags/Springboot/">
+                                    <span class="chip bg-color">Springboot</span>
                                 </a>
                             
                         </div>
@@ -988,24 +744,24 @@ def train_lstm(x_train, y_train, x_test, y_test):
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/09/13/0913%E5%9B%BD%E5%86%85%E5%A4%96%E7%94%A8%E6%88%B7%E7%94%BB%E5%83%8F%E7%A0%94%E7%A9%B6%E7%BB%BC%E8%BF%B0-%E5%BE%90%E8%8A%B3/">
+                <a href="/2021/02/23/1204%E7%94%A8%E4%BA%8E%E7%A7%BB%E5%8A%A8%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E7%9A%84%E7%9F%A5%E8%AF%86%E5%9B%BE%E5%A2%9E%E5%BC%BA%E5%9E%8B%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93%E6%8E%A8%E8%8D%90/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="国内外用户画像研究综述 - 徐芳">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="用于移动应用程序开发的知识图增强型第三方库推荐">
                         
-                        <span class="card-title">国内外用户画像研究综述 - 徐芳</span>
+                        <span class="card-title">用于移动应用程序开发的知识图增强型第三方库推荐</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            2020年论文， 国内外用户画像研究综述
+                            用于移动应用程序开发的知识图增强型第三方库推荐，2021年论文，很有参考价值
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-09-13
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-02-23
                         </span>
                         <span class="publish-author">
                             
@@ -1026,12 +782,16 @@ def train_lstm(x_train, y_train, x_test, y_test):
                         <span class="chip bg-color">科研</span>
                     </a>
                     
+                    <a href="/tags/Knowledge-Graph/">
+                        <span class="chip bg-color">Knowledge Graph</span>
+                    </a>
+                    
                     <a href="/tags/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91/">
                         <span class="chip bg-color">论文翻译</span>
                     </a>
                     
-                    <a href="/tags/%E7%94%A8%E6%88%B7%E7%94%BB%E5%83%8F/">
-                        <span class="chip bg-color">用户画像</span>
+                    <a href="/tags/Recommendation/">
+                        <span class="chip bg-color">Recommendation</span>
                     </a>
                     
                 </div>
@@ -1045,31 +805,31 @@ def train_lstm(x_train, y_train, x_test, y_test):
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/06/23/Bootstrap%E5%B8%B8%E7%94%A8%E7%BB%84%E4%BB%B6/">
+                <a href="/2021/02/14/Linux%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="Bootstrap基础03——常用组件">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="Linux环境搭建">
                         
-                        <span class="card-title">Bootstrap基础03——常用组件</span>
+                        <span class="card-title">Linux环境搭建</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Bootstrap中的一些常用组件，也就是标签。
+                            在Linux搭建一个前后端分离项目的部署环境
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-23
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-14
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%89%8D%E7%AB%AF/" class="post-category">
-                                    前端
+                            <a href="/categories/%E5%90%8E%E7%AB%AF/" class="post-category">
+                                    后端
                                 </a>
                             
                             
@@ -1079,12 +839,16 @@ def train_lstm(x_train, y_train, x_test, y_test):
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%89%8D%E7%AB%AF/">
-                        <span class="chip bg-color">前端</span>
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
                     </a>
                     
-                    <a href="/tags/Bootstrap/">
-                        <span class="chip bg-color">Bootstrap</span>
+                    <a href="/tags/%E5%90%8E%E7%AB%AF/">
+                        <span class="chip bg-color">后端</span>
+                    </a>
+                    
+                    <a href="/tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
                     </a>
                     
                 </div>
