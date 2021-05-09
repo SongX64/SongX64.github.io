@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Linux环境搭建, SongX64">
+    <meta name="keywords" content="Java中的HashMap原理简单了解, SongX64">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Linux环境搭建 | SongX64</title>
+    <title>Java中的HashMap原理简单了解 | SongX64</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -298,12 +298,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Linux环境搭建</h1>
+                    <h1 class="description center-align post-title">Java中的HashMap原理简单了解</h1>
                 </div>
             </div>
         </div>
@@ -427,8 +427,8 @@
                                 <span class="chip bg-color">Java</span>
                             </a>
                         
-                            <a href="/tags/Linux/">
-                                <span class="chip bg-color">Linux</span>
+                            <a href="/tags/Java%E5%9F%BA%E7%A1%80/">
+                                <span class="chip bg-color">Java基础</span>
                             </a>
                         
                     </div>
@@ -452,7 +452,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-02-14
+                    2021-04-15
                 </div>
                 
 
@@ -461,7 +461,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.4k
+                    1.4k
                 </div>
                 
 
@@ -478,303 +478,111 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Linux环境搭建：</p>
-<ol>
-<li>java1.8——<a target="_blank" rel="noopener" href="https://www.cnblogs.com/xuliangxing/p/7066913.html">https://www.cnblogs.com/xuliangxing/p/7066913.html</a></li>
-<li>redis——<a target="_blank" rel="noopener" href="https://www.cnblogs.com/zdd-java/p/10288734.html">https://www.cnblogs.com/zdd-java/p/10288734.html</a></li>
-<li>nacos——<a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/quick-start.html">https://nacos.io/zh-cn/docs/quick-start.html</a></li>
-<li>nginx——<a target="_blank" rel="noopener" href="https://blog.51cto.com/favccxx/1620159">https://blog.51cto.com/favccxx/1620159</a></li>
-<li>开放端口——<a target="_blank" rel="noopener" href="https://blog.csdn.net/Bonie_juzi/article/details/83058604">https://blog.csdn.net/Bonie_juzi/article/details/83058604</a><br>redhat官方文档关于防火墙firewalld：<a target="_blank" rel="noopener" href="https://access.redhat.com/documentation/zh-cn/red_hat_enterprise_linux/7/html/security_guide/sec-using_firewalls">https://access.redhat.com/documentation/zh-cn/red_hat_enterprise_linux/7/html/security_guide/sec-using_firewalls</a></li>
-</ol>
-<hr>
-<h2 id="java1-8安装"><a href="#java1-8安装" class="headerlink" title="java1.8安装"></a>java1.8安装</h2><p>1.华为镜像下载jdk1.8，jdk-8u151-linux-x64.tar.gz：<a target="_blank" rel="noopener" href="https://repo.huaweicloud.com/java/jdk/8u151-b12/">https://repo.huaweicloud.com/java/jdk/8u151-b12/</a></p>
-<p>2.Linux下新建用户javaapp，并切换到此用户：</p>
-<pre><code class="bash">useradd javaapp
-su javaapp
-</code></pre>
-<p>3.新建文件夹，路径在/home/javaapp下</p>
-<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210309212430195.png" alt="image-20210309212430195"></p>
+                <h4 id="认识HashMap"><a href="#认识HashMap" class="headerlink" title="认识HashMap"></a>认识HashMap</h4><blockquote>
+<p>首先了解一下HashMap<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/21673805">https://zhuanlan.zhihu.com/p/21673805</a></p>
+<p>顺便附两个《小灰漫画》，感觉讲的不错：</p>
 <ul>
-<li>app用来放jdk文件，logs为其日志；</li>
-<li>soft用来安装软件，jdk1.8，nacos，redis等等</li>
-</ul>
-<ol start="4">
-<li>改变目录的拥有者为javaapp :</li>
-</ol>
-<pre><code class="bash">chown -R javaapp:javaapp app 
-</code></pre>
-<p>5.上传安装包到soft下，然后解压</p>
-<pre><code class="bash">tar -zxvf jdk-8u251-linux-x64.tar.gz
-</code></pre>
-<p>6.编辑配置文件</p>
-<p>修改配置文件 vi /etc/profile<br>放在配置文件的最下方</p>
-<pre><code class="properties">JAVA_HOME=/home/javaapp/soft/jdk1.8.0_251 
-JAVA_BIN=$JAVA_HOME/bin
-JAVA_LIB=$JAVA_HOME/lib
-CLASSPATH=.:$JAVA_LIB/tools.jar:$JAVA_LIB/dt.rar
-export PATH=$JAVA_BIN:$PATH:JAVA_HOME:JAVA_LIB:CLASSPATH
-</code></pre>
-<p>配置文件生效</p>
-<pre><code class="bash"> source /etc/profile
-</code></pre>
-<p>7.测试，java -version,成功!</p>
-<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210309212937183.png" alt="image-20210309212937183"></p>
-<hr>
-<p>vi保存命令：</p>
-<p>wq，保存退出</p>
-<p>w，保存不退出</p>
-<p>q，不保存退出</p>
-<p>q!，不保存强制退出</p>
-<p>i,插入模式</p>
-<hr>
-<h2 id="redis安装"><a href="#redis安装" class="headerlink" title="redis安装"></a>redis安装</h2><p>下载redis：<a target="_blank" rel="noopener" href="https://redis.io/download">https://redis.io/download</a></p>
-<p>官网写了安装方法了：</p>
-<pre><code class="bash">$ wget https://download.redis.io/releases/redis-6.2.1.tar.gz
-$ tar xzf redis-6.2.1.tar.gz
-$ cd redis-6.2.1
-$ make
-</code></pre>
-<p>解压文件，切换路径，编译</p>
-<p>遇到错误两个：</p>
-<ol>
-<li><p>cc command not found<br>这个是因为gcc没有安装，yum install gcc就行</p>
-</li>
-<li><p>jemalloc/jemalloc.h: No such file or directory<br>这是因为之前编译错误，有残余文件。<br>正确解决办法(针对2.2以上的版本)：清理上次编译残留文件，重新编译</p>
-<pre><code class="bash">make distclean  &amp;&amp; make
-</code></pre>
-</li>
-</ol>
-<p>src/redis-server运行redis就行了</p>
-<hr>
-<h2 id="开放端口"><a href="#开放端口" class="headerlink" title="开放端口"></a>开放端口</h2><p>Centos7之后系统默认是firewalld，用firewalld代替了iptables；</p>
-<p>安装 firewalld和firewalld-config：</p>
-<pre><code class="bash">yum install firewalld
-yum install firewall-config
-</code></pre>
-<p>启动firewalld防火墙</p>
-<pre><code class="bash">systemctl start firewalld.service
-</code></pre>
-<p>查看firewalld防火墙运行状态:</p>
-<pre><code class="bash">firewall-cmd --state
-</code></pre>
-<p>启动关闭防火墙服务：</p>
-<ul>
-<li>启动一个服务：systemctl start firewalld.service</li>
-<li>关闭一个服务：systemctl stop firewalld.service</li>
-<li>重启一个服务：systemctl restart firewalld.service</li>
-</ul>
-<p>firewall-cmd常用命令：</p>
-<ul>
-<li>显示状态： firewall-cmd –state</li>
-<li>查看所有打开的端口： firewall-cmd –zone=public –list-ports</li>
-<li>更新防火墙规则（重启防火墙）： firewall-cmd –reload</li>
-<li>查看区域信息:  firewall-cmd –get-active-zones</li>
-</ul>
-<p>端口：</p>
-<ul>
-<li>添加：firewall-cmd –zone=public –add-port=80/tcp –permanent  （–permanent永久生效，没有此参数重启后失效）</li>
-<li>查看：firewall-cmd –zone=public –query-port=80/tcp</li>
-<li>删除：firewall-cmd –zone=public –remove-port=80/tcp –permanent</li>
-</ul>
-<p>服务：</p>
-<p>其实一个服务对应一个端口，每个服务对应/usr/lib/firewalld/services下面一个xml文件。</p>
-<ul>
-<li>查看当前开了哪些端口：firewall-cmd –list-services</li>
-<li>查看还有哪些服务可以打开：firewall-cmd –get-services</li>
-<li>把一个服务加入到分区：firewall-cmd –zone=public –add-service=mysql</li>
-<li></li>
-</ul>
-<hr>
-<h2 id="CentOS-Linux常用命令"><a href="#CentOS-Linux常用命令" class="headerlink" title="CentOS Linux常用命令"></a>CentOS Linux常用命令</h2><h3 id="前后台进程相关"><a href="#前后台进程相关" class="headerlink" title="前后台进程相关"></a>前后台进程相关</h3><ul>
-<li>jobs：查看当前有多少在后台运行的命令<ul>
-<li>-l：显示PID</li>
-</ul>
-</li>
-<li>Ctrl+Z：可以将一个正在前台执行的命令<strong>放到后台</strong>，并且处于<strong>暂停</strong>状态，不可执行</li>
-<li>bg：将一个在<strong>后台暂停</strong>的命令，变成<strong>继续执行 （在后台执行）</strong><br>如果后台中有多个命令，可以用bg %jobnumber将选中的命令调出，<br>%jobnumber是通过jobs命令查到的后台正在执行的命令的序号(不是pid)<br>将任务转移到后台运行：先ctrl + z；再bg，这样进程就被移到后台运行，终端还能继续接受命令。</li>
-<li>&amp;：加在一个命令的最后，可以把这个命令<strong>放到后台</strong>执行 ,如gftp &amp;</li>
-<li>fg：将后台中的命令<strong>调至前台继续运行</strong><br>如果后台中有多个命令，可以用 fg %jobnumber将选中的命令调出，%jobnumber是通过jobs命令查到的后台正在执行的命令的序号(不是pid)</li>
-<li>Ctrl+C：前台中止进程</li>
-</ul>
-<h3 id="系统信息"><a href="#系统信息" class="headerlink" title="系统信息"></a>系统信息</h3><ul>
-<li><p>cat /etc/issue，查看Linux版本，此命令也适用于所有的Linux发行版。</p>
-<ul>
-<li>cat /etc/redhat-release：查看Linux版本，这种方法只适合Redhat系的Linux </li>
-</ul>
-</li>
-<li><p>ps aux | less：显示所有运行中的进程</p>
-<ul>
-<li>-A：显示所有进程</li>
-<li>a：显示终端中包括其它用户的所有进程</li>
-<li>x：显示无控制终端的进程</li>
-</ul>
-<p>au(x) 输出格式 :</p>
-<table>
-<thead>
-<tr>
-<th>USER</th>
-<th>PID</th>
-<th>%CPU</th>
-<th>%MEM</th>
-<th>VSZ</th>
-<th>RSS</th>
-<th>TTY</th>
-<th>STAT</th>
-<th>START</th>
-<th>TIME</th>
-<th>COMMAND</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>进程拥有者</td>
-<td>PID</td>
-<td>CPU使用率</td>
-<td>占用内存使用率</td>
-<td>占用虚拟内存使用率</td>
-<td>占用内存大小</td>
-<td>终端号码</td>
-<td>进程状态</td>
-<td>进程开始时间</td>
-<td>进程持续时间</td>
-<td>所执行的命令</td>
-</tr>
-</tbody></table>
-<ul>
-<li>STAT: 该行程的状态:<ul>
-<li>D:  无法中断的休眠状态 (通常 IO 的进程)</li>
-<li>R: 正在执行中</li>
-<li>S: 静止状态</li>
-<li>T: 暂停执行</li>
-<li>Z: 不存在但暂时无法消除</li>
-<li>W: 没有足够的记忆体分页可分配</li>
-<li>&lt;: 高优先序的行程</li>
-<li>N: 低优先序的行程</li>
-<li>L: 有记忆体分页分配并锁在记忆体内 (实时系统或捱A I/O)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>ps -ef | grep 进程关键字 ：查找相关进程<br><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210310103353682.png" alt="image-20210310103353682"></p>
-</li>
-<li><p>which 程序名：查看yum是否安装了这个软件，会显示安装在哪个目录</p>
-<ul>
-<li>whereis 程序名：同上，不过扩大范围</li>
-</ul>
-</li>
-<li><p>yum list installed ：查看yum已安装程序</p>
-<ul>
-<li>yum | grep “软件名或者包名”：指定软件是否安装</li>
-</ul>
-</li>
-<li></li>
-</ul>
-<h3 id="用户"><a href="#用户" class="headerlink" title="用户"></a>用户</h3><ul>
-<li><p>cat /etc/passwd：可以查看所有用户的列表</p>
-</li>
-<li><p>w：可以查看当前活跃的用户列表</p>
-<ul>
-<li>who：显示当前登录系统的用户</li>
-<li>whoami：当前用户</li>
-</ul>
-<p>who显示的资料包含了使用者 ID、使用的终端机、从哪边连上来的、上线时间、呆滞时间、CPU 使用量、动作等等。</p>
-<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210310100124085.png" alt="image-20210310100124085"></p>
-</li>
-<li><p>su - clsung：变更帐号为 clsung 并改变工作目录至 clsung 的家目录（home dir）</p>
-</li>
-</ul>
-<h3 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h3><ul>
-<li>find：find 命令用来在指定目录下查找文件<br>find / -name “nacos”：从/目录下开始，寻找name为“nacos”的文件。-iname则忽略大小写</li>
-<li></li>
-</ul>
-<h3 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h3><h4 id="source-命令导入"><a href="#source-命令导入" class="headerlink" title="source  命令导入"></a>source  命令导入</h4><p>source 命令导入数据库需要先登录到数库终端：</p>
-<pre><code class="sql">mysql&gt; create database abc;      # 创建数据库
-mysql&gt; use abc;                  # 使用已创建的数据库 
-mysql&gt; set names utf8;           # 设置编码
-mysql&gt; source /home/abc/abc.sql  # 导入备份数据库
-</code></pre>
-<h2 id="Ubuntu常用命令"><a href="#Ubuntu常用命令" class="headerlink" title="Ubuntu常用命令"></a>Ubuntu常用命令</h2><p>i386就是32位，amd64就是64位</p>
-<h3 id="系统"><a href="#系统" class="headerlink" title="系统"></a>系统</h3><ul>
-<li>cat /proc/version：查看系统版本</li>
-<li>uname -a：查看系统具体信息</li>
-<li></li>
-</ul>
-<h3 id="软件"><a href="#软件" class="headerlink" title="软件"></a>软件</h3><ul>
-<li><p>apt-get install “Name”：安装软件</p>
-<ul>
-<li>列出所有已安装的包：apt list –installed</li>
-<li>卸载安装的包，移除软件包及配置文件，清理不再使用的依赖和库文件：apt-get autoremove –purge</li>
-<li></li>
-</ul>
-</li>
-<li><p>dpkg -s “packageName”：查询某个包是否安装</p>
-</li>
-<li><p>dpkg –list | grep mysql：查看mysql有哪些依赖包</p>
-</li>
-<li><p>清除软件残留数据：dpkg -l|grep ^rc|awk ‘{print$2}’|sudo xargs dpkg -P</p>
-</li>
-</ul>
-<h3 id="文件-1"><a href="#文件-1" class="headerlink" title="文件"></a>文件</h3><ul>
-<li>chown filename user：更改文件/文件夹的权限，给user</li>
-</ul>
-<h3 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h3><p>这里Ubuntu的是iptables，同时还有一个类似于客户端的ufw</p>
-<h4 id="iptables"><a href="#iptables" class="headerlink" title="iptables"></a>iptables</h4><ul>
-<li>使防火墙生效：iptables-restore &lt; /etc/iptables/rules.v4</li>
-<li>列出当前配置：iptables -L -n</li>
-</ul>
-<h4 id="ufw"><a href="#ufw" class="headerlink" title="ufw"></a>ufw</h4><ul>
-<li>通过ufw查看防火墙状态：ufw -status</li>
-</ul>
-<h4 id="端口"><a href="#端口" class="headerlink" title="端口"></a>端口</h4><ul>
-<li><p>lsof -i:8888，查看8888端口号占用情况</p>
-<blockquote>
-<p>sof -i:8080：查看8080端口占用<br>lsof abc.txt：显示开启文件abc.txt的进程<br>lsof -c abc：显示abc进程现在打开的文件<br>lsof -c -p 1234：列出进程号为1234的进程所打开的文件<br>lsof -g gid：显示归属gid的进程情况<br>lsof +d /usr/local/：显示目录下被进程开启的文件<br>lsof +D /usr/local/：同上，但是会搜索目录下的目录，时间较长<br>lsof -d 4：显示使用fd为4的进程<br>lsof -i -U：显示所有打开的端口和UNIX domain文件</p>
-</blockquote>
-</li>
-</ul>
-<ul>
-<li><p>netstat -tunlp | grep 8000，显示占用8000端口的tcp/udp并处于listen状态的程序</p>
-<blockquote>
-<p>netstat -tunlp | grep 端口号</p>
-<ul>
-<li>-t (tcp) 仅显示tcp相关选项</li>
-<li>-u (udp)仅显示udp相关选项</li>
-<li>-n 拒绝显示别名，能显示数字的全部转化为数字</li>
-<li>-l 仅列出在Listen(监听)的服务状态</li>
-<li>-p 显示建立相关链接的程序名</li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzIxMjE5MTE1Nw==&mid=2653191907&idx=1&sn=876860c5a9a6710ead5dd8de37403ffc&chksm=8c990c39bbee852f71c9dfc587fd70d10b0eab1cca17123c0a68bf1e16d46d71717712b91509&scene=21#wechat_redirect">什么是HashMap</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzIxMjE5MTE1Nw==&mid=2653192000&idx=1&sn=118cee6d1c67e7b8e4f762af3e61643e&chksm=8c990d9abbee848c739aeaf25893ae4382eca90642f65fc9b8eb76d58d6e7adebe65da03f80d&scene=21#wechat_redirect">多线程下的HashMap</a></li>
 </ul>
 </blockquote>
-</li>
-</ul>
-<h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3><p>jar包运行</p>
-<p>方法一：java -jar jar包名   (这样ssh窗口被锁定，直接关闭窗口，ctrl+c打断程序运行)</p>
-<p>方法二：java -jar jar包名  &amp;   (&amp;表示在后台运行，ssh窗口不被锁定，但窗口关闭程序终止运行)</p>
-<p>方法三： nohup java -jar jar包名 &amp;  （关闭窗口，用户退出登录程序仍然运行，但执行nohup命令时，缺省情况下输出作业被重定向到nohup.out文件中，除非指定文件位置）</p>
-<p>方法四: nohup java -jar jar包名 &amp; &gt;a.txt</p>
-<h4 id="解释下-gt-temp-txt"><a href="#解释下-gt-temp-txt" class="headerlink" title="解释下 &gt;temp.txt"></a>解释下 &gt;temp.txt</h4><p><code>command &gt;out.fil</code></p>
-<p>command &gt;out.file是将command的输出重定向到out.file文件，即输出内容不打印到屏幕上，而是输出到out.file文件中。</p>
-<p>可通过jobs命令查看后台运行任务</p>
-<pre><code class="bash">jobs
-</code></pre>
-<p>那么就会列出所有后台执行的作业，并且每个作业前面都有个编号。<br>如果想将某个作业调回前台控制，只需要 fg + 编号即可：<code>fg 23</code></p>
+<h5 id="Map接口四个常用实现类"><a href="#Map接口四个常用实现类" class="headerlink" title="Map接口四个常用实现类"></a>Map接口四个常用实现类</h5><p>Java为数据结构中的映射定义了一个接口<code>java.util.Map</code>，此接口主要有四个常用的实现类：</p>
 <ul>
-<li>nohup java -jar 包名 &amp;：无界面后台启动不停止的java包，输出会默认到nohup.out<ul>
-<li>nohup java -jar 包名 &amp;&gt;XXX.txt：修改输出到XXX.txt文件</li>
+<li>HashMap</li>
+<li>Hashtable</li>
+<li>LinkedHashMap</li>
+<li>TreeMap</li>
+</ul>
+<p>类继承关系如下图所示：</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/26341ef9fe5caf66ba0b7c40bba264a5_r.jpg" alt="Map继承关系"></p>
+<h5 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h5><p>根据键的 hashCode 存储数据。</p>
+<p>访问很快，遍历顺序不确定。</p>
+<p>键允许一个为null的，记录允许多个为null的。</p>
+<p>==非线程安全，即任一时刻可以有<strong>多个线程同时写HashMap</strong>，可能会导致数据的不一致==</p>
+<p>如果需要满足线程安全，</p>
+<ul>
+<li>可以用 <strong><code>Collections.synchronizedMap()</code>方法</strong>使HashMap具有线程安全的能力</li>
+<li>或者使用**<code>ConcurrentHashMap</code>**类</li>
+</ul>
+<h5 id="Hashtable"><a href="#Hashtable" class="headerlink" title="Hashtable"></a>Hashtable</h5><p><strong>遗留类，不建议使用</strong>。</p>
+<p>与<code>HashMap</code>类似，不过是继承的<code>Dirctoinary</code>类。</p>
+<ul>
+<li>不需要线程安全的场合，用<code>HashMap</code>替代；</li>
+<li>需要线程安全的场合，用<code>ConcurrentHashMap</code>替代</li>
+</ul>
+<p><code>Hashtable</code>是线程安全的，但是并发性不如<code>ConcurrentHashMap</code>，因为<code>ConcurrentHashMap</code>引入了分段锁。</p>
+<h5 id="LinkedHashMap"><a href="#LinkedHashMap" class="headerlink" title="LinkedHashMap"></a>LinkedHashMap</h5><p><code>HashMap</code>的子类，带顺序的<code>HashMap</code>，<strong>保留了插入顺序</strong>。</p>
+<p><code>Iterator</code>遍历时候，先得到的记录肯定是先插入的。</p>
+<h5 id="TreeMap"><a href="#TreeMap" class="headerlink" title="TreeMap"></a>TreeMap</h5><p>实现了<code>SortedMap</code>接口，<strong>按key排序</strong>，默认按key的升序排序。</p>
+<p><code>Iterator</code>遍历时候，是按排过序的key遍历的。</p>
+<h4 id="HashMap原理"><a href="#HashMap原理" class="headerlink" title="HashMap原理"></a>HashMap原理</h4><p>搞清楚HashMap，首先需要知道HashMap是什么，即它的<strong>存储结构-字段</strong>；其次弄明白它能干什么，即它的<strong>功能实现-方法</strong>。下面我们针对这两个方面详细展开讲解。</p>
+<h5 id="存储结构-字段"><a href="#存储结构-字段" class="headerlink" title="存储结构-字段"></a>存储结构-字段</h5><p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210421191347092.png" alt="image-20210421191347092"></p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/v2-06aa0a5efbb324a67b23029206d9d9ac_1440w.jpg" alt="HashMap存储结构"></p>
+<p>每一个<strong>下标</strong>位置被称为==桶==</p>
+<ul>
+<li>JDK1.8之前：数组 + 链表</li>
+<li>JDK1.8之后：数组 + 链表 + 红黑树<ul>
+<li>链表长度大于8，转换为红黑树</li>
 </ul>
 </li>
 </ul>
-<h2 id="Ubuntu20安装mysql"><a href="#Ubuntu20安装mysql" class="headerlink" title="Ubuntu20安装mysql"></a>Ubuntu20安装mysql</h2><p>apt-get默认安装的是8.0</p>
-<p>卸载</p>
-<p>dpkg –list | grep mysql</p>
-<p>将列出的mysql相关都删掉，apt-get autoremove</p>
-<p>以及apt-get autoremove –purge</p>
-<p>清除残留数据：<code>dpkg -l|grep ^rc|awk &#39;&#123;print$2&#125;&#39;|sudo xargs dpkg -P</code></p>
-<pre><code>apt purge mysql-server mysql-server-5.7
+<p>哈希表解决冲突方法：</p>
+<ul>
+<li>开放地址法</li>
+<li>链地址法</li>
+</ul>
+<p>JDK中就是用的链地址法。简单来说，就是数组加链表的结合。</p>
+<h5 id="功能实现-方法"><a href="#功能实现-方法" class="headerlink" title="功能实现-方法"></a>功能实现-方法</h5><p>一个Hash存储的 过程</p>
+<blockquote>
+<p>map.put(“美团”,”小美”);</p>
+</blockquote>
+<p>首先使用hashcode()方法，对key得到其HashCode值，然后Hash算法的后两步（高位运算和取模）定位该key对应的存储位置索引值。</p>
+<p>可能定位到相同位置，就是发生了<strong>Hash碰撞</strong>。</p>
+<ul>
+<li>Hash算法越好，越不容易发生哈希碰撞。</li>
+<li>当然如果Hash桶足够大，即使差的Hash算法也不容易碰撞。</li>
+</ul>
+<p>所以说要在<strong>空间（Hash桶）</strong>和<strong>时间（Hash散列算法）</strong>成本之间进行衡量。</p>
+<p>==要做到碰撞概率小且空间少，好的Hash算法和扩容机制。==</p>
+<h6 id="扩容"><a href="#扩容" class="headerlink" title="扩容"></a>扩容</h6><p>如何扩容：</p>
+<pre><code class="java">int threshold;             // 所能容纳的key-value对极限 
+final float loadFactor;    // 负载因子
+int modCount;      // hashmap内部结构变化的次数(不包含key对应value被覆盖的情况)
+int size;    // 实际存储的数量
 </code></pre>
-<hr>
-<p>防火墙：</p>
-<p>华为云</p>
-<p>ufw</p>
-
+<ul>
+<li><code>Node[] table</code> 的默认length为16</li>
+<li><code>loadFactor</code> ，负载因子，默认为0.75（一般不要改）<ul>
+<li>当空间不大，不要求时间的时候：<code>loadFactor</code> 可以增大，可以设为大于1</li>
+<li>当空间足够，要求时间效率高，<code>loadFactor</code> 可以适当减小</li>
+</ul>
+</li>
+<li>threshold = length * Load factor</li>
+<li>当超出threshold时候，就进行扩容</li>
+</ul>
+<p>==Hash算法本质上就是三步：取key的hashCode值、高位运算、取模运算==</p>
+<h6 id="JDK1-7扩容"><a href="#JDK1-7扩容" class="headerlink" title="JDK1.7扩容"></a>JDK1.7扩容</h6><p>扩容机制使用JDK1.7版本的来解释一下，因为它比较简单：</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/e5aa99e811d1814e010afa7779b759d4_r.jpg" alt="扩容"></p>
+<p>这里是使用key % size，来确定放入哪个哈希桶的。比如第一个中，3%2=1，所以说放到索引为1的桶中。</p>
+<p>这里假设<code>LoadFactor = 1</code> , 那么<strong>当k-v的size大于桶的size的时候</strong>就扩容。所以说当<code>k_v.size() = 3</code>的时候，进行扩容，边为原来的<strong>两倍</strong>。</p>
+<p><strong>JDK1.7中扩容之后需要重新Hash</strong>，即1.2.3的过程。</p>
+<h6 id="JDK1-8扩容"><a href="#JDK1-8扩容" class="headerlink" title="JDK1.8扩容"></a>JDK1.8扩容</h6><p><strong>JDK1.8改进了，不需要再ReHash</strong>。（下面这一块关于位运算的没能看太懂）</p>
+<p>使用了<strong>位运算</strong>的特点：<br>元素在重新计算hash之后，因为n变为2倍，那么n-1的mask范围在高位多1bit(红色)，因此新的index就会发生这样的变化：</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/b2cb057773e3d67976c535d6ef547d51_r.jpg" alt="位运算"></p>
+<p>因此，我们在扩充HashMap的时候，不需要像JDK1.7的实现那样重新计算hash，<strong>只需要看看原来的hash值新增的那个bit是1还是0就好了</strong>，是<strong>0的话索引没变</strong>，是<strong>1的话索引变成“原索引+oldCap”</strong>，可以看看下图为16扩充为32的resize示意图：</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/544caeb82a329fa49cc99842818ed1ba_r.jpg" alt="JDK1.8扩容"></p>
+<h6 id="HashMap-put-方法过程"><a href="#HashMap-put-方法过程" class="headerlink" title="HashMap.put()方法过程"></a>HashMap.put()方法过程</h6><p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/58e67eae921e4b431782c07444af824e_r.jpg" alt="img"></p>
+<h6 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h6><p>(1) 扩容是一个特别耗性能的操作，所以当程序员在使用HashMap的时候，估算map的大小，初始化的时候给一个大致的数值，避免map进行频繁的扩容。</p>
+<p>(2) 负载因子是可以修改的，也可以大于1，但是建议不要轻易修改，除非情况非常特殊。</p>
+<p>(3) HashMap是线程不安全的，不要在并发的环境中同时操作HashMap，建议使用ConcurrentHashMap。</p>
+<p>(4) JDK1.8引入红黑树大程度优化了HashMap的性能。</p>
+<p>(5) 还没升级JDK1.8的，现在开始升级吧。HashMap的性能提升仅仅是JDK1.8的冰山一角。</p>
+<h4 id="线程安全的ConcurrentHashMap"><a href="#线程安全的ConcurrentHashMap" class="headerlink" title="线程安全的ConcurrentHashMap"></a>线程安全的ConcurrentHashMap</h4><p>前面提过的Hashtable和这里的ConcurrentHashMap，都是线程安全的。</p>
+<p>怎么保证线程安全呢，答案就是==加锁==。</p>
+<p>Hashtable中，直接使用了<code>synchronized</code>关键字来对<code>put()</code>和<code>get()</code>方法加锁。但是在竞争强烈的情况下，其效率非常低下。</p>
+<p>而ConcurrenHashMap中，使用了一个“分段锁”的东西。</p>
+<h5 id="a-ConcurrentHashMap的put方法"><a href="#a-ConcurrentHashMap的put方法" class="headerlink" title="a.ConcurrentHashMap的put方法"></a>a.ConcurrentHashMap的put方法</h5><p>==<del>待填坑</del>==</p>
+<h5 id="b-ConcurrentHashMap的Hash碰撞"><a href="#b-ConcurrentHashMap的Hash碰撞" class="headerlink" title="b.ConcurrentHashMap的Hash碰撞"></a>b.ConcurrentHashMap的Hash碰撞</h5>
                 
             </div>
             <hr/>
@@ -800,7 +608,7 @@ mysql&gt; source /home/abc/abc.sql  # 导入备份数据库
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://SongX64.github.io/2021/02/14/Linux%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">https://SongX64.github.io/2021/02/14/Linux%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</a>
+                    <a href="https://SongX64.github.io/2021/04/15/HashMap%E4%B8%8EConcurrentMap/">https://SongX64.github.io/2021/04/15/HashMap%E4%B8%8EConcurrentMap/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -846,8 +654,8 @@ mysql&gt; source /home/abc/abc.sql  # 导入备份数据库
                                     <span class="chip bg-color">Java</span>
                                 </a>
                             
-                                <a href="/tags/Linux/">
-                                    <span class="chip bg-color">Linux</span>
+                                <a href="/tags/Java%E5%9F%BA%E7%A1%80/">
+                                    <span class="chip bg-color">Java基础</span>
                                 </a>
                             
                         </div>
@@ -1019,29 +827,88 @@ mysql&gt; source /home/abc/abc.sql  # 导入备份数据库
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/02/17/%E7%90%86%E8%A7%A3IOC%E4%B8%8EAOP/">
+                <a href="/2021/04/15/HashMap%E4%B8%8EConcurrentMap/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="简单理解IOC与AOP">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Java中的HashMap原理简单了解">
                         
-                        <span class="card-title">简单理解IOC与AOP</span>
+                        <span class="card-title">Java中的HashMap原理简单了解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            简单理解控制反转与面向切面编程思想。
+                            简介HashMap的原理，以及线程安全的ConcurrentHashMap。
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-02-17
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%90%8E%E7%AB%AF/" class="post-category">
+                                    后端
+                                </a>
+                            
+                            
                         </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%90%8E%E7%AB%AF/">
+                        <span class="chip bg-color">后端</span>
+                    </a>
+                    
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                    <a href="/tags/Java%E5%9F%BA%E7%A1%80/">
+                        <span class="chip bg-color">Java基础</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/04/13/Java%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E7%AE%97%E6%B3%95/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Java垃圾收集算法初步了解">
+                        
+                        <span class="card-title">Java垃圾收集算法初步了解</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            GC算法，也就是Garbage Collected，垃圾回收算法。 简单了解标记-清除算法，复制算法，标记-整理算法，分代收集算法。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-13
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1057,65 +924,16 @@ mysql&gt; source /home/abc/abc.sql  # 导入备份数据库
                 
                 <div class="card-action article-tags">
                     
+                    <a href="/tags/%E5%90%8E%E7%AB%AF/">
+                        <span class="chip bg-color">后端</span>
+                    </a>
+                    
                     <a href="/tags/Java/">
                         <span class="chip bg-color">Java</span>
                     </a>
                     
-                    <a href="/tags/Springboot/">
-                        <span class="chip bg-color">Springboot</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/01/16/Vue%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Vue简单了解及前后端分离">
-                        
-                        <span class="card-title">Vue简单了解及前后端分离</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            简单了解了Vue的基础知识，并进行前后端分离开发，简单的编写了两个页面。
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-01-16
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%89%8D%E7%AB%AF/" class="post-category">
-                                    前端
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E5%89%8D%E7%AB%AF/">
-                        <span class="chip bg-color">前端</span>
-                    </a>
-                    
-                    <a href="/tags/Vue/">
-                        <span class="chip bg-color">Vue</span>
+                    <a href="/tags/JVM/">
+                        <span class="chip bg-color">JVM</span>
                     </a>
                     
                 </div>
