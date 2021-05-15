@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello,World, SongX64">
+    <meta name="keywords" content="Spring Boot常用注解, SongX64">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hello,World | SongX64</title>
+    <title>Spring Boot常用注解 | SongX64</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -298,12 +298,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hello,World</h1>
+                    <h1 class="description center-align post-title">Spring Boot常用注解</h1>
                 </div>
             </div>
         </div>
@@ -419,8 +419,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%9D%82%E9%A1%B9/">
-                                <span class="chip bg-color">杂项</span>
+                            <a href="/tags/Java/">
+                                <span class="chip bg-color">Java</span>
+                            </a>
+                        
+                            <a href="/tags/Springboot/">
+                                <span class="chip bg-color">Springboot</span>
                             </a>
                         
                     </div>
@@ -431,8 +435,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%9D%82%E9%A1%B9/" class="post-category">
-                                杂项
+                            <a href="/categories/%E5%90%8E%E7%AB%AF/" class="post-category">
+                                后端
                             </a>
                         
                     </div>
@@ -444,7 +448,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-01-14
+                    2021-05-15
                 </div>
                 
 
@@ -453,7 +457,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    75
+                    494
                 </div>
                 
 
@@ -470,19 +474,121 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
+                <h1 id="Spring-Boot常用注解"><a href="#Spring-Boot常用注解" class="headerlink" title="Spring Boot常用注解"></a>Spring Boot常用注解</h1><p>自己重新整理一下吧。</p>
+<ol>
+<li><p>首先是最常见的，请求路径相关的，主要就是Mapping：</p>
+<ul>
+<li><p>@RequestMapping：一个用来处理请求地址映射的注解，可用于<strong>类或方法</strong>上。用于类上，表示类中的所有响应请求的方法都是以该地址作为<strong>父路径</strong>；</p>
+<pre><code class="java">@RestController
+@RequestMapping(&quot;/notice&quot;)
+public class SysNoticeController extends BaseController
+&#123;
+    ……
+&#125;
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server
+</li>
+<li><p>@PostMapping：新建，insert数据</p>
+<pre><code class="java">@PostMapping
+public AjaxResult add(@Validated @RequestBody SysNotice notice)
+&#123;
+    notice.setCreateBy(SecurityUtils.getUsername());
+    return toAjax(noticeService.insertNotice(notice));
+&#125;
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate
+</li>
+<li><p>@GetMapping：获取，select数据</p>
+<pre><code class="java">@GetMapping(&quot;/list&quot;)
+public TableDataInfo list(SysNotice notice)
+&#123;
+    startPage();
+    List&lt;SysNotice&gt; list = noticeService.selectNoticeList(notice);
+    return getDataTable(list);
+&#125;
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
+</li>
+<li><p>@PutMapping：修改，update数据</p>
+<pre><code class="java">@PutMapping
+public AjaxResult edit(@Validated @RequestBody SysNotice notice)
+&#123;
+    notice.setUpdateBy(SecurityUtils.getUsername());
+    return toAjax(noticeService.updateNotice(notice));
+&#125;
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+</li>
+<li><p>@DeleteMapping：删除，delete数据</p>
+<pre><code class="java">@DeleteMapping(&quot;/&#123;noticeIds&#125;&quot;)
+public AjaxResult remove(@PathVariable Long[] noticeIds)
+&#123;
+    return toAjax(noticeService.deleteNoticeByIds(noticeIds));
+&#125;
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>其次是各个层次的，标明这个类属于什么类型的：</p>
+<ul>
+<li><p>@SpringBootApplication：启动类，是个组合注解，里面包括@Configuration，@EnableAutoConfiguration，@ComponentScan等</p>
+<pre><code class="java">@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Inherited
+@SpringBootConfiguration
+@EnableAutoConfiguration
+@ComponentScan(excludeFilters = &#123; @Filter(type = FilterType.CUSTOM, classes = TypeExcludeFilter.class),
+        @Filter(type = FilterType.CUSTOM, classes = AutoConfigurationExcludeFilter.class) &#125;)
+public @interface SpringBootApplication &#123;……&#125;
+</code></pre>
+</li>
+<li><p>@Controller：返回一整个页面，View</p>
+</li>
+<li><p>@RestController：控制层组件，包含@Controller和@ResponseBody，一般返回JSON</p>
+<pre><code class="java">@Target(&#123;ElementType.TYPE&#125;)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Controller
+@ResponseBody
+public @interface RestController &#123;……&#125;
+</code></pre>
+</li>
+<li><p>@Service：业务层组件</p>
+</li>
+<li><p>@Configuration：配置类</p>
+</li>
+<li><p>@Component：组件类，泛指组件，组件不好归类可以使用这个</p>
+</li>
+</ul>
+</li>
+<li><p>参数注解：</p>
+<ul>
+<li><p>@PathVariable：路径变量。参数与大括号里的名字一样要相同</p>
+<pre><code class="java">RequestMapping(&quot;user/get/mac/&#123;macAddress&#125;&quot;)
+public String getByMacAddress(@PathVariable String macAddress)&#123;
+　　//do something;
+　　&#125;
+</code></pre>
+</li>
+<li><p>@RequestBody：返回结果直接写入HTTP response body中</p>
+</li>
+</ul>
+</li>
+<li><p>功能性注解：</p>
+<ul>
+<li><p>@Autowired：自动注入</p>
+<pre><code class="java">@Autowired
+private ISysNoticeService noticeService;
+</code></pre>
+</li>
+<li><p>@EnableAutoConfiguration：启用自动配置</p>
+</li>
+<li><p>@ComponentScan：指定路径下扫描组件，如果扫描到有@Component @Controller @Service等这些注解的类，则把</p>
+<p>这些类注册为bean</p>
+</li>
+<li><p>@Bean：方法上，返回的对象注入到IOC容器中</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>这些差不多够他喝一壶了吧。。。感觉最常用的都有了。</p>
 
                 
             </div>
@@ -509,7 +615,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://SongX64.github.io/2020/01/14/hello-world/">https://SongX64.github.io/2020/01/14/hello-world/</a>
+                    <a href="https://SongX64.github.io/2021/05/15/SpringBoot%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/">https://SongX64.github.io/2021/05/15/SpringBoot%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -547,8 +653,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%9D%82%E9%A1%B9/">
-                                    <span class="chip bg-color">杂项</span>
+                                <a href="/tags/Java/">
+                                    <span class="chip bg-color">Java</span>
+                                </a>
+                            
+                                <a href="/tags/Springboot/">
+                                    <span class="chip bg-color">Springboot</span>
                                 </a>
                             
                         </div>
@@ -720,46 +830,52 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/01/15/hello-hexo/">
+                <a href="/2021/05/15/SpringBoot%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Hello,Hexo——关于Hexo部署CSS样式出错的解决">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Spring Boot常用注解">
                         
-                        <span class="card-title">Hello,Hexo——关于Hexo部署CSS样式出错的解决</span>
+                        <span class="card-title">Spring Boot常用注解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            搭建Hexo博客后的第一篇尝试
+                            面试时被问到了常用的Spring Boot注解，当时就说了几个最简单的，但是感觉说的有点少，于是把自己经常用的重新整理一下。
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-01-15
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-15
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%9D%82%E9%A1%B9/" class="post-category">
-                                    杂项
+                            <a href="/categories/%E5%90%8E%E7%AB%AF/" class="post-category">
+                                    后端
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%9D%82%E9%A1%B9/">
-                        <span class="chip bg-color">杂项</span>
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                    <a href="/tags/Springboot/">
+                        <span class="chip bg-color">Springboot</span>
                     </a>
                     
                 </div>
@@ -773,31 +889,31 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/05/30/jQuery%E5%AD%A6%E4%B9%A0/">
+                <a href="/2021/05/09/Docker%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="jQuery基础复习回忆">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Docker简单学习">
                         
-                        <span class="card-title">jQuery基础复习回忆</span>
+                        <span class="card-title">Docker简单学习</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前端忘得差不多了，再简单的学习回忆一下
+                            Docker初步了解，镜像以及容器的使用。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-05-30
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-09
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%89%8D%E7%AB%AF/" class="post-category">
-                                    前端
+                            <a href="/categories/%E5%90%8E%E7%AB%AF/" class="post-category">
+                                    后端
                                 </a>
                             
                             
@@ -807,16 +923,16 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%89%8D%E7%AB%AF/">
-                        <span class="chip bg-color">前端</span>
+                    <a href="/tags/%E5%90%8E%E7%AB%AF/">
+                        <span class="chip bg-color">后端</span>
                     </a>
                     
-                    <a href="/tags/jQuery/">
-                        <span class="chip bg-color">jQuery</span>
+                    <a href="/tags/%E8%BF%90%E7%BB%B4/">
+                        <span class="chip bg-color">运维</span>
                     </a>
                     
-                    <a href="/tags/JS/">
-                        <span class="chip bg-color">JS</span>
+                    <a href="/tags/Docker/">
+                        <span class="chip bg-color">Docker</span>
                     </a>
                     
                 </div>
