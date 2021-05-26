@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="B树与B+树简单了解, SongX64">
+    <meta name="keywords" content="Java线程池简单了解, SongX64">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>B树与B+树简单了解 | SongX64</title>
+    <title>Java线程池简单了解 | SongX64</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -298,12 +298,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">B树与B+树简单了解</h1>
+                    <h1 class="description center-align post-title">Java线程池简单了解</h1>
                 </div>
             </div>
         </div>
@@ -423,12 +423,12 @@
                                 <span class="chip bg-color">后端</span>
                             </a>
                         
-                            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
-                                <span class="chip bg-color">数据结构</span>
+                            <a href="/tags/Java/">
+                                <span class="chip bg-color">Java</span>
                             </a>
                         
-                            <a href="/tags/%E7%AE%97%E6%B3%95/">
-                                <span class="chip bg-color">算法</span>
+                            <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
+                                <span class="chip bg-color">多线程</span>
                             </a>
                         
                     </div>
@@ -452,7 +452,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-05-21
+                    2021-05-26
                 </div>
                 
 
@@ -461,7 +461,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    1.7k
                 </div>
                 
 
@@ -478,78 +478,169 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="关于B树和B-树"><a href="#关于B树和B-树" class="headerlink" title="关于B树和B+树"></a>关于B树和B+树</h4><blockquote>
-<p>小灰算法</p>
-<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzIxMjE5MTE1Nw==&mid=2653190965&idx=1&sn=53f78fa037386f85531832cd5322d2a0&chksm=8c9909efbbee80f90512f0c36356c31cc74c388c46388dc2317d43c8f8597298f233ca9c29e9&scene=21#wechat_redirect">漫画：什么是B-树？</a></p>
-<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzIxMjE5MTE1Nw==&mid=2653191027&idx=1&sn=4ba22e3ec8bd149f69fc0aba72e4347e&chksm=8c9909a9bbee80bfa1d8497ff0525df130414c1731b5aa5287bf16ea1cf86c8d8e6f20782184&scene=21#wechat_redirect">漫画：什么是B+树？</a></p>
+                <h1 id="Java线程池简单了解"><a href="#Java线程池简单了解" class="headerlink" title="Java线程池简单了解"></a>Java线程池简单了解</h1><p>[TOC]</p>
+<blockquote>
+<p>主要查看文章：</p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/baYuX8aCwQ9PP6k7TDl2Ww">Java线程池实现原理及其在美团业务中的实践 </a></p>
+<p><a target="_blank" rel="noopener" href="https://snailclimb.gitee.io/javaguide/#/./docs/java/multi-thread/%E6%8B%BF%E6%9D%A5%E5%8D%B3%E7%94%A8%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5">JavaGuide -线程池最佳实践</a></p>
 </blockquote>
-<h5 id="B-树"><a href="#B-树" class="headerlink" title="B-树"></a>B-树</h5><h6 id="为什么要使用B-树"><a href="#为什么要使用B-树" class="headerlink" title="为什么要使用B-树"></a>为什么要使用B-树</h6><p>二叉查找树速度和比较次数都是最小的，但是需要考虑<strong>磁盘IO问题</strong>。</p>
-<p><strong>数据库索引是存在磁盘上的</strong>，加载的时候不可能整个索引都加载到内存，只能逐一加载每一个磁盘页（每一个磁盘页对应一个索引树节点）。</p>
-<p>首先假设一颗二叉查找树:</p>
-<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210521202605242.png" alt="二叉查找树"></p>
-<p>其<strong>查找次数最大为树的高度</strong>，也就是要进行4次磁盘IO。</p>
-<p><strong>将“瘦高”的树变得“矮胖”</strong>。</p>
-<p>B树（就是B-树）主要目的是<strong>为了解决磁盘IO次数</strong>的。其中每个节点包括k个孩子，k取决于磁盘页大小。</p>
-<p>k最大值就是k阶B树（下面这个应该是3阶B树）</p>
-<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210521202407286.png" alt="举例一个B树"></p>
-<p>其改善的地方，就是<strong>每个节点都是一个磁盘页</strong>，每次加载会将这一整个节点加载到内存中。在内存中比较的速度比磁盘IO快多了。</p>
-<h6 id="B-树插入"><a href="#B-树插入" class="headerlink" title="B-树插入"></a>B-树插入</h6><p><strong>B-树一大优势：自平衡</strong></p>
-<p>插入过程比较麻烦，涉及到节点分裂。</p>
-<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210521203906045.png" alt="插入4"></p>
-<p>节点3，5已经是两元素节点，无法再增加。父亲节点 2， 6 也是两元素节点，也无法再增加。根节点9是单元素节点，可以升级为两元素节点。于是<strong>拆分</strong>节点3，5与节点2，6，让根节点9升级为两元素节点4，9。节点6独立为根节点的第二个孩子。</p>
-<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210521203927763.png" alt="节点分裂平衡"></p>
-<h6 id="B-树删除"><a href="#B-树删除" class="headerlink" title="B-树删除"></a>B-树删除</h6><p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210521204113459.png" alt="删除11"></p>
-<p>删除11后，节点12只有一个孩子，不符合B树规范。因此找出12,13,15三个节点的中位数13，取代节点12，而节点12自身下移成为第一个孩子。（这个过程称为<strong>左旋</strong>）</p>
-<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210521204158580.png" alt="B-树左旋"></p>
-<h5 id="B-树-1"><a href="#B-树-1" class="headerlink" title="B+树"></a>B+树</h5><p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210521204828678.png" alt="B+树举例"></p>
-<p>性质1：父节点中的元素，出现在了子节点中，而且是其中最大的；</p>
-<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210521204913216.png" alt="重复元素"></p>
-<p>性质2：因为包括父节点元素，所以说叶子节点中，包括所有元素。而且连在一起成了个链表</p>
-<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210521205055673.png" alt="叶子节点"></p>
-<p>卫星数据：卫星其实就是索引，一个指针，指向实际地址。下面图里的Data就是卫星数据。</p>
-<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210521205232096.png" alt="B-树中的卫星数据"></p>
-<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210521205255618.png" alt="B+树中的卫星数据"></p>
-<p>在数据库的<strong>聚集索引</strong>（Clustered Index）中，叶子节点直接包含数据。MySQL中的InnoDB引擎。</p>
-<p>在<strong>非聚集索引</strong>（NonClustered Index）中，叶子节点带有指向数据的指针。MySQL中MyISAM引擎。</p>
-<h6 id="与B-树对比"><a href="#与B-树对比" class="headerlink" title="与B-树对比"></a>与B-树对比</h6><p>其查询：</p>
-<p>B+树中间节点没有存储卫星数据（全在叶子节点上），所以说可以<strong>存储更多索引</strong>。IO次数更少</p>
-<p>B+树必须查询到<strong>叶子节点</strong>，而B-树不一定。</p>
-<p>B+树查询<strong>稳定</strong>，B-树则不是。</p>
-<h6 id="范围查询"><a href="#范围查询" class="headerlink" title="范围查询"></a>范围查询</h6><p>查询分为单元素查询，和范围查询。</p>
-<p>单元素查询比较容易理解；</p>
-<p>而范围查询是指查询一个范围，比如“3到11”之间的所有数字。</p>
-<p>B-树必须要去树的<strong>中序遍历</strong>；</p>
-<p>而B+树在找到3之后，根据叶子节点的<strong>链表</strong>可以直接查询到。</p>
-<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210521211511367.png" alt="叶子节点链表遍历"></p>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><h5 id="B树"><a href="#B树" class="headerlink" title="B树:"></a>B树:</h5><ul>
-<li>为了解决磁盘IO问题，使用B树。一个节点就是一个磁盘页。</li>
-<li>B树插入与删除比较麻烦，需要节点分裂与自旋，重要特性自平衡。</li>
-<li>MongoDB和文件系统使用B-树。</li>
-</ul>
-<h5 id="B-树："><a href="#B-树：" class="headerlink" title="B+树："></a>B+树：</h5><ul>
-<li>B+树只在叶子节点中存入数据，而非叶子节点中存的只是索引。<ul>
-<li>所以说B+树一定要查到叶子节点，稳定查询。而B树则不是。</li>
-<li>所以说一个非叶子节点存的比B树的更多，更能解决磁盘IO问题。</li>
-</ul>
-</li>
-<li>B+树子节点中包括父节点的数据，所以说叶子节点包括所有数据。</li>
-<li>而且叶子节点之间用指针相连，形成了一个链表。做范围查询非常简单。</li>
-</ul>
-<h5 id="数据库索引"><a href="#数据库索引" class="headerlink" title="数据库索引"></a>数据库索引</h5><p>MySQL中B+树索引与哈希索引。</p>
-<p>B+树索引：</p>
+<h2 id="1-为什么要用线程池"><a href="#1-为什么要用线程池" class="headerlink" title="1.为什么要用线程池"></a>1.为什么要用线程池</h2><p>池化思想，比如线程池，数据库连接池，HTTP连接池等。主要是为了能够重复利用资源，提高资源的利用率。</p>
+<p>线程池的好处:</p>
 <ul>
-<li>非聚簇索引：MySQL的MyISAM引擎，B+树节点里面存储的是索引与数据地址。</li>
-<li>聚簇索引：MySQL的InnoDB引擎<ul>
-<li>主索引：非叶子节点存储主键，叶子节点存储数据；</li>
-<li>辅助索引：节点中存主键，然后再根据主索引去找。</li>
+<li>降低资源消耗：可重复利用资源</li>
+<li>提高响应速度：任务到达时，无需等待线程创建即可立即执行</li>
+<li>提高线程可管理性：防止线程创建过多消耗尽系统资源内存等</li>
 </ul>
-</li>
-</ul>
-<p>哈希索引：</p>
+<p><strong>线程池解决的核心问题：资源管理问题</strong></p>
+<h2 id="2-Java线程池使用例子"><a href="#2-Java线程池使用例子" class="headerlink" title="2 Java线程池使用例子"></a>2 Java线程池使用例子</h2><p>==<strong>Java中的线程池：ThreadPoolExecutor</strong>==</p>
+<p>ThreadPoolExecutor的构造函数，用它来创建线程池：</p>
+<pre><code class="java">    /**
+     * 用给定的初始参数创建一个新的ThreadPoolExecutor。
+     */
+    public ThreadPoolExecutor(int corePoolSize,//线程池的核心线程数量
+                              int maximumPoolSize,//线程池的最大线程数
+                              long keepAliveTime,//当线程数大于核心线程数时，多余的空闲线程存活的最长时间
+                              TimeUnit unit,//时间单位
+                              BlockingQueue&lt;Runnable&gt; workQueue,//任务队列，用来储存等待执行任务的队列
+                              ThreadFactory threadFactory,//线程工厂，用来创建线程，一般默认即可
+                              RejectedExecutionHandler handler//拒绝策略，当提交的任务过多而不能及时处理时，我们可以定制策略来处理任务
+                               )
+</code></pre>
+<p>这几个参数，稍微记一下：</p>
 <ul>
-<li>MyISAM不支持</li>
-<li>InnoDB会自动在使用频繁的数据上添加，自动在B+树索引的基础上创建一个哈希索引。</li>
+<li>核心线程数量</li>
+<li>最大线程数量</li>
+<li>存活时间（当前线程数 &gt; 核心线程数，多余线程的最长存活时间）</li>
+<li>时间单位（TimeUnit.SECONDS）</li>
+<li>任务队列</li>
+<li>线程工厂，一般默认不用管</li>
+<li>拒绝策略（任务过多时，定制策略处理任务）</li>
 </ul>
+<p>创建例子：</p>
+<pre><code class="java">/** 核心线程数 **/
+private static final int CORE_POOL_SIZE = 5;
+/** 最大线程数 **/
+private static final int MAX_POOL_SIZE = 10;
+/** 队列容量 **/
+private static final int QUEUE_CAPACITY = 100;
+/** 最大存活时间 **/
+private static final Long KEEP_ALIVE_TIME = 1L;
+
+public static void main(String[] args) &#123;
+
+    //使用阿里巴巴推荐的创建线程池的方式
+    //通过ThreadPoolExecutor构造函数，自定义参数创建
+    ThreadPoolExecutor executor = new ThreadPoolExecutor(
+            CORE_POOL_SIZE,
+            MAX_POOL_SIZE,
+            KEEP_ALIVE_TIME,
+            TimeUnit.SECONDS,
+            new ArrayBlockingQueue&lt;&gt;(QUEUE_CAPACITY),
+            new ThreadPoolExecutor.CallerRunsPolicy());
+
+    // 循环，线程池中，创建10个线程
+    for (int i = 0; i &lt; 10; i++) &#123;
+        // Lambda表达式，调用execute的参数类型Runnable接口的构造函数，返回匿名对象并实现其中方法（大括号中）
+        // 相当于new Runnable()&#123; run()&#123;&#125; &#125;
+        executor.execute(() -&gt; &#123;
+            try &#123;
+                Thread.sleep(2000);
+            &#125; catch (InterruptedException e) &#123;
+                e.printStackTrace();
+            &#125;
+            System.out.println(&quot;CurrentThread name:&quot; + Thread.currentThread().getName() + &quot;；date：&quot; + Instant.now());
+        &#125;);
+    &#125;
+    //终止线程池
+    executor.shutdown();
+    try &#123;
+        // 等待所有任务完成
+        executor.awaitTermination(5, TimeUnit.SECONDS);
+    &#125; catch (InterruptedException e) &#123;
+        e.printStackTrace();
+    &#125;
+    System.out.println(&quot;Finished all threads&quot;);
+&#125;
+</code></pre>
+<ol>
+<li><code>ThreadPoolExecutor</code>构造函数创建线程池</li>
+<li>线程池中运行线程 <code>executor.execute(Runnable r)</code></li>
+<li>终止线程池 <code>exector.shutdown()</code></li>
+</ol>
+<blockquote>
+<p>其中，关于Lamda表达式-&gt;：Lambda 允许把函数作为一个方法的参数（函数作为参数传递进方法中）。</p>
+<p>下面这个例子就是调用了一个<strong>构造函数</strong>，返回了一个新建的对象，然后传入<strong>函数参数</strong>中。</p>
+<pre><code class="java">EventQueue.invokeLater(() -&gt; &#123;
+      JFrame frame = new ImageViewerFrame();
+      frame.setTitle(&quot;ImageViewer&quot;);
+      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      frame.setVisible(true);
+  &#125;);
+
+EventQueue.invokeLater(new Runnable() &#123;
+      public void run() &#123;
+          JFrame frame = new ImageViewerFrame();
+          frame.setTitle(&quot;ImageViewer&quot;);
+          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+          frame.setVisible(true);
+      &#125;
+  &#125;);
+</code></pre>
+</blockquote>
+<h2 id="3-线程池核心设计与实现总览"><a href="#3-线程池核心设计与实现总览" class="headerlink" title="3.线程池核心设计与实现总览"></a>3.线程池核心设计与实现总览</h2><p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210526110139152.png" alt="ThreadPoolExecutor的UML类图"></p>
+<p>这个UML看的不是很懂。。。继续往下看</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210526110421744.png" alt="ThreadPoolExecutor运行流程"></p>
+<h2 id="4-线程池生命周期"><a href="#4-线程池生命周期" class="headerlink" title="4. 线程池生命周期"></a>4. 线程池生命周期</h2><p>其中，线程池 <code>ThreadPoolExecutor</code>的状态有5种：</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210526224430777.png" alt="ThreadPoolExecutor状态5种"></p>
+<p>其状态转移图：</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210526224536641.png" alt="5种状态的转移"></p>
+<h2 id="5-任务执行机制"><a href="#5-任务执行机制" class="headerlink" title="5. 任务执行机制"></a>5. 任务执行机制</h2><p>线程池的本质是对<strong>任务和线程</strong>的管理，而做到这一点==最关键的思想就是将任务和线程两者解耦==，不让两者直接关联，才可以做后续的分配工作。</p>
+<p>线程池中是以<strong>生产者消费者模式</strong>，通过一个阻塞队列来实现的。</p>
+<p>阻塞队列缓存任务，工作线程（消费者）从阻塞队列中获取任务。</p>
+<p>分为以下几个模块：</p>
+<ul>
+<li>任务调度</li>
+<li>任务缓冲</li>
+<li>任务申请</li>
+<li>任务拒绝</li>
+</ul>
+<h3 id="5-1-任务调度"><a href="#5-1-任务调度" class="headerlink" title="5.1 任务调度"></a><strong>5.1 任务调度</strong></h3><p>一个任务提交到线程池了之后，会经过一下判断</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210526225421822.png" alt="image-20210526225421822"></p>
+<h3 id="5-2-任务缓冲"><a href="#5-2-任务缓冲" class="headerlink" title="5.2 任务缓冲"></a><strong>5.2 任务缓冲</strong></h3><p>任务缓冲模块是线程池能够管理任务的<strong>核心部分</strong>。</p>
+<p>线程池的本质是对<strong>任务和线程</strong>的管理，而做到这一点==最关键的思想就是将任务和线程两者解耦==，不让两者直接关联，才可以做后续的分配工作。</p>
+<p>线程池中是以<strong>生产者消费者模式</strong>，通过一个阻塞队列来实现的。</p>
+<p>阻塞队列缓存任务，工作线程（消费者）从阻塞队列中获取任务。</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210526232913936.png" alt="阻塞队列示意"></p>
+<blockquote>
+<p>阻塞队列(BlockingQueue)是一个支持两个附加操作的队列。</p>
+<p>这两个附加的操作是：</p>
+<ul>
+<li>在队列为空时，获取元素的线程会等待队列变为非空。</li>
+<li>当队列满时，存储元素的线程会等待队列可用。</li>
+</ul>
+<p>阻塞队列常用于生产者和消费者的场景：</p>
+<ul>
+<li>生产者是往队列里添加元素的线程</li>
+<li>消费者是从队列里拿元素的线程</li>
+</ul>
+<p>阻塞队列就是生产者存放元素的<strong>容器</strong>，而消费者也只从容器里拿元素。</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210526230357982.png" alt="阻塞队列成员"></p>
+</blockquote>
+<h3 id="5-3-任务申请"><a href="#5-3-任务申请" class="headerlink" title="5.3 任务申请"></a>5.3 任务申请</h3><p>任务的执行有两种可能：</p>
+<ul>
+<li>一种是<strong>任务直接由新创建的线程执行</strong>（仅出现在线程初始创建的时候）</li>
+<li>另一种是线程从<strong>任务队列中获取任务</strong>然后执行，执行完任务的空闲线程会再次去从队列中申请任务再去执行（线程获取任务绝大多数的情况）</li>
+</ul>
+<p>线程池中的<strong>线程</strong>去<strong>申请任务</strong>的步骤：</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210526231424192.png" alt="线程申请任务步骤"></p>
+<p>申请任务时，通过一个 <code>getTask()</code>去执行，经过以上判断的<strong>目的是为了防止线程池中的线程过多，控制线程数量</strong>。</p>
+<h3 id="5-4-任务拒绝"><a href="#5-4-任务拒绝" class="headerlink" title="5.4 任务拒绝"></a>5.4 任务拒绝</h3><p>任务拒绝模块是线程池的==保护部分==。</p>
+<p>线程池有一个<strong>最大的容量</strong>，当线程池的<strong>任务缓存队列已满</strong>，并且线程池中的<strong>线程数目达到maximumPoolSize</strong>时，就需要拒绝掉该任务，采取任务拒绝策略，保护线程池。</p>
+<p><code>RejectedExecutionHandler</code> 是一个<strong>接口</strong>，可以自定义拒绝策略。</p>
+<p>也可以用JDK自带的4种拒绝策略：</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210526232150795.png" alt="JDK自带的4种拒绝策略"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>如何回答线程池原理：</p>
+<p>感觉只要答出，任务和线程解耦，以及阻塞队列，生产者消费者模式，就可以了，这几个是重点。</p>
 
                 
             </div>
@@ -576,7 +667,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://SongX64.github.io/2021/05/21/B%E6%A0%91%E4%B8%8EB-%E6%A0%91%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3/">https://SongX64.github.io/2021/05/21/B%E6%A0%91%E4%B8%8EB-%E6%A0%91%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3/</a>
+                    <a href="https://SongX64.github.io/2021/05/26/Java%E7%BA%BF%E7%A8%8B%E6%B1%A0/">https://SongX64.github.io/2021/05/26/Java%E7%BA%BF%E7%A8%8B%E6%B1%A0/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -618,12 +709,12 @@
                                     <span class="chip bg-color">后端</span>
                                 </a>
                             
-                                <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
-                                    <span class="chip bg-color">数据结构</span>
+                                <a href="/tags/Java/">
+                                    <span class="chip bg-color">Java</span>
                                 </a>
                             
-                                <a href="/tags/%E7%AE%97%E6%B3%95/">
-                                    <span class="chip bg-color">算法</span>
+                                <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
+                                    <span class="chip bg-color">多线程</span>
                                 </a>
                             
                         </div>
@@ -795,9 +886,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/05/26/Java%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
                     <div class="card-image">
@@ -815,9 +907,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-05-26
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-26
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -830,6 +922,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -856,24 +949,24 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/05/20/JVM%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F/">
+                <a href="/2021/05/21/B%E6%A0%91%E4%B8%8EB-%E6%A0%91%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="JVM内存区域">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="B树与B+树简单了解">
                         
-                        <span class="card-title">JVM内存区域</span>
+                        <span class="card-title">B树与B+树简单了解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            又重看了一遍关于JVM的内存区域，重新整理的一篇笔记，应该算是比上次简洁一些吧。。。来自Offer来了与JavaGuide结合看的
+                            简单看了一下B树和B+树，因为看数据库索引的那块看到了B+树索引。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-20
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-21
                             </span>
                         <span class="publish-author">
                             
@@ -894,12 +987,12 @@
                         <span class="chip bg-color">后端</span>
                     </a>
                     
-                    <a href="/tags/Java/">
-                        <span class="chip bg-color">Java</span>
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="chip bg-color">数据结构</span>
                     </a>
                     
-                    <a href="/tags/JVM/">
-                        <span class="chip bg-color">JVM</span>
+                    <a href="/tags/%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">算法</span>
                     </a>
                     
                 </div>
