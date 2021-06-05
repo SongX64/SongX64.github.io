@@ -461,7 +461,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    605
+                    604
                 </div>
                 
 
@@ -516,11 +516,8 @@
 </ul>
 <h3 id="DockerFile构建新镜像"><a href="#DockerFile构建新镜像" class="headerlink" title="DockerFile构建新镜像"></a>DockerFile构建新镜像</h3><p>编写DockerFile，然后从DockerFile来从已有镜像构建新镜像</p>
 <p>比如我们这里在当前目录<code>./</code>下新建了一个<code>index.html</code>，然后复制到虚拟机中的<code>nginx/html</code>下，替换掉默认的首页。</p>
-<pre><code class="dockerfile">  # 从nginx镜像来构建
-  From nginx
-  # 复制./目录下所有文件，到虚拟机的html文件夹下
-  ADD ./ /usr/share/nginx/html/
-</code></pre>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 从nginx镜像来构建</span></span><br><span class="line"><span class="keyword">From</span> nginx</span><br><span class="line"><span class="comment"># 复制./目录下所有文件，到虚拟机的html文件夹下</span></span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> ./ /usr/share/nginx/html/</span></span><br></pre></td></tr></table></figure>
+
 <p>  <img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210509210407064.png" alt="image-20210509210407064"></p>
 <p>使用Dockerfile构建镜像：<code>docker build -t [NewImageName] [存放Dockerfile的文件夹]</code><br>如下，注意最后有个点 <code>.</code> 指的是当前目录</p>
 <p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210509210728371.png" alt="image-20210509210728371"></p>

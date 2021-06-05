@@ -457,7 +457,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    494
+                    498
                 </div>
                 
 
@@ -479,77 +479,25 @@
 <li><p>首先是最常见的，请求路径相关的，主要就是Mapping：</p>
 <ul>
 <li><p>@RequestMapping：一个用来处理请求地址映射的注解，可用于<strong>类或方法</strong>上。用于类上，表示类中的所有响应请求的方法都是以该地址作为<strong>父路径</strong>；</p>
-<pre><code class="java">@RestController
-@RequestMapping(&quot;/notice&quot;)
-public class SysNoticeController extends BaseController
-&#123;
-    ……
-&#125;
-</code></pre>
-</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/notice&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SysNoticeController</span> <span class="keyword">extends</span> <span class="title">BaseController</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    ……</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li><p>@PostMapping：新建，insert数据</p>
-<pre><code class="java">@PostMapping
-public AjaxResult add(@Validated @RequestBody SysNotice notice)
-&#123;
-    notice.setCreateBy(SecurityUtils.getUsername());
-    return toAjax(noticeService.insertNotice(notice));
-&#125;
-</code></pre>
-</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> AjaxResult <span class="title">add</span><span class="params">(<span class="meta">@Validated</span> <span class="meta">@RequestBody</span> SysNotice notice)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    notice.setCreateBy(SecurityUtils.getUsername());</span><br><span class="line">    <span class="keyword">return</span> toAjax(noticeService.insertNotice(notice));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li><p>@GetMapping：获取，select数据</p>
-<pre><code class="java">@GetMapping(&quot;/list&quot;)
-public TableDataInfo list(SysNotice notice)
-&#123;
-    startPage();
-    List&lt;SysNotice&gt; list = noticeService.selectNoticeList(notice);
-    return getDataTable(list);
-&#125;
-</code></pre>
-</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping(&quot;/list&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> TableDataInfo <span class="title">list</span><span class="params">(SysNotice notice)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    startPage();</span><br><span class="line">    List&lt;SysNotice&gt; list = noticeService.selectNoticeList(notice);</span><br><span class="line">    <span class="keyword">return</span> getDataTable(list);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li><p>@PutMapping：修改，update数据</p>
-<pre><code class="java">@PutMapping
-public AjaxResult edit(@Validated @RequestBody SysNotice notice)
-&#123;
-    notice.setUpdateBy(SecurityUtils.getUsername());
-    return toAjax(noticeService.updateNotice(notice));
-&#125;
-</code></pre>
-</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PutMapping</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> AjaxResult <span class="title">edit</span><span class="params">(<span class="meta">@Validated</span> <span class="meta">@RequestBody</span> SysNotice notice)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    notice.setUpdateBy(SecurityUtils.getUsername());</span><br><span class="line">    <span class="keyword">return</span> toAjax(noticeService.updateNotice(notice));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li><p>@DeleteMapping：删除，delete数据</p>
-<pre><code class="java">@DeleteMapping(&quot;/&#123;noticeIds&#125;&quot;)
-public AjaxResult remove(@PathVariable Long[] noticeIds)
-&#123;
-    return toAjax(noticeService.deleteNoticeByIds(noticeIds));
-&#125;
-</code></pre>
-</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@DeleteMapping(&quot;/&#123;noticeIds&#125;&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> AjaxResult <span class="title">remove</span><span class="params">(<span class="meta">@PathVariable</span> Long[] noticeIds)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> toAjax(noticeService.deleteNoticeByIds(noticeIds));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 <li><p>其次是各个层次的，标明这个类属于什么类型的：</p>
 <ul>
 <li><p>@SpringBootApplication：启动类，是个组合注解，里面包括@Configuration，@EnableAutoConfiguration，@ComponentScan等</p>
-<pre><code class="java">@Target(ElementType.TYPE)
-@Retention(RetentionPolicy.RUNTIME)
-@Documented
-@Inherited
-@SpringBootConfiguration
-@EnableAutoConfiguration
-@ComponentScan(excludeFilters = &#123; @Filter(type = FilterType.CUSTOM, classes = TypeExcludeFilter.class),
-        @Filter(type = FilterType.CUSTOM, classes = AutoConfigurationExcludeFilter.class) &#125;)
-public @interface SpringBootApplication &#123;……&#125;
-</code></pre>
-</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target(ElementType.TYPE)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Inherited</span></span><br><span class="line"><span class="meta">@SpringBootConfiguration</span></span><br><span class="line"><span class="meta">@EnableAutoConfiguration</span></span><br><span class="line"><span class="meta">@ComponentScan(excludeFilters = &#123; @Filter(type = FilterType.CUSTOM, classes = TypeExcludeFilter.class),</span></span><br><span class="line"><span class="meta">		@Filter(type = FilterType.CUSTOM, classes = AutoConfigurationExcludeFilter.class) &#125;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> SpringBootApplication &#123;……&#125;</span><br></pre></td></tr></table></figure></li>
 <li><p>@Controller：返回一整个页面，View</p>
 </li>
 <li><p>@RestController：控制层组件，包含@Controller和@ResponseBody，一般返回JSON</p>
-<pre><code class="java">@Target(&#123;ElementType.TYPE&#125;)
-@Retention(RetentionPolicy.RUNTIME)
-@Documented
-@Controller
-@ResponseBody
-public @interface RestController &#123;……&#125;
-</code></pre>
-</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target(&#123;ElementType.TYPE&#125;)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> RestController &#123;……&#125;</span><br></pre></td></tr></table></figure></li>
 <li><p>@Service：业务层组件</p>
 </li>
 <li><p>@Configuration：配置类</p>
@@ -561,12 +509,7 @@ public @interface RestController &#123;……&#125;
 <li><p>参数注解：</p>
 <ul>
 <li><p>@PathVariable：路径变量。参数与大括号里的名字一样要相同</p>
-<pre><code class="java">RequestMapping(&quot;user/get/mac/&#123;macAddress&#125;&quot;)
-public String getByMacAddress(@PathVariable String macAddress)&#123;
-　　//do something;
-　　&#125;
-</code></pre>
-</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">RequestMapping(<span class="string">&quot;user/get/mac/&#123;macAddress&#125;&quot;</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getByMacAddress</span><span class="params">(<span class="meta">@PathVariable</span> String macAddress)</span></span>&#123;</span><br><span class="line">　　<span class="comment">//do something;</span></span><br><span class="line">　　&#125;</span><br></pre></td></tr></table></figure></li>
 <li><p>@RequestBody：返回结果直接写入HTTP response body中</p>
 </li>
 </ul>
@@ -574,10 +517,7 @@ public String getByMacAddress(@PathVariable String macAddress)&#123;
 <li><p>功能性注解：</p>
 <ul>
 <li><p>@Autowired：自动注入</p>
-<pre><code class="java">@Autowired
-private ISysNoticeService noticeService;
-</code></pre>
-</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> ISysNoticeService noticeService;</span><br></pre></td></tr></table></figure></li>
 <li><p>@EnableAutoConfiguration：启用自动配置</p>
 </li>
 <li><p>@ComponentScan：指定路径下扫描组件，如果扫描到有@Component @Controller @Service等这些注解的类，则把</p>

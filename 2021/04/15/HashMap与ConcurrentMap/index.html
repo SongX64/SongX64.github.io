@@ -419,12 +419,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Java/">
-                                <span class="chip bg-color">Java</span>
-                            </a>
-                        
                             <a href="/tags/%E5%90%8E%E7%AB%AF/">
                                 <span class="chip bg-color">后端</span>
+                            </a>
+                        
+                            <a href="/tags/Java/">
+                                <span class="chip bg-color">Java</span>
                             </a>
                         
                             <a href="/tags/Java%E5%9F%BA%E7%A1%80/">
@@ -545,11 +545,8 @@
 <p>所以说要在<strong>空间（Hash桶）</strong>和<strong>时间（Hash散列算法）</strong>成本之间进行衡量。</p>
 <p>==要做到碰撞概率小且空间少，好的Hash算法和扩容机制。==</p>
 <h6 id="扩容"><a href="#扩容" class="headerlink" title="扩容"></a>扩容</h6><p>如何扩容：</p>
-<pre><code class="java">int threshold;             // 所能容纳的key-value对极限 
-final float loadFactor;    // 负载因子
-int modCount;      // hashmap内部结构变化的次数(不包含key对应value被覆盖的情况)
-int size;    // 实际存储的数量
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> threshold;             <span class="comment">// 所能容纳的key-value对极限 </span></span><br><span class="line"><span class="keyword">final</span> <span class="keyword">float</span> loadFactor;    <span class="comment">// 负载因子</span></span><br><span class="line"><span class="keyword">int</span> modCount;  	<span class="comment">// hashmap内部结构变化的次数(不包含key对应value被覆盖的情况)</span></span><br><span class="line"><span class="keyword">int</span> size;	<span class="comment">// 实际存储的数量</span></span><br></pre></td></tr></table></figure>
+
 <ul>
 <li><code>Node[] table</code> 的默认length为16</li>
 <li><code>loadFactor</code> ，负载因子，默认为0.75（一般不要改）<ul>
@@ -646,12 +643,12 @@ int size;    // 实际存储的数量
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Java/">
-                                    <span class="chip bg-color">Java</span>
-                                </a>
-                            
                                 <a href="/tags/%E5%90%8E%E7%AB%AF/">
                                     <span class="chip bg-color">后端</span>
+                                </a>
+                            
+                                <a href="/tags/Java/">
+                                    <span class="chip bg-color">Java</span>
                                 </a>
                             
                                 <a href="/tags/Java%E5%9F%BA%E7%A1%80/">
@@ -918,12 +915,12 @@ int size;    // 实际存储的数量
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Java/">
-                        <span class="chip bg-color">Java</span>
-                    </a>
-                    
                     <a href="/tags/%E5%90%8E%E7%AB%AF/">
                         <span class="chip bg-color">后端</span>
+                    </a>
+                    
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
                     </a>
                     
                     <a href="/tags/JVM/">

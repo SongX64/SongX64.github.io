@@ -482,32 +482,15 @@
 <p><a target="_blank" rel="noopener" href="https://zhusuan.readthedocs.io/en/latest/api/zhusuan.distributions.html#module-zhusuan.distributions.univariate">单变量分布</a></p>
 <p><a target="_blank" rel="noopener" href="https://zhusuan.readthedocs.io/en/latest/api/zhusuan.distributions.html#module-zhusuan.distributions.multivariate">多变量分布</a></p>
 <p>我们可用珠算来创建一个<strong>单变量正态分布</strong>，代码如下：</p>
-<pre><code class="python">&gt;&gt;&gt; import zhusuan as zs
-&gt;&gt;&gt; a = zs.distributions.Normal(mean=0., logstd=0.)
-</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> zhusuan <span class="keyword">as</span> zs</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = zs.distributions.Normal(mean=<span class="number">0.</span>, logstd=<span class="number">0.</span>)</span><br></pre></td></tr></table></figure>
+
 <p>分布典型的输入形状是像<code>batch_shape + input_shape</code>，其中<code>batch_shape</code>表示一个non-batch的输入参数的形状;<code>batch_shape</code>代表有多少个独立的输入变量被放到分布中。总的来说，分布支持boradcast的输入。</p>
 </blockquote>
 <hr>
 <h3 id="补充：boradcast机制"><a href="#补充：boradcast机制" class="headerlink" title="补充：boradcast机制"></a>补充：boradcast机制</h3><p>boradcast机制是numpy中的机制。TensorFlow中好像叫boradcasting机制……应该差不多吧。TensorFlow有不少操作支持boradcast。</p>
 <p>举例如下：</p>
-<pre><code class="python">&gt;&gt;&gt; import numpy as np
-&gt;&gt;&gt; a = np.arange(0, 6).reshape(6, 1)
-&gt;&gt;&gt; a
-array([[ 0], [1], [2], [3], [4], [5]])
-&gt;&gt;&gt; a.shape
-(6, 1)
-&gt;&gt;&gt; b = np.arange(0, 5)
-&gt;&gt;&gt; b.shape
-(5,)
-&gt;&gt;&gt; c = a + b
-&gt;&gt;&gt; print c
-[[0 1 2 3 4]
- [1 2 3 4 5]
- [2 3 4 5 6]
- [3 4 5 6 7]
- [4 5 6 7 8]
- [5 6 7 8 9]]
-</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = np.arange(<span class="number">0</span>, <span class="number">6</span>).reshape(<span class="number">6</span>, <span class="number">1</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line">array([[ <span class="number">0</span>], [<span class="number">1</span>], [<span class="number">2</span>], [<span class="number">3</span>], [<span class="number">4</span>], [<span class="number">5</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a.shape</span><br><span class="line">(<span class="number">6</span>, <span class="number">1</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = np.arange(<span class="number">0</span>, <span class="number">5</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b.shape</span><br><span class="line">(<span class="number">5</span>,)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c = a + b</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span> c</span><br><span class="line">[[<span class="number">0</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span>]</span><br><span class="line"> [<span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span>]</span><br><span class="line"> [<span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span> <span class="number">6</span>]</span><br><span class="line"> [<span class="number">3</span> <span class="number">4</span> <span class="number">5</span> <span class="number">6</span> <span class="number">7</span>]</span><br><span class="line"> [<span class="number">4</span> <span class="number">5</span> <span class="number">6</span> <span class="number">7</span> <span class="number">8</span>]</span><br><span class="line"> [<span class="number">5</span> <span class="number">6</span> <span class="number">7</span> <span class="number">8</span> <span class="number">9</span>]]</span><br></pre></td></tr></table></figure>
+
 <p>图解：</p>
 <p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/1570782921386.png" alt="1570764082789"></p>
 <p>不同维度向量相加，可以自动填充。</p>
@@ -537,54 +520,20 @@ array([[ 0], [1], [2], [3], [4], [5]])
 </blockquote>
 <hr>
 <h3 id="补充：axis参数"><a href="#补充：axis参数" class="headerlink" title="补充：axis参数"></a>补充：axis参数</h3><p>axis是许多函数中都有的一个参数，直接翻译是轴。其实是对于张量来说的一个概念。如下：</p>
-<pre><code class="python">#python
-x=[[1,2],[5,1]]
-x=np.array(x)
-z1=np.max(x,axis=0)
-z2=np.max(x,axis=1)
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#python</span></span><br><span class="line">x=[[<span class="number">1</span>,<span class="number">2</span>],[<span class="number">5</span>,<span class="number">1</span>]]</span><br><span class="line">x=np.array(x)</span><br><span class="line">z1=np.<span class="built_in">max</span>(x,axis=<span class="number">0</span>)</span><br><span class="line">z2=np.<span class="built_in">max</span>(x,axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#tensorflow</span></span><br><span class="line">x=tf.constant([[<span class="number">1.</span>,<span class="number">2.</span>],[<span class="number">5.</span>,<span class="number">2.</span>]])  </span><br><span class="line">x=tf.shape(x)  </span><br><span class="line">z1=tf.reduce_max(x,axis=<span class="number">0</span>)<span class="comment">#沿axis=0操作  </span></span><br><span class="line">z2=tf.reduce_max(x,axis=<span class="number">1</span>)<span class="comment">#沿axis=1操作</span></span><br></pre></td></tr></table></figure>
 
-
-#tensorflow
-x=tf.constant([[1.,2.],[5.,2.]])  
-x=tf.shape(x)  
-z1=tf.reduce_max(x,axis=0)#沿axis=0操作  
-z2=tf.reduce_max(x,axis=1)#沿axis=1操作
-</code></pre>
 <p>​    类似的还有argmax，sum等等函数，它们都含有一个名为axis的参数，那这个参数到底是什么意思呢？一句话总结就是：沿着axis指定的轴进行相应的函数操作。</p>
 <p>​    对于2维来说，axis=0就是列，axis就是行，这里不再详解。直接理解3维的。</p>
-<pre><code class="python">&gt;&gt;&gt; z
-array([[[ 2,  3,  4,  8],
-        [ 3,  1,  4,  1],
-        [ 6,  3,  2,  6]],
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>z</span><br><span class="line">array([[[ <span class="number">2</span>,  <span class="number">3</span>,  <span class="number">4</span>,  <span class="number">8</span>],</span><br><span class="line">        [ <span class="number">3</span>,  <span class="number">1</span>,  <span class="number">4</span>,  <span class="number">1</span>],</span><br><span class="line">        [ <span class="number">6</span>,  <span class="number">3</span>,  <span class="number">2</span>,  <span class="number">6</span>]],</span><br><span class="line"></span><br><span class="line">       [[<span class="number">10</span>,  <span class="number">2</span>, <span class="number">45</span>,  <span class="number">2</span>],</span><br><span class="line">        [ <span class="number">2</span>,  <span class="number">4</span>,  <span class="number">5</span>, <span class="number">10</span>],</span><br><span class="line">        [<span class="number">22</span>,  <span class="number">4</span>,  <span class="number">4</span>,  <span class="number">1</span>]]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>z.shape</span><br><span class="line">(<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br></pre></td></tr></table></figure>
 
-       [[10,  2, 45,  2],
-        [ 2,  4,  5, 10],
-        [22,  4,  4,  1]]])
-&gt;&gt;&gt; z.shape
-(2, 3, 4)
-</code></pre>
 <p>​    这是一个2x3x4的3维张量，或者直接说是三维数组。</p>
 <p>​    接下来我们看一下max()为例，取不同axis的形状：</p>
-<pre><code class="python">&gt;&gt;&gt; np.max(z,axis=0).shape
-(3, 4)
-&gt;&gt;&gt; np.max(z,axis=1).shape
-(2, 4)
-&gt;&gt;&gt; np.max(z,axis=2).shape
-(2, 3)
-</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>np.<span class="built_in">max</span>(z,axis=<span class="number">0</span>).shape</span><br><span class="line">(<span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>np.<span class="built_in">max</span>(z,axis=<span class="number">1</span>).shape</span><br><span class="line">(<span class="number">2</span>, <span class="number">4</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>np.<span class="built_in">max</span>(z,axis=<span class="number">2</span>).shape</span><br><span class="line">(<span class="number">2</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+
 <p>​    也就是说，axis取几，就去掉那个维度。这里的<strong>axis是对应shape中的第几个数，也就是第几维。</strong>比如axis=0就是说(2,3,4)中的2; axis=1就是对应3……以此类推。</p>
 <p>​    其计算的最后输出结果如下：</p>
-<pre><code class="python">&gt;&gt;&gt; np.max(z,axis=0)
-array([[10,  3, 45,  8],
-       [ 3,  4,  5, 10],
-       [22,  4,  4,  6]])
-&gt;&gt;&gt; np.max(z,axis=1)
-array([[ 6,  3,  4,  8],
-       [22,  4, 45, 10]])
-&gt;&gt;&gt; np.max(z,axis=2)
-array([[ 8,  4,  6],
-       [45, 10, 22]])
-</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>np.<span class="built_in">max</span>(z,axis=<span class="number">0</span>)</span><br><span class="line">array([[<span class="number">10</span>,  <span class="number">3</span>, <span class="number">45</span>,  <span class="number">8</span>],</span><br><span class="line">       [ <span class="number">3</span>,  <span class="number">4</span>,  <span class="number">5</span>, <span class="number">10</span>],</span><br><span class="line">       [<span class="number">22</span>,  <span class="number">4</span>,  <span class="number">4</span>,  <span class="number">6</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>np.<span class="built_in">max</span>(z,axis=<span class="number">1</span>)</span><br><span class="line">array([[ <span class="number">6</span>,  <span class="number">3</span>,  <span class="number">4</span>,  <span class="number">8</span>],</span><br><span class="line">       [<span class="number">22</span>,  <span class="number">4</span>, <span class="number">45</span>, <span class="number">10</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>np.<span class="built_in">max</span>(z,axis=<span class="number">2</span>)</span><br><span class="line">array([[ <span class="number">8</span>,  <span class="number">4</span>,  <span class="number">6</span>],</span><br><span class="line">       [<span class="number">45</span>, <span class="number">10</span>, <span class="number">22</span>]])</span><br></pre></td></tr></table></figure>
+
 <p>​    解释一下，比如axis=0，那么它的输出就是去掉第一维度的影响，也就是(2,3,4)中去掉2，应该是个(3,4)的张量，如上所示。也就是说，去掉0这个轴，也就是说去掉开始的这个2维的影响。那么我们可以看做是z[]中的2个元素相互重叠，降维。</p>
 <p>​    再比如说axis=1，那么就是去掉3的影响，得到结果应该是个(2,4)的张量。也就是对于z[0]和 z[1]分别考虑，取出一个（4）的张量。同时也就是说去掉3行的影响，也就是说按列来对比。</p>
 <p>​    对于三维张量来说，如图所示：</p>
@@ -596,128 +545,15 @@ array([[ 8,  4,  6],
 <ul>
 <li>单变量分布(正态分布)的例子：</li>
 </ul>
-<pre><code class="python">In[3]:
-import zhusuan as zs
-import tensorflow as tf
-_ = tf.InteractiveSession()
-b = zs.distributions.Normal(
- [
-     [[-1.,1.],[-1.,-2.]],
-        [[9.,1.],[1.,2.]]
-    ],logstd=[0.,1.])
-   
-   
-In [4]:# batch_shape显示有多少批被输入到分布的形状中
-# 这里是2维有2个，1维有2个，0维有2个
-# 或者这样说：[2,2,2]三个数表示有3层，第一层里面有2，第二层里面有2，第三层里面有2
-b.batch_shape.eval()
-
-Out[4]:array([2, 2, 2])
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&gt;In[<span class="number">3</span>]:</span><br><span class="line"><span class="keyword">import</span> zhusuan <span class="keyword">as</span> zs</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line">_ = tf.InteractiveSession()</span><br><span class="line">b = zs.distributions.Normal(</span><br><span class="line"> [</span><br><span class="line">     [[-<span class="number">1.</span>,<span class="number">1.</span>],[-<span class="number">1.</span>,-<span class="number">2.</span>]],</span><br><span class="line">        [[<span class="number">9.</span>,<span class="number">1.</span>],[<span class="number">1.</span>,<span class="number">2.</span>]]</span><br><span class="line">    ],logstd=[<span class="number">0.</span>,<span class="number">1.</span>])</span><br><span class="line">   </span><br><span class="line">   </span><br><span class="line">In [<span class="number">4</span>]:<span class="comment"># batch_shape显示有多少批被输入到分布的形状中</span></span><br><span class="line"><span class="comment"># 这里是2维有2个，1维有2个，0维有2个</span></span><br><span class="line"><span class="comment"># 或者这样说：[2,2,2]三个数表示有3层，第一层里面有2，第二层里面有2，第三层里面有2</span></span><br><span class="line">b.batch_shape.<span class="built_in">eval</span>()</span><br><span class="line"></span><br><span class="line">Out[<span class="number">4</span>]:array([<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">In [<span class="number">5</span>]:b.value_shape.<span class="built_in">eval</span>()</span><br><span class="line"> </span><br><span class="line">Out[<span class="number">5</span>]:array([], dtype=int32)</span><br><span class="line">   </span><br><span class="line"></span><br><span class="line">In [<span class="number">9</span>]:tf.shape(b.sample()).<span class="built_in">eval</span>( )</span><br><span class="line"></span><br><span class="line">Out[<span class="number">9</span>]:array([<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>])</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">In [<span class="number">11</span>]:tf.shape(b.sample(<span class="number">1</span>)).<span class="built_in">eval</span>()</span><br><span class="line">   </span><br><span class="line">Out[<span class="number">11</span>]:array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>])</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">In [<span class="number">12</span>]:tf.shape(b.sample(<span class="number">2</span>)).<span class="built_in">eval</span>()</span><br><span class="line">   </span><br><span class="line">Out[<span class="number">12</span>]:array([<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>])</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">In [<span class="number">13</span>]:b.get_batch_shape()</span><br><span class="line">   </span><br><span class="line">Out[<span class="number">13</span>]:TensorShape([Dimension(<span class="number">2</span>), Dimension(<span class="number">2</span>), Dimension(<span class="number">2</span>)])</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">In [<span class="number">14</span>]:b.get_value_shape()</span><br><span class="line">   </span><br><span class="line">Out[<span class="number">14</span>]:TensorShape([])</span><br></pre></td></tr></table></figure>
 
 
-In [5]:b.value_shape.eval()
- 
-Out[5]:array([], dtype=int32)
-   
 
-In [9]:tf.shape(b.sample()).eval( )
-
-Out[9]:array([2, 2, 2])
-
- 
-In [11]:tf.shape(b.sample(1)).eval()
-   
-Out[11]:array([1, 2, 2, 2])
-
- 
-In [12]:tf.shape(b.sample(2)).eval()
-   
-Out[12]:array([2, 2, 2, 2])
-
- 
-In [13]:b.get_batch_shape()
-   
-Out[13]:TensorShape([Dimension(2), Dimension(2), Dimension(2)])
-
- 
-In [14]:b.get_value_shape()
-   
-Out[14]:TensorShape([])
-</code></pre>
 <p>多变量分布的例子（使用oneHot分类）：</p>
-<pre><code class="python">import zhusuan as zs
-import tensorflow as tf
-_ = tf.InteractiveSession()
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="keyword">import</span> zhusuan <span class="keyword">as</span> zs</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line">_ = tf.InteractiveSession()</span><br><span class="line"></span><br><span class="line">c = zs.distributions.OnehotCategorical([[<span class="number">0.</span>,<span class="number">1.</span>,-<span class="number">1.</span>],</span><br><span class="line">                                     [<span class="number">2.</span>,<span class="number">3.</span>,<span class="number">4.</span>]])</span><br><span class="line"><span class="comment"># batch，批次，2个批次，也就是说是2维数组</span></span><br><span class="line">   c.batch_shape.<span class="built_in">eval</span>()</span><br><span class="line">array([<span class="number">2</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 每个批次有3个数</span></span><br><span class="line">c.value_shape.<span class="built_in">eval</span>()</span><br><span class="line">array([<span class="number">3</span>])</span><br><span class="line"></span><br><span class="line">tf.shape(c.sample()).<span class="built_in">eval</span>()</span><br><span class="line">array([<span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line"></span><br><span class="line">tf.shape(c.sample(<span class="number">1</span>)).<span class="built_in">eval</span>()</span><br><span class="line">array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line"></span><br><span class="line">tf.shape(c.sample(<span class="number">10</span>)).<span class="built_in">eval</span>()</span><br><span class="line">array([<span class="number">10</span>,  <span class="number">2</span>,  <span class="number">3</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出一下这两个shape看看</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;c.batch_shape == &#x27;</span>,c.batch_shape)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;c.batch_shape.eval() == &#x27;</span>,c.batch_shape.<span class="built_in">eval</span>())</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;c.value_shape == &#x27;</span>,c.value_shape)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;c.value_shape.eval() == &#x27;</span>,c.value_shape.<span class="built_in">eval</span>())</span><br><span class="line"></span><br><span class="line">c.batch_shape ==  Tensor(<span class="string">&quot;shape_as_tensor_13:0&quot;</span>, shape=(<span class="number">1</span>,), dtype=int32)</span><br><span class="line">c.batch_shape.<span class="built_in">eval</span>() ==  [<span class="number">2</span>]</span><br><span class="line">c.value_shape ==  Tensor(<span class="string">&quot;shape_as_tensor_15:0&quot;</span>, shape=(<span class="number">1</span>,), dtype=int32)</span><br><span class="line">c.value_shape.<span class="built_in">eval</span>() ==  [<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出一下sample</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;c.sample() == &#x27;</span>,c.sample().<span class="built_in">eval</span>())</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;c.sample(1) == &#x27;</span>,c.sample(<span class="number">1</span>).<span class="built_in">eval</span>())</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;c.sample(10) == &#x27;</span>,c.sample(<span class="number">10</span>).<span class="built_in">eval</span>())</span><br><span class="line"></span><br><span class="line">c.sample() ==  [[<span class="number">0</span> <span class="number">1</span> <span class="number">0</span>]</span><br><span class="line">[<span class="number">0</span> <span class="number">0</span> <span class="number">1</span>]]</span><br><span class="line">c.sample(<span class="number">1</span>) ==  [[[<span class="number">0</span> <span class="number">1</span> <span class="number">0</span>]</span><br><span class="line"> [<span class="number">1</span> <span class="number">0</span> <span class="number">0</span>]]]</span><br><span class="line">c.sample(<span class="number">10</span>) ==  [[[<span class="number">0</span> <span class="number">1</span> <span class="number">0</span>]</span><br><span class="line">  [<span class="number">0</span> <span class="number">0</span> <span class="number">1</span>]]</span><br><span class="line"></span><br><span class="line">  [[<span class="number">0</span> <span class="number">1</span> <span class="number">0</span>]</span><br><span class="line">[<span class="number">0</span> <span class="number">0</span> <span class="number">1</span>]]</span><br><span class="line"> </span><br><span class="line">  [[<span class="number">0</span> <span class="number">0</span> <span class="number">1</span>]</span><br><span class="line">[<span class="number">0</span> <span class="number">0</span> <span class="number">1</span>]]</span><br><span class="line"> </span><br><span class="line">  [[<span class="number">0</span> <span class="number">1</span> <span class="number">0</span>]</span><br><span class="line">[<span class="number">0</span> <span class="number">0</span> <span class="number">1</span>]]</span><br><span class="line"> </span><br><span class="line">  [[<span class="number">0</span> <span class="number">1</span> <span class="number">0</span>]</span><br><span class="line">[<span class="number">0</span> <span class="number">1</span> <span class="number">0</span>]]</span><br><span class="line"> </span><br><span class="line">  [[<span class="number">0</span> <span class="number">1</span> <span class="number">0</span>]</span><br><span class="line">[<span class="number">0</span> <span class="number">1</span> <span class="number">0</span>]]</span><br><span class="line"> </span><br><span class="line">  [[<span class="number">0</span> <span class="number">1</span> <span class="number">0</span>]</span><br><span class="line">[<span class="number">0</span> <span class="number">0</span> <span class="number">1</span>]]</span><br><span class="line"> </span><br><span class="line">  [[<span class="number">0</span> <span class="number">1</span> <span class="number">0</span>]</span><br><span class="line">[<span class="number">0</span> <span class="number">0</span> <span class="number">1</span>]]</span><br><span class="line"> </span><br><span class="line">  [[<span class="number">1</span> <span class="number">0</span> <span class="number">0</span>]</span><br><span class="line">[<span class="number">0</span> <span class="number">0</span> <span class="number">1</span>]]</span><br><span class="line"> </span><br><span class="line">  [[<span class="number">0</span> <span class="number">1</span> <span class="number">0</span>]</span><br><span class="line">[<span class="number">0</span> <span class="number">0</span> <span class="number">1</span>]]]</span><br></pre></td></tr></table></figure>
 
-c = zs.distributions.OnehotCategorical([[0.,1.,-1.],
-                                     [2.,3.,4.]])
-# batch，批次，2个批次，也就是说是2维数组
-   c.batch_shape.eval()
-array([2])
 
-# 每个批次有3个数
-c.value_shape.eval()
-array([3])
 
-tf.shape(c.sample()).eval()
-array([2, 3])
-
-tf.shape(c.sample(1)).eval()
-array([1, 2, 3])
-
-tf.shape(c.sample(10)).eval()
-array([10,  2,  3])
-
-# 输出一下这两个shape看看
-print(&#39;c.batch_shape == &#39;,c.batch_shape)
-print(&#39;c.batch_shape.eval() == &#39;,c.batch_shape.eval())
-print(&#39;c.value_shape == &#39;,c.value_shape)
-print(&#39;c.value_shape.eval() == &#39;,c.value_shape.eval())
-
-c.batch_shape ==  Tensor(&quot;shape_as_tensor_13:0&quot;, shape=(1,), dtype=int32)
-c.batch_shape.eval() ==  [2]
-c.value_shape ==  Tensor(&quot;shape_as_tensor_15:0&quot;, shape=(1,), dtype=int32)
-c.value_shape.eval() ==  [3]
-
-# 输出一下sample
-print(&#39;c.sample() == &#39;,c.sample().eval())
-print(&#39;c.sample(1) == &#39;,c.sample(1).eval())
-print(&#39;c.sample(10) == &#39;,c.sample(10).eval())
-
-c.sample() ==  [[0 1 0]
-[0 0 1]]
-c.sample(1) ==  [[[0 1 0]
- [1 0 0]]]
-c.sample(10) ==  [[[0 1 0]
-  [0 0 1]]
-
-  [[0 1 0]
-[0 0 1]]
- 
-  [[0 0 1]
-[0 0 1]]
- 
-  [[0 1 0]
-[0 0 1]]
- 
-  [[0 1 0]
-[0 1 0]]
- 
-  [[0 1 0]
-[0 1 0]]
- 
-  [[0 1 0]
-[0 0 1]]
- 
-  [[0 1 0]
-[0 0 1]]
- 
-  [[1 0 0]
-[0 0 1]]
- 
-  [[0 1 0]
-[0 0 1]]]
-</code></pre>
 <p>在某些情况下，一批随机变量可以分组到一个独立事件中，以便于可以一起计算他们的概率。这是通过设置group_ndims参数（默认是0）来实现的。batch_shape中最后的group_ndims个批次被分组为一个事件。 例如，Normal(…，group_ndims = 1）会将其batch_shape的最后一个axis设置为独立事件，即具有一致协方差矩阵（<em>在统计学与概率论中，协方差矩阵的每个元素是<strong>各个向量元素之间的协方差</strong>，是从标量随机变量到高维度随机向量的自然推广</em>）的多元正态分布。</p>
 </blockquote>
 <hr>
@@ -732,10 +568,7 @@ c.sample(10) ==  [[[0 1 0]
 </ol>
 <h1 id="贝叶斯网络"><a href="#贝叶斯网络" class="headerlink" title="贝叶斯网络"></a>贝叶斯网络</h1><blockquote>
 <p>在ZhuSuan中，我们支持将概率模型构建为贝叶斯网络，即定向图形模型。 下面我们使用一个简单的贝叶斯线性回归示例来说明这一点。 模型的生成过程是<br>$$<br>w \mbox{<del>}  N(0,\alpha^2I)\<br>y \mbox{</del>} N(w^Tx,\beta^2)<br>$$<br>其中<strong>x表示线性回归中的输入特征</strong>。 我们应用贝叶斯处理并假设<strong>回归权重w</strong>的正态先验分布。 假设输入要素有5个维度。 为简单起见，我们将输入定义为占位符并设置超参数：</p>
-<pre><code class="python">x = tf.placeholder(tf.float32, shape=[5])
-alpha = 1.
-beta = 0.1
-</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = tf.placeholder(tf.float32, shape=[<span class="number">5</span>])</span><br><span class="line">alpha = <span class="number">1.</span></span><br><span class="line">beta = <span class="number">0.1</span></span><br></pre></td></tr></table></figure>
 </blockquote>
 <hr>
 <h4 id="补充：超参数-hyper-parameters"><a href="#补充：超参数-hyper-parameters" class="headerlink" title="补充：超参数 hyper-parameters"></a>补充：超参数 hyper-parameters</h4><ol>
@@ -753,76 +586,53 @@ beta = 0.1
 <hr>
 <h2 id="BayesianNet实例"><a href="#BayesianNet实例" class="headerlink" title="BayesianNet实例"></a>BayesianNet实例</h2><blockquote>
 <p>要定义模型，第一步是构造一个BayesianNet实例：</p>
-<pre><code class="python">bn = zs.BayesianNet()
-</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bn = zs.BayesianNet()</span><br></pre></td></tr></table></figure>
 <p>贝叶斯网络将一组随机变量的联合分布的依存关系描述为有向图。 为此，BayesianNet实例可以保留两种节点：</p>
 <ul>
 <li>随机节点。 它们是图形模型中的随机变量。  w节点可以构造为：</li>
 </ul>
-<pre><code class="python">w = bn.normal(&quot;w&quot;, tf.zeros([x.shape[-1]]), std=alpha)
-</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">w = bn.normal(<span class="string">&quot;w&quot;</span>, tf.zeros([x.shape[-<span class="number">1</span>]]), std=alpha)</span><br></pre></td></tr></table></figure>
+
 <p>这里w是一个服从正态分布的StochasticTensor随机张量（StochasticTensor类，类似于Tensor，可以被传到任何Tensor操作中）:</p>
-<pre><code class="python">&gt;&gt;&gt; print(w)
-&lt;zhusuan.framework.bn.StochasticTensor object at ...
-</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(w)</span><br><span class="line">&lt;zhusuan.framework.bn.StochasticTensor <span class="built_in">object</span> at ...</span><br></pre></td></tr></table></figure>
+
 <p>对于<code>zhusuan.distributions</code>中任何可用的分布，我们都能在<code>BayesianNet</code>中找到一个方法来创建相应的随机节点。<code>StochasticTenor</code>实例类类似于Tensor，这意味着你可以将StochasticTenor类与任何TensorFlow原语混用。例如，线性回归的预测均值是w与输入x之间的内积：</p>
-<pre><code class="python">y_mean = tf.reduce_sum(w * x, axis=-1)
-</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y_mean = tf.reduce_sum(w * x, axis=-<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
 </blockquote>
 <p><a target="_blank" rel="noopener" href="https://zhusuan.readthedocs.io/en/latest/api/zhusuan.framework.html#zhusuan.framework.bn.StochasticTensor">StochasticTenor类说明</a></p>
 <p>插一句，这里的axis=-1就是说倒数第一个。比如（3,4,5）,axis=-1就是指5，也就是等价于axis=2。</p>
 <p>w节点的构造，=bn.nomal(“节点名”，tf构造的全为0的一个数组【维度为x.shape】，标准差为上面定义的alpha)</p>
 <p>这里还是关于-1的写法，x.shape[-1]就相当于x.shape[5].</p>
-<pre><code class="python">print(w.shape,x.shape)
-(5,) (5,)
-</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(w.shape,x.shape)</span><br><span class="line">(<span class="number">5</span>,) (<span class="number">5</span>,)</span><br></pre></td></tr></table></figure>
+
+
+
 <h4 id="补充：tf-reduce-sum"><a href="#补充：tf-reduce-sum" class="headerlink" title="补充：tf.reduce_sum()"></a>补充：tf.reduce_sum()</h4><p>reduce_sum应该理解为按相应的轴压缩求和，用于降维。通过设置axis参数按相应轴压缩求和。</p>
 <p>关于上面那个内积的计算举例：</p>
-<pre><code class="python">a=tf.constant([1,2,3,4,5])
-b=tf.constant([2,2,2,2,2])
-c = a*b
-c.eval()
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">a=tf.constant([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>])</span><br><span class="line">b=tf.constant([<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>])</span><br><span class="line">c = a*b</span><br><span class="line">c.<span class="built_in">eval</span>()</span><br><span class="line"></span><br><span class="line">Out:array([ <span class="number">2</span>,  <span class="number">4</span>,  <span class="number">6</span>,  <span class="number">8</span>, <span class="number">10</span>])</span><br><span class="line"></span><br><span class="line">tf.reduce_sum(a*b,axis=-<span class="number">1</span>).<span class="built_in">eval</span>()</span><br><span class="line"></span><br><span class="line">Out:<span class="number">30</span></span><br></pre></td></tr></table></figure>
 
-Out:array([ 2,  4,  6,  8, 10])
-
-tf.reduce_sum(a*b,axis=-1).eval()
-
-Out:30
-</code></pre>
 <hr>
 <h3 id="确定性节点"><a href="#确定性节点" class="headerlink" title="确定性节点"></a>确定性节点</h3><blockquote>
 <ul>
 <li>确定性节点。</li>
 </ul>
 <p>确定性节点。 如上面的代码所示，可以使用Tensorflow操作直接构造确定性节点，而BayesianNet不会跟踪它们。 但是，在某些情况下，可以通过deterministic（）方法启用跟踪：</p>
-<pre><code class="python">y_mean = bn.deterministic(&quot;y_mean&quot;, tf.reduce_sum(w * x, axis=-1))
-</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y_mean = bn.deterministic(<span class="string">&quot;y_mean&quot;</span>, tf.reduce_sum(w * x, axis=-<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+
 <p>这使你可以随时从bn获取y_mean张量。</p>
 </blockquote>
 <p>也就是说，如果在构建过程中这样写的话：</p>
-<pre><code class="python">    y_mean = tf.reduce_sum(w * x, axis=-1)
-</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y_mean = tf.reduce_sum(w * x, axis=-<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
 <p>​    那么bn中将不会有y_mean这个节点的信息。</p>
-<pre><code class="python"># 康康这个模型里面有啥节点
-print(model_b.nodes.keys())
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 康康这个模型里面有啥节点</span></span><br><span class="line"><span class="built_in">print</span>(model_b.nodes.keys())</span><br><span class="line"></span><br><span class="line">Out: dict_keys([<span class="string">&#x27;w&#x27;</span>, <span class="string">&#x27;y_mean&#x27;</span>, <span class="string">&#x27;y&#x27;</span>])</span><br></pre></td></tr></table></figure>
 
-Out: dict_keys([&#39;w&#39;, &#39;y_mean&#39;, &#39;y&#39;])
-</code></pre>
 <p>​    换成deterministic()方法的话，那么就可以从bn中get到y_mean了。</p>
-<pre><code class="python"># 康康这个模型里面有啥节点
-print(model_b.nodes.keys())
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 康康这个模型里面有啥节点</span></span><br><span class="line"><span class="built_in">print</span>(model_b.nodes.keys())</span><br><span class="line"></span><br><span class="line">Out: dict_keys([<span class="string">&#x27;w&#x27;</span>, <span class="string">&#x27;y_mean&#x27;</span>, <span class="string">&#x27;y&#x27;</span>])</span><br></pre></td></tr></table></figure>
 
-Out: dict_keys([&#39;w&#39;, &#39;y_mean&#39;, &#39;y&#39;])
-</code></pre>
 <h3 id="构建贝叶斯网络的完整代码"><a href="#构建贝叶斯网络的完整代码" class="headerlink" title="构建贝叶斯网络的完整代码"></a>构建贝叶斯网络的完整代码</h3><blockquote>
 <p>构建贝叶斯线性回归模型的完整代码如下：</p>
-<pre><code class="python">def bayesian_linear_regression(x, alpha, beta):
-     bn = zs.BayesianNet()
-     w = bn.normal(&quot;w&quot;, mean=0., std=alpha)
-     y_mean = tf.reduce_sum(w * x, axis=-1)
-     bn.normal(&quot;y&quot;, y_mean, std=beta)
-     return bn
-</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bayesian_linear_regression</span>(<span class="params">x, alpha, beta</span>):</span></span><br><span class="line"> 	bn = zs.BayesianNet()</span><br><span class="line"> 	w = bn.normal(<span class="string">&quot;w&quot;</span>, mean=<span class="number">0.</span>, std=alpha)</span><br><span class="line"> 	y_mean = tf.reduce_sum(w * x, axis=-<span class="number">1</span>)</span><br><span class="line"> 	bn.normal(<span class="string">&quot;y&quot;</span>, y_mean, std=beta)</span><br><span class="line"> 	<span class="keyword">return</span> bn</span><br></pre></td></tr></table></figure>
 </blockquote>
 <p>步骤总结：</p>
 <ol>
@@ -840,109 +650,70 @@ Out: dict_keys([&#39;w&#39;, &#39;y_mean&#39;, &#39;y&#39;])
 </ol>
 <blockquote>
 <p> 图形模型的一个独特的特点是<strong>允许随机节点具有不确定的行为</strong>（即是潜在的），我们可以<strong>随时观察它们（然后将它们固定在观察值上）</strong>。 在ZhuSuan中，可以使用观察到的字典参数来初始化BayesianNet，以将观察值分配给某些随机节点，例如： </p>
-<pre><code class="python">bn = zs.BayesianNet(observed=&#123;&quot;w&quot;: w_obs&#125;)
-</code></pre>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bn = zs.BayesianNet(observed=&#123;<span class="string">&quot;w&quot;</span>: w_obs&#125;)</span><br></pre></td></tr></table></figure>
+
 <p> 会使得随机变量w 作为w_obs被观察。这样做的的结果是在bn中，y_mean是根据w的观测值（w_obs）计算的。  对于未被观察的随机节点，当相应的StochasticTensor参与使用Tensor的计算或feed到Tensorflow操作中时，将使用其sample。  在此示例中，这意味着如果我们不对bn进行任何观察，则w的sample将会被用于计算y_mean。 </p>
 <p> 尽管上述方法允许将观察值分配给随机节点，但在大多数情况下，<strong>首先定义图形模型然后在需要时传递观察值更为方便</strong>。  此外，该模型应<strong>允许查询具有不同观察值配置</strong>。 为了启用此工作流程，我们引入了一个新的类MetaBayesianNet。  从概念上讲，我们可以将MetaBayesianNet实例视为原始模型，并将BayesianNet视为确定的观察结果。  正如我们将看到的那样，BayesianNet实例可以从其元类实例惰性构造。</p>
 <p> 我们要将模型定义为MetaBayesianNet是非常容易办到的。 上面的代码没有任何变化，只是向该函数添加了一个函数装饰器：</p>
-<pre><code class="python">@zs.meta_bayesian_net(scope=&quot;model&quot;)
-def bayesian_linear_regression(x, alpha, beta):
- bn = zs.BayesianNet()
- w = bn.normal(&quot;w&quot;, mean=0., std=alpha)
- y_mean = tf.reduce_sum(w * x, axis=-1)
- bn.normal(&quot;y&quot;, y_mean, std=beta)
- return bn
-</code></pre>
-<p> 由<code>zs.meta_bayesian_net()</code>注释的函数将返回<code>MetaBayesianNet</code>而不是原始的<code>BayesianNet</code>实例： </p>
-<pre><code class="python">&gt;&gt;&gt; model = bayesian_linear_regression(x, alpha, beta)
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@zs.meta_bayesian_net(<span class="params">scope=<span class="string">&quot;model&quot;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bayesian_linear_regression</span>(<span class="params">x, alpha, beta</span>):</span></span><br><span class="line"> bn = zs.BayesianNet()</span><br><span class="line"> w = bn.normal(<span class="string">&quot;w&quot;</span>, mean=<span class="number">0.</span>, std=alpha)</span><br><span class="line"> y_mean = tf.reduce_sum(w * x, axis=-<span class="number">1</span>)</span><br><span class="line"> bn.normal(<span class="string">&quot;y&quot;</span>, y_mean, std=beta)</span><br><span class="line"> <span class="keyword">return</span> bn</span><br></pre></td></tr></table></figure>
 
-&gt;&gt;&gt; print(model)
-&lt;zhusuan.framework.meta_bn.MetaBayesianNet object at ...
-</code></pre>
+<p> 由<code>zs.meta_bayesian_net()</code>注释的函数将返回<code>MetaBayesianNet</code>而不是原始的<code>BayesianNet</code>实例： </p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>model = bayesian_linear_regression(x, alpha, beta)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(model)</span><br><span class="line">&lt;zhusuan.framework.meta_bn.MetaBayesianNet <span class="built_in">object</span> at ...</span><br></pre></td></tr></table></figure>
+
 <p> 正如我们已经提到的，<strong>MetaBayesianNet可以允许不同的观察配置</strong>。 这是通过其<code>observe()</code>方法实现的。 我们可以将观察值作为命名参数传递，它将返回相应的BayesianNet实例，例如：</p>
-<pre><code class="python">bn = model.observe(w=w_obs)
-</code></pre>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bn = model.observe(w=w_obs)</span><br></pre></td></tr></table></figure>
+
 <p> 会将w在<code>BayesianNet</code>类返回的实例bn中设置为被观察的。 使用不同的命名参数调用上述函数（observe)，可以用不同的观察结果observation实例化BayesianNet，<u><strong>这类似于概率图模型的常见行为。</strong></u> </p>
 <blockquote>
 <p>传递的观测值observation必须与StochasticTensor具有相同的类型和形状。</p>
 </blockquote>
 <p> 如果<strong>你在模型构造函数中创建了TensorFlow变量，你可能想将其重用于具有不同观察值的贝叶斯网络实例</strong>。  ZhuSuan中还有另一个函数装饰器，称为reuse_variables（），以方便使用。你可以将其添加到任何创建Tensorflow变量的函数中：</p>
-<pre><code class="python"># 构建BayesianNet重用变量
-@zs.reuse_variables(scope=&quot;model&quot;)
-def build_model(...):
- bn = zs.BayesianNet()
- ...
- return bn
-</code></pre>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 构建BayesianNet重用变量</span></span><br><span class="line"><span class="meta">@zs.reuse_variables(<span class="params">scope=<span class="string">&quot;model&quot;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_model</span>(<span class="params">...</span>):</span></span><br><span class="line"> bn = zs.BayesianNet()</span><br><span class="line"> ...</span><br><span class="line"> <span class="keyword">return</span> bn</span><br></pre></td></tr></table></figure>
+
 <p> 或等效地，在@zs.meta_bayesian_net（）装饰器中打开redirect_variables选项：</p>
-<pre><code class="python"># 构建MetaBayesianNet重用变量
-@zs.meta_bayesian_net(scope=&quot;model&quot;, reuse_variables=True)
-def build_model(...):
- bn = zs.BayesianNet()
- ...
- return bn
-</code></pre>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 构建MetaBayesianNet重用变量</span></span><br><span class="line"><span class="meta">@zs.meta_bayesian_net(<span class="params">scope=<span class="string">&quot;model&quot;</span>, reuse_variables=<span class="literal">True</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_model</span>(<span class="params">...</span>):</span></span><br><span class="line"> bn = zs.BayesianNet()</span><br><span class="line"> ...</span><br><span class="line"> <span class="keyword">return</span> bn</span><br></pre></td></tr></table></figure>
 </blockquote>
 <h4 id="总结：MetaBayesianNet与BayesianNet"><a href="#总结：MetaBayesianNet与BayesianNet" class="headerlink" title="总结：MetaBayesianNet与BayesianNet"></a>总结：MetaBayesianNet与BayesianNet</h4><p>MetaBayesianNet类是可变的BayesianNet，可以通过传递不同的观察值来构建贝叶斯网络。</p>
 <p>在一个构造BayesianNet的函数上加个装饰器就将返回值转变为MetaBayesianNet。</p>
 <p>这里的那个observed或许应该是:</p>
-<pre><code class="python">    bn = zs.BayesianNet(observed=&#123;&quot;w_obs&quot;: w&#125;)
-</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bn = zs.BayesianNet(observed=&#123;<span class="string">&quot;w_obs&quot;</span>: w&#125;)</span><br></pre></td></tr></table></figure>
+
 <p>不然写{“w”:w_obs}的话会找不到w_obs报错。</p>
 <p>自我否定：这里人家写的没错！</p>
 <p>​    这里的w_obs应该是个自定义的张量，通过把它传递过来对贝叶斯net进行不同的训练。也就是说可以吧贝叶斯网络中的w节点也作为一个参数。</p>
 <p>​    应该先自定义一个w_obs传过来。</p>
 <blockquote>
 <p>到目前为止，我们知道如何构建模型并将其重用于不同的观察结果。 构建完成后，BayesianNet支持查询网络当前状态，例如：</p>
-<pre><code class="python"># get named node(s)    获取节点名称
-w = bn[&quot;w&quot;]
-w, y = bn.get([&quot;w&quot;, &quot;y&quot;])
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment"># get named node(s)    获取节点名称</span></span><br><span class="line">&gt;w = bn[<span class="string">&quot;w&quot;</span>]</span><br><span class="line">&gt;w, y = bn.get([<span class="string">&quot;w&quot;</span>, <span class="string">&quot;y&quot;</span>])</span><br><span class="line"></span><br><span class="line">&gt;<span class="comment"># get log probabilities of stochastic nodes conditioned on the current</span></span><br><span class="line">&gt;<span class="comment"># value of other StochasticTensors.</span></span><br><span class="line">&gt;<span class="comment"># 以其他Stochastic Tensor的当前值为条件获取随机节点的log对数概率</span></span><br><span class="line">&gt;log_pw, log_py = bn.cond_log_prob([<span class="string">&quot;w&quot;</span>, <span class="string">&quot;y&quot;</span>])</span><br><span class="line"></span><br><span class="line">&gt;<span class="comment"># get log joint probability given the current values of all stochastic</span></span><br><span class="line">&gt;<span class="comment"># nodes</span></span><br><span class="line">&gt;<span class="comment"># 给定所有随机节点的当前值，获得对数联合概率</span></span><br><span class="line">&gt;log_joint_value = bn.log_joint()</span><br></pre></td></tr></table></figure>
 
-# get log probabilities of stochastic nodes conditioned on the current
-# value of other StochasticTensors.
-# 以其他Stochastic Tensor的当前值为条件获取随机节点的log对数概率
-log_pw, log_py = bn.cond_log_prob([&quot;w&quot;, &quot;y&quot;])
-
-# get log joint probability given the current values of all stochastic
-# nodes
-# 给定所有随机节点的当前值，获得对数联合概率
-log_joint_value = bn.log_joint()
-</code></pre>
 <p>默认情况下，对数联合概率是通过对所有随机节点上的条件对数概率求和而得出的。 这就要求所有随机节点的分配批处理形状正确对齐。  如果不是，则返回值可以是任意的。 大多数时候，您可以调整随机节点的group_ndims参数来解决此问题。  如果不是这种情况，我们仍然可以通过在MetaBayesianNet实例中重写它来自定义对数联合概率函数，如下所示：</p>
-<pre><code class="python">meta_bn = build_linear_regression(x, alpha, beta)
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;meta_bn = build_linear_regression(x, alpha, beta)</span><br><span class="line"></span><br><span class="line">&gt;<span class="function"><span class="keyword">def</span> <span class="title">customized_log_joint</span>(<span class="params">bn</span>):</span></span><br><span class="line">   <span class="keyword">return</span> tf.reduce_sum(</span><br><span class="line">       bn.cond_log_prob(<span class="string">&quot;w&quot;</span>), axis=-<span class="number">1</span>) + bn.cond_log_prob(<span class="string">&quot;y&quot;</span>)</span><br><span class="line"></span><br><span class="line">&gt;meta_bn.log_joint = customized_log_joint</span><br></pre></td></tr></table></figure>
 
-def customized_log_joint(bn):
-   return tf.reduce_sum(
-       bn.cond_log_prob(&quot;w&quot;), axis=-1) + bn.cond_log_prob(&quot;y&quot;)
-
-meta_bn.log_joint = customized_log_joint
-</code></pre>
 <p>然后，由这个meta_bn构建的所有BayesianNet实例将使用所提供的自定义函数来计算bn.log_joint()的结果。</p>
 </blockquote>
 <h3 id="cond-log-prob-函数"><a href="#cond-log-prob-函数" class="headerlink" title="cond_log_prob()函数"></a><code>cond_log_prob()</code>函数</h3><p> <code>cond_log_prob</code>(<em>name_or_names</em>)</p>
 <p>The conditional log probabilities of stochastic nodes, evaluated at their current values (given by <a target="_blank" rel="noopener" href="https://zhusuan.readthedocs.io/en/latest/api/zhusuan.framework.html#zhusuan.framework.bn.StochasticTensor.tensor"><code>StochasticTensor.tensor</code></a>).</p>
 <p>随机节点的条件对数概率，按其当前值计算( 由StochasticTensor.tensor给出 )。</p>
-<pre><code class="python">Parameters:    name_or_names – A string or a list of strings. Name(s) of the stochastic nodes.
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Parameters:	name_or_names – A string <span class="keyword">or</span> a <span class="built_in">list</span> of strings. Name(s) of the stochastic nodes.</span><br><span class="line"></span><br><span class="line">Returns:	A Tensor <span class="keyword">or</span> a <span class="built_in">list</span> of Tensors.</span><br></pre></td></tr></table></figure>
 
-Returns:    A Tensor or a list of Tensors.
-</code></pre>
+
+
 <h3 id="log-joint-函数"><a href="#log-joint-函数" class="headerlink" title="log_joint()函数"></a><code>log_joint()</code>函数</h3><p><code>log_joint</code>()</p>
 <p>The default log joint probability of this <a target="_blank" rel="noopener" href="https://zhusuan.readthedocs.io/en/latest/api/zhusuan.framework.html#zhusuan.framework.bn.BayesianNet"><code>BayesianNet</code></a>. It works by summing over all the conditional log probabilities of stochastic nodes evaluated at their current values (samples or observations).</p>
 <p>该贝叶斯网络的默认对数联合概率。 它以随机节点当前值（sample或者是observations)的所有条件对数概率相加的方式来得到最终结果。</p>
-<pre><code class="python">Returns: A Tensor.
-</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Returns: A Tensor.</span><br></pre></td></tr></table></figure>
+
 <h4 id="补充：字典"><a href="#补充：字典" class="headerlink" title="补充：字典"></a>补充：字典</h4><p>​    字典是另一种可变容器模型，且可存储任意类型对象。</p>
 <p>​    字典的每个键值 key=&gt;value 对用冒号 : 分割，每个键值对之间用逗号 , 分割，整个字典包括在花括号 {} 中 ,格式如下所示： </p>
-<pre><code class="python">d = &#123;key1 : value1, key2 : value2 &#125;
-</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d = &#123;key1 : value1, key2 : value2 &#125;</span><br></pre></td></tr></table></figure>
+
 <p>​    值可以取任何数据类型，但键必须是不可变的，如字符串，数字或元组。</p>
 <p>​    一个简单的字典实例：</p>
-<pre><code class="python">dict = &#123;&#39;Alice&#39;: &#39;2341&#39;, &#39;Beth&#39;: &#39;9102&#39;, &#39;Cecil&#39;: &#39;3258&#39;&#125;
-</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dict</span> = &#123;<span class="string">&#x27;Alice&#x27;</span>: <span class="string">&#x27;2341&#x27;</span>, <span class="string">&#x27;Beth&#x27;</span>: <span class="string">&#x27;9102&#x27;</span>, <span class="string">&#x27;Cecil&#x27;</span>: <span class="string">&#x27;3258&#x27;</span>&#125;</span><br></pre></td></tr></table></figure>
+
 <p>​    也可如此创建字典：</p>
-<pre><code class="python">dict1 = &#123; &#39;abc&#39;: 456 &#125; 
-dict2 = &#123; &#39;abc&#39;: 123, 98.6: 37 &#125;
-</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dict1 = &#123; <span class="string">&#x27;abc&#x27;</span>: <span class="number">456</span> &#125; </span><br><span class="line">dict2 = &#123; <span class="string">&#x27;abc&#x27;</span>: <span class="number">123</span>, <span class="number">98.6</span>: <span class="number">37</span> &#125;</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>参考：<a target="_blank" rel="noopener" href="https://www.runoob.com/python/python-dictionary.html">菜鸟教程：字典</a></li>
 </ul>

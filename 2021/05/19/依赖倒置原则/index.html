@@ -499,24 +499,10 @@
 <li><p>降低耦合</p>
 </li>
 <li><p>不用在上层类中调用下层的构造函数，而是直接将下层的对象构造好了之后传入上层类。</p>
-<pre><code class="java">class Car&#123;
-    private Framework f;
-    Car()&#123;
-        // 如果下层的FrameWork类变动，需要传入参数，这个上层的Car类也需要改
-        this.f = new FrameWork();
-    &#125;
-&#125;
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Framework f;</span><br><span class="line">    Car()&#123;</span><br><span class="line">        <span class="comment">// 如果下层的FrameWork类变动，需要传入参数，这个上层的Car类也需要改</span></span><br><span class="line">        <span class="keyword">this</span>.f = <span class="keyword">new</span> FrameWork();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>修改使用依赖倒置后，会变成：</p>
-<pre><code class="java">class Car&#123;
-     private FrameWork f;
-    // 这样直接传入下层类对象过来就行了，而不需要具体关心其实现
-    Car(FrameWork f)&#123;
-        this.f = f;
-    &#125;
-&#125;
-</code></pre>
-</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span></span>&#123;</span><br><span class="line"> 	<span class="keyword">private</span> FrameWork f;</span><br><span class="line">    <span class="comment">// 这样直接传入下层类对象过来就行了，而不需要具体关心其实现</span></span><br><span class="line">    Car(FrameWork f)&#123;</span><br><span class="line">        <span class="keyword">this</span>.f = f;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li><p>上面是构造方法传入，还有Set传递和接口传递</p>
 </li>
 </ul>
@@ -795,12 +781,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Java/">
-                        <span class="chip bg-color">Java</span>
-                    </a>
-                    
                     <a href="/tags/%E5%90%8E%E7%AB%AF/">
                         <span class="chip bg-color">后端</span>
+                    </a>
+                    
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
                     </a>
                     
                     <a href="/tags/JVM/">

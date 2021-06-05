@@ -461,7 +461,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    8.6k
+                    8.7k
                 </div>
                 
 
@@ -523,469 +523,46 @@
 </ol>
 <h2 id="2-项目架构"><a href="#2-项目架构" class="headerlink" title="2. 项目架构"></a>2. 项目架构</h2><h3 id="2-1父项目"><a href="#2-1父项目" class="headerlink" title="2.1父项目"></a>2.1父项目</h3><ol>
 <li><p>修改pom.xml文件<br>这里要用父子项目结构，所以说首先在<code>&lt;artifactId&gt;</code> 节点后面添加  pom类型</p>
-<pre><code class="xml">    &lt;artifactId&gt;guli_parent3&lt;/artifactId&gt;
-    &lt;packaging&gt;pom&lt;/packaging&gt;
-</code></pre>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>guli_parent3<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">packaging</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 <p>并且增加一个继承spring-boot-starter的parent节点：</p>
-<pre><code class="xml"> &lt;!--添加partent标签，上面继承SpringBoot启动器--&gt;
-    &lt;parent&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-        &lt;version&gt;2.2.1.RELEASE&lt;/version&gt;
-        &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
-    &lt;/parent&gt;
-</code></pre>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--添加partent标签，上面继承SpringBoot启动器--&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.1.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 <p>替换掉properties下的版本控制</p>
-<pre><code class="xml">&lt;properties&gt;
-    &lt;java.version&gt;1.8&lt;/java.version&gt;
-    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
-    &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;
-    &lt;spring-boot.version&gt;2.2.1.RELEASE&lt;/spring-boot.version&gt;
-    &lt;guli.version&gt;0.0.1-SNAPSHOT&lt;/guli.version&gt;
-    &lt;mybatis-plus.version&gt;3.0.5&lt;/mybatis-plus.version&gt;
-    &lt;velocity.version&gt;2.0&lt;/velocity.version&gt;
-    &lt;swagger.version&gt;2.7.0&lt;/swagger.version&gt;
-    &lt;aliyun.oss.version&gt;2.8.3&lt;/aliyun.oss.version&gt;
-    &lt;jodatime.version&gt;2.10.1&lt;/jodatime.version&gt;
-    &lt;poi.version&gt;3.17&lt;/poi.version&gt;
-    &lt;commons-fileupload.version&gt;1.3.1&lt;/commons-fileupload.version&gt;
-    &lt;commons-io.version&gt;2.6&lt;/commons-io.version&gt;
-    &lt;httpclient.version&gt;4.5.1&lt;/httpclient.version&gt;
-    &lt;jwt.version&gt;0.7.0&lt;/jwt.version&gt;
-    &lt;aliyun-java-sdk-core.version&gt;4.3.3&lt;/aliyun-java-sdk-core.version&gt;
-    &lt;aliyun-sdk-oss.version&gt;3.1.0&lt;/aliyun-sdk-oss.version&gt;
-    &lt;aliyun-java-sdk-vod.version&gt;2.15.2&lt;/aliyun-java-sdk-vod.version&gt;
-    &lt;aliyun-java-vod-upload.version&gt;1.4.13&lt;/aliyun-java-vod-upload.version&gt;
-    &lt;aliyun-sdk-vod-upload.version&gt;1.4.11&lt;/aliyun-sdk-vod-upload.version&gt;
-    &lt;fastjson.version&gt;1.2.28&lt;/fastjson.version&gt;
-    &lt;gson.version&gt;2.8.6&lt;/gson.version&gt;
-    &lt;json.version&gt;20170516&lt;/json.version&gt;
-    &lt;commons-dbutils.version&gt;1.7&lt;/commons-dbutils.version&gt;
-    &lt;canal.client.version&gt;1.1.0&lt;/canal.client.version&gt;
-    &lt;docker.image.prefix&gt;zx&lt;/docker.image.prefix&gt;
-    &lt;cloud-alibaba.version&gt;0.2.2.RELEASE&lt;/cloud-alibaba.version&gt;
-&lt;/properties&gt;
-</code></pre>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">java.version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">project.reporting.outputEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.reporting.outputEncoding</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">spring-boot.version</span>&gt;</span>2.2.1.RELEASE<span class="tag">&lt;/<span class="name">spring-boot.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">guli.version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">guli.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mybatis-plus.version</span>&gt;</span>3.0.5<span class="tag">&lt;/<span class="name">mybatis-plus.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">velocity.version</span>&gt;</span>2.0<span class="tag">&lt;/<span class="name">velocity.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">swagger.version</span>&gt;</span>2.7.0<span class="tag">&lt;/<span class="name">swagger.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aliyun.oss.version</span>&gt;</span>2.8.3<span class="tag">&lt;/<span class="name">aliyun.oss.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">jodatime.version</span>&gt;</span>2.10.1<span class="tag">&lt;/<span class="name">jodatime.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">poi.version</span>&gt;</span>3.17<span class="tag">&lt;/<span class="name">poi.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">commons-fileupload.version</span>&gt;</span>1.3.1<span class="tag">&lt;/<span class="name">commons-fileupload.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">commons-io.version</span>&gt;</span>2.6<span class="tag">&lt;/<span class="name">commons-io.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">httpclient.version</span>&gt;</span>4.5.1<span class="tag">&lt;/<span class="name">httpclient.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">jwt.version</span>&gt;</span>0.7.0<span class="tag">&lt;/<span class="name">jwt.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aliyun-java-sdk-core.version</span>&gt;</span>4.3.3<span class="tag">&lt;/<span class="name">aliyun-java-sdk-core.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aliyun-sdk-oss.version</span>&gt;</span>3.1.0<span class="tag">&lt;/<span class="name">aliyun-sdk-oss.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aliyun-java-sdk-vod.version</span>&gt;</span>2.15.2<span class="tag">&lt;/<span class="name">aliyun-java-sdk-vod.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aliyun-java-vod-upload.version</span>&gt;</span>1.4.13<span class="tag">&lt;/<span class="name">aliyun-java-vod-upload.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aliyun-sdk-vod-upload.version</span>&gt;</span>1.4.11<span class="tag">&lt;/<span class="name">aliyun-sdk-vod-upload.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fastjson.version</span>&gt;</span>1.2.28<span class="tag">&lt;/<span class="name">fastjson.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">gson.version</span>&gt;</span>2.8.6<span class="tag">&lt;/<span class="name">gson.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">json.version</span>&gt;</span>20170516<span class="tag">&lt;/<span class="name">json.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">commons-dbutils.version</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">commons-dbutils.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">canal.client.version</span>&gt;</span>1.1.0<span class="tag">&lt;/<span class="name">canal.client.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">docker.image.prefix</span>&gt;</span>zx<span class="tag">&lt;/<span class="name">docker.image.prefix</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">cloud-alibaba.version</span>&gt;</span>0.2.2.RELEASE<span class="tag">&lt;/<span class="name">cloud-alibaba.version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 <p>删除depentcys，替换dependencyMangment:</p>
-<pre><code class="xml">    &lt;dependencyManagement&gt;
-        &lt;dependencies&gt;
-            &lt;!--Spring Cloud--&gt;
-            &lt;dependency&gt;
-                &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-                &lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;
-                &lt;version&gt;Hoxton.RELEASE&lt;/version&gt;
-                &lt;type&gt;pom&lt;/type&gt;
-                &lt;scope&gt;import&lt;/scope&gt;
-            &lt;/dependency&gt;
-
-            &lt;dependency&gt;
-                &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-                &lt;artifactId&gt;spring-cloud-alibaba-dependencies&lt;/artifactId&gt;
-                &lt;version&gt;$&#123;cloud-alibaba.version&#125;&lt;/version&gt;
-                &lt;type&gt;pom&lt;/type&gt;
-                &lt;scope&gt;import&lt;/scope&gt;
-            &lt;/dependency&gt;
-            &lt;!--mybatis-plus 持久层--&gt;
-            &lt;dependency&gt;
-                &lt;groupId&gt;com.baomidou&lt;/groupId&gt;
-                &lt;artifactId&gt;mybatis-plus-boot-starter&lt;/artifactId&gt;
-                &lt;version&gt;$&#123;mybatis-plus.version&#125;&lt;/version&gt;
-            &lt;/dependency&gt;
-
-            &lt;!-- velocity 模板引擎, Mybatis Plus 代码生成器需要 --&gt;
-            &lt;dependency&gt;
-                &lt;groupId&gt;org.apache.velocity&lt;/groupId&gt;
-                &lt;artifactId&gt;velocity-engine-core&lt;/artifactId&gt;
-                &lt;version&gt;$&#123;velocity.version&#125;&lt;/version&gt;
-            &lt;/dependency&gt;
-
-            &lt;!--swagger--&gt;
-            &lt;dependency&gt;
-                &lt;groupId&gt;io.springfox&lt;/groupId&gt;
-                &lt;artifactId&gt;springfox-swagger2&lt;/artifactId&gt;
-                &lt;version&gt;$&#123;swagger.version&#125;&lt;/version&gt;
-            &lt;/dependency&gt;
-            &lt;!--swagger ui--&gt;
-            &lt;dependency&gt;
-                &lt;groupId&gt;io.springfox&lt;/groupId&gt;
-                &lt;artifactId&gt;springfox-swagger-ui&lt;/artifactId&gt;
-                &lt;version&gt;$&#123;swagger.version&#125;&lt;/version&gt;
-            &lt;/dependency&gt;
-
-&lt;!--            &amp;lt;!&amp;ndash;aliyunOSS&amp;ndash;&amp;gt;--&gt;
-&lt;!--            &lt;dependency&gt;--&gt;
-&lt;!--                &lt;groupId&gt;com.aliyun.oss&lt;/groupId&gt;--&gt;
-&lt;!--                &lt;artifactId&gt;aliyun-sdk-oss&lt;/artifactId&gt;--&gt;
-&lt;!--                &lt;version&gt;$&#123;aliyun.oss.version&#125;&lt;/version&gt;--&gt;
-&lt;!--            &lt;/dependency&gt;--&gt;
-
-            &lt;!--日期时间工具--&gt;
-            &lt;dependency&gt;
-                &lt;groupId&gt;joda-time&lt;/groupId&gt;
-                &lt;artifactId&gt;joda-time&lt;/artifactId&gt;
-                &lt;version&gt;$&#123;jodatime.version&#125;&lt;/version&gt;
-            &lt;/dependency&gt;
-
-            &lt;!--xls--&gt;
-            &lt;dependency&gt;
-                &lt;groupId&gt;org.apache.poi&lt;/groupId&gt;
-                &lt;artifactId&gt;poi&lt;/artifactId&gt;
-                &lt;version&gt;$&#123;poi.version&#125;&lt;/version&gt;
-            &lt;/dependency&gt;
-            &lt;!--xlsx--&gt;
-            &lt;dependency&gt;
-                &lt;groupId&gt;org.apache.poi&lt;/groupId&gt;
-                &lt;artifactId&gt;poi-ooxml&lt;/artifactId&gt;
-                &lt;version&gt;$&#123;poi.version&#125;&lt;/version&gt;
-            &lt;/dependency&gt;
-
-            &lt;!--文件上传--&gt;
-            &lt;dependency&gt;
-                &lt;groupId&gt;commons-fileupload&lt;/groupId&gt;
-                &lt;artifactId&gt;commons-fileupload&lt;/artifactId&gt;
-                &lt;version&gt;$&#123;commons-fileupload.version&#125;&lt;/version&gt;
-            &lt;/dependency&gt;
-
-            &lt;!--commons-io--&gt;
-            &lt;dependency&gt;
-                &lt;groupId&gt;commons-io&lt;/groupId&gt;
-                &lt;artifactId&gt;commons-io&lt;/artifactId&gt;
-                &lt;version&gt;$&#123;commons-io.version&#125;&lt;/version&gt;
-            &lt;/dependency&gt;
-
-            &lt;!--httpclient--&gt;
-            &lt;dependency&gt;
-                &lt;groupId&gt;org.apache.httpcomponents&lt;/groupId&gt;
-                &lt;artifactId&gt;httpclient&lt;/artifactId&gt;
-                &lt;version&gt;$&#123;httpclient.version&#125;&lt;/version&gt;
-            &lt;/dependency&gt;
-
-            &lt;dependency&gt;
-                &lt;groupId&gt;com.google.code.gson&lt;/groupId&gt;
-                &lt;artifactId&gt;gson&lt;/artifactId&gt;
-                &lt;version&gt;$&#123;gson.version&#125;&lt;/version&gt;
-            &lt;/dependency&gt;
-
-            &lt;!-- JWT --&gt;
-            &lt;dependency&gt;
-                &lt;groupId&gt;io.jsonwebtoken&lt;/groupId&gt;
-                &lt;artifactId&gt;jjwt&lt;/artifactId&gt;
-                &lt;version&gt;$&#123;jwt.version&#125;&lt;/version&gt;
-            &lt;/dependency&gt;
-
-            &lt;!--aliyun--&gt;
-            &lt;dependency&gt;
-                &lt;groupId&gt;com.aliyun&lt;/groupId&gt;
-                &lt;artifactId&gt;aliyun-java-sdk-core&lt;/artifactId&gt;
-                &lt;version&gt;$&#123;aliyun-java-sdk-core.version&#125;&lt;/version&gt;
-            &lt;/dependency&gt;
-            &lt;dependency&gt;
-                &lt;groupId&gt;com.aliyun.oss&lt;/groupId&gt;
-                &lt;artifactId&gt;aliyun-sdk-oss&lt;/artifactId&gt;
-                &lt;version&gt;$&#123;aliyun-sdk-oss.version&#125;&lt;/version&gt;
-            &lt;/dependency&gt;
-            &lt;dependency&gt;
-                &lt;groupId&gt;com.aliyun&lt;/groupId&gt;
-                &lt;artifactId&gt;aliyun-java-sdk-vod&lt;/artifactId&gt;
-                &lt;version&gt;$&#123;aliyun-java-sdk-vod.version&#125;&lt;/version&gt;
-            &lt;/dependency&gt;
-&lt;!--            &lt;dependency&gt;--&gt;
-&lt;!--                &lt;groupId&gt;com.aliyun&lt;/groupId&gt;--&gt;
-&lt;!--                &lt;artifactId&gt;aliyun-java-vod-upload&lt;/artifactId&gt;--&gt;
-&lt;!--                &lt;version&gt;$&#123;aliyun-java-vod-upload.version&#125;&lt;/version&gt;--&gt;
-&lt;!--            &lt;/dependency&gt;--&gt;
-&lt;!--            &lt;dependency&gt;--&gt;
-&lt;!--                &lt;groupId&gt;com.aliyun&lt;/groupId&gt;--&gt;
-&lt;!--                &lt;artifactId&gt;aliyun-sdk-vod-upload&lt;/artifactId&gt;--&gt;
-&lt;!--                &lt;version&gt;$&#123;aliyun-sdk-vod-upload.version&#125;&lt;/version&gt;--&gt;
-&lt;!--            &lt;/dependency&gt;--&gt;
-            &lt;dependency&gt;
-                &lt;groupId&gt;com.alibaba&lt;/groupId&gt;
-                &lt;artifactId&gt;fastjson&lt;/artifactId&gt;
-                &lt;version&gt;$&#123;fastjson.version&#125;&lt;/version&gt;
-            &lt;/dependency&gt;
-            &lt;dependency&gt;
-                &lt;groupId&gt;org.json&lt;/groupId&gt;
-                &lt;artifactId&gt;json&lt;/artifactId&gt;
-                &lt;version&gt;$&#123;json.version&#125;&lt;/version&gt;
-            &lt;/dependency&gt;
-
-            &lt;dependency&gt;
-                &lt;groupId&gt;commons-dbutils&lt;/groupId&gt;
-                &lt;artifactId&gt;commons-dbutils&lt;/artifactId&gt;
-                &lt;version&gt;$&#123;commons-dbutils.version&#125;&lt;/version&gt;
-            &lt;/dependency&gt;
-
-            &lt;dependency&gt;
-                &lt;groupId&gt;com.alibaba.otter&lt;/groupId&gt;
-                &lt;artifactId&gt;canal.client&lt;/artifactId&gt;
-                &lt;version&gt;$&#123;canal.client.version&#125;&lt;/version&gt;
-            &lt;/dependency&gt;
-        &lt;/dependencies&gt;
-    &lt;/dependencyManagement&gt;
-</code></pre>
-</li>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br></pre></td><td class="code"><pre><span class="line">    <span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--Spring Cloud--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>Hoxton.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-alibaba-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;cloud-alibaba.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--mybatis-plus 持久层--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.baomidou<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-plus-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;mybatis-plus.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">&lt;!-- velocity 模板引擎, Mybatis Plus 代码生成器需要 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.velocity<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>velocity-engine-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;velocity.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">&lt;!--swagger--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.springfox<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springfox-swagger2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;swagger.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--swagger ui--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.springfox<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springfox-swagger-ui<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;swagger.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--            &amp;lt;!&amp;ndash;aliyunOSS&amp;ndash;&amp;gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--            &lt;dependency&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--                &lt;groupId&gt;com.aliyun.oss&lt;/groupId&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--                &lt;artifactId&gt;aliyun-sdk-oss&lt;/artifactId&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--                &lt;version&gt;$&#123;aliyun.oss.version&#125;&lt;/version&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--            &lt;/dependency&gt;--&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">&lt;!--日期时间工具--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>joda-time<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>joda-time<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;jodatime.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">&lt;!--xls--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.poi<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>poi<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;poi.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--xlsx--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.poi<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>poi-ooxml<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;poi.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">&lt;!--文件上传--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-fileupload<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-fileupload<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;commons-fileupload.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">&lt;!--commons-io--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-io<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-io<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;commons-io.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">&lt;!--httpclient--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.httpcomponents<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>httpclient<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;httpclient.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.google.code.gson<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>gson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;gson.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">&lt;!-- JWT --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.jsonwebtoken<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jjwt<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;jwt.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">&lt;!--aliyun--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.aliyun<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aliyun-java-sdk-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;aliyun-java-sdk-core.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.aliyun.oss<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aliyun-sdk-oss<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;aliyun-sdk-oss.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.aliyun<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aliyun-java-sdk-vod<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;aliyun-java-sdk-vod.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--            &lt;dependency&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--                &lt;groupId&gt;com.aliyun&lt;/groupId&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--                &lt;artifactId&gt;aliyun-java-vod-upload&lt;/artifactId&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--                &lt;version&gt;$&#123;aliyun-java-vod-upload.version&#125;&lt;/version&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--            &lt;/dependency&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--            &lt;dependency&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--                &lt;groupId&gt;com.aliyun&lt;/groupId&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--                &lt;artifactId&gt;aliyun-sdk-vod-upload&lt;/artifactId&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--                &lt;version&gt;$&#123;aliyun-sdk-vod-upload.version&#125;&lt;/version&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--            &lt;/dependency&gt;--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>fastjson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;fastjson.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.json<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>json<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;json.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-dbutils<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-dbutils<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;commons-dbutils.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.otter<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>canal.client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;canal.client.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 </ol>
 <h3 id="2-2子项目"><a href="#2-2子项目" class="headerlink" title="2.2子项目"></a>2.2子项目</h3><h4 id="新建子项目service"><a href="#新建子项目service" class="headerlink" title="新建子项目service"></a>新建子项目service</h4><ol start="2">
 <li><p>New –&gt; Module，新建子项目。选择Maven工程。<br><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20201016195347364.png" alt="image-20201016195347364"><br>修改pom打包方式：</p>
-<pre><code class="xml">    &lt;artifactId&gt;service&lt;/artifactId&gt;
-    &lt;packaging&gt;pom&lt;/packaging&gt;
-</code></pre>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>service<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">packaging</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 <p>增加依赖：</p>
-<pre><code class="xml">    &lt;dependencies&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-cloud-starter-netflix-ribbon&lt;/artifactId&gt;
-        &lt;/dependency&gt;
-
-        &lt;!--hystrix依赖，主要是用  @HystrixCommand --&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-cloud-starter-netflix-hystrix&lt;/artifactId&gt;
-        &lt;/dependency&gt;
-
-        &lt;!--服务注册--&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-cloud-starter-alibaba-nacos-discovery&lt;/artifactId&gt;
-        &lt;/dependency&gt;
-        &lt;!--服务调用--&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-cloud-starter-openfeign&lt;/artifactId&gt;
-        &lt;/dependency&gt;
-
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
-        &lt;/dependency&gt;
-
-        &lt;!--mybatis-plus--&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;com.baomidou&lt;/groupId&gt;
-            &lt;artifactId&gt;mybatis-plus-boot-starter&lt;/artifactId&gt;
-        &lt;/dependency&gt;
-
-        &lt;!--mysql--&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;mysql&lt;/groupId&gt;
-            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
-        &lt;/dependency&gt;
-
-        &lt;!-- velocity 模板引擎, Mybatis Plus 代码生成器需要 --&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.apache.velocity&lt;/groupId&gt;
-            &lt;artifactId&gt;velocity-engine-core&lt;/artifactId&gt;
-        &lt;/dependency&gt;
-
-        &lt;!--swagger--&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;io.springfox&lt;/groupId&gt;
-            &lt;artifactId&gt;springfox-swagger2&lt;/artifactId&gt;
-        &lt;/dependency&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;io.springfox&lt;/groupId&gt;
-            &lt;artifactId&gt;springfox-swagger-ui&lt;/artifactId&gt;
-        &lt;/dependency&gt;
-
-        &lt;!--lombok用来简化实体类：需要安装lombok插件--&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
-            &lt;artifactId&gt;lombok&lt;/artifactId&gt;
-        &lt;/dependency&gt;
-
-        &lt;!--xls--&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.apache.poi&lt;/groupId&gt;
-            &lt;artifactId&gt;poi&lt;/artifactId&gt;
-        &lt;/dependency&gt;
-
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.apache.poi&lt;/groupId&gt;
-            &lt;artifactId&gt;poi-ooxml&lt;/artifactId&gt;
-        &lt;/dependency&gt;
-
-        &lt;dependency&gt;
-            &lt;groupId&gt;commons-fileupload&lt;/groupId&gt;
-            &lt;artifactId&gt;commons-fileupload&lt;/artifactId&gt;
-        &lt;/dependency&gt;
-
-        &lt;!--httpclient--&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.apache.httpcomponents&lt;/groupId&gt;
-            &lt;artifactId&gt;httpclient&lt;/artifactId&gt;
-        &lt;/dependency&gt;
-        &lt;!--commons-io--&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;commons-io&lt;/groupId&gt;
-            &lt;artifactId&gt;commons-io&lt;/artifactId&gt;
-        &lt;/dependency&gt;
-        &lt;!--gson--&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;com.google.code.gson&lt;/groupId&gt;
-            &lt;artifactId&gt;gson&lt;/artifactId&gt;
-        &lt;/dependency&gt;
-
-        &lt;dependency&gt;
-            &lt;groupId&gt;junit&lt;/groupId&gt;
-            &lt;artifactId&gt;junit&lt;/artifactId&gt;
-            &lt;version&gt;4.12&lt;/version&gt;
-        &lt;/dependency&gt;
-    &lt;/dependencies&gt;
-</code></pre>
-</li>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-ribbon<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">   </span><br><span class="line">    <span class="comment">&lt;!--hystrix依赖，主要是用  @HystrixCommand --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-hystrix<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">   </span><br><span class="line">    <span class="comment">&lt;!--服务注册--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-discovery<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--服务调用--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-openfeign<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">   </span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">   </span><br><span class="line">    <span class="comment">&lt;!--mybatis-plus--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.baomidou<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-plus-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">   </span><br><span class="line">    <span class="comment">&lt;!--mysql--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">   </span><br><span class="line">    <span class="comment">&lt;!-- velocity 模板引擎, Mybatis Plus 代码生成器需要 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.velocity<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>velocity-engine-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">   </span><br><span class="line">    <span class="comment">&lt;!--swagger--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.springfox<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springfox-swagger2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.springfox<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springfox-swagger-ui<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">   </span><br><span class="line">    <span class="comment">&lt;!--lombok用来简化实体类：需要安装lombok插件--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">   </span><br><span class="line">    <span class="comment">&lt;!--xls--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.poi<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>poi<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">   </span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.poi<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>poi-ooxml<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">   </span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-fileupload<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-fileupload<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">   </span><br><span class="line">    <span class="comment">&lt;!--httpclient--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.httpcomponents<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>httpclient<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--commons-io--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-io<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-io<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--gson--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.google.code.gson<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>gson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">   </span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.12<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line">   </span><br></pre></td></tr></table></figure></li>
 </ol>
 <h4 id="导包之坑"><a href="#导包之坑" class="headerlink" title="导包之坑"></a>导包之坑</h4><h5 id="阿里云maven镜像"><a href="#阿里云maven镜像" class="headerlink" title="阿里云maven镜像"></a>阿里云maven镜像</h5><p>2020年最新的阿里云的maven镜像库变了，修改一下。把原来的都删掉了。</p>
-<pre><code class="xml">    &lt;mirror&gt;
-      &lt;id&gt;aliyunmaven&lt;/id&gt;
-      &lt;mirrorOf&gt;*&lt;/mirrorOf&gt;
-      &lt;name&gt;阿里云公共仓库&lt;/name&gt;  //不要怀疑，就是中文的
-      &lt;url&gt;https://maven.aliyun.com/repository/public&lt;/url&gt;
-    &lt;/mirror&gt;
-  &lt;/mirrors&gt;
-</code></pre>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyunmaven<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>*<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>阿里云公共仓库<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  //不要怀疑，就是中文的</span><br><span class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://maven.aliyun.com/repository/public<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">mirrors</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 <h5 id="父项目pom"><a href="#父项目pom" class="headerlink" title="父项目pom"></a>父项目pom</h5><p>修改springboot的版本为2.2.1.RELEASE。</p>
 <p>   首先，先把父项目pom里面的aliyun-skd-oss给注释了，因为写重复了一个</p>
-<pre><code class="xml">&lt;!--            &amp;lt;!&amp;ndash;aliyunOSS&amp;ndash;&amp;gt;--&gt;
-&lt;!--            &lt;dependency&gt;--&gt;
-&lt;!--                &lt;groupId&gt;com.aliyun.oss&lt;/groupId&gt;--&gt;
-&lt;!--                &lt;artifactId&gt;aliyun-sdk-oss&lt;/artifactId&gt;--&gt;
-&lt;!--                &lt;version&gt;$&#123;aliyun.oss.version&#125;&lt;/version&gt;--&gt;
-&lt;!--            &lt;/dependency&gt;--&gt;
-</code></pre>
+   <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--            &amp;lt;!&amp;ndash;aliyunOSS&amp;ndash;&amp;gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--            &lt;dependency&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--                &lt;groupId&gt;com.aliyun.oss&lt;/groupId&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--                &lt;artifactId&gt;aliyun-sdk-oss&lt;/artifactId&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--                &lt;version&gt;$&#123;aliyun.oss.version&#125;&lt;/version&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--            &lt;/dependency&gt;--&gt;</span></span><br></pre></td></tr></table></figure>
+
 <p>   之后，阿里云上传组件飘红，暂未解决。</p>
-<pre><code class="xml">&lt;dependency&gt;
-    &lt;groupId&gt;com.aliyun&lt;/groupId&gt;
-    &lt;artifactId&gt;aliyun-java-vod-upload&lt;/artifactId&gt;
-    &lt;version&gt;$&#123;aliyun-java-vod-upload.version&#125;&lt;/version&gt;
-&lt;/dependency&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;com.aliyun&lt;/groupId&gt;
-    &lt;artifactId&gt;aliyun-sdk-vod-upload&lt;/artifactId&gt;
-    &lt;version&gt;$&#123;aliyun-sdk-vod-upload.version&#125;&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre>
+   <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.aliyun<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aliyun-java-vod-upload<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;aliyun-java-vod-upload.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.aliyun<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aliyun-sdk-vod-upload<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;aliyun-sdk-vod-upload.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 <h5 id="子项目pom"><a href="#子项目pom" class="headerlink" title="子项目pom"></a>子项目pom</h5><p>提示几个unknow，给它写上特定版本。这里版本是根据IDEA提示随机添加的</p>
-<pre><code class="xml">&lt;dependency&gt;
-    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-    &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
-    &lt;version&gt;2.1.3.RELEASE&lt;/version&gt;
-&lt;/dependency&gt;
- &lt;!--mysql--&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;mysql&lt;/groupId&gt;
-    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
-    &lt;version&gt;8.0.21&lt;/version&gt;
-&lt;/dependency&gt;
-&lt;!--lombok用来简化实体类：需要安装lombok插件--&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
-    &lt;artifactId&gt;lombok&lt;/artifactId&gt;
-    &lt;version&gt;1.18.12&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.3.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"> <span class="comment">&lt;!--mysql--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>8.0.21<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--lombok用来简化实体类：需要安装lombok插件--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.18.12<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 <p>这里mysql的版本改了一下，用了个比较新的，因为旧的mysql驱动是<code>com.mysql.jdbc.Driver</code>而新的是<code>com.mysql.cj.jdbc.Driver</code>，多了个cj，不太一样。</p>
 <p>新建子项目service-edu</p>
 <p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20201016205021480.png" alt="image-20201016205021480"></p>
 <p>新建配置文件application.properties</p>
-<pre><code class="properties"># 服务端口
-server.port=8001
-# 服务名
-spring.application.name=service-edu
-# 环境设置：dev、test、prod
-spring.profiles.active=dev
-# mysql数据库连接
-spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-spring.datasource.url=jdbc:mysql://localhost:3306/guli?serverTimezone=GMT%2B8
-spring.datasource.username=root
-spring.datasource.password=123456
-#mybatis日志
-mybatis-plus.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
-</code></pre>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 服务端口</span></span><br><span class="line"><span class="meta">server.port</span>=<span class="string">8001</span></span><br><span class="line"><span class="comment"># 服务名</span></span><br><span class="line"><span class="meta">spring.application.name</span>=<span class="string">service-edu</span></span><br><span class="line"><span class="comment"># 环境设置：dev、test、prod</span></span><br><span class="line"><span class="meta">spring.profiles.active</span>=<span class="string">dev</span></span><br><span class="line"><span class="comment"># mysql数据库连接</span></span><br><span class="line"><span class="meta">spring.datasource.driver-class-name</span>=<span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line"><span class="meta">spring.datasource.url</span>=<span class="string">jdbc:mysql://localhost:3306/guli?serverTimezone=GMT%2B8</span></span><br><span class="line"><span class="meta">spring.datasource.username</span>=<span class="string">root</span></span><br><span class="line"><span class="meta">spring.datasource.password</span>=<span class="string">123456</span></span><br><span class="line"><span class="comment">#mybatis日志</span></span><br><span class="line"><span class="meta">mybatis-plus.configuration.log-impl</span>=<span class="string">org.apache.ibatis.logging.stdout.StdOutImpl</span></span><br></pre></td></tr></table></figure>
+
 <p>在test文件夹下，新建Mybatis-Plus代码生成器：<br><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20201016211954717.png" alt="image-20201016211954717"></p>
-<pre><code class="java">package com.songx64.eduservice;
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.songx64.eduservice;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.annotation.DbType;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.annotation.IdType;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.generator.AutoGenerator;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.generator.config.DataSourceConfig;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.generator.config.GlobalConfig;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.generator.config.PackageConfig;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.generator.config.StrategyConfig;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.generator.config.rules.DateType;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CodeGenerator</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 1、创建代码生成器</span></span><br><span class="line">        AutoGenerator mpg = <span class="keyword">new</span> AutoGenerator();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2、全局配置</span></span><br><span class="line">        GlobalConfig gc = <span class="keyword">new</span> GlobalConfig();</span><br><span class="line">        String projectPath = System.getProperty(<span class="string">&quot;user.dir&quot;</span>);</span><br><span class="line">        System.out.println(projectPath);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//        gc.setOutputDir(projectPath + &quot;/src/main/java&quot;);</span></span><br><span class="line">        <span class="comment">//改为绝对路径，系统自动获取可能会有问题</span></span><br><span class="line">        gc.setOutputDir(<span class="string">&quot;F:\\AWork\\Project\\MyLearn\\guli_parent3\\service\\service-edu&quot;</span> + <span class="string">&quot;/src/main/java&quot;</span>);</span><br><span class="line"></span><br><span class="line">        gc.setAuthor(<span class="string">&quot;songx64&quot;</span>);</span><br><span class="line">        gc.setOpen(<span class="keyword">false</span>); <span class="comment">//生成后是否打开资源管理器</span></span><br><span class="line">        gc.setFileOverride(<span class="keyword">false</span>); <span class="comment">//重新生成时文件是否覆盖</span></span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">         * mp生成service层代码，默认接口名称第一个字母有 I</span></span><br><span class="line"><span class="comment">         * UcenterService</span></span><br><span class="line"><span class="comment">         * */</span></span><br><span class="line">        gc.setServiceName(<span class="string">&quot;%sService&quot;</span>);    <span class="comment">//去掉Service接口的首字母I</span></span><br><span class="line">        gc.setIdType(IdType.ID_WORKER); <span class="comment">//主键策略</span></span><br><span class="line">        gc.setDateType(DateType.ONLY_DATE);<span class="comment">//定义生成的实体类中日期类型</span></span><br><span class="line">        gc.setSwagger2(<span class="keyword">true</span>);<span class="comment">//开启Swagger2模式</span></span><br><span class="line"></span><br><span class="line">        mpg.setGlobalConfig(gc);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3、数据源配置</span></span><br><span class="line">        DataSourceConfig dsc = <span class="keyword">new</span> DataSourceConfig();</span><br><span class="line">        dsc.setUrl(<span class="string">&quot;jdbc:mysql://localhost:3306/guli?serverTimezone=GMT%2B8&quot;</span>);</span><br><span class="line">        dsc.setDriverName(<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>);</span><br><span class="line">        dsc.setUsername(<span class="string">&quot;root&quot;</span>);</span><br><span class="line">        dsc.setPassword(<span class="string">&quot;123456&quot;</span>);</span><br><span class="line">        dsc.setDbType(DbType.MYSQL);</span><br><span class="line">        mpg.setDataSource(dsc);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 4、包配置</span></span><br><span class="line">        PackageConfig pc = <span class="keyword">new</span> PackageConfig();</span><br><span class="line">        pc.setParent(<span class="string">&quot;com.songx64&quot;</span>);<span class="comment">//包名字com.songx64</span></span><br><span class="line">        pc.setModuleName(<span class="string">&quot;eduservice&quot;</span>); <span class="comment">//模块名</span></span><br><span class="line"></span><br><span class="line">        pc.setController(<span class="string">&quot;controller&quot;</span>);<span class="comment">//包名字com.songx64.controller</span></span><br><span class="line">        pc.setEntity(<span class="string">&quot;entity&quot;</span>);</span><br><span class="line">        pc.setService(<span class="string">&quot;service&quot;</span>);</span><br><span class="line">        pc.setMapper(<span class="string">&quot;mapper&quot;</span>);</span><br><span class="line">        mpg.setPackageInfo(pc);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 5、策略配置</span></span><br><span class="line">        StrategyConfig strategy = <span class="keyword">new</span> StrategyConfig();</span><br><span class="line">        strategy.setInclude(<span class="string">&quot;edu_teacher&quot;</span>);</span><br><span class="line">        strategy.setNaming(NamingStrategy.underline_to_camel);<span class="comment">//数据库表映射到实体的命名策略</span></span><br><span class="line">        strategy.setTablePrefix(pc.getModuleName() + <span class="string">&quot;_&quot;</span>); <span class="comment">//生成实体时去掉表前缀</span></span><br><span class="line"></span><br><span class="line">        strategy.setColumnNaming(NamingStrategy.underline_to_camel);<span class="comment">//数据库表字段映射到实体的命名策略</span></span><br><span class="line">        strategy.setEntityLombokModel(<span class="keyword">true</span>); <span class="comment">// lombok 模型 @Accessors(chain = true) setter链式操作</span></span><br><span class="line"></span><br><span class="line">        strategy.setRestControllerStyle(<span class="keyword">true</span>); <span class="comment">//restful api风格控制器</span></span><br><span class="line">        strategy.setControllerMappingHyphenStyle(<span class="keyword">true</span>); <span class="comment">//url中驼峰转连字符</span></span><br><span class="line"></span><br><span class="line">        mpg.setStrategy(strategy);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 6、执行</span></span><br><span class="line">        mpg.execute();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-import com.baomidou.mybatisplus.annotation.DbType;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.generator.AutoGenerator;
-import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
-import com.baomidou.mybatisplus.generator.config.GlobalConfig;
-import com.baomidou.mybatisplus.generator.config.PackageConfig;
-import com.baomidou.mybatisplus.generator.config.StrategyConfig;
-import com.baomidou.mybatisplus.generator.config.rules.DateType;
-import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
-import org.junit.Test;
-
-public class CodeGenerator &#123;
-
-    @Test
-    public void run() &#123;
-
-        // 1、创建代码生成器
-        AutoGenerator mpg = new AutoGenerator();
-
-        // 2、全局配置
-        GlobalConfig gc = new GlobalConfig();
-        String projectPath = System.getProperty(&quot;user.dir&quot;);
-        System.out.println(projectPath);
-
-        //        gc.setOutputDir(projectPath + &quot;/src/main/java&quot;);
-        //改为绝对路径，系统自动获取可能会有问题
-        gc.setOutputDir(&quot;F:\\AWork\\Project\\MyLearn\\guli_parent3\\service\\service-edu&quot; + &quot;/src/main/java&quot;);
-
-        gc.setAuthor(&quot;songx64&quot;);
-        gc.setOpen(false); //生成后是否打开资源管理器
-        gc.setFileOverride(false); //重新生成时文件是否覆盖
-        /*
-         * mp生成service层代码，默认接口名称第一个字母有 I
-         * UcenterService
-         * */
-        gc.setServiceName(&quot;%sService&quot;);    //去掉Service接口的首字母I
-        gc.setIdType(IdType.ID_WORKER); //主键策略
-        gc.setDateType(DateType.ONLY_DATE);//定义生成的实体类中日期类型
-        gc.setSwagger2(true);//开启Swagger2模式
-
-        mpg.setGlobalConfig(gc);
-
-        // 3、数据源配置
-        DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl(&quot;jdbc:mysql://localhost:3306/guli?serverTimezone=GMT%2B8&quot;);
-        dsc.setDriverName(&quot;com.mysql.cj.jdbc.Driver&quot;);
-        dsc.setUsername(&quot;root&quot;);
-        dsc.setPassword(&quot;123456&quot;);
-        dsc.setDbType(DbType.MYSQL);
-        mpg.setDataSource(dsc);
-
-        // 4、包配置
-        PackageConfig pc = new PackageConfig();
-        pc.setParent(&quot;com.songx64&quot;);//包名字com.songx64
-        pc.setModuleName(&quot;eduservice&quot;); //模块名
-
-        pc.setController(&quot;controller&quot;);//包名字com.songx64.controller
-        pc.setEntity(&quot;entity&quot;);
-        pc.setService(&quot;service&quot;);
-        pc.setMapper(&quot;mapper&quot;);
-        mpg.setPackageInfo(pc);
-
-        // 5、策略配置
-        StrategyConfig strategy = new StrategyConfig();
-        strategy.setInclude(&quot;edu_teacher&quot;);
-        strategy.setNaming(NamingStrategy.underline_to_camel);//数据库表映射到实体的命名策略
-        strategy.setTablePrefix(pc.getModuleName() + &quot;_&quot;); //生成实体时去掉表前缀
-
-        strategy.setColumnNaming(NamingStrategy.underline_to_camel);//数据库表字段映射到实体的命名策略
-        strategy.setEntityLombokModel(true); // lombok 模型 @Accessors(chain = true) setter链式操作
-
-        strategy.setRestControllerStyle(true); //restful api风格控制器
-        strategy.setControllerMappingHyphenStyle(true); //url中驼峰转连字符
-
-        mpg.setStrategy(strategy);
-
-        // 6、执行
-        mpg.execute();
-    &#125;
-
-&#125;
-</code></pre>
 <p>修改相关配置，主要是</p>
 <ul>
 <li>生成路径，最好用绝对路径；</li>
@@ -998,53 +575,23 @@ public class CodeGenerator &#123;
 <li>自动注入Service，@Autowired</li>
 <li>编写查询函数，@GetMapping</li>
 </ol>
-<pre><code class="java">package com.songx64.eduservice.controller;
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.songx64.eduservice.controller;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/eduservice/edu-teacher&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EduTeacherController</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> EduTeacherService eduTeacherService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/findAll&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;EduTeacher&gt; <span class="title">findAllTeacher</span><span class="params">()</span></span>&#123;</span><br><span class="line">        List&lt;EduTeacher&gt; list = eduTeacherService.list(<span class="keyword">null</span>);</span><br><span class="line">        <span class="keyword">return</span> list;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-@RestController
-@RequestMapping(&quot;/eduservice/edu-teacher&quot;)
-public class EduTeacherController &#123;
-    @Autowired
-    private EduTeacherService eduTeacherService;
-
-    @GetMapping(&quot;/findAll&quot;)
-    public List&lt;EduTeacher&gt; findAllTeacher()&#123;
-        List&lt;EduTeacher&gt; list = eduTeacherService.list(null);
-        return list;
-    &#125;
-&#125;
-</code></pre>
 <h2 id="EduConfig"><a href="#EduConfig" class="headerlink" title="EduConfig"></a>EduConfig</h2><p>创建配置类，扫描mapper。不加入的话mapper扫描不到可能会报错。</p>
 <p>创建config包，<code>com.songx64.eduservice.config</code></p>
 <p>@MapperScan(包名)</p>
-<pre><code class="java">package com.songx64.eduservice.config;
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.songx64.eduservice.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.mybatis.spring.annotation.MapperScan;</span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableTransactionManagement</span></span><br><span class="line"><span class="meta">@MapperScan(&quot;com.songx64.eduservice.mapper&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EduConfig</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-import org.mybatis.spring.annotation.MapperScan;
-@Configuration
-@EnableTransactionManagement
-@MapperScan(&quot;com.songx64.eduservice.mapper&quot;)
-public class EduConfig &#123;
-&#125;
-</code></pre>
 <h2 id="启动类"><a href="#启动类" class="headerlink" title="启动类"></a>启动类</h2><p>在Edu-Service根目录下添加启动类：</p>
-<pre><code class="java">package com.songx64.eduservice;
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.songx64.eduservice;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EduApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(EduApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-@SpringBootApplication
-public class EduApplication &#123;
 
-    public static void main(String[] args) &#123;
-        SpringApplication.run(EduApplication.class, args);
-    &#125;
-&#125;
-</code></pre>
+
 <p>报错：java.lang.ClassNotFoundException: org.springframework.boot.web.servlet.filter.OrderedHttpPutFormContentFilter</p>
 <h2 id="报错解决："><a href="#报错解决：" class="headerlink" title="报错解决："></a>报错解决：</h2><h3 id="版本问题解决"><a href="#版本问题解决" class="headerlink" title="版本问题解决"></a>版本问题解决</h3><p>错误：springboot的各种包都找不到。</p>
 <p>原因：在父配置文件中，少加了个标签：</p>
-<pre><code class="xml"> &lt;parent&gt;
-    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-    &lt;version&gt;2.2.1.RELEASE&lt;/version&gt;
-    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
-&lt;/parent&gt;
-</code></pre>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.1.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 <p>这个自然是从Springboot官方的parent节点继承spring-boot-starter，没有这个原来的各种starter都没有集成进去。<br>原来我的方式是在一个个的子模块中重新集成了springboot的starter，而不是继承过来的。</p>
 <h3 id="启动报错问题解决"><a href="#启动报错问题解决" class="headerlink" title="启动报错问题解决"></a>启动报错问题解决</h3><p>错误：</p>
 <blockquote>
@@ -1054,15 +601,8 @@ public class EduApplication &#123;
 </blockquote>
 <p>这个是说找不到eduTeacherServiceImpl，还有baseMapper。</p>
 <p>原因：忘了在config类中添加<code>@Configuration</code>注解</p>
-<pre><code class="java">package com.songx64.eduservice.config;
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.songx64.eduservice.config;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableTransactionManagement</span></span><br><span class="line"><span class="meta">@MapperScan(&quot;com.songx64.eduservice.mapper&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EduConfig</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-
-@Configuration
-@EnableTransactionManagement
-@MapperScan(&quot;com.songx64.eduservice.mapper&quot;)
-public class EduConfig &#123;
-&#125;
-</code></pre>
 <h3 id="访问报错："><a href="#访问报错：" class="headerlink" title="访问报错："></a>访问报错：</h3><p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20201030172436277.png" alt="image-20201030172436277"></p>
 <p>原因：用的https访问的。<a target="_blank" rel="noopener" href="https://localhost:8001/eduservice/edu-teacher/findAll">https://localhost:8001/eduservice/edu-teacher/findAll</a></p>
 <p>解决：修改为http协议即可。<a target="_blank" rel="noopener" href="http://localhost:8001/eduservice/edu-teacher/findAll">http://localhost:8001/eduservice/edu-teacher/findAll</a></p>
@@ -1075,132 +615,19 @@ public class EduConfig &#123;
             <scope>provided </scope>
         </dependency>
 
-<pre><code class="xml">    &lt;!--mybatis-plus--&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;com.baomidou&lt;/groupId&gt;
-        &lt;artifactId&gt;mybatis-plus-boot-starter&lt;/artifactId&gt;
-        &lt;scope&gt;provided &lt;/scope&gt;
-    &lt;/dependency&gt;
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">&lt;!--mybatis-plus--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.baomidou<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-plus-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided <span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--lombok用来简化实体类：需要安装lombok插件--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided <span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--swagger--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.springfox<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springfox-swagger2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided <span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.springfox<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springfox-swagger-ui<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided <span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- redis --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- spring2.X集成redis所需common-pool2</span></span><br><span class="line"><span class="comment">    &lt;dependency&gt;</span></span><br><span class="line"><span class="comment">        &lt;groupId&gt;org.apache.commons&lt;/groupId&gt;</span></span><br><span class="line"><span class="comment">        &lt;artifactId&gt;commons-pool2&lt;/artifactId&gt;</span></span><br><span class="line"><span class="comment">        &lt;version&gt;2.6.0&lt;/version&gt;</span></span><br><span class="line"><span class="comment">    &lt;/dependency&gt;--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-    &lt;!--lombok用来简化实体类：需要安装lombok插件--&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
-        &lt;artifactId&gt;lombok&lt;/artifactId&gt;
-        &lt;scope&gt;provided &lt;/scope&gt;
-    &lt;/dependency&gt;
-
-    &lt;!--swagger--&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.springfox&lt;/groupId&gt;
-        &lt;artifactId&gt;springfox-swagger2&lt;/artifactId&gt;
-        &lt;scope&gt;provided &lt;/scope&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.springfox&lt;/groupId&gt;
-        &lt;artifactId&gt;springfox-swagger-ui&lt;/artifactId&gt;
-        &lt;scope&gt;provided &lt;/scope&gt;
-    &lt;/dependency&gt;
-
-    &lt;!-- redis --&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter-data-redis&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-    &lt;!-- spring2.X集成redis所需common-pool2
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.apache.commons&lt;/groupId&gt;
-        &lt;artifactId&gt;commons-pool2&lt;/artifactId&gt;
-        &lt;version&gt;2.6.0&lt;/version&gt;
-    &lt;/dependency&gt;--&gt;
-&lt;/dependencies&gt;
-</code></pre>
 <h2 id="3-新建SwaggerConfig配置类"><a href="#3-新建SwaggerConfig配置类" class="headerlink" title="3.新建SwaggerConfig配置类"></a>3.新建SwaggerConfig配置类</h2><p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20201102191706272.png" alt="image-20201102191706272"></p>
-<pre><code class="java">package com.songx64.servicebase.config;
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.songx64.servicebase.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.google.common.base.Predicates;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.builders.ApiInfoBuilder;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.builders.PathSelectors;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.service.ApiInfo;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.service.Contact;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.spi.DocumentationType;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.spring.web.plugins.Docket;</span><br><span class="line"><span class="keyword">import</span> springfox.documentation.swagger2.annotations.EnableSwagger2;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created on 2020/11/2,下午 7:06</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> SongX64</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@desc</span> Swagger配置类，该类里面的应该是固定的，主要用来设置文档的主题信息，比如文档的大标题，副标题，公司名等</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span><span class="comment">//托管spring</span></span><br><span class="line"><span class="meta">@EnableSwagger2</span><span class="comment">//开启swagger功能</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SwaggerConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Docket <span class="title">webApiConfig</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//通过调用下面的自定义方法webApiInfo，获得文档的主要信息</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Docket(DocumentationType.SWAGGER_2)</span><br><span class="line">                .groupName(<span class="string">&quot;MySwaggerTest&quot;</span>)</span><br><span class="line">                .apiInfo(webApiInfo())</span><br><span class="line">                .select()</span><br><span class="line">                .paths(Predicates.not(PathSelectors.regex(<span class="string">&quot;/admin/.*&quot;</span>)))</span><br><span class="line">                .paths(Predicates.not(PathSelectors.regex(<span class="string">&quot;/error.*&quot;</span>)))</span><br><span class="line">                .build();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 在线文档的信息，展现在文档页面中</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> ApiInfo <span class="title">webApiInfo</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ApiInfoBuilder()</span><br><span class="line">                .title(<span class="string">&quot;网站-课程中心API文档&quot;</span>)</span><br><span class="line">                .description(<span class="string">&quot;本文档描述了课程中心微服务接口定义&quot;</span>)</span><br><span class="line">                .version(<span class="string">&quot;1.0&quot;</span>)</span><br><span class="line">                .contact(<span class="keyword">new</span> Contact(<span class="string">&quot;Song&quot;</span>, <span class="string">&quot;http://项目实际访问地址.com&quot;</span>, <span class="string">&quot;666666@qq.com&quot;</span>))</span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-import com.google.common.base.Predicates;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.Contact;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
-/**
- * Created on 2020/11/2,下午 7:06
- * @author SongX64
- * @desc Swagger配置类，该类里面的应该是固定的，主要用来设置文档的主题信息，比如文档的大标题，副标题，公司名等
- */
-
-@Configuration//托管spring
-@EnableSwagger2//开启swagger功能
-public class SwaggerConfig &#123;
-
-    @Bean
-    public Docket webApiConfig() &#123;
-
-        //通过调用下面的自定义方法webApiInfo，获得文档的主要信息
-        return new Docket(DocumentationType.SWAGGER_2)
-                .groupName(&quot;MySwaggerTest&quot;)
-                .apiInfo(webApiInfo())
-                .select()
-                .paths(Predicates.not(PathSelectors.regex(&quot;/admin/.*&quot;)))
-                .paths(Predicates.not(PathSelectors.regex(&quot;/error.*&quot;)))
-                .build();
-
-    &#125;
-
-    /**
-     * 在线文档的信息，展现在文档页面中
-     */
-    private ApiInfo webApiInfo() &#123;
-
-        return new ApiInfoBuilder()
-                .title(&quot;网站-课程中心API文档&quot;)
-                .description(&quot;本文档描述了课程中心微服务接口定义&quot;)
-                .version(&quot;1.0&quot;)
-                .contact(new Contact(&quot;Song&quot;, &quot;http://项目实际访问地址.com&quot;, &quot;666666@qq.com&quot;))
-                .build();
-    &#125;
-&#125;
-</code></pre>
 <p>配置类中的信息显示在页面中：</p>
 <p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20201115180034982.png" alt="image-20201115180034982"></p>
 <h2 id="4-引入service-base模块"><a href="#4-引入service-base模块" class="headerlink" title="4.引入service-base模块"></a>4.引入service-base模块</h2><p>去service模块中的pom文件，引入自己的service-base模块</p>
-<pre><code class="xml">&lt;!--引入自己写的service-base模块--&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;com.songx64&lt;/groupId&gt;
-    &lt;artifactId&gt;service-base&lt;/artifactId&gt;
-    &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--引入自己写的service-base模块--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.songx64<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>service-base<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 <h2 id="5-编写文档说明注解"><a href="#5-编写文档说明注解" class="headerlink" title="5.编写文档说明注解"></a>5.编写文档说明注解</h2><p>EduTeacherController.java类中：</p>
-<pre><code class="java">@Api(tags = &quot;讲师管理控制器&quot;)
-@RestController
-@RequestMapping(&quot;/eduservice/edu-teacher&quot;)
-public class EduTeacherController &#123;
-    @Autowired
-    private EduTeacherService eduTeacherService;
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Api(tags = &quot;讲师管理控制器&quot;)</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/eduservice/edu-teacher&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EduTeacherController</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> EduTeacherService eduTeacherService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ApiOperation(value = &quot;列出所有讲师&quot;)</span></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/findAll&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;EduTeacher&gt; <span class="title">findAllTeacher</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        List&lt;EduTeacher&gt; list = eduTeacherService.list(<span class="keyword">null</span>);</span><br><span class="line">        <span class="keyword">return</span> list;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ApiOperation(value = &quot;删除讲师&quot;, notes = &quot;根据Id删除讲师&quot;)</span></span><br><span class="line">    <span class="meta">@DeleteMapping(&quot;/&#123;id&#125;&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">deleteTeacherById</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="meta">@ApiParam(name = &quot;id&quot;, value = &quot;讲师ID&quot;, required = true)</span></span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="meta">@PathVariable</span> String id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> eduTeacherService.removeById(id);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    @ApiOperation(value = &quot;列出所有讲师&quot;)
-    @GetMapping(&quot;/findAll&quot;)
-    public List&lt;EduTeacher&gt; findAllTeacher() &#123;
-        List&lt;EduTeacher&gt; list = eduTeacherService.list(null);
-        return list;
-    &#125;
-
-    @ApiOperation(value = &quot;删除讲师&quot;, notes = &quot;根据Id删除讲师&quot;)
-    @DeleteMapping(&quot;/&#123;id&#125;&quot;)
-    public boolean deleteTeacherById(
-            @ApiParam(name = &quot;id&quot;, value = &quot;讲师ID&quot;, required = true)
-            @PathVariable String id) &#123;
-        return eduTeacherService.removeById(id);
-    &#125;
-&#125;
-</code></pre>
 <p>新增了一个deleteTeacherById方法，用来测试。</p>
 <p>同时一些Swagger的注解：<br><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20201115175729745.png" alt="image-20201115175729745"></p>
 <h2 id="6-测试"><a href="#6-测试" class="headerlink" title="6.测试"></a>6.测试</h2><p>最终进行测试，访问<a target="_blank" rel="noopener" href="http://localhost:8001/swagger-ui.html">http://localhost:8001/swagger-ui.html</a></p>
@@ -1209,20 +636,10 @@ public class EduTeacherController &#123;
 <p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20201115180342063.png" alt="image-20201115180342063"></p>
 <p>最终也没找到原因，只能用另外办法了：<br>在子项目中引入另一个子项目：</p>
 <p>service-edu的pom.xml中，引入service_base模块</p>
-<pre><code class="xml">&lt;artifactId&gt;service-edu&lt;/artifactId&gt;
-&lt;dependencies&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;com.songx64&lt;/groupId&gt;
-        &lt;artifactId&gt;service_base&lt;/artifactId&gt;
-        &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
-        &lt;scope&gt;compile&lt;/scope&gt;
-    &lt;/dependency&gt;
-&lt;/dependencies&gt;
-</code></pre>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>service-edu<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.songx64<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>service_base<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">scope</span>&gt;</span>compile<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="swagger配置报错"><a href="#swagger配置报错" class="headerlink" title="swagger配置报错"></a>swagger配置报错</h2><p>太长的完整报错不贴了，主要就是：</p>
 <blockquote>
 <p>org.springframework.beans.factory.BeanDefinitionStoreException: </p>
@@ -1231,15 +648,8 @@ public class EduTeacherController &#123;
 </blockquote>
 <p>删除了service目录下的swagger依赖：</p>
 <p>service的pom.xml中，删除：</p>
-<pre><code class="xml">&lt;dependency&gt;
-    &lt;groupId&gt;io.springfox&lt;/groupId&gt;
-    &lt;artifactId&gt;springfox-swagger2&lt;/artifactId&gt;
-&lt;/dependency&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;io.springfox&lt;/groupId&gt;
-    &lt;artifactId&gt;springfox-swagger-ui&lt;/artifactId&gt;
-&lt;/dependency&gt;
-</code></pre>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.springfox<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springfox-swagger2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.springfox<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springfox-swagger-ui<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 <h1 id="相关知识"><a href="#相关知识" class="headerlink" title="相关知识"></a>相关知识</h1><h2 id="pom文件中的-lt-scope-gt-标签"><a href="#pom文件中的-lt-scope-gt-标签" class="headerlink" title="pom文件中的&lt;scope&gt;标签"></a>pom文件中的&lt;scope&gt;标签</h2><ul>
 <li><p>对于scope=compile的情况（默认scope),<br>也就是说这个项目在编译，测试，运行阶段都需要这个artifact对应的jar包在classpath中。</p>
 </li>
@@ -1254,48 +664,19 @@ public class EduTeacherController &#123;
 <p>也就是说，后端和显示是无关的。前端接受数据就可以。后端就是提供数据的。</p>
 <p>一般会包含状态码、返回消息、数据这几部分内容。</p>
 <p>在这里，我们定义统一结果：</p>
-<pre><code class="json">&#123;
-  &quot;success&quot;: 布尔, //响应是否成功
-  &quot;code&quot;: 数字, //响应码
-  &quot;message&quot;: 字符串, //返回消息
-  &quot;data&quot;: HashMap //返回数据，放在键值对中
-&#125;
-</code></pre>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;success&quot;</span>: 布尔, <span class="comment">//响应是否成功</span></span><br><span class="line">  <span class="attr">&quot;code&quot;</span>: 数字, <span class="comment">//响应码</span></span><br><span class="line">  <span class="attr">&quot;message&quot;</span>: 字符串, <span class="comment">//返回消息</span></span><br><span class="line">  <span class="attr">&quot;data&quot;</span>: HashMap <span class="comment">//返回数据，放在键值对中</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h2 id="咋整"><a href="#咋整" class="headerlink" title="咋整"></a>咋整</h2><ol>
 <li>在common下创建子模块common_utils，新建包com.songx64.commonutils</li>
 <li>新建接口ResultCode：</li>
 </ol>
-<pre><code class="java">public interface ResultCode&#123;
-    //成功
-    public static Integer SUCCESS = 20000;
-    //失败
-    public static Integer ERROR = 20001;
-&#125;
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ResultCode</span></span>&#123;</span><br><span class="line">    <span class="comment">//成功</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Integer SUCCESS = <span class="number">20000</span>;</span><br><span class="line">    <span class="comment">//失败</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Integer ERROR = <span class="number">20001</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <ol start="3">
 <li>新建结果类R</li>
 </ol>
-<pre><code class="java">@Data
-public class R&#123;
-    //四个属性
-    @ApiModelProperty(value = &quot;是否成功&quot;)
-    private Boolean success;
-    
-    @ApiModelProperty(&quot;状态码&quot;)
-    private Integer code;
-    
-    @ApiModelProperty(&quot;消息&quot;)
-    private String message;
-    
-    @ApiModelProperty(&quot;数据&quot;)
-    private HashMap&lt;String,Object&gt; data;
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">R</span></span>&#123;</span><br><span class="line">	<span class="comment">//四个属性</span></span><br><span class="line">	<span class="meta">@ApiModelProperty(value = &quot;是否成功&quot;)</span></span><br><span class="line">	<span class="keyword">private</span> Boolean success;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@ApiModelProperty(&quot;状态码&quot;)</span></span><br><span class="line">	<span class="keyword">private</span> Integer code;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@ApiModelProperty(&quot;消息&quot;)</span></span><br><span class="line">	<span class="keyword">private</span> String message;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@ApiModelProperty(&quot;数据&quot;)</span></span><br><span class="line">	<span class="keyword">private</span> HashMap&lt;String,Object&gt; data;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//私有化构造方法，单例模式</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">R</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//返回函数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    //私有化构造方法，单例模式
-    private R()&#123;&#125;
-    
-    //返回函数
-&#125;
-</code></pre>
 <blockquote>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/u013126379/article/details/57463285">构造函数私有化1</a></li>
@@ -1306,40 +687,17 @@ public class R&#123;
 </blockquote>
 <h2 id="咋用"><a href="#咋用" class="headerlink" title="咋用"></a>咋用</h2><ol>
 <li><p>引入模块，service，pom.xml</p>
-<pre><code class="xml">&lt;dependency&gt;
-    &lt;groupId&gt;com.songx64&lt;/groupId&gt;
-    &lt;artifactId&gt;common_utils&lt;/artifactId&gt;
-    &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre>
-</li>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.songx64<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>common_utils<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
 <li><p>修改Controller里的方法，返回结果改为R<br>com\songx64\eduservice\controller\EduTeacherController.java</p>
-<pre><code class="java">
-</code></pre>
-</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">   </span><br></pre></td></tr></table></figure></li>
 <li><p>运行，进入swagger查看</p>
 </li>
 <li><p>有个TODO，删除的地方有问题</p>
 </li>
 </ol>
 <h1 id="后台讲师管理模块"><a href="#后台讲师管理模块" class="headerlink" title="后台讲师管理模块"></a>后台讲师管理模块</h1><h2 id="1-分页查询"><a href="#1-分页查询" class="headerlink" title="1.分页查询"></a>1.分页查询</h2><h3 id="1-1-配置分页插件"><a href="#1-1-配置分页插件" class="headerlink" title="1.1 配置分页插件"></a>1.1 配置分页插件</h3><p>com.songx64.eduservice.config.EduConfig类中，粘贴mybatis的config配置插件</p>
-<pre><code class="java">public class EduConfig &#123;
-    /**
-     * 分页插件
-     */
-    @Bean
-    public PaginationInterceptor paginationInterceptor() &#123;
-        return new PaginationInterceptor();
-    &#125;
-    /**
-     * 逻辑删除插件
-     */
-    @Bean
-    public ISqlInjector sqlInjector() &#123;
-        return new LogicSqlInjector();
-    &#125;
-&#125;
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EduConfig</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 分页插件</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> PaginationInterceptor <span class="title">paginationInterceptor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> PaginationInterceptor();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 逻辑删除插件</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ISqlInjector <span class="title">sqlInjector</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> LogicSqlInjector();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h3 id="1-2-编写讲师分页查询接口的方法"><a href="#1-2-编写讲师分页查询接口的方法" class="headerlink" title="1.2 编写讲师分页查询接口的方法"></a>1.2 编写讲师分页查询接口的方法</h3><p>主要过程就是：</p>
 <ol>
 <li>新建一个Page对象</li>
@@ -1347,29 +705,8 @@ public class R&#123;
 <li>从Page对象中取出数据，返回</li>
 </ol>
 <p>EduTeacherController类中的分页查询方法：</p>
-<pre><code class="java">/**
-     * 3.分页查询方法
-     * current 当前页
-     * limit 每页记录数
-     */
-@ApiOperation(&quot;分页查询讲师&quot;)
-@GetMapping(&quot;pageTeacher/&#123;current&#125;/&#123;limit&#125;&quot;)
-public R pageListTeacher(
-    @ApiParam(name = &quot;current&quot;, value = &quot;当前页数&quot;)
-    @PathVariable Long current,
-    @ApiParam(name = &quot;limit&quot;, value = &quot;每页记录数&quot;)
-    @PathVariable Long limit) &#123;
-    //创建Page对象，传入参数当前页1和每页记录数3
-    Page&lt;EduTeacher&gt; pageTeacher = new Page&lt;&gt;(current, limit);
-    //调用方法实现分页:分页对象，条件
-    //封装自带的page方法，直接分页查询，结果放入Page对象中
-    eduTeacherService.page(pageTeacher, null);
-    //从Page对象中得到查询结果,total是总条数
-    List&lt;EduTeacher&gt; records = pageTeacher.getRecords();
-    Long total = pageTeacher.getTotal();
-    return R.ok().data(&quot;total&quot;, total).data(&quot;rows&quot;, records);
-&#125;
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 3.分页查询方法</span></span><br><span class="line"><span class="comment">     * current 当前页</span></span><br><span class="line"><span class="comment">     * limit 每页记录数</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="meta">@ApiOperation(&quot;分页查询讲师&quot;)</span></span><br><span class="line"><span class="meta">@GetMapping(&quot;pageTeacher/&#123;current&#125;/&#123;limit&#125;&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> R <span class="title">pageListTeacher</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="meta">@ApiParam(name = &quot;current&quot;, value = &quot;当前页数&quot;)</span></span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="meta">@PathVariable</span> Long current,</span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="meta">@ApiParam(name = &quot;limit&quot;, value = &quot;每页记录数&quot;)</span></span></span></span><br><span class="line"><span class="function"><span class="params">    <span class="meta">@PathVariable</span> Long limit)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//创建Page对象，传入参数当前页1和每页记录数3</span></span><br><span class="line">    Page&lt;EduTeacher&gt; pageTeacher = <span class="keyword">new</span> Page&lt;&gt;(current, limit);</span><br><span class="line">    <span class="comment">//调用方法实现分页:分页对象，条件</span></span><br><span class="line">    <span class="comment">//封装自带的page方法，直接分页查询，结果放入Page对象中</span></span><br><span class="line">    eduTeacherService.page(pageTeacher, <span class="keyword">null</span>);</span><br><span class="line">    <span class="comment">//从Page对象中得到查询结果,total是总条数</span></span><br><span class="line">    List&lt;EduTeacher&gt; records = pageTeacher.getRecords();</span><br><span class="line">    Long total = pageTeacher.getTotal();</span><br><span class="line">    <span class="keyword">return</span> R.ok().data(<span class="string">&quot;total&quot;</span>, total).data(<span class="string">&quot;rows&quot;</span>, records);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>Page<EduTeacher> pageTeacher = new Page&lt;&gt;(current, limit);    //新建对象</li>
 <li>eduTeacherService.page(pageTeacher, null);//通过page方法查询，放入对象</li>
@@ -1389,61 +726,16 @@ public R pageListTeacher(
 </ol>
 </li>
 </ol>
-<h3 id="传入参数对象实现"><a href="#传入参数对象实现" class="headerlink" title="传入参数对象实现"></a>传入参数对象实现</h3><pre><code class="java">/*
-     * 4. 条件分页查询方法
-     * */
-@GetMapping(&quot;pageTeacherCondition/&#123;current&#125;/&#123;limit&#125;&quot;)
-public R pageTeacherCondition(@ApiParam(name = &quot;current&quot;, value = &quot;当前页数&quot;)
-                              @PathVariable Long current,
-                              @ApiParam(name = &quot;limit&quot;, value = &quot;每页记录数&quot;)
-                              @PathVariable Long limit,
-                              EduTeacherQuery eduTeacherQuery) &#123;
-    //新建Page对象
-    Page&lt;EduTeacher&gt; pageTeahcer = new Page&lt;&gt;(current, limit);
-    QueryWrapper&lt;EduTeacher&gt; wrapper = new QueryWrapper&lt;&gt;();
-    //多条件查询，可以通过xml动态sql
-    //这里单表可以直接通过判断拼接，条件值不为空就拼接条件
-    String name = eduTeacherQuery.getName();
-    Integer level = eduTeacherQuery.getLevel();
-    String begin = eduTeacherQuery.getBegin();
-    String end = eduTeacherQuery.getEnd();
-    //StringUtils是springframework包中的字符串工具类
-    if (!StringUtils.isEmpty(name)) &#123;
-        //构造条件
-        wrapper.like(&quot;name&quot;, name);
-    &#125;
-    if (!StringUtils.isEmpty(level)) &#123;
-        wrapper.eq(&quot;level&quot;, level);
-    &#125;
-    if (!StringUtils.isEmpty(begin)) &#123;
-        wrapper.ge(&quot;gmt_create&quot;, begin);
-    &#125;
-    if (!StringUtils.isEmpty(end)) &#123;
-        wrapper.le(&quot;gmt_create&quot;, end);
-    &#125;
-    //条件查询
-    eduTeacherService.page(pageTeahcer, wrapper);
+<h3 id="传入参数对象实现"><a href="#传入参数对象实现" class="headerlink" title="传入参数对象实现"></a>传入参数对象实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">     * 4. 条件分页查询方法</span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line"><span class="meta">@GetMapping(&quot;pageTeacherCondition/&#123;current&#125;/&#123;limit&#125;&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> R <span class="title">pageTeacherCondition</span><span class="params">(<span class="meta">@ApiParam(name = &quot;current&quot;, value = &quot;当前页数&quot;)</span></span></span></span><br><span class="line"><span class="function"><span class="params">                              <span class="meta">@PathVariable</span> Long current,</span></span></span><br><span class="line"><span class="function"><span class="params">                              <span class="meta">@ApiParam(name = &quot;limit&quot;, value = &quot;每页记录数&quot;)</span></span></span></span><br><span class="line"><span class="function"><span class="params">                              <span class="meta">@PathVariable</span> Long limit,</span></span></span><br><span class="line"><span class="function"><span class="params">                              EduTeacherQuery eduTeacherQuery)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//新建Page对象</span></span><br><span class="line">    Page&lt;EduTeacher&gt; pageTeahcer = <span class="keyword">new</span> Page&lt;&gt;(current, limit);</span><br><span class="line">    QueryWrapper&lt;EduTeacher&gt; wrapper = <span class="keyword">new</span> QueryWrapper&lt;&gt;();</span><br><span class="line">    <span class="comment">//多条件查询，可以通过xml动态sql</span></span><br><span class="line">    <span class="comment">//这里单表可以直接通过判断拼接，条件值不为空就拼接条件</span></span><br><span class="line">    String name = eduTeacherQuery.getName();</span><br><span class="line">    Integer level = eduTeacherQuery.getLevel();</span><br><span class="line">    String begin = eduTeacherQuery.getBegin();</span><br><span class="line">    String end = eduTeacherQuery.getEnd();</span><br><span class="line">    <span class="comment">//StringUtils是springframework包中的字符串工具类</span></span><br><span class="line">    <span class="keyword">if</span> (!StringUtils.isEmpty(name)) &#123;</span><br><span class="line">        <span class="comment">//构造条件</span></span><br><span class="line">        wrapper.like(<span class="string">&quot;name&quot;</span>, name);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!StringUtils.isEmpty(level)) &#123;</span><br><span class="line">        wrapper.eq(<span class="string">&quot;level&quot;</span>, level);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!StringUtils.isEmpty(begin)) &#123;</span><br><span class="line">        wrapper.ge(<span class="string">&quot;gmt_create&quot;</span>, begin);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!StringUtils.isEmpty(end)) &#123;</span><br><span class="line">        wrapper.le(<span class="string">&quot;gmt_create&quot;</span>, end);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//条件查询</span></span><br><span class="line">    eduTeacherService.page(pageTeahcer, wrapper);</span><br><span class="line"></span><br><span class="line">    Long total = pageTeahcer.getTotal();</span><br><span class="line">    List&lt;EduTeacher&gt; records = pageTeahcer.getRecords();</span><br><span class="line">    <span class="keyword">return</span> R.ok().data(<span class="string">&quot;total&quot;</span>, total).data(<span class="string">&quot;rows&quot;</span>, records);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    Long total = pageTeahcer.getTotal();
-    List&lt;EduTeacher&gt; records = pageTeahcer.getRecords();
-    return R.ok().data(&quot;total&quot;, total).data(&quot;rows&quot;, records);
-&#125;
-</code></pre>
 <p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210301114457743.png" alt="image-20210301114457743"></p>
 <h3 id="关于-RequestBody和-ResponseBody注解"><a href="#关于-RequestBody和-ResponseBody注解" class="headerlink" title="关于@RequestBody和@ResponseBody注解"></a>关于@RequestBody和@ResponseBody注解</h3><ul>
 <li>@ResponseBody是用来返回数据的,返回JSON格式的数据;</li>
 <li>@RequestBody是使用JSON来传递数据,把传过来的数据封装到对象中；</li>
 </ul>
 <p>上面的方法如果要使用@ResponseBody注解的话,要改为Post方式进行请求,Get方式不行</p>
-<pre><code class="java">@PostMapping(&quot;pageTeacherCondition/&#123;current&#125;/&#123;limit&#125;&quot;)
-public R pageTeacherCondition(@ApiParam(name = &quot;current&quot;, value = &quot;当前页数&quot;)
-                              @PathVariable Long current,
-                              @ApiParam(name = &quot;limit&quot;, value = &quot;每页记录数&quot;)
-                              @PathVariable Long limit,
-                              @RequestBody(required = false) EduTeacherQuery eduTeacherQuery) &#123;
-                            ……
-&#125;                
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping(&quot;pageTeacherCondition/&#123;current&#125;/&#123;limit&#125;&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> R <span class="title">pageTeacherCondition</span><span class="params">(<span class="meta">@ApiParam(name = &quot;current&quot;, value = &quot;当前页数&quot;)</span></span></span></span><br><span class="line"><span class="function"><span class="params">                              <span class="meta">@PathVariable</span> Long current,</span></span></span><br><span class="line"><span class="function"><span class="params">                              <span class="meta">@ApiParam(name = &quot;limit&quot;, value = &quot;每页记录数&quot;)</span></span></span></span><br><span class="line"><span class="function"><span class="params">                              <span class="meta">@PathVariable</span> Long limit,</span></span></span><br><span class="line"><span class="function"><span class="params">                              <span class="meta">@RequestBody(required = false)</span> EduTeacherQuery eduTeacherQuery)</span> </span>&#123;</span><br><span class="line">							……</span><br><span class="line">&#125;				</span><br></pre></td></tr></table></figure>
+
 <p>这里要加上required=false，保证为空的时候也能传入；</p>
 <p>改为@ResponeBody注解后，传入的是一个JSON字符串：</p>
 <p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210301114301637.png" alt="image-20210301114301637"></p>
@@ -1461,107 +753,31 @@ public R pageTeacherCondition(@ApiParam(name = &quot;current&quot;, value = &quo
 <h4 id="以下场景需要优先考虑VO、DTO并存："><a href="#以下场景需要优先考虑VO、DTO并存：" class="headerlink" title="以下场景需要优先考虑VO、DTO并存："></a>以下场景需要优先考虑VO、DTO并存：</h4><p>上述场景的反面场景<br>因为某种技术原因，比如某个框架（如Flex）提供自动把POJO转换为UI中某些Field时，可以考虑在实现层面定义出VO，这个权衡完全取决于使用框架的自动转换能力带来的开发和维护效率提升与设计多一个VO所多做的事情带来的开发和维护效率的下降之间的比对。<br>如果页面出现一个“大视图”，而组成这个大视图的所有数据需要调用多个服务，返回多个DTO来组装（当然，这同样可以通过服务层提供一次性返回一个大视图的DTO来取代，但在服务层提供一个这样的方法是否合适，需要在设计层面进行权衡）。</p>
 </blockquote>
 <h2 id="3-添加讲师"><a href="#3-添加讲师" class="headerlink" title="3.添加讲师"></a>3.添加讲师</h2><h3 id="3-1-修改自动填充时间"><a href="#3-1-修改自动填充时间" class="headerlink" title="3.1 修改自动填充时间"></a>3.1 修改自动填充时间</h3><p>1.实体类EduTeacher上面加注解@TableField，插入时和更新时填充</p>
-<pre><code class="java">@ApiModelProperty(value = &quot;创建时间&quot;)
-@TableField(fill = FieldFill.INSERT)
-private Date gmtCreate;
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ApiModelProperty(value = &quot;创建时间&quot;)</span></span><br><span class="line"><span class="meta">@TableField(fill = FieldFill.INSERT)</span></span><br><span class="line"><span class="keyword">private</span> Date gmtCreate;</span><br><span class="line"></span><br><span class="line"><span class="meta">@ApiModelProperty(value = &quot;更新时间&quot;)</span></span><br><span class="line"><span class="meta">@TableField(fill = FieldFill.INSERT_UPDATE)</span></span><br><span class="line"><span class="keyword">private</span> Date gmtModified;</span><br></pre></td></tr></table></figure>
 
-@ApiModelProperty(value = &quot;更新时间&quot;)
-@TableField(fill = FieldFill.INSERT_UPDATE)
-private Date gmtModified;
-</code></pre>
 <p>2.自定义实现接口功能，自动填充</p>
 <p>封装至common模块，servicebase下，新建handler包，新建MyMetaObjectHandler类</p>
-<pre><code class="java">package com.songx64.servicebase.handler;
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.songx64.servicebase.handler;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.reflection.MetaObject;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created on 2021/3/1,下午 3:35</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> SongX64</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyMetaObjectHandler</span> <span class="keyword">implements</span> <span class="title">MetaObjectHandler</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertFill</span><span class="params">(MetaObject metaObject)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//这里传入的是属性名称，不是字段名称</span></span><br><span class="line">        <span class="keyword">this</span>.setFieldValByName(<span class="string">&quot;gmtCreate&quot;</span>, <span class="keyword">new</span> Date(), metaObject);</span><br><span class="line">        <span class="keyword">this</span>.setFieldValByName(<span class="string">&quot;gmtModified&quot;</span>, <span class="keyword">new</span> Date(), metaObject);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateFill</span><span class="params">(MetaObject metaObject)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.setFieldValByName(<span class="string">&quot;gmtModified&quot;</span>, <span class="keyword">new</span> Date(), metaObject);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
-import org.apache.ibatis.reflection.MetaObject;
-import org.springframework.stereotype.Component;
-
-import java.util.Date;
-
-/**
- * Created on 2021/3/1,下午 3:35
- *
- * @author SongX64
- */
-@Component
-public class MyMetaObjectHandler implements MetaObjectHandler &#123;
-    @Override
-    public void insertFill(MetaObject metaObject) &#123;
-        //这里传入的是属性名称，不是字段名称
-        this.setFieldValByName(&quot;gmtCreate&quot;, new Date(), metaObject);
-        this.setFieldValByName(&quot;gmtModified&quot;, new Date(), metaObject);
-    &#125;
-
-    @Override
-    public void updateFill(MetaObject metaObject) &#123;
-        this.setFieldValByName(&quot;gmtModified&quot;, new Date(), metaObject);
-    &#125;
-&#125;
-</code></pre>
 <p>这里大概就是通过@TableFiled注解，然后通过MyMetaObjectHandler处理填充值</p>
 <blockquote>
 <p>Mybatis-Plus文档：<a target="_blank" rel="noopener" href="https://baomidou.com/guide/auto-fill-metainfo.html">https://baomidou.com/guide/auto-fill-metainfo.html</a></p>
 </blockquote>
 <h3 id="3-2-添加讲师方法"><a href="#3-2-添加讲师方法" class="headerlink" title="3.2 添加讲师方法"></a>3.2 添加讲师方法</h3><p>wdnmd，修改实体类之后Jrebel热部署不管用？</p>
 <p>遇到问题：说是id字段的类型不匹配，dismatch。修改重启换版本之后，不用Jrebel运行而是用原来的运行，可以了就。草</p>
-<pre><code class="java">/*
-     * 5.添加讲师方法
-     * */
-@PostMapping(&quot;addTeacher&quot;)
-public R addTeacher(@RequestBody EduTeacher eduTeacher) &#123;
-    boolean save = eduTeacherService.save(eduTeacher);
-    if (save) &#123;
-        return R.ok();
-    &#125; else &#123;
-        return R.error();
-    &#125;
-&#125;
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">     * 5.添加讲师方法</span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line"><span class="meta">@PostMapping(&quot;addTeacher&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> R <span class="title">addTeacher</span><span class="params">(<span class="meta">@RequestBody</span> EduTeacher eduTeacher)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">boolean</span> save = eduTeacherService.save(eduTeacher);</span><br><span class="line">    <span class="keyword">if</span> (save) &#123;</span><br><span class="line">        <span class="keyword">return</span> R.ok();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> R.error();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>tmd为啥行了呢？为啥不行呢？</p>
 <h2 id="4-修改讲师"><a href="#4-修改讲师" class="headerlink" title="4.修改讲师"></a>4.修改讲师</h2><h3 id="4-1-根据Id来查询讲师"><a href="#4-1-根据Id来查询讲师" class="headerlink" title="4.1 根据Id来查询讲师"></a>4.1 根据Id来查询讲师</h3><p>这个没啥好说的，直接调用就完事了。不过要回忆一下这个@PathVariable注解。</p>
-<pre><code class="java">/*
- * 6.根据讲师id进行查询
- * */
-@ApiOperation(&quot;根据Id查询讲师&quot;)
-@GetMapping(&quot;getTeacher/&#123;id&#125;&quot;)
-public R getTeacher(@PathVariable String id) &#123;
-    EduTeacher eduTeacher = eduTeacherService.getById(id);
-    return R.ok().data(&quot;teacher&quot;, eduTeacher);
-&#125;
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 6.根据讲师id进行查询</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"><span class="meta">@ApiOperation(&quot;根据Id查询讲师&quot;)</span></span><br><span class="line"><span class="meta">@GetMapping(&quot;getTeacher/&#123;id&#125;&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> R <span class="title">getTeacher</span><span class="params">(<span class="meta">@PathVariable</span> String id)</span> </span>&#123;</span><br><span class="line">    EduTeacher eduTeacher = eduTeacherService.getById(id);</span><br><span class="line">    <span class="keyword">return</span> R.ok().data(<span class="string">&quot;teacher&quot;</span>, eduTeacher);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h3 id="4-2-根据ID修改讲师"><a href="#4-2-根据ID修改讲师" class="headerlink" title="4.2 根据ID修改讲师"></a>4.2 根据ID修改讲师</h3><p>这里用了两种方式，一种Post请求，一种Put请求</p>
 <p>Post请求方式</p>
-<pre><code class="java">/*
- * 7.1 讲师修改功能
- * */
-@ApiOperation(&quot;根据ID修改讲师，Post方法&quot;)
-@PostMapping(&quot;updateTeacher&quot;)
-public R updateTeacher(@RequestBody EduTeacher eduTeacher) &#123;
-    boolean flag = eduTeacherService.updateById(eduTeacher);
-    if (flag) &#123;
-        return R.ok();
-    &#125; else &#123;
-        return R.error();
-    &#125;
-&#125;
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 7.1 讲师修改功能</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"><span class="meta">@ApiOperation(&quot;根据ID修改讲师，Post方法&quot;)</span></span><br><span class="line"><span class="meta">@PostMapping(&quot;updateTeacher&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> R <span class="title">updateTeacher</span><span class="params">(<span class="meta">@RequestBody</span> EduTeacher eduTeacher)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">boolean</span> flag = eduTeacherService.updateById(eduTeacher);</span><br><span class="line">    <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">        <span class="keyword">return</span> R.ok();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> R.error();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <p>Put请求方式</p>
-<pre><code class="java">/*
- * 7.2 Put方式修改讲师
- * */
-@ApiOperation(&quot;根据ID修改讲师，Put方法&quot;)
-@PutMapping(&quot;&#123;id&#125;&quot;)
-public R updateTeacherById(@PathVariable String id, @RequestBody EduTeacher eduTeacher) &#123;
-    eduTeacher.setId(id);
-    boolean flag = eduTeacherService.updateById(eduTeacher);
-    if (flag) &#123;
-        return R.ok();
-    &#125; else &#123;
-        return R.error();
-    &#125;
-&#125;
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 7.2 Put方式修改讲师</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"><span class="meta">@ApiOperation(&quot;根据ID修改讲师，Put方法&quot;)</span></span><br><span class="line"><span class="meta">@PutMapping(&quot;&#123;id&#125;&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> R <span class="title">updateTeacherById</span><span class="params">(<span class="meta">@PathVariable</span> String id, <span class="meta">@RequestBody</span> EduTeacher eduTeacher)</span> </span>&#123;</span><br><span class="line">    eduTeacher.setId(id);</span><br><span class="line">    <span class="keyword">boolean</span> flag = eduTeacherService.updateById(eduTeacher);</span><br><span class="line">    <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">        <span class="keyword">return</span> R.ok();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> R.error();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h3 id="相关知识-关于Put和Post"><a href="#相关知识-关于Put和Post" class="headerlink" title="相关知识:关于Put和Post"></a>相关知识:关于Put和Post</h3><blockquote>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36183935/article/details/80570062">https://blog.csdn.net/qq_36183935/article/details/80570062</a></p>
 <p>PUT和POST</p>

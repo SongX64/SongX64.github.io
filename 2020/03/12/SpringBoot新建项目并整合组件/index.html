@@ -483,59 +483,23 @@
 <p>同样，dao，entities，controller也是放到相应的文件夹下</p>
 <p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/1568275189019.png" alt="1568275189019"></p>
 <p>然后我是在HelloController中修改了”&quot;和“\index”的Mapping，修改启动主页：</p>
-<pre><code class="java">@RequestMapping(&#123;&quot;/&quot;,&quot;zuye&quot;,&quot;index&quot;&#125;)
-    public String ZuYe()&#123;
-        return &quot;login&quot;;
-    &#125;
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&#123;&quot;/&quot;,&quot;zuye&quot;,&quot;index&quot;&#125;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">ZuYe</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;login&quot;</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li><strong>500错误</strong>：未在pom.xml引入spring-boot-starter-thymeleaf启动器依赖</li>
 </ul>
 <h1 id="SpringBoot配置文件"><a href="#SpringBoot配置文件" class="headerlink" title="SpringBoot配置文件"></a>SpringBoot配置文件</h1><p>首先在<strong>pom.xml</strong>中引入<strong>配置文件解释器</strong>：</p>
-<pre><code class="xml">&lt;!--配置文件处理器--&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-boot-configuration-processor&lt;/artifactId&gt;
-            &lt;optional&gt;true&lt;/optional&gt;
-        &lt;/dependency&gt;
-</code></pre>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置文件处理器--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-configuration-processor<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 <p>引入了之后就会有提示了。</p>
 <h2 id="application文件举例"><a href="#application文件举例" class="headerlink" title="application文件举例"></a>application文件举例</h2><p>配置文件默认是<strong>application.properties或者是application.yml</strong></p>
 <p>举例：</p>
-<h3 id="application-properties"><a href="#application-properties" class="headerlink" title="application.properties"></a>application.properties</h3><pre><code class="properties">#配置person的值，与yml语法不一样
-#引入配置文件处理器后，可以自动提示
-person.last-name= 张三
-person.age=19
-person.birth=2001/03/04
-person.boss=false
-person.list=a,b,c
-person.maps.k1=v1
-person.maps.k2=12
-person.dog.name=dog
-person.dog.age=2
-</code></pre>
-<h3 id="application-yml"><a href="#application-yml" class="headerlink" title="application.yml"></a>application.yml</h3><pre><code class="yml">server:
-  port: 8081
+<h3 id="application-properties"><a href="#application-properties" class="headerlink" title="application.properties"></a>application.properties</h3><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#配置person的值，与yml语法不一样</span></span><br><span class="line"><span class="comment">#引入配置文件处理器后，可以自动提示</span></span><br><span class="line"><span class="meta">person.last-name</span>= <span class="string">张三</span></span><br><span class="line"><span class="meta">person.age</span>=<span class="string">19</span></span><br><span class="line"><span class="meta">person.birth</span>=<span class="string">2001/03/04</span></span><br><span class="line"><span class="meta">person.boss</span>=<span class="string">false</span></span><br><span class="line"><span class="meta">person.list</span>=<span class="string">a,b,c</span></span><br><span class="line"><span class="meta">person.maps.k1</span>=<span class="string">v1</span></span><br><span class="line"><span class="meta">person.maps.k2</span>=<span class="string">12</span></span><br><span class="line"><span class="meta">person.dog.name</span>=<span class="string">dog</span></span><br><span class="line"><span class="meta">person.dog.age</span>=<span class="string">2</span></span><br></pre></td></tr></table></figure>
 
-person:
-  lastName: zhang
-  age: 18
-  boss: false
-  birth: 2001/12/12
 
-  #数组、list、set
-  list:
-    - lisi
-    - wangwu
-  #数组行内写法
-  list: [lisi,wangwu]
-  #对象或Map，k-v
-  dog:
-    name: Tom
-    age: 3
-  #对象或Map行内写法
-  maps: &#123;k1: v1, k2: 12&#125;
-</code></pre>
+
+<h3 id="application-yml"><a href="#application-yml" class="headerlink" title="application.yml"></a>application.yml</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8081</span></span><br><span class="line"></span><br><span class="line"><span class="attr">person:</span></span><br><span class="line">  <span class="attr">lastName:</span> <span class="string">zhang</span></span><br><span class="line">  <span class="attr">age:</span> <span class="number">18</span></span><br><span class="line">  <span class="attr">boss:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">birth:</span> <span class="number">2001</span><span class="string">/12/12</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">#数组、list、set</span></span><br><span class="line">  <span class="attr">list:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">lisi</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">wangwu</span></span><br><span class="line">  <span class="comment">#数组行内写法</span></span><br><span class="line">  <span class="attr">list:</span> [<span class="string">lisi</span>,<span class="string">wangwu</span>]</span><br><span class="line">  <span class="comment">#对象或Map，k-v</span></span><br><span class="line">  <span class="attr">dog:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">Tom</span></span><br><span class="line">    <span class="attr">age:</span> <span class="number">3</span></span><br><span class="line">  <span class="comment">#对象或Map行内写法</span></span><br><span class="line">  <span class="attr">maps:</span> &#123;<span class="attr">k1:</span> <span class="string">v1</span>, <span class="attr">k2:</span> <span class="number">12</span>&#125;</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li><p>yml一定要在 “冒号：” 后面加个<strong>空格</strong>，不然识别不了。</p>
 </li>
@@ -544,42 +508,15 @@ person:
 <li><p>占位符，yml和properties都支持</p>
 </li>
 </ul>
-<pre><code class="yml">#随机uid
-person.last-name=张三$&#123;random.uuid&#125;
-#随机int
-person.age=$&#123;random.int&#125;
-#指定属性值
-#这样出来就是“张三uid_cat”
-person.cat.name=$&#123;person.name&#125;_cat
-#没有hello属性，会使用冒号后面的默认值；如果不加默认值的话，会直接输出这个式子
-person.dog.name=$&#123;person.hello:hello&#125;_dog
-</code></pre>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#随机uid</span></span><br><span class="line"><span class="string">person.last-name=张三$&#123;random.uuid&#125;</span></span><br><span class="line"><span class="comment">#随机int</span></span><br><span class="line"><span class="string">person.age=$&#123;random.int&#125;</span></span><br><span class="line"><span class="comment">#指定属性值</span></span><br><span class="line"><span class="comment">#这样出来就是“张三uid_cat”</span></span><br><span class="line"><span class="string">person.cat.name=$&#123;person.name&#125;_cat</span></span><br><span class="line"><span class="comment">#没有hello属性，会使用冒号后面的默认值；如果不加默认值的话，会直接输出这个式子</span></span><br><span class="line"><span class="string">person.dog.name=$&#123;person.hello:hello&#125;_dog</span></span><br></pre></td></tr></table></figure>
+
 <h2 id="Profile"><a href="#Profile" class="headerlink" title="Profile"></a>Profile</h2><p>SpringBoot支持配置文件多Profile，形式如application-dev.yml(开发环境配置文件),application-pro.properties(生产环境配置文件)。</p>
 <p>这样命名之后可以直接通过一些方式来指定使用哪一个配置文件。</p>
 <p>这里的名字是可以随便起的（符合规范别xjb起就行）。</p>
-<h3 id="yml多文档块方式"><a href="#yml多文档块方式" class="headerlink" title="yml多文档块方式"></a>yml多文档块方式</h3><pre><code class="yml">#我们假设不同环境使用的端口不同
-#文档块1，prod环境，active表明现在是激活的
-server: 
-    port: 8081
-spring: 
-    profiles: 
-        active: prod
+<h3 id="yml多文档块方式"><a href="#yml多文档块方式" class="headerlink" title="yml多文档块方式"></a>yml多文档块方式</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#我们假设不同环境使用的端口不同</span></span><br><span class="line"><span class="comment">#文档块1，prod环境，active表明现在是激活的</span></span><br><span class="line"><span class="attr">server:</span> </span><br><span class="line">	<span class="attr">port:</span> <span class="number">8081</span></span><br><span class="line"><span class="attr">spring:</span> </span><br><span class="line">	<span class="attr">profiles:</span> </span><br><span class="line">		<span class="attr">active:</span> <span class="string">prod</span></span><br><span class="line"></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="comment">#3个横线分割文档块，下面就相当于第2个文档了</span></span><br><span class="line"><span class="comment">#spring.profiles,就是指定是啥profiles环境了</span></span><br><span class="line"><span class="attr">server:</span></span><br><span class="line">	<span class="attr">port:</span> <span class="number">8082</span></span><br><span class="line"><span class="attr">spring:</span> </span><br><span class="line">	<span class="attr">profiles:</span> <span class="string">dev</span></span><br><span class="line"></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="comment">#第3个也一样</span></span><br><span class="line"><span class="attr">server:</span> </span><br><span class="line">	<span class="attr">port:</span> <span class="number">8083</span></span><br><span class="line"><span class="attr">spring:</span> </span><br><span class="line">	<span class="attr">profiles:</span> <span class="string">prod</span></span><br></pre></td></tr></table></figure>
 
----
-#3个横线分割文档块，下面就相当于第2个文档了
-#spring.profiles,就是指定是啥profiles环境了
-server:
-    port: 8082
-spring: 
-    profiles: dev
 
----
-#第3个也一样
-server: 
-    port: 8083
-spring: 
-    profiles: prod
-</code></pre>
+
 <h3 id="指定profile"><a href="#指定profile" class="headerlink" title="指定profile"></a>指定profile</h3><ol>
 <li><p>配置文件中直接写，比如上面的<code>spring.profiles.active=prod</code></p>
 </li>
@@ -625,52 +562,15 @@ spring:
 <h1 id="SpringBoot日志"><a href="#SpringBoot日志" class="headerlink" title="SpringBoot日志"></a>SpringBoot日志</h1><p>日志分为日志门面（日志的抽象层）和日志实现</p>
 <p>SpringBoot：底层是Spring框架，Spring框架默认使用JCL（很久没有更新过了）</p>
 <p>​    <strong>SpringBoot选用的是SLF4（门面）和logback（实现）</strong></p>
-<pre><code class="java">    //记录器
-    Logger logger = LoggerFactory.getLogger(getClass());
-    @Test
-    public void contextLoads() &#123;
-        //System.out.println();
-
-        //日志的级别；
-        //由低到高   trace&lt;debug&lt;info&lt;warn&lt;error
-        //可以调整输出的日志级别；日志就只会在这个级别以以后的高级别生效
-        logger.trace(&quot;这是trace日志...&quot;);
-        logger.debug(&quot;这是debug日志...&quot;);
-        //SpringBoot默认给我们使用的是info级别的，没有指定级别的就用SpringBoot默认规定的级别；root级别
-        logger.info(&quot;这是info日志...&quot;);
-        logger.warn(&quot;这是warn日志...&quot;);
-        logger.error(&quot;这是error日志...&quot;);
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//记录器</span></span><br><span class="line">Logger logger = LoggerFactory.getLogger(getClass());</span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextLoads</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="comment">//System.out.println();</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//日志的级别；</span></span><br><span class="line">	<span class="comment">//由低到高   trace&lt;debug&lt;info&lt;warn&lt;error</span></span><br><span class="line">	<span class="comment">//可以调整输出的日志级别；日志就只会在这个级别以以后的高级别生效</span></span><br><span class="line">	logger.trace(<span class="string">&quot;这是trace日志...&quot;</span>);</span><br><span class="line">	logger.debug(<span class="string">&quot;这是debug日志...&quot;</span>);</span><br><span class="line">	<span class="comment">//SpringBoot默认给我们使用的是info级别的，没有指定级别的就用SpringBoot默认规定的级别；root级别</span></span><br><span class="line">	logger.info(<span class="string">&quot;这是info日志...&quot;</span>);</span><br><span class="line">	logger.warn(<span class="string">&quot;这是warn日志...&quot;</span>);</span><br><span class="line">	logger.error(<span class="string">&quot;这是error日志...&quot;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-    &#125;
-</code></pre>
-<pre><code>    日志输出格式：
-        %d表示日期时间，
-        %thread表示线程名，
-        %-5level：级别从左显示5个字符宽度
-        %logger&#123;50&#125; 表示logger名字最长50个字符，否则按照句点分割。 
-        %msg：日志消息，
-        %n是换行符
-    --&gt;
-    %d&#123;yyyy-MM-dd HH:mm:ss.SSS&#125; [%thread] %-5level %logger&#123;50&#125; - %msg%n
-</code></pre>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">  日志输出格式：</span><br><span class="line">%d表示日期时间，</span><br><span class="line">%thread表示线程名，</span><br><span class="line">%-5level：级别从左显示5个字符宽度</span><br><span class="line">%logger&#123;50&#125; 表示logger名字最长50个字符，否则按照句点分割。 </span><br><span class="line">%msg：日志消息，</span><br><span class="line">%n是换行符</span><br><span class="line">  --&gt;</span><br><span class="line">  %d&#123;yyyy-MM-dd HH:mm:ss.SSS&#125; [%thread] %-5level %logger&#123;50&#125; - %msg%n</span><br></pre></td></tr></table></figure>
+
 <p>SpringBoot修改日志的默认配置</p>
-<pre><code class="properties">logging.level.com.atguigu=trace
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">logging.level.com.atguigu</span>=<span class="string">trace</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#logging.path=</span></span><br><span class="line"><span class="comment"># 不指定路径在当前项目下生成springboot.log日志</span></span><br><span class="line"><span class="comment"># 可以指定完整的路径；</span></span><br><span class="line"><span class="comment">#logging.file=G:/springboot.log</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在当前磁盘的根路径下创建spring文件夹和里面的log文件夹；使用 spring.log 作为默认文件</span></span><br><span class="line"><span class="meta">logging.path</span>=<span class="string">/spring/log</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#  在控制台输出的日志的格式</span></span><br><span class="line"><span class="meta">logging.pattern.console</span>=<span class="string">%d&#123;yyyy-MM-dd&#125; [%thread] %-5level %logger&#123;50&#125; - %msg%n</span></span><br><span class="line"><span class="comment"># 指定文件中日志输出的格式</span></span><br><span class="line"><span class="meta">logging.pattern.file</span>=<span class="string">%d&#123;yyyy-MM-dd&#125; === [%thread] === %-5level === %logger&#123;50&#125; ==== %msg%n</span></span><br></pre></td></tr></table></figure>
 
-
-#logging.path=
-# 不指定路径在当前项目下生成springboot.log日志
-# 可以指定完整的路径；
-#logging.file=G:/springboot.log
-
-# 在当前磁盘的根路径下创建spring文件夹和里面的log文件夹；使用 spring.log 作为默认文件
-logging.path=/spring/log
-
-#  在控制台输出的日志的格式
-logging.pattern.console=%d&#123;yyyy-MM-dd&#125; [%thread] %-5level %logger&#123;50&#125; - %msg%n
-# 指定文件中日志输出的格式
-logging.pattern.file=%d&#123;yyyy-MM-dd&#125; === [%thread] === %-5level === %logger&#123;50&#125; ==== %msg%n
-</code></pre>
 <table>
 <thead>
 <tr>
@@ -705,59 +605,24 @@ logging.pattern.file=%d&#123;yyyy-MM-dd&#125; === [%thread] === %-5level === %lo
 <li>新建DataSource对象getConnection()一下，来看看是否连接成功</li>
 </ol>
 <p>新建项目时勾选MySQL和JDBC:</p>
-<h2 id="pom-xml中jdbc和mysql的依赖"><a href="#pom-xml中jdbc和mysql的依赖" class="headerlink" title="pom.xml中jdbc和mysql的依赖"></a>pom.xml中jdbc和mysql的依赖</h2><pre><code class="xml">&lt;dependency&gt;
-    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-    &lt;artifactId&gt;spring-boot-starter-data-jdbc&lt;/artifactId&gt;
-&lt;/dependency&gt;
+<h2 id="pom-xml中jdbc和mysql的依赖"><a href="#pom-xml中jdbc和mysql的依赖" class="headerlink" title="pom.xml中jdbc和mysql的依赖"></a>pom.xml中jdbc和mysql的依赖</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-jdbc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-
-&lt;dependency&gt;
-    &lt;groupId&gt;mysql&lt;/groupId&gt;
-    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
-    &lt;scope&gt;runtime&lt;/scope&gt;
-&lt;/dependency&gt;
-</code></pre>
 <h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>然后在配置文件中，增加数据库连接的属性：</p>
-<pre><code class="yml">spring:
-  datasource:
-    #   数据源基本配置
-    initialization-mode: always
-    username: root
-    password: 123456
-    url: jdbc:mysql://localhost:3306/springbootlearn?serverTimezone=UTC
-    driver-class-name: com.mysql.cj.jdbc.Driver
-</code></pre>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">datasource:</span></span><br><span class="line">    <span class="comment">#   数据源基本配置</span></span><br><span class="line">    <span class="attr">initialization-mode:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">123456</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">jdbc:mysql://localhost:3306/springbootlearn?serverTimezone=UTC</span></span><br><span class="line">    <span class="attr">driver-class-name:</span> <span class="string">com.mysql.cj.jdbc.Driver</span></span><br></pre></td></tr></table></figure>
+
+
+
 <p>遇到问题：</p>
 <p>抛出<code>The server time zone value &#39;�й���׼ʱ��&#39; is unrecogni</code>错误 </p>
 <p>原因是因为使用了Mysql Connector/J 6.x以上的版本，然后就报了时区的错误</p>
-<pre><code class="properties">将原来的连接：
-spring.datasource.url=jdbc:mysql://127.0.0.1:3306/
-修改为：
-spring.datasource.url=jdbc:mysql://localhost:3306/springbootlearn?serverTimezone=UTC
-</code></pre>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">将原来的连接：</span></span><br><span class="line"><span class="meta">spring.datasource.url</span>=<span class="string">jdbc:mysql://127.0.0.1:3306/</span></span><br><span class="line"><span class="attr">修改为：</span></span><br><span class="line"><span class="meta">spring.datasource.url</span>=<span class="string">jdbc:mysql://localhost:3306/springbootlearn?serverTimezone=UTC</span></span><br></pre></td></tr></table></figure>
+
 <p>添加?serverTimezone=UTC即可解决。</p>
 <h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>SpringBoot测试类：</p>
-<pre><code class="java">@RunWith(SpringRunner.class)
-@SpringBootTest
-public class SpringBoot06DataJdbcApplicationTests &#123;
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith(SpringRunner.class)</span></span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringBoot06DataJdbcApplicationTests</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    DataSource dataSource;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextLoads</span><span class="params">()</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line"><span class="comment">//        输出class com.zaxxer.hikari.HikariDataSource</span></span><br><span class="line">        System.out.println(dataSource.getClass());</span><br><span class="line"></span><br><span class="line">        Connection connection = dataSource.getConnection();</span><br><span class="line"><span class="comment">//        输出HikariProxyConnection@507944445 wrapping com.mysql.cj.jdbc.ConnectionImpl@554f0dfb</span></span><br><span class="line"><span class="comment">//        说明SpringBoot2.0+使用的默认数据源是:com.zaxxer.hikari.HikariDataSource</span></span><br><span class="line">        System.out.println(connection);</span><br><span class="line">        connection.close();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-    @Autowired
-    DataSource dataSource;
 
-    @Test
-    public void contextLoads() throws SQLException &#123;
-//        输出class com.zaxxer.hikari.HikariDataSource
-        System.out.println(dataSource.getClass());
 
-        Connection connection = dataSource.getConnection();
-//        输出HikariProxyConnection@507944445 wrapping com.mysql.cj.jdbc.ConnectionImpl@554f0dfb
-//        说明SpringBoot2.0+使用的默认数据源是:com.zaxxer.hikari.HikariDataSource
-        System.out.println(connection);
-        connection.close();
-    &#125;
-
-&#125;
-</code></pre>
 <h1 id="使用阿里数据源Druid"><a href="#使用阿里数据源Druid" class="headerlink" title="使用阿里数据源Druid"></a>使用阿里数据源Druid</h1><ol>
 <li><p>添加依赖</p>
 </li>
@@ -770,97 +635,14 @@ public class SpringBoot06DataJdbcApplicationTests &#123;
 <p>​    DRUID是阿里巴巴开源平台上一个数据库连接池实现，它结合了C3P0、DBCP、PROXOOL等DB池的优点，同时加入了<strong>日志监控</strong>，可以很好的监控DB池连接和SQL的执行情况，可以说是针对监控而生的DB连接池，据说是目前最好的连接池。</p>
 <p>​    上面SpringBoot默认的数据源是com.zaxxer.hikari.HikariDataSource，然后我们将其修改为alibaba的Druid。</p>
 <p>在上面的基础上进行修改：</p>
-<h2 id="pom-xml引入依赖"><a href="#pom-xml引入依赖" class="headerlink" title="pom.xml引入依赖"></a>pom.xml引入依赖</h2><pre><code class="xml">&lt;!-- https://mvnrepository.com/artifact/com.alibaba/druid --&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;com.alibaba&lt;/groupId&gt;
-    &lt;artifactId&gt;druid&lt;/artifactId&gt;
-    &lt;version&gt;1.1.8&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre>
+<h2 id="pom-xml引入依赖"><a href="#pom-xml引入依赖" class="headerlink" title="pom.xml引入依赖"></a>pom.xml引入依赖</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/com.alibaba/druid --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>druid<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.8<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 <p>​    具体依赖还有各种版本可以去Maven Repository网站搜Druid</p>
-<h2 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><pre><code class="yml">spring:
-  datasource:
-    #   数据源基本配置
-    initialization-mode: always
-    username: root
-    password: 123456
-    url: jdbc:mysql://localhost:3306/springbootlearn?serverTimezone=UTC
-    driver-class-name: com.mysql.cj.jdbc.Driver
-#    schema:
-#      - classpath:department.sql
-    type: com.alibaba.druid.pool.DruidDataSource
+<h2 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">datasource:</span></span><br><span class="line">    <span class="comment">#   数据源基本配置</span></span><br><span class="line">    <span class="attr">initialization-mode:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">123456</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">jdbc:mysql://localhost:3306/springbootlearn?serverTimezone=UTC</span></span><br><span class="line">    <span class="attr">driver-class-name:</span> <span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line"><span class="comment">#    schema:</span></span><br><span class="line"><span class="comment">#      - classpath:department.sql</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">com.alibaba.druid.pool.DruidDataSource</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#   数据源其他配置</span></span><br><span class="line">    <span class="attr">initialSize:</span> <span class="number">5</span></span><br><span class="line">    <span class="attr">minIdle:</span> <span class="number">5</span></span><br><span class="line">    <span class="attr">maxActive:</span> <span class="number">20</span></span><br><span class="line">    <span class="attr">maxWait:</span> <span class="number">60000</span></span><br><span class="line">    <span class="attr">timeBetweenEvictionRunsMillis:</span> <span class="number">60000</span></span><br><span class="line">    <span class="attr">minEvictableIdleTimeMillis:</span> <span class="number">300000</span></span><br><span class="line">    <span class="attr">validationQuery:</span> <span class="string">SELECT</span> <span class="number">1</span> <span class="string">FROM</span> <span class="string">DUAL</span></span><br><span class="line">    <span class="attr">testWhileIdle:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">testOnBorrow:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">testOnReturn:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">poolPreparedStatements:</span> <span class="literal">true</span></span><br><span class="line">   </span><br><span class="line">   <span class="comment">#   配置监控统计拦截的filters，去掉后监控界面sql无法统计，&#x27;wall&#x27;用于防火墙</span></span><br><span class="line">   <span class="comment">#   监控统计用的filter:stat；日志用的filter:log4j；防御sql注入的filter:wall</span></span><br><span class="line">    <span class="attr">filters:</span> <span class="string">stat,wall,log4j</span></span><br><span class="line">    <span class="attr">maxPoolPreparedStatementPerConnectionSize:</span> <span class="number">20</span></span><br><span class="line">    <span class="attr">useGlobalDataSourceStat:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">connectionProperties:</span> <span class="string">druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500</span></span><br><span class="line">    <span class="comment"># 配置多久进行一次检测，检测需要关闭的空闲连接 单位毫秒</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-    #   数据源其他配置
-    initialSize: 5
-    minIdle: 5
-    maxActive: 20
-    maxWait: 60000
-    timeBetweenEvictionRunsMillis: 60000
-    minEvictableIdleTimeMillis: 300000
-    validationQuery: SELECT 1 FROM DUAL
-    testWhileIdle: true
-    testOnBorrow: false
-    testOnReturn: false
-    poolPreparedStatements: true
-   
-   #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，&#39;wall&#39;用于防火墙
-   #   监控统计用的filter:stat；日志用的filter:log4j；防御sql注入的filter:wall
-    filters: stat,wall,log4j
-    maxPoolPreparedStatementPerConnectionSize: 20
-    useGlobalDataSourceStat: true
-    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
-    # 配置多久进行一次检测，检测需要关闭的空闲连接 单位毫秒
-</code></pre>
 <p>​    主要是修改type，改变数据源。然后进行其他具体参数设置。</p>
-<h2 id="编写配置类DruidConfig"><a href="#编写配置类DruidConfig" class="headerlink" title="编写配置类DruidConfig"></a>编写配置类DruidConfig</h2><pre><code class="java">@Configuration
-public class DruidConfig &#123;
+<h2 id="编写配置类DruidConfig"><a href="#编写配置类DruidConfig" class="headerlink" title="编写配置类DruidConfig"></a>编写配置类DruidConfig</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DruidConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ConfigurationProperties(prefix = &quot;spring.datasource&quot;)</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> DataSource <span class="title">druid</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> DruidDataSource();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//配置Druid的监控</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//1.配置一个管理后后台的servlet,这个Bean加到容器中</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ServletRegistrationBean <span class="title">statViewServlet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ServletRegistrationBean bean = <span class="keyword">new</span> ServletRegistrationBean(<span class="keyword">new</span> StatViewServlet(), <span class="string">&quot;/druid/*&quot;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">//配置初始化参数，因为下面需要传入一个map</span></span><br><span class="line">        Map&lt;String, String&gt; initParams = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//这个东西的参数去StatViewServlet类里面，他的父类ResourceServlet里面找</span></span><br><span class="line">        initParams.put(<span class="string">&quot;loginUsername&quot;</span>, <span class="string">&quot;admin&quot;</span>);</span><br><span class="line">        initParams.put(<span class="string">&quot;loginPassword&quot;</span>, <span class="string">&quot;123456&quot;</span>);</span><br><span class="line"><span class="comment">//        initParams.put(&quot;allow&quot;, &quot;&quot;);    //允许谁访问，默认是所有</span></span><br><span class="line"><span class="comment">//        initParams.put(&quot;deny&quot;,&quot;192.168.15.21&quot;); //拒绝谁放问，这里是假设的IP地址</span></span><br><span class="line">        <span class="comment">//需要传入一个map</span></span><br><span class="line">        bean.setInitParameters(initParams);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> bean;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//    2.配置一个web监控的filter</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> FilterRegistrationBean <span class="title">webStatFilter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        FilterRegistrationBean bean = <span class="keyword">new</span> FilterRegistrationBean();</span><br><span class="line"></span><br><span class="line">        bean.setFilter(<span class="keyword">new</span> WebStatFilter());</span><br><span class="line">        Map&lt;String, String&gt; initParams = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="comment">//同理去看WebStatFilter里面。这个是排除的不拦截的请求</span></span><br><span class="line">        initParams.put(<span class="string">&quot;exclusions&quot;</span>, <span class="string">&quot;*.js,*.css,/druid/*,/druid&quot;</span>);</span><br><span class="line">        bean.setInitParameters(initParams);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//要拦截哪些请求,需要一个collection参数。拦截所有请求</span></span><br><span class="line">        bean.setUrlPatterns(Arrays.asList(<span class="string">&quot;/*&quot;</span>));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> bean;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-    @ConfigurationProperties(prefix = &quot;spring.datasource&quot;)
-    @Bean
-    public DataSource druid() &#123;
-        return new DruidDataSource();
-    &#125;
-
-    //配置Druid的监控
-
-    //1.配置一个管理后后台的servlet,这个Bean加到容器中
-    @Bean
-    public ServletRegistrationBean statViewServlet() &#123;
-        ServletRegistrationBean bean = new ServletRegistrationBean(new StatViewServlet(), &quot;/druid/*&quot;);
-
-
-        //配置初始化参数，因为下面需要传入一个map
-        Map&lt;String, String&gt; initParams = new HashMap&lt;&gt;();
-
-        //这个东西的参数去StatViewServlet类里面，他的父类ResourceServlet里面找
-        initParams.put(&quot;loginUsername&quot;, &quot;admin&quot;);
-        initParams.put(&quot;loginPassword&quot;, &quot;123456&quot;);
-//        initParams.put(&quot;allow&quot;, &quot;&quot;);    //允许谁访问，默认是所有
-//        initParams.put(&quot;deny&quot;,&quot;192.168.15.21&quot;); //拒绝谁放问，这里是假设的IP地址
-        //需要传入一个map
-        bean.setInitParameters(initParams);
-
-        return bean;
-    &#125;
-
-//    2.配置一个web监控的filter
-    @Bean
-    public FilterRegistrationBean webStatFilter() &#123;
-        FilterRegistrationBean bean = new FilterRegistrationBean();
-
-        bean.setFilter(new WebStatFilter());
-        Map&lt;String, String&gt; initParams = new HashMap&lt;&gt;();
-        //同理去看WebStatFilter里面。这个是排除的不拦截的请求
-        initParams.put(&quot;exclusions&quot;, &quot;*.js,*.css,/druid/*,/druid&quot;);
-        bean.setInitParameters(initParams);
-
-        //要拦截哪些请求,需要一个collection参数。拦截所有请求
-        bean.setUrlPatterns(Arrays.asList(&quot;/*&quot;));
-
-        return bean;
-    &#125;
-&#125;
-</code></pre>
 <p>​    总的来说，就是写了一个Servlet和一个Filter注入到容器中。</p>
 <p>​    <strong>Servlet是用来处理请求，显示Druid的界面；</strong></p>
 <p>​    <strong>Filter是拦截网页的请求（部分静态资源除外），用来统计监控数据。</strong></p>
@@ -880,44 +662,16 @@ public class DruidConfig &#123;
 <p>自我感觉整合MyBatis的核心就是写Mapper</p>
 <p>何为ORM框架/Hibernate/…</p>
 <p>先做杂项工作：编写两个POJO普通类，同时数据库中建两个相应的表。</p>
-<h2 id="注解版"><a href="#注解版" class="headerlink" title="注解版"></a>注解版</h2><h3 id="编写Mapper"><a href="#编写Mapper" class="headerlink" title="编写Mapper"></a>编写Mapper</h3><pre><code class="java">//指定这是一个操作数据库的mapper
-@Mapper
-public interface DepartmentMapper &#123;
+<h2 id="注解版"><a href="#注解版" class="headerlink" title="注解版"></a>注解版</h2><h3 id="编写Mapper"><a href="#编写Mapper" class="headerlink" title="编写Mapper"></a>编写Mapper</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//指定这是一个操作数据库的mapper</span></span><br><span class="line"><span class="meta">@Mapper</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">DepartmentMapper</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Select(&quot;select * from department&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Department&gt; <span class="title">getDeptAll</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">//这些注解都是mybatis里面规定的注解</span></span><br><span class="line">    <span class="meta">@Select(&quot;select * from department where id=#&#123;id&#125;&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Department <span class="title">getDeptById</span><span class="params">(Integer id)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Delete(&quot;delete from department where id=#&#123;id&#125;&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">deleteDeptByID</span><span class="params">(Integer id)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//表中的id是自增的，所以说只插入name就行了</span></span><br><span class="line">    <span class="comment">//Options告诉Mapper我们使用了自动创建的键，键的名字是id，这时候这个注解就会自动把id在封装到返回的department里面</span></span><br><span class="line">    <span class="meta">@Options(useGeneratedKeys = true,keyProperty = &quot;id&quot;)</span></span><br><span class="line">    <span class="meta">@Insert(&quot;insert into department(departmentName) values(#&#123;departmentName&#125;)&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">insertDept</span><span class="params">(Department department)</span></span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//根据id来更新信息</span></span><br><span class="line">    <span class="meta">@Update(&quot;update department set departmentName=#&#123;departmentName&#125; where id=#&#123;      id&#125;&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">updateDept</span><span class="params">(Department department)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-    @Select(&quot;select * from department&quot;)
-    public List&lt;Department&gt; getDeptAll();
-    //这些注解都是mybatis里面规定的注解
-    @Select(&quot;select * from department where id=#&#123;id&#125;&quot;)
-    public Department getDeptById(Integer id);
-
-    @Delete(&quot;delete from department where id=#&#123;id&#125;&quot;)
-    public int deleteDeptByID(Integer id);
-
-    //表中的id是自增的，所以说只插入name就行了
-    //Options告诉Mapper我们使用了自动创建的键，键的名字是id，这时候这个注解就会自动把id在封装到返回的department里面
-    @Options(useGeneratedKeys = true,keyProperty = &quot;id&quot;)
-    @Insert(&quot;insert into department(departmentName) values(#&#123;departmentName&#125;)&quot;)
-    public int insertDept(Department department);
-
-
-    //根据id来更新信息
-    @Update(&quot;update department set departmentName=#&#123;departmentName&#125; where id=#&#123;      id&#125;&quot;)
-    public int updateDept(Department department);
-&#125;
-</code></pre>
 <p>关于<strong>注解中的值和参数的关系</strong>，比如#{id}，对应的是下面参数中<strong>同名的参数</strong>(比如上面的Integer id)；或者是下面参数是对象，对象中的同名的属性值：</p>
 <blockquote>
 <h4 id="使用对象"><a href="#使用对象" class="headerlink" title="使用对象"></a>使用对象</h4><p>如果我们使用普通的java对象作为查询条件的参数：</p>
-<pre><code>@Insert(&quot;INSERT INTO T_USER(NAME, PASSWORD, PHONE) VALUES(#&#123;name&#125;, #&#123;password&#125;, #&#123;phone&#125;)&quot;)
-int insertByUser(User user);
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@Insert(&quot;INSERT INTO T_USER(NAME, PASSWORD, PHONE) VALUES(#&#123;name&#125;, #&#123;password&#125;, #&#123;phone&#125;)&quot;)</span><br><span class="line">int insertByUser(User user);</span><br></pre></td></tr></table></figure>
+
+
 <p>只需要语句中的#{name}、#{age}就分别对应了User对象中的name和age属性。</p>
-<pre><code>User u = new User();
-    u.setName(&quot;赵六&quot;);
-    u.setPassword(&quot;12312312&quot;);
-    u.setPhone(&quot;13888888888&quot;);
-    userMapper.insertByUser(u);
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">User u &#x3D; new User();</span><br><span class="line">	u.setName(&quot;赵六&quot;);</span><br><span class="line">	u.setPassword(&quot;12312312&quot;);</span><br><span class="line">	u.setPhone(&quot;13888888888&quot;);</span><br><span class="line">	userMapper.insertByUser(u);</span><br></pre></td></tr></table></figure>
 </blockquote>
 <pre><code>@Insert(&quot;INSERT INTO T_USER(NAME, PASSWORD, PHONE) VALUES(#&#123;name&#125;, #&#123;password&#125;, #&#123;phone&#125;)&quot;)
 int insertByUser(User user);
@@ -935,85 +689,18 @@ User u = new User();
 <li>自定义方法，名字随意，方法参数和注解相对应（如上传参方式）</li>
 <li>注解@Insert,@Select等等，在这种注解中写相应的SQL语句（参数如上）。</li>
 </ol>
-<h3 id="编写Controller"><a href="#编写Controller" class="headerlink" title="编写Controller"></a>编写Controller</h3><pre><code class="java">@RestController
-public class DeptController &#123;
+<h3 id="编写Controller"><a href="#编写Controller" class="headerlink" title="编写Controller"></a>编写Controller</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DeptController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    DepartmentMapper departmentMapper;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/dept/all&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Department&gt; <span class="title">getDeptAll</span><span class="params">()</span></span>&#123;</span><br><span class="line">        List&lt;Department&gt; list =  departmentMapper.getDeptAll();</span><br><span class="line">        <span class="comment">//System.out.println(list.toString());</span></span><br><span class="line">        <span class="keyword">return</span> list;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//在参数中加上id传过来，然后去查询这个id</span></span><br><span class="line">    <span class="comment">//localhost:8080/dept/select/1</span></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/dept/select/&#123;id&#125;&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Department <span class="title">getDepartment</span><span class="params">(<span class="meta">@PathVariable(&quot;id&quot;)</span> Integer id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> departmentMapper.getDeptById(id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//插入department,带参数?departmentName = xxx</span></span><br><span class="line">    <span class="comment">//比如：localhost:8080/dept/insert?departmentName=腾讯</span></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/dept/insert&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Department <span class="title">insertDept</span><span class="params">(Department department)</span> </span>&#123;</span><br><span class="line">        departmentMapper.insertDept(department);</span><br><span class="line">        <span class="keyword">return</span> department;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//删除</span></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/dept/delete/&#123;id&#125;&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Department <span class="title">deleteDeptbyId</span><span class="params">(<span class="meta">@PathVariable(&quot;id&quot;)</span> Integer id)</span> </span>&#123;</span><br><span class="line">        Department deleteDept = getDepartment(id);</span><br><span class="line">        departmentMapper.deleteDeptByID(id);</span><br><span class="line">        <span class="keyword">return</span> deleteDept;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-    @Autowired
-    DepartmentMapper departmentMapper;
-
-    @GetMapping(&quot;/dept/all&quot;)
-    public List&lt;Department&gt; getDeptAll()&#123;
-        List&lt;Department&gt; list =  departmentMapper.getDeptAll();
-        //System.out.println(list.toString());
-        return list;
-    &#125;
-    //在参数中加上id传过来，然后去查询这个id
-    //localhost:8080/dept/select/1
-    @GetMapping(&quot;/dept/select/&#123;id&#125;&quot;)
-    public Department getDepartment(@PathVariable(&quot;id&quot;) Integer id) &#123;
-        return departmentMapper.getDeptById(id);
-    &#125;
-
-    //插入department,带参数?departmentName = xxx
-    //比如：localhost:8080/dept/insert?departmentName=腾讯
-    @GetMapping(&quot;/dept/insert&quot;)
-    public Department insertDept(Department department) &#123;
-        departmentMapper.insertDept(department);
-        return department;
-    &#125;
-
-    //删除
-    @GetMapping(&quot;/dept/delete/&#123;id&#125;&quot;)
-    public Department deleteDeptbyId(@PathVariable(&quot;id&quot;) Integer id) &#123;
-        Department deleteDept = getDepartment(id);
-        departmentMapper.deleteDeptByID(id);
-        return deleteDept;
-    &#125;
-&#125;
-</code></pre>
 <p>编写Controller来进行测试，调用Mapper中的方法，进行增删改查。注意这里用URL传参的方式。</p>
 <h2 id="XML配置文件版"><a href="#XML配置文件版" class="headerlink" title="XML配置文件版"></a>XML配置文件版</h2><h3 id="编写Mapper接口"><a href="#编写Mapper接口" class="headerlink" title="编写Mapper接口"></a>编写Mapper接口</h3><p>这里的Mapper类不需要写注解，只是包含相应的自定义方法，还有方法的参数。其他的相关东西都在xml里。</p>
-<pre><code class="java">//需要用@Mapper或者@MapperScan将接口扫描装配到容器中
-public interface EmployeeMapper &#123;
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//需要用@Mapper或者@MapperScan将接口扫描装配到容器中</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">EmployeeMapper</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Employee <span class="title">getEmpById</span><span class="params">(Integer id)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertEmp</span><span class="params">(Employee employee)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-    public Employee getEmpById(Integer id);
-
-    public void insertEmp(Employee employee);
-&#125;
-</code></pre>
 <h3 id="编写mybatis-config-xml"><a href="#编写mybatis-config-xml" class="headerlink" title="编写mybatis-config.xml"></a>编写mybatis-config.xml</h3><p>在里面进行各种配置。</p>
-<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
-&lt;!DOCTYPE configuration
-        PUBLIC &quot;-//mybatis.org//DTD Config 3.0//EN&quot;
-        &quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;&gt;
-&lt;configuration&gt;
-    &lt;!--驼峰命名法，解决d_id和dId的问题--&gt;
-    &lt;settings&gt;
-        &lt;setting name=&quot;mapUnderscoreToCamelCase&quot; value=&quot;true&quot;/&gt;
-    &lt;/settings&gt;
-&lt;/configuration&gt;
-</code></pre>
-<p>​    这里主要是解决了d_id和dId不同的问题，如果不加这个配置，那么在数据库中的d_id和类中的dId不会匹配。</p>
-<h3 id="编写Mapper-xml"><a href="#编写Mapper-xml" class="headerlink" title="编写Mapper.xml"></a>编写Mapper.xml</h3><pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
-&lt;!DOCTYPE mapper
-        PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;
-        &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
-&lt;!--这里的namespace和接口的类名要对应，进行绑定--&gt;
-&lt;mapper namespace=&quot;com.song.springboot.mapper.EmployeeMapper&quot;&gt;
-&lt;!--  public Employee getEmpById(Integer id);
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">configuration</span></span></span><br><span class="line"><span class="meta">        <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//mybatis.org//DTD Config 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="meta-string">&quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--驼峰命名法，解决d_id和dId的问题--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">settings</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">&quot;mapUnderscoreToCamelCase&quot;</span> <span class="attr">value</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-    public void insertEmp(Employee employee);--&gt;
-    &lt;!--这两个方法，用标签的形式在这绑定--&gt;
-    &lt;!--id是方法名，resultType是返回值--&gt;
-    &lt;select id=&quot;getEmpById&quot; resultType=&quot;com.song.springboot.bean.Employee&quot;&gt;
-        SELECT * FROM employee WHERE  id=#&#123;id&#125;
-    &lt;/select&gt;
-    &lt;!--插入，不需要返回值；然后注意这个d_id-&gt;dId这个大小写转换--&gt;
-    &lt;insert id=&quot;insertEmp&quot;&gt;
-        INSERT INTO employee(lastName,email,gender,d_id) VALUES (#&#123;lastName&#125;,#&#123;email&#125;,#&#123;gender&#125;,#&#123;dId&#125;)
-    &lt;/insert&gt;
-&lt;/mapper&gt;
-</code></pre>
+<p>​    这里主要是解决了d_id和dId不同的问题，如果不加这个配置，那么在数据库中的d_id和类中的dId不会匹配。</p>
+<h3 id="编写Mapper-xml"><a href="#编写Mapper-xml" class="headerlink" title="编写Mapper.xml"></a>编写Mapper.xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">mapper</span></span></span><br><span class="line"><span class="meta">        <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="meta-string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--这里的namespace和接口的类名要对应，进行绑定--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;com.song.springboot.mapper.EmployeeMapper&quot;</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--  public Employee getEmpById(Integer id);</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    public void insertEmp(Employee employee);--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--这两个方法，用标签的形式在这绑定--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--id是方法名，resultType是返回值--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getEmpById&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.song.springboot.bean.Employee&quot;</span>&gt;</span></span><br><span class="line">        SELECT * FROM employee WHERE  id=#&#123;id&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--插入，不需要返回值；然后注意这个d_id-&gt;dId这个大小写转换--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">&quot;insertEmp&quot;</span>&gt;</span></span><br><span class="line">        INSERT INTO employee(lastName,email,gender,d_id) VALUES (#&#123;lastName&#125;,#&#123;email&#125;,#&#123;gender&#125;,#&#123;dId&#125;)</span><br><span class="line">    <span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 <p>注意的地方：</p>
 <ul>
 <li>namespace：Mapper类名具体的路径</li>
@@ -1021,11 +708,8 @@ public interface EmployeeMapper &#123;
 <li>resultType：返回值类型，也是具体的类路径；返回值为空就不用写</li>
 <li>在相应的比如<code>&lt;select&gt;&lt;/select&gt;</code>编写SQL语句即可，值和参数仍然和上面的一样。</li>
 </ul>
-<h3 id="修改application-yml配置文件"><a href="#修改application-yml配置文件" class="headerlink" title="修改application.yml配置文件"></a>修改application.yml配置文件</h3><pre><code class="yml">#mybatis配置xml方式，xml所在路径
-mybatis:
-  config-location: classpath:mybatis/mybatis-config.xml
-  mapper-locations: classpath:mybatis/mapper/*.xml
-</code></pre>
+<h3 id="修改application-yml配置文件"><a href="#修改application-yml配置文件" class="headerlink" title="修改application.yml配置文件"></a>修改application.yml配置文件</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#mybatis配置xml方式，xml所在路径</span></span><br><span class="line"><span class="attr">mybatis:</span></span><br><span class="line">  <span class="attr">config-location:</span> <span class="string">classpath:mybatis/mybatis-config.xml</span></span><br><span class="line">  <span class="attr">mapper-locations:</span> <span class="string">classpath:mybatis/mapper/*.xml</span></span><br></pre></td></tr></table></figure>
+
 <p>在配置文件中加如上属性，指定mybatis的xml配置文件所在路径。</p>
 <h1 id="整合JPA"><a href="#整合JPA" class="headerlink" title="整合JPA"></a>整合JPA</h1><p>整合JPA时也可将数据源换为Druid，但是这里就没再换。</p>
 <h2 id="何为JPA"><a href="#何为JPA" class="headerlink" title="何为JPA"></a>何为JPA</h2><p>JPA是Java持久化API，定义了一系列对象持久化的标准，而hibernate是当前非常流行的对象持久化开源框架，Spring boot就<strong>默认集成了</strong>这种框架，加速web应用开发。</p>
@@ -1043,65 +727,16 @@ mybatis:
 </ul>
 <p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/1569675646418.png" alt="JPA与ORM"></p>
 <p><img src="https://gss3.bdstatic.com/-Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike92%2C5%2C5%2C92%2C30/sign=4eeb27c108087bf469e15fbb93ba3c49/8435e5dde71190ef25b88a55c41b9d16fcfa60fc.jpg" alt="img"></p>
-<h2 id="整合JPA-1"><a href="#整合JPA-1" class="headerlink" title="整合JPA"></a>整合JPA</h2><h3 id="pom-xml依赖"><a href="#pom-xml依赖" class="headerlink" title="pom.xml依赖"></a>pom.xml依赖</h3><pre><code class="xml">&lt;dependency&gt;
-    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-    &lt;artifactId&gt;spring-boot-starter-data-jdbc&lt;/artifactId&gt;
-&lt;/dependency&gt;
-&lt;!-- Spring Data的 Jpa starter --&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-    &lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt;
-&lt;/dependency&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;mysql&lt;/groupId&gt;
-    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
-    &lt;scope&gt;runtime&lt;/scope&gt;
-&lt;/dependency&gt;
-</code></pre>
+<h2 id="整合JPA-1"><a href="#整合JPA-1" class="headerlink" title="整合JPA"></a>整合JPA</h2><h3 id="pom-xml依赖"><a href="#pom-xml依赖" class="headerlink" title="pom.xml依赖"></a>pom.xml依赖</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-jdbc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- Spring Data的 Jpa starter --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-jpa<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 <p>PS：spring-boot-starter-data-jpa包括了Hibernate。</p>
-<h3 id="application-yml配置文件"><a href="#application-yml配置文件" class="headerlink" title="application.yml配置文件"></a>application.yml配置文件</h3><pre><code class="yml">spring:
-  datasource:
-    url: jdbc:mysql://localhost:3306/jpa?serverTimezone=UTC
-    username: root
-    password: 123456
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa:
-    hibernate:
-#      自动更新或者创建数据表
-      ddl-auto: update
-#      控制台显示SQL
-    show-sql: true
-#    bean的声明可以被覆盖？应该是用于我们自定义的Repository接口注入
-  main:
-    allow-bean-definition-overriding: true
-</code></pre>
+<h3 id="application-yml配置文件"><a href="#application-yml配置文件" class="headerlink" title="application.yml配置文件"></a>application.yml配置文件</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">datasource:</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">jdbc:mysql://localhost:3306/jpa?serverTimezone=UTC</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">123456</span></span><br><span class="line">    <span class="attr">driver-class-name:</span> <span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line">  <span class="attr">jpa:</span></span><br><span class="line">    <span class="attr">hibernate:</span></span><br><span class="line"><span class="comment">#      自动更新或者创建数据表</span></span><br><span class="line">      <span class="attr">ddl-auto:</span> <span class="string">update</span></span><br><span class="line"><span class="comment">#      控制台显示SQL</span></span><br><span class="line">    <span class="attr">show-sql:</span> <span class="literal">true</span></span><br><span class="line"><span class="comment">#    bean的声明可以被覆盖？应该是用于我们自定义的Repository接口注入</span></span><br><span class="line">  <span class="attr">main:</span></span><br><span class="line">    <span class="attr">allow-bean-definition-overriding:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
 <p>前面DataSource的配置和以前一样，url用户名密码驱动等。</p>
 <p>下面的overriding如果不写的话启动不了，根据控制台建议写上的。</p>
 <h3 id="实体类"><a href="#实体类" class="headerlink" title="实体类"></a>实体类</h3><p>重点在实体类的注解上：</p>
-<pre><code class="java">//使用JPA注解配置映射关系
-@Entity     //告诉JPA这是个实体类
-@Table(name = &quot;tbl_user&quot;)   //告诉这个类和数据库中的哪个表相对应，不写的话就是默认的小写类名user
-@JsonIgnoreProperties(value=&#123;&quot;hibernateLazyInitializer&quot;,&quot;handler&quot;&#125;)
-public class User &#123;
-    @Id //说明这是主键
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //自增主键
-    private Integer id;
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用JPA注解配置映射关系</span></span><br><span class="line"><span class="meta">@Entity</span>     <span class="comment">//告诉JPA这是个实体类</span></span><br><span class="line"><span class="meta">@Table(name = &quot;tbl_user&quot;)</span>   <span class="comment">//告诉这个类和数据库中的哪个表相对应，不写的话就是默认的小写类名user</span></span><br><span class="line"><span class="meta">@JsonIgnoreProperties(value=&#123;&quot;hibernateLazyInitializer&quot;,&quot;handler&quot;&#125;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Id</span> <span class="comment">//说明这是主键</span></span><br><span class="line">    <span class="meta">@GeneratedValue(strategy = GenerationType.IDENTITY)</span> <span class="comment">//自增主键</span></span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Column(name = &quot;last_name&quot;,length = 50)</span> <span class="comment">//指定列名</span></span><br><span class="line">    <span class="keyword">private</span> String lastName;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Column</span> <span class="comment">//默认就是列名和属性名一样，emali</span></span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Getter and Setter</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    @Column(name = &quot;last_name&quot;,length = 50) //指定列名
-    private String lastName;
-
-    @Column //默认就是列名和属性名一样，emali
-    private String email;
-
-    //Getter and Setter
-    public Integer getId() &#123;
-        return id;
-    &#125;
-
-    ...
-
-&#125;
-</code></pre>
 <ul>
 <li>@Entiy：说明这是一个POJO类</li>
 <li>＠Table：指明这个类和数据库中哪张表映射</li>
@@ -1109,53 +744,18 @@ public class User &#123;
 <li>＠GeneratedVlue：说明了主键的生成方式</li>
 <li>@Column：指定这个属性和表中哪个字段对应</li>
 </ul>
-<h3 id="继承JpaRepository接口"><a href="#继承JpaRepository接口" class="headerlink" title="继承JpaRepository接口"></a>继承JpaRepository接口</h3><pre><code class="java">//JpaRepository后面的泛型：要操作的实体类，以及主键的类型
-public interface UserRepository extends JpaRepository&lt;User, Integer&gt; &#123;
-
-&#125;
-</code></pre>
-<h3 id="Controller-调用"><a href="#Controller-调用" class="headerlink" title="Controller 调用"></a>Controller 调用</h3><pre><code class="java">@RestController
-public class UserController &#123;
-
-    @Autowired
-    UserRepository userRepository;
+<h3 id="继承JpaRepository接口"><a href="#继承JpaRepository接口" class="headerlink" title="继承JpaRepository接口"></a>继承JpaRepository接口</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//JpaRepository后面的泛型：要操作的实体类，以及主键的类型</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserRepository</span> <span class="keyword">extends</span> <span class="title">JpaRepository</span>&lt;<span class="title">User</span>, <span class="title">Integer</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-    //查找全部
-    @GetMapping(&quot;/user/jpa/all&quot;)
-    public List&lt;User&gt; getAllUser()&#123;
-        return userRepository.findAll();
-    &#125;
-    //查找用户
-    @GetMapping(&quot;/user/jpa/select/&#123;id&#125;&quot;)
-    public User getUser(@PathVariable(&quot;id&quot;) Integer id) &#123;
-        User user = userRepository.getOne(id);
-        return user;
-    &#125;
 
-    //插入用户,参数方式
-    @GetMapping(&quot;/user&quot;)
-    public User insertUser(User user) &#123;
-        User saveUser = userRepository.save(user);
-        return saveUser;
-    &#125;
-&#125;
-</code></pre>
+<h3 id="Controller-调用"><a href="#Controller-调用" class="headerlink" title="Controller 调用"></a>Controller 调用</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    UserRepository userRepository;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//查找全部</span></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/user/jpa/all&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">getAllUser</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userRepository.findAll();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//查找用户</span></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/user/jpa/select/&#123;id&#125;&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">getUser</span><span class="params">(<span class="meta">@PathVariable(&quot;id&quot;)</span> Integer id)</span> </span>&#123;</span><br><span class="line">        User user = userRepository.getOne(id);</span><br><span class="line">        <span class="keyword">return</span> user;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//插入用户,参数方式</span></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/user&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">insertUser</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">        User saveUser = userRepository.save(user);</span><br><span class="line">        <span class="keyword">return</span> saveUser;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>这里调用的话就直接自动注入一个Repository，然后用它来调用相应的方法如findAll()、getOne()等等即可（Hibernate会自动生成数据库语句，不用手动写）。</p>
 <p>在请求的同时，因为在application.yml中添加了<code>show-sql: true</code>属性，所以说console会打印出SQL语句：</p>
 <p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/1569743944609.png" alt="控制台SQL语句"></p>
 <h1 id="SpringBoot-注解"><a href="#SpringBoot-注解" class="headerlink" title="SpringBoot 注解"></a>SpringBoot 注解</h1><h2 id="hello请求"><a href="#hello请求" class="headerlink" title="/hello请求"></a>/hello请求</h2><ul>
 <li><p>@<strong>SpringBootApplication</strong><br>标注一个<strong>主程序类</strong>，表明这是一个SpringBoot应用，程序开始入口</p>
-<pre><code class="java">@SpringBootApplication
-public class SpringBoot01HelloworldQuickApplication &#123;
-
-    public static void main(String[] args) &#123;
-        SpringApplication.run(SpringBoot01HelloworldQuickApplication.class, args);
-    &#125;
-
-&#125;
-</code></pre>
-</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringBoot01HelloworldQuickApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(SpringBoot01HelloworldQuickApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li><p>@<strong>ResponseBody</strong><br>表明这是一个响应<br>表示该方法的<strong>返回结果直接写入HTTP response body中</strong><br>一般在异步获取数据时使用，在使用@RequestMapping后，返回值通常解析为跳转路径，加上@responsebody后返回结果不会被解析为跳转路径，而是直接写入HTTP response body中。比如异步获取json数据，加上@responsebody后，会直接返回json数据。</p>
 </li>
 <li><p><strong>@RequestMapping(“/hello”)</strong><br><strong>响应</strong>/hello<strong>请求</strong></p>
@@ -1166,18 +766,8 @@ public class SpringBoot01HelloworldQuickApplication &#123;
 <li><p><em><strong>@RestController:</strong></em><br>用于标注控制层组件(如struts中的action)，包含**@Controlle<strong>r和</strong>@ResponseBody**。</p>
 </li>
 </ul>
-<pre><code class="java"> /*@ResponseBody
- * @Controller
- * 这两个注解可以合并成下面一个*/
- @RestController
- public class HelloController &#123;
- 
-     @RequestMapping(&quot;/hello&quot;)
-     public String hello() &#123;
-         return &quot;Hello Quick Spring Boot!!!&quot;;
-     &#125;
- &#125;
-</code></pre>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*@ResponseBody</span></span><br><span class="line"><span class="comment">* @Controller</span></span><br><span class="line"><span class="comment">* 这两个注解可以合并成下面一个*/</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/hello&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">hello</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Hello Quick Spring Boot!!!&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h2 id="配置文件-使用properties或yml注入Bean"><a href="#配置文件-使用properties或yml注入Bean" class="headerlink" title="配置文件,使用properties或yml注入Bean"></a>配置文件,使用properties或yml注入Bean</h2><ul>
 <li><p><strong>@Component</strong><br>泛指组件，当组件不好归类的时候，我们可以使用这个注解进行标注。<br>@Component和@Bean都是用来<strong>注册Bean并装配到Spring容器</strong>中，但是Bean比Component的自定义性更强。可以实现一些Component实现不了的自定义加载类。</p>
@@ -1187,31 +777,7 @@ public class SpringBoot01HelloworldQuickApplication &#123;
 <li><p><strong>@ConfigurationProperties(prefix = “person”)</strong><br>将配置文件（比如application.properties）中的person属性的值与当前类的<strong>属性绑定</strong></p>
 </li>
 <li><p><strong>@Value(“${person.last-name}”)</strong><br>将这个值绑定到标注下面的属性上</p>
-<pre><code class="java">@Component
-@PropertySource(value = &#123;&quot;classpath:person.properties&quot;&#125;)
-@ConfigurationProperties(prefix = &quot;person&quot;)
-public class Person &#123;
-    //Value赋值，一个一个的
-    // $ 取资源文件中的值
-    //@Value(&quot;$&#123;person.last-name&#125;&quot;)
-    private String lastName;
-    // # 计算表达式
-    //@Value(&quot;#&#123;11*2&#125;&quot;)
-    private Integer age;
-    //直接赋值
-    //@Value(&quot;true&quot;)
-    private Boolean boss;
-    private Date birth;
-
-    private Map&lt;String,Object&gt; maps;
-    private List&lt;Object&gt; list;
-    private Dog dog;
-   
-    ......
-        
-&#125;
-</code></pre>
-</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@PropertySource(value = &#123;&quot;classpath:person.properties&quot;&#125;)</span></span><br><span class="line"><span class="meta">@ConfigurationProperties(prefix = &quot;person&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="comment">//Value赋值，一个一个的</span></span><br><span class="line">    <span class="comment">// $ 取资源文件中的值</span></span><br><span class="line">    <span class="comment">//@Value(&quot;$&#123;person.last-name&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String lastName;</span><br><span class="line">    <span class="comment">// # 计算表达式</span></span><br><span class="line">    <span class="comment">//@Value(&quot;#&#123;11*2&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">    <span class="comment">//直接赋值</span></span><br><span class="line">    <span class="comment">//@Value(&quot;true&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> Boolean boss;</span><br><span class="line">    <span class="keyword">private</span> Date birth;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Map&lt;String,Object&gt; maps;</span><br><span class="line">    <span class="keyword">private</span> List&lt;Object&gt; list;</span><br><span class="line">    <span class="keyword">private</span> Dog dog;</span><br><span class="line">   </span><br><span class="line">    ......</span><br><span class="line">        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 <hr>
 <ul>
@@ -1250,36 +816,13 @@ public class Person &#123;
 <h2 id="配置类"><a href="#配置类" class="headerlink" title="配置类"></a>配置类</h2><ul>
 <li><p><strong>@ImportResource（locations = {“classpath:beans.xml”}）</strong></p>
 <p>标注在一个配置类上</p>
-<pre><code class="java">@ImportResource(locations = &quot;classpath:bean.xml&quot;)
-@SpringBootApplication
-public class SpringBoot01HelloworldQuickApplication &#123;
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ImportResource(locations = &quot;classpath:bean.xml&quot;)</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringBoot01HelloworldQuickApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(SpringBoot01HelloworldQuickApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    public static void main(String[] args) &#123;
-        SpringApplication.run(SpringBoot01HelloworldQuickApplication.class, args);
-    &#125;
-
-&#125;
-</code></pre>
 <p>导入spring的配置文件，bean.xml</p>
-<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
-       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;helloService&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.song.springboot.service.HelloService&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-    &lt;bean id=&quot;helloService&quot; class=&quot;com.song.springboot.service.HelloService&quot;&gt;&lt;/bean&gt;
-&lt;/beans&gt;
-</code></pre>
 <p>这个xml的作用就是给HelloService类中注入一个id为helloService的Bean，可以在test中用以下来验证：</p>
-<pre><code class="java">    @Autowired
-    ApplicationContext ioc;
-
-    @Test
-    public void testHelloService()&#123;
-        boolean b = ioc.containsBean(&quot;helloService&quot;);
-        System.out.println(b);
-    &#125;
-</code></pre>
-</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line">ApplicationContext ioc;</span><br><span class="line">  </span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testHelloService</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">boolean</span> b = ioc.containsBean(<span class="string">&quot;helloService&quot;</span>);</span><br><span class="line">    System.out.println(b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li><p><strong>@Autowired</strong></p>
 <p>自动注入。可以对成员变量、方法和构造函数进行标注。<code>@Autowired</code>注解的意思就是，当Spring发现<code>@Autowired</code>注解时，将自动在代码上下文中找到与其匹配（默认是类型匹配）的Bean，并自动注入到相应的地方去。</p>
 </li>
@@ -1288,44 +831,28 @@ public class SpringBoot01HelloworldQuickApplication &#123;
 </li>
 <li><p><strong>@Bean</strong></p>
 <p>相当于XML中的<bean></bean>,<strong>放在方法的上面，而不是类</strong>，意思是产生一个bean,并交给spring管理。</p>
-<pre><code class="java">//说明这是个配置类，返回一个HelloService对象注入到容器中，最后ioc容器中会含有一个helloService
-@Configuration
-public class MyAppConfig &#123;
-    @Bean
-    public HelloService helloService()&#123;
-        return new HelloService();
-    &#125;
-
-&#125;
-</code></pre>
-</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//说明这是个配置类，返回一个HelloService对象注入到容器中，最后ioc容器中会含有一个helloService</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAppConfig</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> HelloService <span class="title">helloService</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> HelloService();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h1 id="遇到的一些问题解决"><a href="#遇到的一些问题解决" class="headerlink" title="遇到的一些问题解决"></a>遇到的一些问题解决</h1><h2 id="添加schema-all-sql到resources中，不会自动建表"><a href="#添加schema-all-sql到resources中，不会自动建表" class="headerlink" title="添加schema-all.sql到resources中，不会自动建表"></a>添加schema-all.sql到resources中，不会自动建表</h2><h3 id="错误："><a href="#错误：" class="headerlink" title="错误："></a>错误：</h3><p>​    添加schema-all.sql到resources中，不会自动建表</p>
 <h3 id="解决："><a href="#解决：" class="headerlink" title="解决："></a>解决：</h3><p>​    在application.properties配置文件中添加：</p>
-<pre><code class="properties">##   加这个，不然不会执行schema-all或者下面自定义sql脚本
-spring.datasource.initialization-mode=always
-</code></pre>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##   加这个，不然不会执行schema-all或者下面自定义sql脚本</span></span><br><span class="line"><span class="meta">spring.datasource.initialization-mode</span>=<span class="string">always</span></span><br></pre></td></tr></table></figure>
+
 <p>同时，如果加schema自定义sql位置，也是需要加是这个always属性的</p>
-<pre><code class="properties">##   设置默认的sql位置
-spring.datasource.schema=classpath:department.sql
-</code></pre>
-<h2 id="修改Durid，新建config配置绑定属性："><a href="#修改Durid，新建config配置绑定属性：" class="headerlink" title="修改Durid，新建config配置绑定属性："></a>修改Durid，新建config配置绑定属性：</h2><h3 id="报错："><a href="#报错：" class="headerlink" title="报错："></a>报错：</h3><pre><code class="java">Failed to bind properties under &#39;spring.datasource&#39; to javax.sql.DataSource
-</code></pre>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##   设置默认的sql位置</span></span><br><span class="line"><span class="meta">spring.datasource.schema</span>=<span class="string">classpath:department.sql</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="修改Durid，新建config配置绑定属性："><a href="#修改Durid，新建config配置绑定属性：" class="headerlink" title="修改Durid，新建config配置绑定属性："></a>修改Durid，新建config配置绑定属性：</h2><h3 id="报错："><a href="#报错：" class="headerlink" title="报错："></a>报错：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Failed to bind properties under <span class="string">&#x27;spring.datasource&#x27;</span> to javax.sql.DataSource</span><br></pre></td></tr></table></figure>
+
 <h3 id="原因："><a href="#原因：" class="headerlink" title="原因："></a>原因：</h3><p>在yml配置文件中，设置的属性：</p>
-<pre><code class="yml">   ##   配置监控统计拦截的filters，去掉后监控界面sql无法统计，&#39;wall&#39;用于防火墙
-    filters: stat,wall,log4j
-    maxPoolPreparedStatementPerConnectionSize: 20
-    useGlobalDataSourceStat: true
-    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
-</code></pre>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##   配置监控统计拦截的filters，去掉后监控界面sql无法统计，&#x27;wall&#x27;用于防火墙</span></span><br><span class="line"> <span class="attr">filters:</span> <span class="string">stat,wall,log4j</span></span><br><span class="line"> <span class="attr">maxPoolPreparedStatementPerConnectionSize:</span> <span class="number">20</span></span><br><span class="line"> <span class="attr">useGlobalDataSourceStat:</span> <span class="literal">true</span></span><br><span class="line"> <span class="attr">connectionProperties:</span> <span class="string">druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <p>其中filters引用了log4j，但是pom.xml中没有，所以说报错</p>
 <h3 id="解决：-1"><a href="#解决：-1" class="headerlink" title="解决："></a>解决：</h3><p>在pom.xml中添加log4j的依赖：</p>
-<pre><code class="xml">&lt;dependency&gt;
-    &lt;groupId&gt;log4j&lt;/groupId&gt;
-    &lt;artifactId&gt;log4j&lt;/artifactId&gt;
-    &lt;version&gt;1.2.12&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.12<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="SpingBoot-Druid，404错误"><a href="#SpingBoot-Druid，404错误" class="headerlink" title="SpingBoot+Druid，404错误"></a>SpingBoot+Druid，404错误</h2><h3 id="错误：-1"><a href="#错误：-1" class="headerlink" title="错误："></a>错误：</h3><p>网页404：</p>
 <blockquote>
 <h2 id="Whitelabel-Error-Page"><a href="#Whitelabel-Error-Page" class="headerlink" title="Whitelabel Error Page"></a>Whitelabel Error Page</h2><p>This application has no explicit mapping for /error, so you are seeing this as a fallback.</p>
@@ -1333,59 +860,29 @@ spring.datasource.schema=classpath:department.sql
 <p>There was an unexpected error (type=Not Found, status=404).</p>
 <p>No message available</p>
 </blockquote>
-<h3 id="原因：-1"><a href="#原因：-1" class="headerlink" title="原因："></a>原因：</h3><pre><code class="java">  //1.配置一个管理后后台的servlet,这个Bean加到容器中
-    @Bean
-    public ServletRegistrationBean statViewServlet() &#123;
-        ServletRegistrationBean bean = new ServletRegistrationBean(new StatViewServlet(), &quot;/druid/&quot;);
+<h3 id="原因：-1"><a href="#原因：-1" class="headerlink" title="原因："></a>原因：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">//1.配置一个管理后后台的servlet,这个Bean加到容器中</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ServletRegistrationBean <span class="title">statViewServlet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ServletRegistrationBean bean = <span class="keyword">new</span> ServletRegistrationBean(<span class="keyword">new</span> StatViewServlet(), <span class="string">&quot;/druid/&quot;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">//配置初始化参数，因为下面需要传入一个map</span></span><br><span class="line">        Map&lt;String, String&gt; initParams = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//这个东西的参数去StatViewServlet类里面，他的父类ResourceServlet里面找</span></span><br><span class="line">        initParams.put(<span class="string">&quot;loginUsername&quot;</span>, <span class="string">&quot;admin&quot;</span>);</span><br><span class="line">        initParams.put(<span class="string">&quot;loginPassword&quot;</span>, <span class="string">&quot;123456&quot;</span>);</span><br><span class="line"><span class="comment">//        initParams.put(&quot;allow&quot;, &quot;&quot;);    //允许谁访问，默认是所有</span></span><br><span class="line"><span class="comment">//        initParams.put(&quot;deny&quot;,&quot;192.168.15.21&quot;); //拒绝谁放问，这里是假设的IP地址</span></span><br><span class="line">        <span class="comment">//需要传入一个map</span></span><br><span class="line">        bean.setInitParameters(initParams);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> bean;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-
-        //配置初始化参数，因为下面需要传入一个map
-        Map&lt;String, String&gt; initParams = new HashMap&lt;&gt;();
-
-        //这个东西的参数去StatViewServlet类里面，他的父类ResourceServlet里面找
-        initParams.put(&quot;loginUsername&quot;, &quot;admin&quot;);
-        initParams.put(&quot;loginPassword&quot;, &quot;123456&quot;);
-//        initParams.put(&quot;allow&quot;, &quot;&quot;);    //允许谁访问，默认是所有
-//        initParams.put(&quot;deny&quot;,&quot;192.168.15.21&quot;); //拒绝谁放问，这里是假设的IP地址
-        //需要传入一个map
-        bean.setInitParameters(initParams);
-
-        return bean;
-    &#125;
-</code></pre>
 <p>其中的<code>ServletRegistrationBean bean = new ServletRegistrationBean(new StatViewServlet(), &quot;/druid/&quot;);</code>，第二个参数，urlMappings写错了。应该是<code>&quot;/druid/*&quot;</code>，是druid 路径下所有映射。</p>
-<h3 id="修改："><a href="#修改：" class="headerlink" title="修改："></a>修改：</h3><pre><code class="java">ServletRegistrationBean bean = new ServletRegistrationBean(new StatViewServlet(), &quot;/druid/*&quot;);
-</code></pre>
+<h3 id="修改："><a href="#修改：" class="headerlink" title="修改："></a>修改：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ServletRegistrationBean bean = <span class="keyword">new</span> ServletRegistrationBean(<span class="keyword">new</span> StatViewServlet(), <span class="string">&quot;/druid/*&quot;</span>);</span><br></pre></td></tr></table></figure>
+
 <p>即可。</p>
 <h2 id="整合JPA，报错Caused-by-org-hibernate-AnnotationException-No-identifier-specified-for-entity"><a href="#整合JPA，报错Caused-by-org-hibernate-AnnotationException-No-identifier-specified-for-entity" class="headerlink" title="整合JPA，报错Caused by: org.hibernate.AnnotationException: No identifier specified for entity:"></a>整合JPA，报错Caused by: org.hibernate.AnnotationException: No identifier specified for entity:</h2><h3 id="错误：-2"><a href="#错误：-2" class="headerlink" title="错误："></a>错误：</h3><blockquote>
 <p>这个前面还有个错误，好像是什么不能注入容器，根据console提示修改一下yml就行啦，加上：</p>
-<pre><code class="yml">spring: 
-  main:
-    allow-bean-definition-overriding: true
-</code></pre>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span> </span><br><span class="line">  <span class="attr">main:</span></span><br><span class="line">    <span class="attr">allow-bean-definition-overriding:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
 <p>大概是在容器中把我们写的UserRepository注入进去覆盖原来自有的？</p>
 </blockquote>
 <p>启动SpringBoot时报错：</p>
-<pre><code>org.springframework.beans.factory.BeanCreationException: Error creating bean with name &#39;entityManagerFactory&#39; defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: No identifier specified for entity: com.song.springboot.entity.User
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">org.springframework.beans.factory.BeanCreationException: Error creating bean with name &#39;entityManagerFactory&#39; defined in class path resource [org&#x2F;springframework&#x2F;boot&#x2F;autoconfigure&#x2F;orm&#x2F;jpa&#x2F;HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: No identifier specified for entity: com.song.springboot.entity.User</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Caused by: org.hibernate.AnnotationException: No identifier specified for entity: com.song.springboot.entity.User</span><br></pre></td></tr></table></figure>
 
-
-Caused by: org.hibernate.AnnotationException: No identifier specified for entity: com.song.springboot.entity.User
-</code></pre>
 <h3 id="原因：-2"><a href="#原因：-2" class="headerlink" title="原因："></a>原因：</h3><p>百度了半天，都在说是实体类的注解写错了，需要加上主键的@Id，我对了半天也没发现错误。最终发现：</p>
-<pre><code class="java">import org.springframework.data.annotation.Id;
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.data.annotation.Id;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.persistence.*;</span><br></pre></td></tr></table></figure>
 
-import javax.persistence.*;
-</code></pre>
 <p>还真是@Id的问题，因为我加@Id的时候导包导入错了，不是springframework的@Id注解而是persistence里面的。</p>
 <h3 id="解决：-2"><a href="#解决：-2" class="headerlink" title="解决："></a>解决：</h3><p>删掉上面那个id的import就行。</p>
 <h2 id="JPA查询报错"><a href="#JPA查询报错" class="headerlink" title="JPA查询报错"></a>JPA查询报错</h2><h3 id="错误：-3"><a href="#错误：-3" class="headerlink" title="错误："></a>错误：</h3><p>Controller中查找方法：</p>
-<pre><code class="java">  //查找用户
-    @GetMapping(&quot;/user/jpa/select/&#123;id&#125;&quot;)
-    public User getUser(@PathVariable(&quot;id&quot;) Integer id) &#123;
-        User user = userRepository.getOne(id);
-        return user;
-    &#125;
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//查找用户</span></span><br><span class="line">  <span class="meta">@GetMapping(&quot;/user/jpa/select/&#123;id&#125;&quot;)</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> User <span class="title">getUser</span><span class="params">(<span class="meta">@PathVariable(&quot;id&quot;)</span> Integer id)</span> </span>&#123;</span><br><span class="line">      User user = userRepository.getOne(id);</span><br><span class="line">      <span class="keyword">return</span> user;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
 <p>访问这个url然后报错：</p>
 <blockquote>
 <p>Caused by: com.fasterxml.jackson.databind.exc.InvalidDefinitionException: <strong>No serializer found for class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor</strong> and no properties discovered to create BeanSerializer (to avoid exception, disable SerializationFeature.FAIL_ON_EMPTY_BEANS) (through reference chain: com.song.springboot.entity.User$HibernateProxy$j7VI3Nk2[&quot;hibernateLazyInitializer&quot;])</p>
@@ -1394,168 +891,22 @@ import javax.persistence.*;
 <p>​    hibernate会给每个被管理的对象加上hibernateLazyInitializer属性，同时struts-jsonplugin或者其他的jsonplugin都是如此。</p>
 <p>​    因为jsonplugin用的是java的内审机制，hibernate会给被管理的pojo加入一个hibernateLazyInitializer属性。jsonplugin通过java的反射机制将pojo转换成json，会把hibernateLazyInitializer也拿出来操作。但是hibernateLazyInitializer无法由反射得到，也就是说从对象中无法获取，所以就抛异常了。 </p>
 <h3 id="解决：-3"><a href="#解决：-3" class="headerlink" title="解决："></a>解决：</h3><p>在User实体类中加入如下注解：</p>
-<pre><code class="java">//使用JPA注解配置映射关系
-@Entity     //告诉JPA这是个实体类
-@Table(name = &quot;tbl_user&quot;)   //告诉这个类和数据库中的哪个表相对应，不写的话就是默认的小写类名user
-@JsonIgnoreProperties(value=&#123;&quot;hibernateLazyInitializer&quot;,&quot;handler&quot;&#125;)
-public class User &#123;
-    ...
-&#125;
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用JPA注解配置映射关系</span></span><br><span class="line"><span class="meta">@Entity</span>     <span class="comment">//告诉JPA这是个实体类</span></span><br><span class="line"><span class="meta">@Table(name = &quot;tbl_user&quot;)</span>   <span class="comment">//告诉这个类和数据库中的哪个表相对应，不写的话就是默认的小写类名user</span></span><br><span class="line"><span class="meta">@JsonIgnoreProperties(value=&#123;&quot;hibernateLazyInitializer&quot;,&quot;handler&quot;&#125;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>在类上声明的@JsonIgnoreProperties，是忽略Hibernate的延迟加载的一些属性”hibernateLazyInitializer”, “handler”, “fieldHandler”，这些属性在实体类里没有所以要忽略掉，否则会报错。</p>
-<h2 id="Java反射来输出对象的所有属性"><a href="#Java反射来输出对象的所有属性" class="headerlink" title="Java反射来输出对象的所有属性"></a>Java反射来输出对象的所有属性</h2><pre><code class="java">public static void testReflect(Object model) throws Exception &#123;
-    Field[] field = model.getClass().getDeclaredFields();        //获取实体类的所有属性，返回Field数组
-    for (int j = 0; j &lt; field.length; j++) &#123;     //遍历所有属性
-        String name = field[j].getName();    //获取属性的名字
+<h2 id="Java反射来输出对象的所有属性"><a href="#Java反射来输出对象的所有属性" class="headerlink" title="Java反射来输出对象的所有属性"></a>Java反射来输出对象的所有属性</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testReflect</span><span class="params">(Object model)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    Field[] field = model.getClass().getDeclaredFields();        <span class="comment">//获取实体类的所有属性，返回Field数组</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; field.length; j++) &#123;     <span class="comment">//遍历所有属性</span></span><br><span class="line">        String name = field[j].getName();    <span class="comment">//获取属性的名字</span></span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;attribute name:&quot;</span> + name);</span><br><span class="line">        name = name.substring(<span class="number">0</span>, <span class="number">1</span>).toUpperCase() + name.substring(<span class="number">1</span>); <span class="comment">//将属性的首字符大写，方便构造get，set方法</span></span><br><span class="line">        String type = field[j].getGenericType().toString();    <span class="comment">//获取属性的类型</span></span><br><span class="line">        <span class="keyword">if</span> (type.equals(<span class="string">&quot;class java.lang.String&quot;</span>)) &#123;   <span class="comment">//如果type是类类型，则前面包含&quot;class &quot;，后面跟类名</span></span><br><span class="line">            Method m = model.getClass().getMethod(<span class="string">&quot;get&quot;</span> + name);</span><br><span class="line">            String value = (String) m.invoke(model);    <span class="comment">//调用getter方法获取属性值</span></span><br><span class="line">            <span class="keyword">if</span> (value != <span class="keyword">null</span>) &#123;</span><br><span class="line"></span><br><span class="line">                System.out.println(<span class="string">&quot;attribute value:&quot;</span> + value);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (type.equals(<span class="string">&quot;class java.lang.Integer&quot;</span>)) &#123;</span><br><span class="line">            Method m = model.getClass().getMethod(<span class="string">&quot;get&quot;</span> + name);</span><br><span class="line">            Integer value = (Integer) m.invoke(model);</span><br><span class="line">            <span class="keyword">if</span> (value != <span class="keyword">null</span>) &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;attribute value:&quot;</span> + value);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (type.equals(<span class="string">&quot;class java.lang.Short&quot;</span>)) &#123;</span><br><span class="line">            Method m = model.getClass().getMethod(<span class="string">&quot;get&quot;</span> + name);</span><br><span class="line">            Short value = (Short) m.invoke(model);</span><br><span class="line">            <span class="keyword">if</span> (value != <span class="keyword">null</span>) &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;attribute value:&quot;</span> + value);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (type.equals(<span class="string">&quot;class java.lang.Double&quot;</span>)) &#123;</span><br><span class="line">            Method m = model.getClass().getMethod(<span class="string">&quot;get&quot;</span> + name);</span><br><span class="line">            Double value = (Double) m.invoke(model);</span><br><span class="line">            <span class="keyword">if</span> (value != <span class="keyword">null</span>) &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;attribute value:&quot;</span> + value);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (type.equals(<span class="string">&quot;class java.lang.Boolean&quot;</span>)) &#123;</span><br><span class="line">            Method m = model.getClass().getMethod(<span class="string">&quot;get&quot;</span> + name);</span><br><span class="line">            Boolean value = (Boolean) m.invoke(model);</span><br><span class="line">            <span class="keyword">if</span> (value != <span class="keyword">null</span>) &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;attribute value:&quot;</span> + value);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (type.equals(<span class="string">&quot;class java.util.Date&quot;</span>)) &#123;</span><br><span class="line">            Method m = model.getClass().getMethod(<span class="string">&quot;get&quot;</span> + name);</span><br><span class="line">            Date value = (Date) m.invoke(model);</span><br><span class="line">            <span class="keyword">if</span> (value != <span class="keyword">null</span>) &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;attribute value:&quot;</span> + value.toLocaleString());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-        System.out.println(&quot;attribute name:&quot; + name);
-        name = name.substring(0, 1).toUpperCase() + name.substring(1); //将属性的首字符大写，方便构造get，set方法
-        String type = field[j].getGenericType().toString();    //获取属性的类型
-        if (type.equals(&quot;class java.lang.String&quot;)) &#123;   //如果type是类类型，则前面包含&quot;class &quot;，后面跟类名
-            Method m = model.getClass().getMethod(&quot;get&quot; + name);
-            String value = (String) m.invoke(model);    //调用getter方法获取属性值
-            if (value != null) &#123;
+<h3 id="使用sql将一个表的数据导入另一个表："><a href="#使用sql将一个表的数据导入另一个表：" class="headerlink" title="使用sql将一个表的数据导入另一个表："></a>使用sql将一个表的数据导入另一个表：</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> jc_rw(guid,rwid,xmbh,xmmc,xfsj) (<span class="keyword">select</span> rwid,rwid,xmbh,xmmc,xfsj <span class="keyword">from</span> jc_db_task);</span><br></pre></td></tr></table></figure>
 
-                System.out.println(&quot;attribute value:&quot; + value);
-            &#125;
-        &#125;
-        if (type.equals(&quot;class java.lang.Integer&quot;)) &#123;
-            Method m = model.getClass().getMethod(&quot;get&quot; + name);
-            Integer value = (Integer) m.invoke(model);
-            if (value != null) &#123;
-                System.out.println(&quot;attribute value:&quot; + value);
-            &#125;
-        &#125;
-        if (type.equals(&quot;class java.lang.Short&quot;)) &#123;
-            Method m = model.getClass().getMethod(&quot;get&quot; + name);
-            Short value = (Short) m.invoke(model);
-            if (value != null) &#123;
-                System.out.println(&quot;attribute value:&quot; + value);
-            &#125;
-        &#125;
-        if (type.equals(&quot;class java.lang.Double&quot;)) &#123;
-            Method m = model.getClass().getMethod(&quot;get&quot; + name);
-            Double value = (Double) m.invoke(model);
-            if (value != null) &#123;
-                System.out.println(&quot;attribute value:&quot; + value);
-            &#125;
-        &#125;
-        if (type.equals(&quot;class java.lang.Boolean&quot;)) &#123;
-            Method m = model.getClass().getMethod(&quot;get&quot; + name);
-            Boolean value = (Boolean) m.invoke(model);
-            if (value != null) &#123;
-                System.out.println(&quot;attribute value:&quot; + value);
-            &#125;
-        &#125;
-        if (type.equals(&quot;class java.util.Date&quot;)) &#123;
-            Method m = model.getClass().getMethod(&quot;get&quot; + name);
-            Date value = (Date) m.invoke(model);
-            if (value != null) &#123;
-                System.out.println(&quot;attribute value:&quot; + value.toLocaleString());
-            &#125;
-        &#125;
-    &#125;
-&#125;
-</code></pre>
-<h3 id="使用sql将一个表的数据导入另一个表："><a href="#使用sql将一个表的数据导入另一个表：" class="headerlink" title="使用sql将一个表的数据导入另一个表："></a>使用sql将一个表的数据导入另一个表：</h3><pre><code class="sql">insert into jc_rw(guid,rwid,xmbh,xmmc,xfsj) (select rwid,rwid,xmbh,xmmc,xfsj from jc_db_task);
-</code></pre>
 <p>设置一个表中的某一列全部为这个数据：</p>
-<pre><code class="sql">update jc_rw set cdrwks=&#39;监测科&#39;;
-</code></pre>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update jc_rw <span class="keyword">set</span> cdrwks<span class="operator">=</span><span class="string">&#x27;监测科&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
 <h2 id="整合Mybatis-Plus和Lombok"><a href="#整合Mybatis-Plus和Lombok" class="headerlink" title="整合Mybatis-Plus和Lombok"></a>整合Mybatis-Plus和Lombok</h2><p>主要是mybaits-plus</p>
 <ol>
 <li><p>修改pom文件，添加依赖</p>
 </li>
 <li><p>修改yml配置文件，将mybatis的配置删除，增加mybatis-plus配置</p>
-<pre><code class="yml">## MyBatis配置
-## https://baomidou.com/config/
-mybatis-plus:
-  ## 对应的 XML 文件位置
-  mapperLocations: classpath*:mapper/**/*Mapper.xml
-  ## 实体扫描，多个package用逗号或者分号分隔
-  typeAliasesPackage: com.ruoyi.**.domain
-  ## 针对 typeAliasesPackage，如果配置了该属性，则仅仅会扫描路径下以该类作为父类的域对象
-  #typeAliasesSuperType: Class&lt;?&gt;
-  ## 如果配置了该属性，SqlSessionFactoryBean 会把该包下面的类注册为对应的 TypeHandler
-  #typeHandlersPackage: null
-  ## 如果配置了该属性，会将路径下的枚举类进行注入，让实体类字段能够简单快捷的使用枚举属性
-  #typeEnumsPackage: null
-  ## 启动时是否检查 MyBatis XML 文件的存在，默认不检查
-  checkConfigLocation: false
-  ## 通过该属性可指定 MyBatis 的执行器，MyBatis 的执行器总共有三种：
-  ## SIMPLE：该执行器类型不做特殊的事情，为每个语句的执行创建一个新的预处理语句（PreparedStatement）
-  ## REUSE：该执行器类型会复用预处理语句（PreparedStatement）
-  ## BATCH：该执行器类型会批量执行所有的更新语句
-  executorType: SIMPLE
-  ## 指定外部化 MyBatis Properties 配置，通过该配置可以抽离配置，实现不同环境的配置部署
-  configurationProperties: null
-  configuration:
-    ## 自动驼峰命名规则（camel case）映射
-    ## 如果您的数据库命名符合规则无需使用 @TableField 注解指定数据库字段名
-    mapUnderscoreToCamelCase: true
-    ## 默认枚举处理类,如果配置了该属性,枚举将统一使用指定处理器进行处理
-    ## org.apache.ibatis.type.EnumTypeHandler : 存储枚举的名称
-    ## org.apache.ibatis.type.EnumOrdinalTypeHandler : 存储枚举的索引
-    ## com.baomidou.mybatisplus.extension.handlers.MybatisEnumTypeHandler : 枚举类需要实现IEnum接口或字段标记@EnumValue注解.
-    defaultEnumTypeHandler: org.apache.ibatis.type.EnumTypeHandler
-    ## 当设置为 true 的时候，懒加载的对象可能被任何懒属性全部加载，否则，每个属性都按需加载。需要和 lazyLoadingEnabled 一起使用。
-    aggressiveLazyLoading: true
-    ## MyBatis 自动映射策略
-    ## NONE：不启用自动映射
-    ## PARTIAL：只对非嵌套的 resultMap 进行自动映射
-    ## FULL：对所有的 resultMap 都进行自动映射
-    autoMappingBehavior: PARTIAL
-    ## MyBatis 自动映射时未知列或未知属性处理策
-    ## NONE：不做任何处理 (默认值)
-    ## WARNING：以日志的形式打印相关警告信息
-    ## FAILING：当作映射失败处理，并抛出异常和详细信息
-    autoMappingUnknownColumnBehavior: NONE
-    ## Mybatis一级缓存，默认为 SESSION
-    ## SESSION session级别缓存，同一个session相同查询语句不会再次查询数据库
-    ## STATEMENT 关闭一级缓存
-    localCacheScope: SESSION
-    ## 开启Mybatis二级缓存，默认为 true
-    cacheEnabled: true
-  global-config:
-    ## 是否打印 Logo banner
-    banner: true
-    ## 是否初始化 SqlRunner
-    enableSqlRunner: false
-    dbConfig:
-      ## 主键类型
-      ## AUTO 数据库ID自增
-      ## NONE 空
-      ## INPUT 用户输入ID
-      ## ASSIGN_ID 全局唯一ID
-      ## ASSIGN_UUID 全局唯一ID UUID
-      idType: AUTO
-      ## 表名前缀
-      tablePrefix: null
-      ## 字段 format,例: %s,(对主键无效)
-      columnFormat: null
-      ## 表名是否使用驼峰转下划线命名,只对表名生效
-      tableUnderline: true
-      ## 大写命名,对表名和字段名均生效
-      capitalMode: false
-      ## 全局的entity的逻辑删除字段属性名
-      logicDeleteField: null
-      ## 逻辑已删除值
-      logicDeleteValue: 1
-      ## 逻辑未删除值
-      logicNotDeleteValue: 0
-      ## 字段验证策略之 insert,在 insert 的时候的字段验证策略
-      ## IGNORED 忽略判断
-      ## NOT_NULL 非NULL判断
-      ## NOT_EMPTY 非空判断(只对字符串类型字段,其他类型字段依然为非NULL判断)
-      ## DEFAULT 默认的,一般只用于注解里
-      ## NEVER 不加入 SQL
-      insertStrategy: NOT_NULL
-      ## 字段验证策略之 update,在 update 的时候的字段验证策略
-      updateStrategy: NOT_NULL
-      ## 字段验证策略之 select,在 select 的时候的字段验证策略既 wrapper 根据内部 entity 生成的 where 条件
-      selectStrategy: NOT_NULL
-</code></pre>
-</li>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## MyBatis配置</span></span><br><span class="line"><span class="comment">## https://baomidou.com/config/</span></span><br><span class="line"><span class="attr">mybatis-plus:</span></span><br><span class="line">  <span class="comment">## 对应的 XML 文件位置</span></span><br><span class="line">  <span class="attr">mapperLocations:</span> <span class="string">classpath*:mapper/**/*Mapper.xml</span></span><br><span class="line">  <span class="comment">## 实体扫描，多个package用逗号或者分号分隔</span></span><br><span class="line">  <span class="attr">typeAliasesPackage:</span> <span class="string">com.ruoyi.**.domain</span></span><br><span class="line">  <span class="comment">## 针对 typeAliasesPackage，如果配置了该属性，则仅仅会扫描路径下以该类作为父类的域对象</span></span><br><span class="line">  <span class="comment">#typeAliasesSuperType: Class&lt;?&gt;</span></span><br><span class="line">  <span class="comment">## 如果配置了该属性，SqlSessionFactoryBean 会把该包下面的类注册为对应的 TypeHandler</span></span><br><span class="line">  <span class="comment">#typeHandlersPackage: null</span></span><br><span class="line">  <span class="comment">## 如果配置了该属性，会将路径下的枚举类进行注入，让实体类字段能够简单快捷的使用枚举属性</span></span><br><span class="line">  <span class="comment">#typeEnumsPackage: null</span></span><br><span class="line">  <span class="comment">## 启动时是否检查 MyBatis XML 文件的存在，默认不检查</span></span><br><span class="line">  <span class="attr">checkConfigLocation:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment">## 通过该属性可指定 MyBatis 的执行器，MyBatis 的执行器总共有三种：</span></span><br><span class="line">  <span class="comment">## SIMPLE：该执行器类型不做特殊的事情，为每个语句的执行创建一个新的预处理语句（PreparedStatement）</span></span><br><span class="line">  <span class="comment">## REUSE：该执行器类型会复用预处理语句（PreparedStatement）</span></span><br><span class="line">  <span class="comment">## BATCH：该执行器类型会批量执行所有的更新语句</span></span><br><span class="line">  <span class="attr">executorType:</span> <span class="string">SIMPLE</span></span><br><span class="line">  <span class="comment">## 指定外部化 MyBatis Properties 配置，通过该配置可以抽离配置，实现不同环境的配置部署</span></span><br><span class="line">  <span class="attr">configurationProperties:</span> <span class="literal">null</span></span><br><span class="line">  <span class="attr">configuration:</span></span><br><span class="line">    <span class="comment">## 自动驼峰命名规则（camel case）映射</span></span><br><span class="line">    <span class="comment">## 如果您的数据库命名符合规则无需使用 @TableField 注解指定数据库字段名</span></span><br><span class="line">    <span class="attr">mapUnderscoreToCamelCase:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment">## 默认枚举处理类,如果配置了该属性,枚举将统一使用指定处理器进行处理</span></span><br><span class="line">    <span class="comment">## org.apache.ibatis.type.EnumTypeHandler : 存储枚举的名称</span></span><br><span class="line">    <span class="comment">## org.apache.ibatis.type.EnumOrdinalTypeHandler : 存储枚举的索引</span></span><br><span class="line">    <span class="comment">## com.baomidou.mybatisplus.extension.handlers.MybatisEnumTypeHandler : 枚举类需要实现IEnum接口或字段标记@EnumValue注解.</span></span><br><span class="line">    <span class="attr">defaultEnumTypeHandler:</span> <span class="string">org.apache.ibatis.type.EnumTypeHandler</span></span><br><span class="line">    <span class="comment">## 当设置为 true 的时候，懒加载的对象可能被任何懒属性全部加载，否则，每个属性都按需加载。需要和 lazyLoadingEnabled 一起使用。</span></span><br><span class="line">    <span class="attr">aggressiveLazyLoading:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment">## MyBatis 自动映射策略</span></span><br><span class="line">    <span class="comment">## NONE：不启用自动映射</span></span><br><span class="line">    <span class="comment">## PARTIAL：只对非嵌套的 resultMap 进行自动映射</span></span><br><span class="line">    <span class="comment">## FULL：对所有的 resultMap 都进行自动映射</span></span><br><span class="line">    <span class="attr">autoMappingBehavior:</span> <span class="string">PARTIAL</span></span><br><span class="line">    <span class="comment">## MyBatis 自动映射时未知列或未知属性处理策</span></span><br><span class="line">    <span class="comment">## NONE：不做任何处理 (默认值)</span></span><br><span class="line">    <span class="comment">## WARNING：以日志的形式打印相关警告信息</span></span><br><span class="line">    <span class="comment">## FAILING：当作映射失败处理，并抛出异常和详细信息</span></span><br><span class="line">    <span class="attr">autoMappingUnknownColumnBehavior:</span> <span class="string">NONE</span></span><br><span class="line">    <span class="comment">## Mybatis一级缓存，默认为 SESSION</span></span><br><span class="line">    <span class="comment">## SESSION session级别缓存，同一个session相同查询语句不会再次查询数据库</span></span><br><span class="line">    <span class="comment">## STATEMENT 关闭一级缓存</span></span><br><span class="line">    <span class="attr">localCacheScope:</span> <span class="string">SESSION</span></span><br><span class="line">    <span class="comment">## 开启Mybatis二级缓存，默认为 true</span></span><br><span class="line">    <span class="attr">cacheEnabled:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">global-config:</span></span><br><span class="line">    <span class="comment">## 是否打印 Logo banner</span></span><br><span class="line">    <span class="attr">banner:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment">## 是否初始化 SqlRunner</span></span><br><span class="line">    <span class="attr">enableSqlRunner:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">dbConfig:</span></span><br><span class="line">      <span class="comment">## 主键类型</span></span><br><span class="line">      <span class="comment">## AUTO 数据库ID自增</span></span><br><span class="line">      <span class="comment">## NONE 空</span></span><br><span class="line">      <span class="comment">## INPUT 用户输入ID</span></span><br><span class="line">      <span class="comment">## ASSIGN_ID 全局唯一ID</span></span><br><span class="line">      <span class="comment">## ASSIGN_UUID 全局唯一ID UUID</span></span><br><span class="line">      <span class="attr">idType:</span> <span class="string">AUTO</span></span><br><span class="line">      <span class="comment">## 表名前缀</span></span><br><span class="line">      <span class="attr">tablePrefix:</span> <span class="literal">null</span></span><br><span class="line">      <span class="comment">## 字段 format,例: %s,(对主键无效)</span></span><br><span class="line">      <span class="attr">columnFormat:</span> <span class="literal">null</span></span><br><span class="line">      <span class="comment">## 表名是否使用驼峰转下划线命名,只对表名生效</span></span><br><span class="line">      <span class="attr">tableUnderline:</span> <span class="literal">true</span></span><br><span class="line">      <span class="comment">## 大写命名,对表名和字段名均生效</span></span><br><span class="line">      <span class="attr">capitalMode:</span> <span class="literal">false</span></span><br><span class="line">      <span class="comment">## 全局的entity的逻辑删除字段属性名</span></span><br><span class="line">      <span class="attr">logicDeleteField:</span> <span class="literal">null</span></span><br><span class="line">      <span class="comment">## 逻辑已删除值</span></span><br><span class="line">      <span class="attr">logicDeleteValue:</span> <span class="number">1</span></span><br><span class="line">      <span class="comment">## 逻辑未删除值</span></span><br><span class="line">      <span class="attr">logicNotDeleteValue:</span> <span class="number">0</span></span><br><span class="line">      <span class="comment">## 字段验证策略之 insert,在 insert 的时候的字段验证策略</span></span><br><span class="line">      <span class="comment">## IGNORED 忽略判断</span></span><br><span class="line">      <span class="comment">## NOT_NULL 非NULL判断</span></span><br><span class="line">      <span class="comment">## NOT_EMPTY 非空判断(只对字符串类型字段,其他类型字段依然为非NULL判断)</span></span><br><span class="line">      <span class="comment">## DEFAULT 默认的,一般只用于注解里</span></span><br><span class="line">      <span class="comment">## NEVER 不加入 SQL</span></span><br><span class="line">      <span class="attr">insertStrategy:</span> <span class="string">NOT_NULL</span></span><br><span class="line">      <span class="comment">## 字段验证策略之 update,在 update 的时候的字段验证策略</span></span><br><span class="line">      <span class="attr">updateStrategy:</span> <span class="string">NOT_NULL</span></span><br><span class="line">      <span class="comment">## 字段验证策略之 select,在 select 的时候的字段验证策略既 wrapper 根据内部 entity 生成的 where 条件</span></span><br><span class="line">      <span class="attr">selectStrategy:</span> <span class="string">NOT_NULL</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 </ol>
 
                 

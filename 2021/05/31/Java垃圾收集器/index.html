@@ -419,12 +419,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Java/">
-                                <span class="chip bg-color">Java</span>
-                            </a>
-                        
                             <a href="/tags/%E5%90%8E%E7%AB%AF/">
                                 <span class="chip bg-color">后端</span>
+                            </a>
+                        
+                            <a href="/tags/Java/">
+                                <span class="chip bg-color">Java</span>
                             </a>
                         
                             <a href="/tags/JVM/">
@@ -461,7 +461,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.6k
+                    1.5k
                 </div>
                 
 
@@ -481,20 +481,8 @@
                 <blockquote>
 <p>《Offer来了-Java基础篇》第1.8章</p>
 </blockquote>
-<h3 id="1-8垃圾收集器"><a href="#1-8垃圾收集器" class="headerlink" title="1.8垃圾收集器"></a>1.8垃圾收集器</h3><pre><code class="mermaid">graph LR
-subgraph 新生代 
-n(新生代)---1(Serial:单线程复制算法)
-n---2(ParNew:多线程复制算法)
-n---3(Parallel Scavenge:多线程复制算法)
-end
+<h3 id="1-8垃圾收集器"><a href="#1-8垃圾收集器" class="headerlink" title="1.8垃圾收集器"></a>1.8垃圾收集器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">subgraph 新生代 </span><br><span class="line">n(新生代)---1(Serial:单线程复制算法)</span><br><span class="line">n---2(ParNew:多线程复制算法)</span><br><span class="line">n---3(Parallel Scavenge:多线程复制算法)</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">subgraph 老年代 </span><br><span class="line">老年代---CMS(CMS:多线程标记清除算法)</span><br><span class="line">老年代---SO(Serial Old:单线程标记整理算法)</span><br><span class="line">老年代---PO(Parallel Old:多线程标记整理算法)</span><br><span class="line">老年代---GI(GI:多线程表标记整理算法)</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
 
-subgraph 老年代 
-老年代---CMS(CMS:多线程标记清除算法)
-老年代---SO(Serial Old:单线程标记整理算法)
-老年代---PO(Parallel Old:多线程标记整理算法)
-老年代---GI(GI:多线程表标记整理算法)
-end
-</code></pre>
 <h4 id="1-8-1-Serial收集器"><a href="#1-8-1-Serial收集器" class="headerlink" title="1.8.1 Serial收集器"></a>1.8.1 Serial收集器</h4><p>单线程</p>
 <p>停止所有其他线程，Stop The World（Dio表示很赞，砸瓦鲁多），只启用GC线程。</p>
 <ul>
@@ -652,12 +640,12 @@ end
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Java/">
-                                    <span class="chip bg-color">Java</span>
-                                </a>
-                            
                                 <a href="/tags/%E5%90%8E%E7%AB%AF/">
                                     <span class="chip bg-color">后端</span>
+                                </a>
+                            
+                                <a href="/tags/Java/">
+                                    <span class="chip bg-color">Java</span>
                                 </a>
                             
                                 <a href="/tags/JVM/">
@@ -871,12 +859,12 @@ end
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E7%AE%97%E6%B3%95/">
-                        <span class="chip bg-color">算法</span>
-                    </a>
-                    
                     <a href="/tags/Java/">
                         <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">算法</span>
                     </a>
                     
                 </div>
@@ -924,12 +912,12 @@ end
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Java/">
-                        <span class="chip bg-color">Java</span>
-                    </a>
-                    
                     <a href="/tags/%E5%90%8E%E7%AB%AF/">
                         <span class="chip bg-color">后端</span>
+                    </a>
+                    
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
                     </a>
                     
                 </div>

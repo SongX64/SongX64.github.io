@@ -419,12 +419,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Java/">
-                                <span class="chip bg-color">Java</span>
-                            </a>
-                        
                             <a href="/tags/%E5%90%8E%E7%AB%AF/">
                                 <span class="chip bg-color">后端</span>
+                            </a>
+                        
+                            <a href="/tags/Java/">
+                                <span class="chip bg-color">Java</span>
                             </a>
                         
                             <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
@@ -526,18 +526,8 @@
 </ol>
 <h3 id="2-2-ThreadPoolExecutor实例"><a href="#2-2-ThreadPoolExecutor实例" class="headerlink" title="2.2 ThreadPoolExecutor实例"></a>2.2 ThreadPoolExecutor实例</h3><p>==<strong>Java中的线程池：ThreadPoolExecutor</strong>==</p>
 <p>ThreadPoolExecutor的构造函数，用它来创建线程池：</p>
-<pre><code class="java">    /**
-     * 用给定的初始参数创建一个新的ThreadPoolExecutor。
-     */
-    public ThreadPoolExecutor(int corePoolSize,//线程池的核心线程数量
-                              int maximumPoolSize,//线程池的最大线程数
-                              long keepAliveTime,//当线程数大于核心线程数时，多余的空闲线程存活的最长时间
-                              TimeUnit unit,//时间单位
-                              BlockingQueue&lt;Runnable&gt; workQueue,//任务队列，用来储存等待执行任务的队列
-                              ThreadFactory threadFactory,//线程工厂，用来创建线程，一般默认即可
-                              RejectedExecutionHandler handler//拒绝策略，当提交的任务过多而不能及时处理时，我们可以定制策略来处理任务
-                               )
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 用给定的初始参数创建一个新的ThreadPoolExecutor。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ThreadPoolExecutor</span><span class="params">(<span class="keyword">int</span> corePoolSize,//线程池的核心线程数量</span></span></span><br><span class="line"><span class="function"><span class="params">                          <span class="keyword">int</span> maximumPoolSize,//线程池的最大线程数</span></span></span><br><span class="line"><span class="function"><span class="params">                          <span class="keyword">long</span> keepAliveTime,//当线程数大于核心线程数时，多余的空闲线程存活的最长时间</span></span></span><br><span class="line"><span class="function"><span class="params">                          TimeUnit unit,//时间单位</span></span></span><br><span class="line"><span class="function"><span class="params">                          BlockingQueue&lt;Runnable&gt; workQueue,//任务队列，用来储存等待执行任务的队列</span></span></span><br><span class="line"><span class="function"><span class="params">                          ThreadFactory threadFactory,//线程工厂，用来创建线程，一般默认即可</span></span></span><br><span class="line"><span class="function"><span class="params">                          RejectedExecutionHandler handler//拒绝策略，当提交的任务过多而不能及时处理时，我们可以定制策略来处理任务</span></span></span><br><span class="line"><span class="function"><span class="params">                           )</span></span></span><br></pre></td></tr></table></figure>
+
 <p>这几个参数，稍微记一下：</p>
 <ul>
 <li>核心线程数量</li>
@@ -549,51 +539,8 @@
 <li>拒绝策略（任务过多时，定制策略处理任务）</li>
 </ul>
 <p>创建例子：</p>
-<pre><code class="java">/** 核心线程数 **/
-private static final int CORE_POOL_SIZE = 5;
-/** 最大线程数 **/
-private static final int MAX_POOL_SIZE = 10;
-/** 队列容量 **/
-private static final int QUEUE_CAPACITY = 100;
-/** 最大存活时间 **/
-private static final Long KEEP_ALIVE_TIME = 1L;
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** 核心线程数 **/</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> CORE_POOL_SIZE = <span class="number">5</span>;</span><br><span class="line"><span class="comment">/** 最大线程数 **/</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAX_POOL_SIZE = <span class="number">10</span>;</span><br><span class="line"><span class="comment">/** 队列容量 **/</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> QUEUE_CAPACITY = <span class="number">100</span>;</span><br><span class="line"><span class="comment">/** 最大存活时间 **/</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Long KEEP_ALIVE_TIME = <span class="number">1L</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//使用阿里巴巴推荐的创建线程池的方式</span></span><br><span class="line">    <span class="comment">//通过ThreadPoolExecutor构造函数，自定义参数创建</span></span><br><span class="line">    ThreadPoolExecutor executor = <span class="keyword">new</span> ThreadPoolExecutor(</span><br><span class="line">            CORE_POOL_SIZE,</span><br><span class="line">            MAX_POOL_SIZE,</span><br><span class="line">            KEEP_ALIVE_TIME,</span><br><span class="line">            TimeUnit.SECONDS,</span><br><span class="line">            <span class="keyword">new</span> ArrayBlockingQueue&lt;&gt;(QUEUE_CAPACITY),</span><br><span class="line">            <span class="keyword">new</span> ThreadPoolExecutor.CallerRunsPolicy());</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 循环，线程池中，创建10个线程</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">        <span class="comment">// Lambda表达式，调用execute的参数类型Runnable接口的构造函数，返回匿名对象并实现其中方法（大括号中）</span></span><br><span class="line">        <span class="comment">// 相当于new Runnable()&#123; run()&#123;&#125; &#125;</span></span><br><span class="line">        executor.execute(() -&gt; &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(<span class="string">&quot;CurrentThread name:&quot;</span> + Thread.currentThread().getName() + <span class="string">&quot;；date：&quot;</span> + Instant.now());</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//终止线程池</span></span><br><span class="line">    executor.shutdown();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 等待所有任务完成</span></span><br><span class="line">        executor.awaitTermination(<span class="number">5</span>, TimeUnit.SECONDS);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">&quot;Finished all threads&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-public static void main(String[] args) &#123;
-
-    //使用阿里巴巴推荐的创建线程池的方式
-    //通过ThreadPoolExecutor构造函数，自定义参数创建
-    ThreadPoolExecutor executor = new ThreadPoolExecutor(
-            CORE_POOL_SIZE,
-            MAX_POOL_SIZE,
-            KEEP_ALIVE_TIME,
-            TimeUnit.SECONDS,
-            new ArrayBlockingQueue&lt;&gt;(QUEUE_CAPACITY),
-            new ThreadPoolExecutor.CallerRunsPolicy());
-
-    // 循环，线程池中，创建10个线程
-    for (int i = 0; i &lt; 10; i++) &#123;
-        // Lambda表达式，调用execute的参数类型Runnable接口的构造函数，返回匿名对象并实现其中方法（大括号中）
-        // 相当于new Runnable()&#123; run()&#123;&#125; &#125;
-        executor.execute(() -&gt; &#123;
-            try &#123;
-                Thread.sleep(2000);
-            &#125; catch (InterruptedException e) &#123;
-                e.printStackTrace();
-            &#125;
-            System.out.println(&quot;CurrentThread name:&quot; + Thread.currentThread().getName() + &quot;；date：&quot; + Instant.now());
-        &#125;);
-    &#125;
-    //终止线程池
-    executor.shutdown();
-    try &#123;
-        // 等待所有任务完成
-        executor.awaitTermination(5, TimeUnit.SECONDS);
-    &#125; catch (InterruptedException e) &#123;
-        e.printStackTrace();
-    &#125;
-    System.out.println(&quot;Finished all threads&quot;);
-&#125;
-</code></pre>
 <ol>
 <li><code>ThreadPoolExecutor</code>构造函数创建线程池</li>
 <li>线程池中运行线程 <code>executor.execute(Runnable r)</code></li>
@@ -602,22 +549,7 @@ public static void main(String[] args) &#123;
 <blockquote>
 <p>其中，关于Lamda表达式-&gt;：Lambda 允许把函数作为一个方法的参数（函数作为参数传递进方法中）。</p>
 <p>下面这个例子就是调用了一个<strong>构造函数</strong>，返回了一个新建的对象，然后传入<strong>函数参数</strong>中。</p>
-<pre><code class="java">EventQueue.invokeLater(() -&gt; &#123;
-      JFrame frame = new ImageViewerFrame();
-      frame.setTitle(&quot;ImageViewer&quot;);
-      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      frame.setVisible(true);
-  &#125;);
-
-EventQueue.invokeLater(new Runnable() &#123;
-      public void run() &#123;
-          JFrame frame = new ImageViewerFrame();
-          frame.setTitle(&quot;ImageViewer&quot;);
-          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-          frame.setVisible(true);
-      &#125;
-  &#125;);
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">EventQueue.invokeLater(() -&gt; &#123;</span><br><span class="line">      JFrame frame = <span class="keyword">new</span> ImageViewerFrame();</span><br><span class="line">      frame.setTitle(<span class="string">&quot;ImageViewer&quot;</span>);</span><br><span class="line">      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span><br><span class="line">      frame.setVisible(<span class="keyword">true</span>);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">EventQueue.invokeLater(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">          JFrame frame = <span class="keyword">new</span> ImageViewerFrame();</span><br><span class="line">          frame.setTitle(<span class="string">&quot;ImageViewer&quot;</span>);</span><br><span class="line">          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span><br><span class="line">          frame.setVisible(<span class="keyword">true</span>);</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
 </blockquote>
 <h2 id="3-线程池核心设计与实现总览"><a href="#3-线程池核心设计与实现总览" class="headerlink" title="3.线程池核心设计与实现总览"></a>3.线程池核心设计与实现总览</h2><p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210526110139152.png" alt="ThreadPoolExecutor的UML类图"></p>
 <p>这个UML看的不是很懂。。。继续往下看</p>
@@ -756,12 +688,12 @@ EventQueue.invokeLater(new Runnable() &#123;
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Java/">
-                                    <span class="chip bg-color">Java</span>
-                                </a>
-                            
                                 <a href="/tags/%E5%90%8E%E7%AB%AF/">
                                     <span class="chip bg-color">后端</span>
+                                </a>
+                            
+                                <a href="/tags/Java/">
+                                    <span class="chip bg-color">Java</span>
                                 </a>
                             
                                 <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
@@ -975,12 +907,12 @@ EventQueue.invokeLater(new Runnable() &#123;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Java/">
-                        <span class="chip bg-color">Java</span>
-                    </a>
-                    
                     <a href="/tags/%E5%90%8E%E7%AB%AF/">
                         <span class="chip bg-color">后端</span>
+                    </a>
+                    
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
                     </a>
                     
                 </div>
@@ -1028,12 +960,12 @@ EventQueue.invokeLater(new Runnable() &#123;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E7%AE%97%E6%B3%95/">
-                        <span class="chip bg-color">算法</span>
-                    </a>
-                    
                     <a href="/tags/%E5%90%8E%E7%AB%AF/">
                         <span class="chip bg-color">后端</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">算法</span>
                     </a>
                     
                     <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">

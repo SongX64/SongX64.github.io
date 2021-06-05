@@ -419,12 +419,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E7%AE%97%E6%B3%95/">
-                                <span class="chip bg-color">算法</span>
-                            </a>
-                        
                             <a href="/tags/Java/">
                                 <span class="chip bg-color">Java</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%AE%97%E6%B3%95/">
+                                <span class="chip bg-color">算法</span>
                             </a>
                         
                     </div>
@@ -512,78 +512,8 @@
 <li>然后再选，钱很多但没有那么多的几个人，放在人数多的第二个小区里。剩下的人就可以拜拜了（没钱买房子的就是我TAT）</li>
 </ol>
 <h3 id="Java代码"><a href="#Java代码" class="headerlink" title="Java代码"></a>Java代码</h3><p>代码（个人习惯把题目写道注释里了）：</p>
-<pre><code class="java">import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Scanner;
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 1. 住小区问题</span></span><br><span class="line"><span class="comment">     * n个人，每个人有个财富值 a[i]</span></span><br><span class="line"><span class="comment">     * 两个小区,分别住 n1 和 n2 个人</span></span><br><span class="line"><span class="comment">     * 两个小区的平均财富值尽可能大</span></span><br><span class="line"><span class="comment">     * 小区人口财富总和 / 总人数</span></span><br><span class="line"><span class="comment">     * 第一行：n,n1,n2</span></span><br><span class="line"><span class="comment">     * 共n个人，第一个小区n1，第二个小区n2</span></span><br><span class="line"><span class="comment">     * 第二行：每个人的财富值</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * 例子：</span></span><br><span class="line"><span class="comment">     * 4 2 1</span></span><br><span class="line"><span class="comment">     * 1 4 2 3</span></span><br><span class="line"><span class="comment">     * out:</span></span><br><span class="line"><span class="comment">     * 6.500000 (结果保留6位有效小数)</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * 6.5 = (2+3)/2 + 4/1</span></span><br><span class="line"><span class="comment">     * **/</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">while</span> (in.hasNextInt())&#123;</span><br><span class="line">            <span class="keyword">int</span> n = in.nextInt();</span><br><span class="line">            <span class="keyword">int</span> n1 = in.nextInt();</span><br><span class="line">            <span class="keyword">int</span> n2 = in.nextInt();</span><br><span class="line"></span><br><span class="line">            ArrayList&lt;Integer&gt; a = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">                a.add(in.nextInt());</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            Collections.sort(a);</span><br><span class="line">            Collections.reverse(a);</span><br><span class="line"></span><br><span class="line">            ArrayList&lt;Integer&gt; a1 = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">            ArrayList&lt;Integer&gt; a2 = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 第一个小区</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; Math.min(n1, n2); i++) &#123;</span><br><span class="line">                a1.add(a.get(i));</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 第二个小区</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = Math.min(n1, n2); i &lt; Math.max(n1, n2)+Math.min(n1,n2); i++) &#123;</span><br><span class="line">                a2.add(a.get(i));</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            Double res = <span class="number">0.00000</span>;</span><br><span class="line">            Double tempSum = <span class="number">0.0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a1.size(); i++) &#123;</span><br><span class="line">                tempSum += Double.valueOf(a1.get(i));</span><br><span class="line">            &#125;</span><br><span class="line">            res = Double.valueOf(tempSum/a1.size());</span><br><span class="line">            tempSum = <span class="number">0.0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a2.size(); i++) &#123;</span><br><span class="line">                tempSum += Double.valueOf(a2.get(i));</span><br><span class="line">            &#125;</span><br><span class="line">            res += Double.valueOf(tempSum/a2.size());</span><br><span class="line"></span><br><span class="line">            System.out.println(<span class="string">&quot;a1&quot;</span>+a1.toString());</span><br><span class="line">            System.out.println(<span class="string">&quot;a2&quot;</span>+a2.toString());</span><br><span class="line"></span><br><span class="line">            System.out.println(res.toString());</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-public class Main &#123;
-    /**
-     * 1. 住小区问题
-     * n个人，每个人有个财富值 a[i]
-     * 两个小区,分别住 n1 和 n2 个人
-     * 两个小区的平均财富值尽可能大
-     * 小区人口财富总和 / 总人数
-     * 第一行：n,n1,n2
-     * 共n个人，第一个小区n1，第二个小区n2
-     * 第二行：每个人的财富值
-     *
-     * 例子：
-     * 4 2 1
-     * 1 4 2 3
-     * out:
-     * 6.500000 (结果保留6位有效小数)
-     *
-     * 6.5 = (2+3)/2 + 4/1
-     * **/
-    public static void main(String[] args) &#123;
-        Scanner in = new Scanner(System.in);
-        while (in.hasNextInt())&#123;
-            int n = in.nextInt();
-            int n1 = in.nextInt();
-            int n2 = in.nextInt();
-
-            ArrayList&lt;Integer&gt; a = new ArrayList&lt;&gt;();
-            for (int i = 0; i &lt; n; i++) &#123;
-                a.add(in.nextInt());
-            &#125;
-
-            Collections.sort(a);
-            Collections.reverse(a);
-
-            ArrayList&lt;Integer&gt; a1 = new ArrayList&lt;&gt;();
-            ArrayList&lt;Integer&gt; a2 = new ArrayList&lt;&gt;();
-
-            // 第一个小区
-            for (int i = 0; i &lt; Math.min(n1, n2); i++) &#123;
-                a1.add(a.get(i));
-            &#125;
-            // 第二个小区
-            for (int i = Math.min(n1, n2); i &lt; Math.max(n1, n2)+Math.min(n1,n2); i++) &#123;
-                a2.add(a.get(i));
-            &#125;
-
-            Double res = 0.00000;
-            Double tempSum = 0.0;
-            for (int i = 0; i &lt; a1.size(); i++) &#123;
-                tempSum += Double.valueOf(a1.get(i));
-            &#125;
-            res = Double.valueOf(tempSum/a1.size());
-            tempSum = 0.0;
-            for (int i = 0; i &lt; a2.size(); i++) &#123;
-                tempSum += Double.valueOf(a2.get(i));
-            &#125;
-            res += Double.valueOf(tempSum/a2.size());
-
-            System.out.println(&quot;a1&quot;+a1.toString());
-            System.out.println(&quot;a2&quot;+a2.toString());
-
-            System.out.println(res.toString());
-
-
-        &#125;
-    &#125;
-&#125;
-</code></pre>
 <p>最后还有个幺蛾子，就是自己打印的调试信息里，倒数两个 <code>System.out.println</code> 忘了删除，导致第一次调试没通过。。。</p>
 <p>然后删了就可以了，直接通过全部用例。</p>
 <p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210604204505603.png" alt="通过"></p>
@@ -604,68 +534,10 @@ public class Main &#123;
 <li>进一步思考，如果存在<strong>多条路径</strong>，而且这几条路径上，都有几条边不满足最小速度，则要进行计算比较：<br>选择变化最小，也就是其选择 <code>最小速度*路径中的边条数 - 路径权重之和</code> 的路径，修改其每条边的值，并加入结果</li>
 </ol>
 <p>注意，我这里说的路径是是包含多条边的，而边只是两点之间的一条边。</p>
-<h3 id="自己代码-错误，仅通过20-测试用例"><a href="#自己代码-错误，仅通过20-测试用例" class="headerlink" title="自己代码 (错误，仅通过20%测试用例)"></a>自己代码 (错误，仅通过20%测试用例)</h3><pre><code class="java">import java.util.Scanner;
+<h3 id="自己代码-错误，仅通过20-测试用例"><a href="#自己代码-错误，仅通过20-测试用例" class="headerlink" title="自己代码 (错误，仅通过20%测试用例)"></a>自己代码 (错误，仅通过20%测试用例)</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * n节点，m条边</span></span><br><span class="line"><span class="comment">     * 每条边有个网络速度 w_i</span></span><br><span class="line"><span class="comment">     * 删掉 m-(n-1) 条边</span></span><br><span class="line"><span class="comment">     * 任意两点有且仅有一条简单路径</span></span><br><span class="line"><span class="comment">     * 网络最低速度要等于k</span></span><br><span class="line"><span class="comment">     * 可以调节一些边的网络速度，每一次操作，可以把网络速度+1或者-1</span></span><br><span class="line"><span class="comment">     * 问：最少需要的操作次数</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * 保证给出的是连通图</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * 第一行：n,m,k</span></span><br><span class="line"><span class="comment">     * n条边，m个节点，k网络速度最低</span></span><br><span class="line"><span class="comment">     * 每行：u_i, v_i , w_i</span></span><br><span class="line"><span class="comment">     * 节点 u 到 v 的一条速度为 w_i 的双向边</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * 输出：</span></span><br><span class="line"><span class="comment">     * sum，最少操作次数</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * **/</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">while</span> (in.hasNextInt())&#123;</span><br><span class="line">            <span class="keyword">int</span> n = in.nextInt();</span><br><span class="line">            <span class="keyword">int</span> m = in.nextInt();</span><br><span class="line">            <span class="keyword">int</span> k = in.nextInt();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 邻接矩阵</span></span><br><span class="line">            <span class="keyword">int</span>[][] mux = <span class="keyword">new</span> <span class="keyword">int</span>[n][n];</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">                <span class="keyword">int</span> v1 = in.nextInt();</span><br><span class="line">                <span class="keyword">int</span> v2 = in.nextInt();</span><br><span class="line">                <span class="keyword">int</span> w = in.nextInt();</span><br><span class="line"></span><br><span class="line">                mux[v1-<span class="number">1</span>][v2-<span class="number">1</span>] = w;</span><br><span class="line">                mux[v2-<span class="number">1</span>][v1-<span class="number">1</span>] = w;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; mux.length; i++) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; mux[i].length; j++) &#123;</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">if</span>(mux[i][j] !=<span class="number">0</span>)&#123;</span><br><span class="line">                        mux[j][i] =<span class="number">0</span>;</span><br><span class="line">                        <span class="keyword">if</span> (mux[i][j] &lt; k)&#123;</span><br><span class="line">                            res += (k-mux[i][j]);</span><br><span class="line">                            mux[i][j] = -<span class="number">1</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line"><span class="comment">//                    System.out.print(mux[i][j]+&quot; &quot;);</span></span><br><span class="line">                &#125;</span><br><span class="line"><span class="comment">//                System.out.println();</span></span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(res);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-public class Main &#123;
-    /**
-     * n节点，m条边
-     * 每条边有个网络速度 w_i
-     * 删掉 m-(n-1) 条边
-     * 任意两点有且仅有一条简单路径
-     * 网络最低速度要等于k
-     * 可以调节一些边的网络速度，每一次操作，可以把网络速度+1或者-1
-     * 问：最少需要的操作次数
-     *
-     * 保证给出的是连通图
-     *
-     * 第一行：n,m,k
-     * n条边，m个节点，k网络速度最低
-     * 每行：u_i, v_i , w_i
-     * 节点 u 到 v 的一条速度为 w_i 的双向边
-     *
-     * 输出：
-     * sum，最少操作次数
-     *
-     * **/
 
-    public static void main(String[] args) &#123;
-        Scanner in = new Scanner(System.in);
-        while (in.hasNextInt())&#123;
-            int n = in.nextInt();
-            int m = in.nextInt();
-            int k = in.nextInt();
 
-            int res = 0;
-
-            // 邻接矩阵
-            int[][] mux = new int[n][n];
-            for (int i = 0; i &lt; m; i++) &#123;
-                int v1 = in.nextInt();
-                int v2 = in.nextInt();
-                int w = in.nextInt();
-
-                mux[v1-1][v2-1] = w;
-                mux[v2-1][v1-1] = w;
-            &#125;
-            for (int i = 0; i &lt; mux.length; i++) &#123;
-                for (int j = i; j &lt; mux[i].length; j++) &#123;
-
-                    if(mux[i][j] !=0)&#123;
-                        mux[j][i] =0;
-                        if (mux[i][j] &lt; k)&#123;
-                            res += (k-mux[i][j]);
-                            mux[i][j] = -1;
-                        &#125;
-                    &#125;
-//                    System.out.print(mux[i][j]+&quot; &quot;);
-                &#125;
-//                System.out.println();
-            &#125;
-            System.out.println(res);
-        &#125;
-    &#125;
-&#125;
-</code></pre>
 <p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210604222620183.png" alt="20%通过"></p>
 <p>感觉这20%的case，应该都是多条路径中，只更改直接相连的那条边的情况，省去了我上面说的比较的步骤。</p>
 <h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><p>貌似可以用回溯算法解决？</p>
@@ -734,12 +606,12 @@ public class Main &#123;
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E7%AE%97%E6%B3%95/">
-                                    <span class="chip bg-color">算法</span>
-                                </a>
-                            
                                 <a href="/tags/Java/">
                                     <span class="chip bg-color">Java</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%AE%97%E6%B3%95/">
+                                    <span class="chip bg-color">算法</span>
                                 </a>
                             
                         </div>
@@ -951,12 +823,12 @@ public class Main &#123;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E7%AE%97%E6%B3%95/">
-                        <span class="chip bg-color">算法</span>
-                    </a>
-                    
                     <a href="/tags/Java/">
                         <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">算法</span>
                     </a>
                     
                 </div>
@@ -1004,12 +876,12 @@ public class Main &#123;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Java/">
-                        <span class="chip bg-color">Java</span>
-                    </a>
-                    
                     <a href="/tags/%E5%90%8E%E7%AB%AF/">
                         <span class="chip bg-color">后端</span>
+                    </a>
+                    
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
                     </a>
                     
                     <a href="/tags/JVM/">

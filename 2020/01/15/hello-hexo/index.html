@@ -453,7 +453,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    881
+                    882
                 </div>
                 
 
@@ -503,11 +503,8 @@
 <p>git Failed to connect to 127.0.0.1 port xxxx: Connection refused</p>
 </blockquote>
 <p>解决：</p>
-<pre><code class="bash"># 查一下代理：
-git config --global http.proxy
-# 有没有呢，有就取消
-git config --global --unset http.proxy
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查一下代理：</span></span><br><span class="line">git config --global http.proxy</span><br><span class="line"><span class="comment"># 有没有呢，有就取消</span></span><br><span class="line">git config --global --<span class="built_in">unset</span> http.proxy</span><br></pre></td></tr></table></figure>
+
 <p>取消之后再进行推送就可以了。</p>
 <hr>
 <h2 id="最终解决问题"><a href="#最终解决问题" class="headerlink" title="最终解决问题"></a>最终解决问题</h2><p>最终不乱搞了，决定对症下药。</p>
@@ -517,25 +514,11 @@ git config --global --unset http.proxy
 <p>于是怀疑是路径的问题，再次尝试访问：<code>https://songx64.github.io/libs/awesome/css/all.css</code> ，然后发现可以正常加载CSS文件，如下图：</p>
 <p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210416174950122.png" alt="image-20210416174950122"></p>
 <p>于是找到了症状所在。这是路径配置的不对啊，于是去查看 <code>_config.yml</code> 文件，找到URL所在位置：</p>
-<pre><code class="yml"># URL
-## Set your site url here. For example, if you use GitHub Page, set url as &#39;https://username.github.io/project&#39;
-url: https://SongX64.github.io／SongX64.github.io
-permalink: :year/:month/:day/:title/
-permalink_defaults:
-pretty_urls:
-  trailing_index: true # Set to false to remove trailing &#39;index.html&#39; from permalinks
-  trailing_html: true # Set to false to remove trailing &#39;.html&#39; from permalinks
-</code></pre>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## Set your site url here. For example, if you use GitHub Page, set url as &#x27;https://username.github.io/project&#x27;</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">https://SongX64.github.io／SongX64.github.io</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">:year/:month/:day/:title/</span></span><br><span class="line"><span class="attr">permalink_defaults:</span></span><br><span class="line"><span class="attr">pretty_urls:</span></span><br><span class="line">  <span class="attr">trailing_index:</span> <span class="literal">true</span> <span class="comment"># Set to false to remove trailing &#x27;index.html&#x27; from permalinks</span></span><br><span class="line">  <span class="attr">trailing_html:</span> <span class="literal">true</span> <span class="comment"># Set to false to remove trailing &#x27;.html&#x27; from permalinks</span></span><br></pre></td></tr></table></figure>
+
 <p>将其中 <code>url</code> 更改为：</p>
-<pre><code class="yml"># URL
-## Set your site url here. For example, if you use GitHub Page, set url as &#39;https://username.github.io/project&#39;
-url: https://SongX64.github.io
-permalink: :year/:month/:day/:title/
-permalink_defaults:
-pretty_urls:
-  trailing_index: true # Set to false to remove trailing &#39;index.html&#39; from permalinks
-  trailing_html: true # Set to false to remove trailing &#39;.html&#39; from permalinks
-</code></pre>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## Set your site url here. For example, if you use GitHub Page, set url as &#x27;https://username.github.io/project&#x27;</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">https://SongX64.github.io</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">:year/:month/:day/:title/</span></span><br><span class="line"><span class="attr">permalink_defaults:</span></span><br><span class="line"><span class="attr">pretty_urls:</span></span><br><span class="line">  <span class="attr">trailing_index:</span> <span class="literal">true</span> <span class="comment"># Set to false to remove trailing &#x27;index.html&#x27; from permalinks</span></span><br><span class="line">  <span class="attr">trailing_html:</span> <span class="literal">true</span> <span class="comment"># Set to false to remove trailing &#x27;.html&#x27; from permalinks</span></span><br></pre></td></tr></table></figure>
+
 <p>然后！还有一个重点的地方！！！</p>
 <p>==<strong>Github页面有延迟！！！</strong>==</p>
 <p>==<strong>Github页面有延迟！！！</strong>==</p>

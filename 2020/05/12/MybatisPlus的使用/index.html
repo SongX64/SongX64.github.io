@@ -489,162 +489,44 @@
                 <h1 id="MyBatisPlus"><a href="#MyBatisPlus" class="headerlink" title="MyBatisPlus"></a>MyBatisPlus</h1><h2 id="什么是MybatisPlus"><a href="#什么是MybatisPlus" class="headerlink" title="什么是MybatisPlus"></a>什么是MybatisPlus</h2><p>一个开源项目，非侵入式，帮助简化Mybatis的使用。</p>
 <h2 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h2><h3 id="0-准备工作"><a href="#0-准备工作" class="headerlink" title="0. 准备工作"></a>0. 准备工作</h3><p>建立数据库mybatis_plus</p>
 <p>建表与导入数据：</p>
-<pre><code class="sql">DROP TABLE IF EXISTS user;
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> IF <span class="keyword">EXISTS</span> <span class="keyword">user</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">user</span></span><br><span class="line">(</span><br><span class="line">	id <span class="type">BIGINT</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;主键ID&#x27;</span>,</span><br><span class="line">	name <span class="type">VARCHAR</span>(<span class="number">30</span>) <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;姓名&#x27;</span>,</span><br><span class="line">	age <span class="type">INT</span>(<span class="number">11</span>) <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;年龄&#x27;</span>,</span><br><span class="line">	email <span class="type">VARCHAR</span>(<span class="number">50</span>) <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;邮箱&#x27;</span>,</span><br><span class="line">	<span class="keyword">PRIMARY</span> KEY (id)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> <span class="keyword">user</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="keyword">user</span> (id, name, age, email) <span class="keyword">VALUES</span></span><br><span class="line">(<span class="number">1</span>, <span class="string">&#x27;Jone&#x27;</span>, <span class="number">18</span>, <span class="string">&#x27;test1@baomidou.com&#x27;</span>),</span><br><span class="line">(<span class="number">2</span>, <span class="string">&#x27;Jack&#x27;</span>, <span class="number">20</span>, <span class="string">&#x27;test2@baomidou.com&#x27;</span>),</span><br><span class="line">(<span class="number">3</span>, <span class="string">&#x27;Tom&#x27;</span>, <span class="number">28</span>, <span class="string">&#x27;test3@baomidou.com&#x27;</span>),</span><br><span class="line">(<span class="number">4</span>, <span class="string">&#x27;Sandy&#x27;</span>, <span class="number">21</span>, <span class="string">&#x27;test4@baomidou.com&#x27;</span>),</span><br><span class="line">(<span class="number">5</span>, <span class="string">&#x27;Billie&#x27;</span>, <span class="number">24</span>, <span class="string">&#x27;test5@baomidou.com&#x27;</span>);</span><br></pre></td></tr></table></figure>
 
-CREATE TABLE user
-(
-    id BIGINT(20) NOT NULL COMMENT &#39;主键ID&#39;,
-    name VARCHAR(30) NULL DEFAULT NULL COMMENT &#39;姓名&#39;,
-    age INT(11) NULL DEFAULT NULL COMMENT &#39;年龄&#39;,
-    email VARCHAR(50) NULL DEFAULT NULL COMMENT &#39;邮箱&#39;,
-    PRIMARY KEY (id)
-);
 
-DELETE FROM user;
 
-INSERT INTO user (id, name, age, email) VALUES
-(1, &#39;Jone&#39;, 18, &#39;test1@baomidou.com&#39;),
-(2, &#39;Jack&#39;, 20, &#39;test2@baomidou.com&#39;),
-(3, &#39;Tom&#39;, 28, &#39;test3@baomidou.com&#39;),
-(4, &#39;Sandy&#39;, 21, &#39;test4@baomidou.com&#39;),
-(5, &#39;Billie&#39;, 24, &#39;test5@baomidou.com&#39;);
-</code></pre>
 <h3 id="1-新建项目，添加依赖"><a href="#1-新建项目，添加依赖" class="headerlink" title="1.新建项目，添加依赖"></a>1.新建项目，添加依赖</h3><p>新建项目没啥说的，新建个SpringBoot的项目就行。</p>
 <p>添加依赖，pom.xml文件中依赖如下：</p>
-<pre><code class="xml"> &lt;dependencies&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;
-        &lt;/dependency&gt;
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">       <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">                   <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.junit.vintage<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                   <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit-vintage-engine<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">&lt;!--mybatis-plus--&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.baomidou<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-plus-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">&lt;!--mysql--&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">&lt;!--lombok用来简化实体类--&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
-            &lt;scope&gt;test&lt;/scope&gt;
-            &lt;exclusions&gt;
-                &lt;exclusion&gt;
-                    &lt;groupId&gt;org.junit.vintage&lt;/groupId&gt;
-                    &lt;artifactId&gt;junit-vintage-engine&lt;/artifactId&gt;
-                &lt;/exclusion&gt;
-            &lt;/exclusions&gt;
-        &lt;/dependency&gt;
-
-        &lt;!--mybatis-plus--&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;com.baomidou&lt;/groupId&gt;
-            &lt;artifactId&gt;mybatis-plus-boot-starter&lt;/artifactId&gt;
-            &lt;version&gt;3.0.5&lt;/version&gt;
-        &lt;/dependency&gt;
-
-        &lt;!--mysql--&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;mysql&lt;/groupId&gt;
-            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
-        &lt;/dependency&gt;
-
-        &lt;!--lombok用来简化实体类--&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
-            &lt;artifactId&gt;lombok&lt;/artifactId&gt;
-        &lt;/dependency&gt;
-    &lt;/dependencies&gt;
-</code></pre>
 <p>其中需要安装Idea的Lombok的插件，我早就装好了。</p>
 <h3 id="2-application配置文件"><a href="#2-application配置文件" class="headerlink" title="2.application配置文件"></a>2.application配置文件</h3><p>这个配置文件里连接数据库的地方，有点需要注意的</p>
-<pre><code class="properties">spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-spring.datasource.url=jdbc:mysql://localhost:3306/mybatis_plus?serverTimezone=GMT%2B8
-spring.datasource.username=root
-spring.datasource.password=123456
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">spring.datasource.driver-class-name</span>=<span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line"><span class="meta">spring.datasource.url</span>=<span class="string">jdbc:mysql://localhost:3306/mybatis_plus?serverTimezone=GMT%2B8</span></span><br><span class="line"><span class="meta">spring.datasource.username</span>=<span class="string">root</span></span><br><span class="line"><span class="meta">spring.datasource.password</span>=<span class="string">123456</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#mybatis日志</span></span><br><span class="line"><span class="meta">mybatis-plus.configuration.log-impl</span>=<span class="string">org.apache.ibatis.logging.stdout.StdOutImpl</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-#mybatis日志
-mybatis-plus.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
-</code></pre>
 <ol>
 <li>driver-class-name处，mysql8以前，用com.mysql.jdbc.Driver，之后需要加上这个cj，变成com.mysql.cj.jdbc.Driver，不然会报警告。。。</li>
 <li>url处，在mysql8以后，需要加上那个时区：?serverTimezone=GMT%2B8</li>
 </ol>
 <h2 id="1-简单·的实现查询"><a href="#1-简单·的实现查询" class="headerlink" title="1) 简单·的实现查询"></a>1) 简单·的实现查询</h2><p>建立entity与mapper文件夹，同时建立User.java实体类与UserMapper.java类</p>
 <p>User类中包括简单的信息，然后写上Lombok的@Data注解就有了getter和setter方法以及有参无参的构造方法：</p>
-<pre><code class="java">package com.songx64.mpdemo1010.entity;
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.songx64.mpdemo1010.entity;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-import lombok.Data;
-
-@Data
-public class User &#123;
-    private Long id;
-    private String name;
-    private Integer age;
-    private String email;
-&#125;
-</code></pre>
 <p>UserMapper则是接口，集成了BaseMapper，这个是mybatisplus里面的一个接口，实现了基本的增删改查之类的。继承时候需要一个模板T。</p>
-<pre><code class="java">package com.songx64.mpdemo1010.mapper;
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.songx64.mpdemo1010.mapper;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.core.mapper.BaseMapper;</span><br><span class="line"><span class="keyword">import</span> com.songx64.mpdemo1010.entity.User;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.annotations.Mapper;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Repository;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line"><span class="comment">//下面三个注解任一个，解决自动注入Mapper时候，飘红线</span></span><br><span class="line"><span class="comment">//@Component</span></span><br><span class="line"><span class="comment">//@Service</span></span><br><span class="line"><span class="comment">//@Repository</span></span><br><span class="line"><span class="comment">//@Mapper</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserMapper</span> <span class="keyword">extends</span> <span class="title">BaseMapper</span>&lt;<span class="title">User</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">//SpringBoot启动的时候，接口要找的话，会找接口这个实现类的的对象</span></span><br><span class="line">    <span class="comment">// 但是这里没有实现类，所以说要去启动类中加入@MapperScan注解</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.songx64.mpdemo1010.entity.User;
-import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
-
-//下面三个注解任一个，解决自动注入Mapper时候，飘红线
-//@Component
-//@Service
-//@Repository
-//@Mapper
-public interface UserMapper extends BaseMapper&lt;User&gt; &#123;
-    //SpringBoot启动的时候，接口要找的话，会找接口这个实现类的的对象
-    // 但是这里没有实现类，所以说要去启动类中加入@MapperScan注解
-&#125;
-</code></pre>
 <p>注释里写了部分东西了。</p>
 <p>之后还需要改启动类里面的一点东西，就是加个@MapperScan注解，扫描某个路径下的Mapper。</p>
-<pre><code class="java">@SpringBootApplication
-@MapperScan(&quot;com.songx64.mpdemo1010.mapper&quot;)
-public class Mpdemo1010Application &#123;
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@MapperScan(&quot;com.songx64.mpdemo1010.mapper&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Mpdemo1010Application</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(Mpdemo1010Application.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    public static void main(String[] args) &#123;
-        SpringApplication.run(Mpdemo1010Application.class, args);
-    &#125;
-
-&#125;
-</code></pre>
 <p>当然这个@MapperScan注解也可以不加，而是在UserMapper接口中加上个@Mapper注解，也应该是一样的效果。</p>
 <h2 id="2）查询的单元测试"><a href="#2）查询的单元测试" class="headerlink" title="2）查询的单元测试"></a>2）查询的单元测试</h2><p>编写单元测试，进行简单的查询。</p>
-<pre><code class="java">package com.songx64.mpdemo1010;
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.songx64.mpdemo1010;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Mpdemo1010ApplicationTests</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserMapper userMapper;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">findAll</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        List&lt;User&gt; users = userMapper.selectList(<span class="keyword">null</span>);</span><br><span class="line">        System.out.println(users);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-@SpringBootTest
-public class Mpdemo1010ApplicationTests &#123;
-
-    @Autowired
-    private UserMapper userMapper;
-
-    @Test
-    public void findAll() &#123;
-        List&lt;User&gt; users = userMapper.selectList(null);
-        System.out.println(users);
-
-    &#125;
-
-&#125;
-</code></pre>
 <p>就只是自动注入了一个UserMapper，然后直接调用里面的selectList。</p>
 <blockquote>
 <p>这里有个小技巧，写userMapper.selectList(null).var然后回车，IDEA就会自动生成一个变量： List<User> users = userMapper.selectList(null)也就是这一句。</p>
 </blockquote>
 <h2 id="3）简单的插入"><a href="#3）简单的插入" class="headerlink" title="3）简单的插入"></a>3）简单的插入</h2><p>再在单元测试里加个添加的方法：</p>
-<pre><code class="java">  @Test
-    public void insert() &#123;
-        User user = new User();
-        user.setName(&quot;Lucy&quot;);
-        user.setAge(18);
-        user.setEmail(&quot;PleaseLucy@gmail.com&quot;);
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      User user = <span class="keyword">new</span> User();</span><br><span class="line">      user.setName(<span class="string">&quot;Lucy&quot;</span>);</span><br><span class="line">      user.setAge(<span class="number">18</span>);</span><br><span class="line">      user.setEmail(<span class="string">&quot;PleaseLucy@gmail.com&quot;</span>);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">int</span> insert = userMapper.insert(user);</span><br><span class="line">      System.out.println(<span class="string">&quot;insert:&quot;</span> + insert);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
-        int insert = userMapper.insert(user);
-        System.out.println(&quot;insert:&quot; + insert);
-
-    &#125;
-</code></pre>
 <p>运行结果如下：</p>
 <p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/20200814222228.png" alt="image-20200814222227381"></p>
 <p>这个就是输出的日志，可以看出插入成功了。</p>
@@ -666,75 +548,18 @@ public class Mpdemo1010ApplicationTests &#123;
 <h5 id="3-Redis生成"><a href="#3-Redis生成" class="headerlink" title="3. Redis生成"></a>3. Redis生成</h5><p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/20200831201810.png" alt="image-20200831201810060"></p>
 <h5 id="4-MybatisPlus自带算法，Twitter的Snowflake算法"><a href="#4-MybatisPlus自带算法，Twitter的Snowflake算法" class="headerlink" title="4. MybatisPlus自带算法，Twitter的Snowflake算法"></a>4. MybatisPlus自带算法，Twitter的Snowflake算法</h5><p>结果是一个long型的ID。</p>
 <h2 id="5-Id操作"><a href="#5-Id操作" class="headerlink" title="5) Id操作"></a>5) Id操作</h2><p>在实体类User.java中，加上一个注解：</p>
-<pre><code class="java"> @TableId(type = IdType.ID_WORKER)
-    private Long id;
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@TableId(type = IdType.ID_WORKER)</span></span><br><span class="line">   <span class="keyword">private</span> Long id;</span><br></pre></td></tr></table></figure>
+
 <p>其中 ‘@TableId(type = IdType.XXX)’  是固定的。</p>
 <p>去看IdType的源码：</p>
-<pre><code class="java"> /**
-     * 数据库ID自增
-     */
-    AUTO(0),
-    /**
-     * 该类型为未设置主键类型
-     */
-    NONE(1),
-    /**
-     * 用户输入ID
-     * 该类型可以通过自己注册自动填充插件进行填充
-     */
-    INPUT(2),
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 数据库ID自增</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   AUTO(<span class="number">0</span>),</span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 该类型为未设置主键类型</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   NONE(<span class="number">1</span>),</span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 用户输入ID</span></span><br><span class="line"><span class="comment">    * 该类型可以通过自己注册自动填充插件进行填充</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   INPUT(<span class="number">2</span>),</span><br><span class="line"></span><br><span class="line">   <span class="comment">/* 以下3种类型、只有当插入对象ID 为空，才自动填充。 */</span></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 全局唯一ID (idWorker)</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   ID_WORKER(<span class="number">3</span>),</span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 全局唯一ID (UUID)</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   UUID(<span class="number">4</span>),</span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 字符串全局唯一ID (idWorker 的字符串表示)</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   ID_WORKER_STR(<span class="number">5</span>);</span><br></pre></td></tr></table></figure>
 
-    /* 以下3种类型、只有当插入对象ID 为空，才自动填充。 */
-    /**
-     * 全局唯一ID (idWorker)
-     */
-    ID_WORKER(3),
-    /**
-     * 全局唯一ID (UUID)
-     */
-    UUID(4),
-    /**
-     * 字符串全局唯一ID (idWorker 的字符串表示)
-     */
-    ID_WORKER_STR(5);
-</code></pre>
 <p>其中NONE是不设定，需要人手动输入的。</p>
 <h2 id="6-自动填充"><a href="#6-自动填充" class="headerlink" title="6) 自动填充"></a>6) 自动填充</h2><ol>
 <li><p>在enity实体类User.java中的字段上加入注解@TableField(fill = FieldFill.XXX)</p>
-<pre><code class="java">@TableField(fill = FieldFill.INSERT)
-private Date createTime;
-@TableField(fill = FieldFill.INSERT_UPDATE)
-private Date updateTime;
-</code></pre>
-</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@TableField(fill = FieldFill.INSERT)</span></span><br><span class="line"><span class="keyword">private</span> Date createTime;</span><br><span class="line"><span class="meta">@TableField(fill = FieldFill.INSERT_UPDATE)</span></span><br><span class="line"><span class="keyword">private</span> Date updateTime;</span><br></pre></td></tr></table></figure></li>
 <li><p>实现接口MetaObjectHandler, 重写里面的方法中insertFill和updateFill . 根据名字来设定值.</p>
-<pre><code class="java">package com.songx64.mpdemo1010.handler;
-
-import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
-import org.apache.ibatis.reflection.MetaObject;
-import org.springframework.stereotype.Component;
-
-import java.util.Date;
-
-/**
- * @author Admin
- */
-@Component
-public class MyMetaObjectHandler implements MetaObjectHandler &#123;
-    @Override
-    public void insertFill(MetaObject metaObject) &#123;
-        this.setFieldValByName(&quot;createTime&quot;, new Date(), metaObject);
-        this.setFieldValByName(&quot;updateTime&quot;, new Date(), metaObject);
-    &#125;
-
-    @Override
-    public void updateFill(MetaObject metaObject) &#123;
-        this.setFieldValByName(&quot;updateTime&quot;, new Date(), metaObject);
-    &#125;
-&#125;
-</code></pre>
-</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.songx64.mpdemo1010.handler;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.reflection.MetaObject;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Admin</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyMetaObjectHandler</span> <span class="keyword">implements</span> <span class="title">MetaObjectHandler</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertFill</span><span class="params">(MetaObject metaObject)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.setFieldValByName(<span class="string">&quot;createTime&quot;</span>, <span class="keyword">new</span> Date(), metaObject);</span><br><span class="line">        <span class="keyword">this</span>.setFieldValByName(<span class="string">&quot;updateTime&quot;</span>, <span class="keyword">new</span> Date(), metaObject);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateFill</span><span class="params">(MetaObject metaObject)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.setFieldValByName(<span class="string">&quot;updateTime&quot;</span>, <span class="keyword">new</span> Date(), metaObject);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
 <h2 id="7）乐观锁"><a href="#7）乐观锁" class="headerlink" title="7）乐观锁"></a>7）乐观锁</h2><h3 id="什么是乐观锁"><a href="#什么是乐观锁" class="headerlink" title="什么是乐观锁"></a>什么是乐观锁</h3><p>乐观锁是数据库中的概念，为了解决某些问题。主要解决：丢失更新问题。</p>
 <h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>数据库中，如果不考虑事务隔离性，会产生什么问题？</p>
@@ -765,26 +590,13 @@ public class MyMetaObjectHandler implements MetaObjectHandler &#123;
 <li><p>给实体类加个version属性，并带上@Version注解</p>
 </li>
 <li><p>写个配置类，加入@Configuration注解。之后在类中加入乐观锁插件（复制代码）</p>
-<pre><code class="java">@Configuration
-public class MpConfig &#123;
-    /**
-     * 乐观锁插件
-     */
-    @Bean
-    public OptimisticLockerInterceptor optimisticLockerInterceptor() &#123;
-        return new OptimisticLockerInterceptor();
-    &#125;
-&#125;
-</code></pre>
-</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MpConfig</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 乐观锁插件</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> OptimisticLockerInterceptor <span class="title">optimisticLockerInterceptor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> OptimisticLockerInterceptor();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li><p>为了效果明显，先给数据库中的version一个默认的值，这里依旧通过上述的mp的自动填充fill方式实现。</p>
 <ol>
 <li><p>加入@TableField(fill = FieldFill.INSERT)注解</p>
 </li>
 <li><p>去meta元数据的那里加入插入默认值</p>
-<pre><code class="java">        this.setFieldValByName(&quot;version&quot;, 1, metaObject);
-</code></pre>
-</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.setFieldValByName(<span class="string">&quot;version&quot;</span>, <span class="number">1</span>, metaObject);</span><br></pre></td></tr></table></figure></li>
 </ol>
 </li>
 <li><p>测试</p>
@@ -792,62 +604,29 @@ public class MpConfig &#123;
 </ol>
 <p>测试的时候必须“先查再改”，如果直接手动设置值的话version是不会改变的。</p>
 <p>首先通过insertTest插入一个新的记录，可以看到其version为1.</p>
-<pre><code class="java">   /**
-   * 测试修改
-   */
-   @Test
-   public void testOptimisticLocker() &#123;
-       //需要先查再改
-       User user = userMapper.selectById(1300975732545150977L);
-       user.setAge(22);
-   
-       int row = userMapper.updateById(user);
-       System.out.println(&quot;row:&quot; + row);
-   &#125;
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 测试修改</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testOptimisticLocker</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//需要先查再改</span></span><br><span class="line">    User user = userMapper.selectById(<span class="number">1300975732545150977L</span>);</span><br><span class="line">    user.setAge(<span class="number">22</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> row = userMapper.updateById(user);</span><br><span class="line">    System.out.println(<span class="string">&quot;row:&quot;</span> + row);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>   经过上述测试，发现修改年龄之后，记录的version变为2 。说明乐观锁生效。</p>
-<h2 id="8-查询Select"><a href="#8-查询Select" class="headerlink" title="8) 查询Select"></a>8) 查询Select</h2><h3 id="1-通过id来查询"><a href="#1-通过id来查询" class="headerlink" title="1. 通过id来查询"></a>1. 通过id来查询</h3><pre><code class="java">User user = userMapper.selectById(1300975732545150977L);
-</code></pre>
-<h3 id="2-通过多个id批量查询"><a href="#2-通过多个id批量查询" class="headerlink" title="2.通过多个id批量查询"></a>2.通过多个id批量查询</h3><pre><code class="java">/**
-* 多个id批量查询
-*/
-@Test
-public void testSelectBatchs() &#123;
-    //传入一个集合
-    // 这里直接通过Arrays.asList()来直接构建一个集合
-    List&lt;User&gt; users = userMapper.selectBatchIds(Arrays.asList(1L, 2L, 3L));
+<h2 id="8-查询Select"><a href="#8-查询Select" class="headerlink" title="8) 查询Select"></a>8) 查询Select</h2><h3 id="1-通过id来查询"><a href="#1-通过id来查询" class="headerlink" title="1. 通过id来查询"></a>1. 通过id来查询</h3>   <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User user = userMapper.selectById(<span class="number">1300975732545150977L</span>);</span><br></pre></td></tr></table></figure>
 
-    System.out.println(users);
-&#125;
-</code></pre>
-<h3 id="3-通过Map查询"><a href="#3-通过Map查询" class="headerlink" title="3.通过Map查询"></a>3.通过Map查询</h3><pre><code class="java">/**
-* 测试Map查询
-*/
-@Test
-public void testSelectMap() &#123;
- HashMap&lt;String,Object&gt; map = new HashMap&lt;&gt;();
- map.put(&quot;age&quot;,18);
- List&lt;User&gt; users = userMapper.selectByMap(map);
+<h3 id="2-通过多个id批量查询"><a href="#2-通过多个id批量查询" class="headerlink" title="2.通过多个id批量查询"></a>2.通过多个id批量查询</h3>   <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 多个id批量查询</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSelectBatchs</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//传入一个集合</span></span><br><span class="line">    <span class="comment">// 这里直接通过Arrays.asList()来直接构建一个集合</span></span><br><span class="line">    List&lt;User&gt; users = userMapper.selectBatchIds(Arrays.asList(<span class="number">1L</span>, <span class="number">2L</span>, <span class="number">3L</span>));</span><br><span class="line"></span><br><span class="line">    System.out.println(users);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
- users.forEach(System.out::println);
-&#125;
-</code></pre>
+<h3 id="3-通过Map查询"><a href="#3-通过Map查询" class="headerlink" title="3.通过Map查询"></a>3.通过Map查询</h3>   <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 测试Map查询</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSelectMap</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    HashMap&lt;String,Object&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    map.put(<span class="string">&quot;age&quot;</span>,<span class="number">18</span>);</span><br><span class="line">    List&lt;User&gt; users = userMapper.selectByMap(map);</span><br><span class="line"></span><br><span class="line">    users.forEach(System.out::println);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>构建map的语句：HashMap&lt;String,Object&gt; map = new HashMap&lt;&gt;();</p>
 <p>关于最后一句输出语句：</p>
 <blockquote>
 <p>System.out::print ：是方法引用</p>
 <p>方法引用是当你想把一个方法当作一个“函数指针”传给别的方法用时有用的。</p>
 <p>例如说，我有个ArrayList想把里面每个元素都打印出来，每个元素一行。<br>那么Java 8之前会这样写：</p>
-<pre><code class="java">for (ElementType e : list) &#123;
-System.out.println(e);
-&#125;
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (ElementType e : list) &#123;</span><br><span class="line">System.out.println(e);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>从Java 8开始，使用ArrayList的新API加上lambda表达式，我们可以这样写：</p>
-<pre><code class="java">list.forEach(e -&gt; System.out.println(e));
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list.forEach(e -&gt; System.out.println(e));</span><br></pre></td></tr></table></figure>
+
 <p>而这里的lambda表达式的内容其实只不过就是把参数传给了println()方法，而没有做任何别的事情，所以可以进一步简写为：</p>
-<pre><code class="java">list.forEach(System.out::println);
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list.forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+
 <p>仅此而已。</p>
 <p>重点：</p>
 <ul>
@@ -863,51 +642,10 @@ System.out.println(e);
 <h3 id="4-分页"><a href="#4-分页" class="headerlink" title="4.分页"></a>4.分页</h3><p>与PageHelper写法相似。。。</p>
 <ol>
 <li><p>配置分页插件，还是去Config配置类里面加上。（复制代码）</p>
-<pre><code class="java">@Configuration
-public class MpConfig &#123;
-    /**
-     * 乐观锁插件
-     */
-    @Bean
-    public OptimisticLockerInterceptor optimisticLockerInterceptor() &#123;
-        return new OptimisticLockerInterceptor();
-    &#125;
-
-    /**
-     * 分页插件
-     */
-    @Bean
-    public PaginationInterceptor paginationInterceptor() &#123;
-        return new PaginationInterceptor();
-    &#125;
-&#125;
-</code></pre>
-</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MpConfig</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 乐观锁插件</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> OptimisticLockerInterceptor <span class="title">optimisticLockerInterceptor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> OptimisticLockerInterceptor();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 分页插件</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> PaginationInterceptor <span class="title">paginationInterceptor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> PaginationInterceptor();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li><p>写测试方法：</p>
-<pre><code class="java">/**
-     * 分页查询方法测试
-     */
-    @Test
-    public void testPage() &#123;
-        //1.创建page对象
-        // 参数：current当前页数，size每页多少条记录
-        Page&lt;User&gt; page = new Page&lt;&gt;(1, 5);
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 分页查询方法测试</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testPage</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1.创建page对象</span></span><br><span class="line">        <span class="comment">// 参数：current当前页数，size每页多少条记录</span></span><br><span class="line">        Page&lt;User&gt; page = <span class="keyword">new</span> Page&lt;&gt;(<span class="number">1</span>, <span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2.进行查询，查询到的数据会全部封装在传过来的page对象里面</span></span><br><span class="line">        <span class="comment">//参数：page对象，wrapper查询条件(暂时写null)</span></span><br><span class="line">        userMapper.selectPage(page, <span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3.输出测试</span></span><br><span class="line">        System.out.println(<span class="string">&quot;当前页：&quot;</span> + page.getCurrent());</span><br><span class="line">        System.out.println(<span class="string">&quot;Records每页数据list集合：&quot;</span>);</span><br><span class="line">        page.getRecords().forEach(System.out::println);</span><br><span class="line">        System.out.println(<span class="string">&quot;Size每页记录数：&quot;</span> + page.getSize());</span><br><span class="line">        System.out.println(<span class="string">&quot;Total记录总条数：&quot;</span> + page.getTotal());</span><br><span class="line">        System.out.println(<span class="string">&quot;Pages总页数：&quot;</span> + page.getPages());</span><br><span class="line">        System.out.println(<span class="string">&quot;是否有下一页？ -：&quot;</span> + page.hasNext());</span><br><span class="line">        System.out.println(<span class="string">&quot;是否有上一页？ -：&quot;</span> + page.hasPrevious());</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-        //2.进行查询，查询到的数据会全部封装在传过来的page对象里面
-        //参数：page对象，wrapper查询条件(暂时写null)
-        userMapper.selectPage(page, null);
-
-        //3.输出测试
-        System.out.println(&quot;当前页：&quot; + page.getCurrent());
-        System.out.println(&quot;Records每页数据list集合：&quot;);
-        page.getRecords().forEach(System.out::println);
-        System.out.println(&quot;Size每页记录数：&quot; + page.getSize());
-        System.out.println(&quot;Total记录总条数：&quot; + page.getTotal());
-        System.out.println(&quot;Pages总页数：&quot; + page.getPages());
-        System.out.println(&quot;是否有下一页？ -：&quot; + page.hasNext());
-        System.out.println(&quot;是否有上一页？ -：&quot; + page.hasPrevious());
-    &#125;
-</code></pre>
 <p>其输出结果如下：</p>
 <blockquote>
 <p>当前页：1<br>Records每页数据list集合：<br>User(id=1, name=Jone, age=22, email=test1@baomidou.com, createTime=null, updateTime=Wed Sep 02 09:56:47 CST 2020, version=null)<br>User(id=2, name=Jack, age=20, email=test2@baomidou.com, createTime=null, updateTime=null, version=null)<br>User(id=3, name=Tom, age=28, email=test3@baomidou.com, createTime=null, updateTime=null, version=null)<br>User(id=4, name=Sandy, age=21, email=test4@baomidou.com, createTime=null, updateTime=null, version=null)<br>User(id=5, name=Billie, age=24, email=test5@baomidou.com, createTime=null, updateTime=null, version=null)<br>Size每页记录数：5<br>Total记录总条数：10<br>Pages总页数：2<br>是否有下一页？ -：true<br>是否有上一页？ -：false</p>
@@ -925,75 +663,33 @@ public class MpConfig &#123;
 </li>
 </ul>
 <p>首先在表中加个boolean字段：deleted</p>
-<pre><code class="sql">ALTER TABLE `user` ADD COLUMN `deleted` boolean
-</code></pre>
-<h3 id="1-根据Id删除"><a href="#1-根据Id删除" class="headerlink" title="1.根据Id删除"></a>1.根据Id删除</h3><p>deleteById，物理删除</p>
-<pre><code class="java">/* 删除操作，物理删除*/
-@Test
-public void testDeleteByID()&#123;
-    int result = userMapper.deleteById(1L);
-    System.out.println(&quot;影响的行数:&quot;+result);
-&#125;
-</code></pre>
-<h3 id="2-批量ID删除"><a href="#2-批量ID删除" class="headerlink" title="2.批量ID删除"></a>2.批量ID删除</h3><p>deleteBatchIds</p>
-<pre><code class="java">/* 批量删除操作，物理删除*/
-@Test
-public void testDeleteBatchs()&#123;
-    int result = userMapper.deleteBatchIds(Arrays.asList(2L,3L,4L));
-    System.out.println(&quot;影响的行数:&quot;+result);
-&#125;
-</code></pre>
-<h3 id="3-Map条件删除"><a href="#3-Map条件删除" class="headerlink" title="3.Map条件删除"></a>3.Map条件删除</h3><pre><code class="java">/* Map条件删除操作，物理删除*/
-@Test
-public void testDeleteByMap() &#123;
-    HashMap&lt;String, Object&gt; map = new HashMap&lt;&gt;();
-    map.put(&quot;name&quot;, &quot;Billie&quot;);
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> `<span class="keyword">user</span>` <span class="keyword">ADD</span> <span class="keyword">COLUMN</span> `deleted` <span class="type">boolean</span></span><br></pre></td></tr></table></figure>
 
-    int result = userMapper.deleteByMap(map);
-    System.out.println(&quot;影响的行数:&quot; + result);
-&#125;
-</code></pre>
+<h3 id="1-根据Id删除"><a href="#1-根据Id删除" class="headerlink" title="1.根据Id删除"></a>1.根据Id删除</h3><p>deleteById，物理删除</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 删除操作，物理删除*/</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testDeleteByID</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> result = userMapper.deleteById(<span class="number">1L</span>);</span><br><span class="line">    System.out.println(<span class="string">&quot;影响的行数:&quot;</span>+result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-批量ID删除"><a href="#2-批量ID删除" class="headerlink" title="2.批量ID删除"></a>2.批量ID删除</h3><p>deleteBatchIds</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 批量删除操作，物理删除*/</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testDeleteBatchs</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> result = userMapper.deleteBatchIds(Arrays.asList(<span class="number">2L</span>,<span class="number">3L</span>,<span class="number">4L</span>));</span><br><span class="line">    System.out.println(<span class="string">&quot;影响的行数:&quot;</span>+result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-Map条件删除"><a href="#3-Map条件删除" class="headerlink" title="3.Map条件删除"></a>3.Map条件删除</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Map条件删除操作，物理删除*/</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testDeleteByMap</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    HashMap&lt;String, Object&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    map.put(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;Billie&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> result = userMapper.deleteByMap(map);</span><br><span class="line">    System.out.println(<span class="string">&quot;影响的行数:&quot;</span> + result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h3 id="4-逻辑删除"><a href="#4-逻辑删除" class="headerlink" title="4.逻辑删除"></a>4.逻辑删除</h3><p>Mp自带了逻辑删除的功能。</p>
 <ol>
 <li><p>在数据库表中增加一个deleted字段。这里通过数据库表，设置其默认值为0.</p>
-<pre><code class="sql">alter table user add `deleted` boolean default 0 null;
-</code></pre>
-</li>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> <span class="keyword">user</span> <span class="keyword">add</span> `deleted` <span class="type">boolean</span> <span class="keyword">default</span> <span class="number">0</span> <span class="keyword">null</span>;</span><br></pre></td></tr></table></figure></li>
 <li><p>在实体类User中添加属性，并添加@TableLogic注解</p>
-<pre><code class="java">/**
-  * 逻辑删除字段
-  */
-@TableLogic
-private Integer deleted;
-</code></pre>
-</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * 逻辑删除字段</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="meta">@TableLogic</span></span><br><span class="line"><span class="keyword">private</span> Integer deleted;</span><br></pre></td></tr></table></figure></li>
 <li><p>去配置类中，增加逻辑删除插件</p>
-<pre><code class="java"> /**
-     * 逻辑删除插件
-     */
-    @Bean
-    public ISqlInjector sqlInjector() &#123;
-        return new LogicSqlInjector();
-    &#125;
-</code></pre>
-</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 逻辑删除插件</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="meta">@Bean</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> ISqlInjector <span class="title">sqlInjector</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">new</span> LogicSqlInjector();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></li>
 <li><p>（可选）可以去配置文件application.properties中修改mp的配置：</p>
-<pre><code class="properties"># mp逻辑删除字段
-# 被删除的是1，不被删除的是0。这是mp默认的，所以下面这两句不写也可以。
-mybatis-plus.global-config.db-config.logic-delete-value=1
-mybatis-plus.global-config.db-config.logic-not-delete-value=0
-</code></pre>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mp逻辑删除字段</span></span><br><span class="line"><span class="comment"># 被删除的是1，不被删除的是0。这是mp默认的，所以下面这两句不写也可以。</span></span><br><span class="line"><span class="meta">mybatis-plus.global-config.db-config.logic-delete-value</span>=<span class="string">1</span></span><br><span class="line"><span class="meta">mybatis-plus.global-config.db-config.logic-not-delete-value</span>=<span class="string">0</span></span><br></pre></td></tr></table></figure>
+
 <p>如注释所说。这里可以随意修改这两个值。</p>
 </li>
 <li><p>然后直接去测试就可以了。用的还是原来的方法，不过从物理删除变成了逻辑删除。</p>
 <p>依然执行deleteById方法：</p>
-<pre><code class="java">    /* 删除操作，配置了之后变为删除*/
-    @Test
-    public void testDeleteByID() &#123;
-        int result = userMapper.deleteById(1301357687774146562L);
-        System.out.println(&quot;影响的行数:&quot; + result);
-    &#125;
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 删除操作，配置了之后变为删除*/</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testDeleteByID</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> result = userMapper.deleteById(<span class="number">1301357687774146562L</span>);</span><br><span class="line">    System.out.println(<span class="string">&quot;影响的行数:&quot;</span> + result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>然后查看控制台输出的语句：</p>
 <p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/20200903112040.png" alt="image-20200903112040757"></p>
 <p>可以看到，这里执行的是Update语句而不是Delete语句。修改了deleted，也就是含有@TableLogic注解的字段。</p>
@@ -1008,23 +704,11 @@ mybatis-plus.global-config.db-config.logic-not-delete-value=0
 <p>参数：maxTime： SQL 执行最大时长，超过自动停止运行，有助于发现问题。</p>
 <p>参数：format： SQL是否格式化，默认false。</p>
 <p><strong>（2）在 MybatisPlusConfig 中配置</strong></p>
-<pre><code>/**
- * SQL 执行性能分析插件
- * 开发环境使用，线上不推荐。 maxTime 指的是 sql 最大执行时长
- */
-@Bean
-@Profile(&#123;&quot;dev&quot;,&quot;test&quot;&#125;)// 设置 dev test 环境开启
-public PerformanceInterceptor performanceInterceptor() &#123;
-    PerformanceInterceptor performanceInterceptor = new PerformanceInterceptor();
-    performanceInterceptor.setMaxTime(100);//ms，超过此处设置的ms则sql不执行
-    performanceInterceptor.setFormat(true);
-    return performanceInterceptor;
-&#125;
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * SQL 执行性能分析插件</span><br><span class="line"> * 开发环境使用，线上不推荐。 maxTime 指的是 sql 最大执行时长</span><br><span class="line"> *&#x2F;</span><br><span class="line">@Bean</span><br><span class="line">@Profile(&#123;&quot;dev&quot;,&quot;test&quot;&#125;)&#x2F;&#x2F; 设置 dev test 环境开启</span><br><span class="line">public PerformanceInterceptor performanceInterceptor() &#123;</span><br><span class="line">    PerformanceInterceptor performanceInterceptor &#x3D; new PerformanceInterceptor();</span><br><span class="line">    performanceInterceptor.setMaxTime(100);&#x2F;&#x2F;ms，超过此处设置的ms则sql不执行</span><br><span class="line">    performanceInterceptor.setFormat(true);</span><br><span class="line">    return performanceInterceptor;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p><strong>（3）Spring Boot 中设置dev环境</strong></p>
-<pre><code>#环境设置：dev、test、prod
-spring.profiles.active=dev
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#环境设置：dev、test、prod</span><br><span class="line">spring.profiles.active&#x3D;dev</span><br></pre></td></tr></table></figure>
+
 <p>可以针对各环境新建不同的配置文件<code>application-dev.properties</code>、<code>application-test.properties</code>、<code>application-prod.properties</code></p>
 <p>也可以自定义环境名称：如test1、test2</p>
 <ul>
@@ -1042,45 +726,8 @@ spring.profiles.active=dev
 <li>使用wrapper.xxx()方法，指定查询条件</li>
 <li>传入wrapper对象，执行查询</li>
 </ol>
-<pre><code class="java">/**
- * 测试Wrapper
- */
-@Test
-public void testWrapper() &#123;
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 测试Wrapper</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testWrapper</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    QueryWrapper&lt;User&gt; wrapper = <span class="keyword">new</span> QueryWrapper&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//大于，大于等于，小于，小于等于</span></span><br><span class="line">    <span class="comment">//gt,ge,lt,le</span></span><br><span class="line">    <span class="comment">//wrapper.gt(&quot;age&quot;, 22);</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//之间，between。包括两头，是等于。</span></span><br><span class="line">    <span class="comment">//wrapper.between(&quot;age&quot;, 18, 23);</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//等于，不等于</span></span><br><span class="line">    <span class="comment">//eq,ne</span></span><br><span class="line">    <span class="comment">//wrapper.eq(&quot;email&quot;,&quot;LLL@gmail.com&quot;);</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//模糊查询</span></span><br><span class="line">    <span class="comment">//like</span></span><br><span class="line">    wrapper.like(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;不&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//拼接sql</span></span><br><span class="line">    <span class="comment">//last</span></span><br><span class="line">    <span class="comment">//wrapper.last(&quot;limit 1&quot;);</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//正序排序，逆序排序</span></span><br><span class="line">    <span class="comment">//orderByAsc,orderByDesc</span></span><br><span class="line">    <span class="comment">//wrapper.orderByDesc(&quot;age&quot;);</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//查询指定列，而不是select *</span></span><br><span class="line">    <span class="comment">//select</span></span><br><span class="line">    wrapper.select(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;age&quot;</span>);</span><br><span class="line"></span><br><span class="line">    List&lt;User&gt; users = userMapper.selectList(wrapper);</span><br><span class="line">    users.forEach(System.out::println);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    QueryWrapper&lt;User&gt; wrapper = new QueryWrapper&lt;&gt;();
-
-    //大于，大于等于，小于，小于等于
-    //gt,ge,lt,le
-    //wrapper.gt(&quot;age&quot;, 22);
-
-    //之间，between。包括两头，是等于。
-    //wrapper.between(&quot;age&quot;, 18, 23);
-
-    //等于，不等于
-    //eq,ne
-    //wrapper.eq(&quot;email&quot;,&quot;LLL@gmail.com&quot;);
-
-    //模糊查询
-    //like
-    wrapper.like(&quot;name&quot;, &quot;不&quot;);
-
-    //拼接sql
-    //last
-    //wrapper.last(&quot;limit 1&quot;);
-
-    //正序排序，逆序排序
-    //orderByAsc,orderByDesc
-    //wrapper.orderByDesc(&quot;age&quot;);
-
-    //查询指定列，而不是select *
-    //select
-    wrapper.select(&quot;name&quot;, &quot;age&quot;);
-
-    List&lt;User&gt; users = userMapper.selectList(wrapper);
-    users.forEach(System.out::println);
-&#125;
-</code></pre>
 <h1 id="课堂笔记，全"><a href="#课堂笔记，全" class="headerlink" title="课堂笔记，全"></a>课堂笔记，全</h1><p>这个是全的笔记，上面的只是列举了几个常用的、可能在项目中用到的方法。</p>
 <blockquote>
 <h1 id="一、wapper介绍"><a href="#一、wapper介绍" class="headerlink" title="一、wapper介绍"></a><strong>一、wapper介绍</strong></h1><p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/20200904203255.png" alt="img"></p>
@@ -1091,177 +738,68 @@ public void testWrapper() &#123;
 <p>AbstractLambdaWrapper ： Lambda 语法使用 Wrapper统一处理解析 lambda 获取 column。</p>
 <p>​    LambdaQueryWrapper ：看名称也能明白就是用于Lambda语法使用的查询Wrapper</p>
 <p>​    LambdaUpdateWrapper ： Lambda 更新封装Wrapper</p>
-<pre><code>@RunWith(SpringRunner.class)
-@SpringBootTest
-public class QueryWrapperTests &#123;
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@RunWith(SpringRunner.class)</span><br><span class="line">@SpringBootTest</span><br><span class="line">public class QueryWrapperTests &#123;</span><br><span class="line"></span><br><span class="line"> @Autowired</span><br><span class="line"> private UserMapper userMapper;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
- @Autowired
- private UserMapper userMapper;
-&#125;
-</code></pre>
 <h1 id="二、AbstractWrapper"><a href="#二、AbstractWrapper" class="headerlink" title="二、AbstractWrapper"></a>二、AbstractWrapper</h1><p>**<br>**<strong>注意：</strong>以下条件构造器的方法入参中的 <code>column </code>均表示数据库字段</p>
-<h2 id="1、ge、gt、le、lt、isNull、isNotNull"><a href="#1、ge、gt、le、lt、isNull、isNotNull" class="headerlink" title="1、ge、gt、le、lt、isNull、isNotNull"></a><strong>1、ge、gt、le、lt、isNull、isNotNull</strong></h2><pre><code>@Test
-public void testDelete() &#123;
- QueryWrapper&lt;User&gt; queryWrapper = new QueryWrapper&lt;&gt;();
- queryWrapper
-     .isNull(&quot;name&quot;)
-     .ge(&quot;age&quot;, 12)
-     .isNotNull(&quot;email&quot;);
- int result = userMapper.delete(queryWrapper);
- System.out.println(&quot;delete return count = &quot; + result);
-&#125;
-</code></pre>
+<h2 id="1、ge、gt、le、lt、isNull、isNotNull"><a href="#1、ge、gt、le、lt、isNull、isNotNull" class="headerlink" title="1、ge、gt、le、lt、isNull、isNotNull"></a><strong>1、ge、gt、le、lt、isNull、isNotNull</strong></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void testDelete() &#123;</span><br><span class="line"> QueryWrapper&lt;User&gt; queryWrapper &#x3D; new QueryWrapper&lt;&gt;();</span><br><span class="line"> queryWrapper</span><br><span class="line">     .isNull(&quot;name&quot;)</span><br><span class="line">     .ge(&quot;age&quot;, 12)</span><br><span class="line">     .isNotNull(&quot;email&quot;);</span><br><span class="line"> int result &#x3D; userMapper.delete(queryWrapper);</span><br><span class="line"> System.out.println(&quot;delete return count &#x3D; &quot; + result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>SQL：UPDATE user SET deleted=1 WHERE deleted=0 AND name IS NULL AND age &gt;= ? AND email IS NOT NULL</p>
 <h2 id="2、eq、ne"><a href="#2、eq、ne" class="headerlink" title="2、eq、ne"></a><strong>2、eq、ne</strong></h2><p><strong>注意：</strong>seletOne返回的是一条实体记录，当出现多条时会报错</p>
-<pre><code>@Test
-public void testSelectOne() &#123;
- QueryWrapper&lt;User&gt; queryWrapper = new QueryWrapper&lt;&gt;();
- queryWrapper.eq(&quot;name&quot;, &quot;Tom&quot;);
- User user = userMapper.selectOne(queryWrapper);
- System.out.println(user);
-&#125;
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void testSelectOne() &#123;</span><br><span class="line"> QueryWrapper&lt;User&gt; queryWrapper &#x3D; new QueryWrapper&lt;&gt;();</span><br><span class="line"> queryWrapper.eq(&quot;name&quot;, &quot;Tom&quot;);</span><br><span class="line"> User user &#x3D; userMapper.selectOne(queryWrapper);</span><br><span class="line"> System.out.println(user);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>SELECT id,name,age,email,create_time,update_time,deleted,version FROM user WHERE deleted=0 AND name = ? </p>
 <h2 id="3、between、notBetween"><a href="#3、between、notBetween" class="headerlink" title="3、between、notBetween"></a><strong>3、between、notBetween</strong></h2><p>包含大小边界</p>
-<pre><code>@Test
-public void testSelectCount() &#123;
- QueryWrapper&lt;User&gt; queryWrapper = new QueryWrapper&lt;&gt;();
- queryWrapper.between(&quot;age&quot;, 20, 30);
- Integer count = userMapper.selectCount(queryWrapper);
- System.out.println(count);
-&#125;
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void testSelectCount() &#123;</span><br><span class="line"> QueryWrapper&lt;User&gt; queryWrapper &#x3D; new QueryWrapper&lt;&gt;();</span><br><span class="line"> queryWrapper.between(&quot;age&quot;, 20, 30);</span><br><span class="line"> Integer count &#x3D; userMapper.selectCount(queryWrapper);</span><br><span class="line"> System.out.println(count);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>SELECT COUNT(1) FROM user WHERE deleted=0 AND age BETWEEN ? AND ? </p>
-<h2 id="4、allEq"><a href="#4、allEq" class="headerlink" title="4、allEq"></a><strong>4、allEq</strong></h2><pre><code>@Test
-public void testSelectList() &#123;
- QueryWrapper&lt;User&gt; queryWrapper = new QueryWrapper&lt;&gt;();
- Map&lt;String, Object&gt; map = new HashMap&lt;&gt;();
- map.put(&quot;id&quot;, 2);
- map.put(&quot;name&quot;, &quot;Jack&quot;);
- map.put(&quot;age&quot;, 20);
- queryWrapper.allEq(map);
- List&lt;User&gt; users = userMapper.selectList(queryWrapper);
- users.forEach(System.out::println);
-&#125;
-</code></pre>
+<h2 id="4、allEq"><a href="#4、allEq" class="headerlink" title="4、allEq"></a><strong>4、allEq</strong></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void testSelectList() &#123;</span><br><span class="line"> QueryWrapper&lt;User&gt; queryWrapper &#x3D; new QueryWrapper&lt;&gt;();</span><br><span class="line"> Map&lt;String, Object&gt; map &#x3D; new HashMap&lt;&gt;();</span><br><span class="line"> map.put(&quot;id&quot;, 2);</span><br><span class="line"> map.put(&quot;name&quot;, &quot;Jack&quot;);</span><br><span class="line"> map.put(&quot;age&quot;, 20);</span><br><span class="line"> queryWrapper.allEq(map);</span><br><span class="line"> List&lt;User&gt; users &#x3D; userMapper.selectList(queryWrapper);</span><br><span class="line"> users.forEach(System.out::println);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>SELECT id,name,age,email,create_time,update_time,deleted,version </p>
 <p>FROM user WHERE deleted=0 AND name = ? AND id = ? AND age = ? </p>
 <h2 id="5、like、notLike、likeLeft、likeRight"><a href="#5、like、notLike、likeLeft、likeRight" class="headerlink" title="5、like、notLike、likeLeft、likeRight"></a><strong>5、like、notLike、likeLeft、likeRight</strong></h2><p>selectMaps返回Map集合列表</p>
-<pre><code>@Test
-public void testSelectMaps() &#123;
- QueryWrapper&lt;User&gt; queryWrapper = new QueryWrapper&lt;&gt;();
- queryWrapper
-     .notLike(&quot;name&quot;, &quot;e&quot;)
-     .likeRight(&quot;email&quot;, &quot;t&quot;);
- List&lt;Map&lt;String, Object&gt;&gt; maps = userMapper.selectMaps(queryWrapper);//返回值是Map列表
- maps.forEach(System.out::println);
-&#125;
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void testSelectMaps() &#123;</span><br><span class="line"> QueryWrapper&lt;User&gt; queryWrapper &#x3D; new QueryWrapper&lt;&gt;();</span><br><span class="line"> queryWrapper</span><br><span class="line">     .notLike(&quot;name&quot;, &quot;e&quot;)</span><br><span class="line">     .likeRight(&quot;email&quot;, &quot;t&quot;);</span><br><span class="line"> List&lt;Map&lt;String, Object&gt;&gt; maps &#x3D; userMapper.selectMaps(queryWrapper);&#x2F;&#x2F;返回值是Map列表</span><br><span class="line"> maps.forEach(System.out::println);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>SELECT id,name,age,email,create_time,update_time,deleted,version </p>
 <p>FROM user WHERE deleted=0 AND name NOT LIKE ? AND email LIKE ? </p>
 <h2 id="6、in、notIn、inSql、notinSql、exists、notExists"><a href="#6、in、notIn、inSql、notinSql、exists、notExists" class="headerlink" title="6、in、notIn、inSql、notinSql、exists、notExists"></a><strong>6、in、notIn、inSql、notinSql、exists、notExists</strong></h2><p>in、notIn：</p>
-<pre><code>notIn(&quot;age&quot;,&#123;1,2,3&#125;)---&gt;age not in (1,2,3)notIn(&quot;age&quot;, 1, 2, 3)---&gt;age not in (1,2,3)
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">notIn(&quot;age&quot;,&#123;1,2,3&#125;)---&gt;age not in (1,2,3)notIn(&quot;age&quot;, 1, 2, 3)---&gt;age not in (1,2,3)</span><br></pre></td></tr></table></figure>
+
 <p>inSql、notinSql：可以实现子查询</p>
 <ul>
 <li>例: <code>inSql(&quot;age&quot;, &quot;1,2,3,4,5,6&quot;)</code>—&gt;<code>age in (1,2,3,4,5,6)</code></li>
 <li>例: <code>inSql(&quot;id&quot;, &quot;select id from table where id &lt; 3&quot;)</code>—&gt;<code>id in (select id from table where id &lt; 3)</code></li>
 </ul>
-<pre><code>@Test
-public void testSelectObjs() &#123;
-    QueryWrapper&lt;User&gt; queryWrapper = new QueryWrapper&lt;&gt;();
-    //queryWrapper.in(&quot;id&quot;, 1, 2, 3);
-    queryWrapper.inSql(&quot;id&quot;, &quot;select id from user where id &lt; 3&quot;);
-    List&lt;Object&gt; objects = userMapper.selectObjs(queryWrapper);//返回值是Object列表
-    objects.forEach(System.out::println);
-&#125;
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void testSelectObjs() &#123;</span><br><span class="line">    QueryWrapper&lt;User&gt; queryWrapper &#x3D; new QueryWrapper&lt;&gt;();</span><br><span class="line">    &#x2F;&#x2F;queryWrapper.in(&quot;id&quot;, 1, 2, 3);</span><br><span class="line">    queryWrapper.inSql(&quot;id&quot;, &quot;select id from user where id &lt; 3&quot;);</span><br><span class="line">    List&lt;Object&gt; objects &#x3D; userMapper.selectObjs(queryWrapper);&#x2F;&#x2F;返回值是Object列表</span><br><span class="line">    objects.forEach(System.out::println);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>SELECT id,name,age,email,create_time,update_time,deleted,version </p>
 <p>FROM user WHERE deleted=0 AND id IN (select id from user where id &lt; 3) </p>
 <h2 id="7、or、and"><a href="#7、or、and" class="headerlink" title="7、or、and"></a><strong>7、or、and</strong></h2><p><strong>注意：</strong>这里使用的是 UpdateWrapper </p>
 <p>不调用<code>or</code>则默认为使用 <code>and </code>连</p>
-<pre><code>@Test
-public void testUpdate1() &#123;
-    //修改值
-    User user = new User();
-    user.setAge(99);
-    user.setName(&quot;Andy&quot;);
-    //修改条件
-    UpdateWrapper&lt;User&gt; userUpdateWrapper = new UpdateWrapper&lt;&gt;();
-    userUpdateWrapper
-        .like(&quot;name&quot;, &quot;h&quot;)
-        .or()
-        .between(&quot;age&quot;, 20, 30);
-    int result = userMapper.update(user, userUpdateWrapper);
-    System.out.println(result);
-&#125;
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void testUpdate1() &#123;</span><br><span class="line">    &#x2F;&#x2F;修改值</span><br><span class="line">    User user &#x3D; new User();</span><br><span class="line">    user.setAge(99);</span><br><span class="line">    user.setName(&quot;Andy&quot;);</span><br><span class="line">    &#x2F;&#x2F;修改条件</span><br><span class="line">    UpdateWrapper&lt;User&gt; userUpdateWrapper &#x3D; new UpdateWrapper&lt;&gt;();</span><br><span class="line">    userUpdateWrapper</span><br><span class="line">        .like(&quot;name&quot;, &quot;h&quot;)</span><br><span class="line">        .or()</span><br><span class="line">        .between(&quot;age&quot;, 20, 30);</span><br><span class="line">    int result &#x3D; userMapper.update(user, userUpdateWrapper);</span><br><span class="line">    System.out.println(result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>UPDATE user SET name=?, age=?, update_time=? WHERE deleted=0 AND name LIKE ? OR age BETWEEN ? AND ?</p>
 <h2 id="8、嵌套or、嵌套and"><a href="#8、嵌套or、嵌套and" class="headerlink" title="8、嵌套or、嵌套and"></a><strong>8、嵌套or、嵌套and</strong></h2><p>这里使用了lambda表达式，or中的表达式最后翻译成sql时会被加上圆括号</p>
-<pre><code>@Test
-public void testUpdate2() &#123;
-    //修改值
-    User user = new User();
-    user.setAge(99);
-    user.setName(&quot;Andy&quot;);
-    //修改条件
-    UpdateWrapper&lt;User&gt; userUpdateWrapper = new UpdateWrapper&lt;&gt;();
-    userUpdateWrapper
-        .like(&quot;name&quot;, &quot;h&quot;)
-        .or(i -&gt; i.eq(&quot;name&quot;, &quot;李白&quot;).ne(&quot;age&quot;, 20));
-    int result = userMapper.update(user, userUpdateWrapper);
-    System.out.println(result);
-&#125;
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void testUpdate2() &#123;</span><br><span class="line">    &#x2F;&#x2F;修改值</span><br><span class="line">    User user &#x3D; new User();</span><br><span class="line">    user.setAge(99);</span><br><span class="line">    user.setName(&quot;Andy&quot;);</span><br><span class="line">    &#x2F;&#x2F;修改条件</span><br><span class="line">    UpdateWrapper&lt;User&gt; userUpdateWrapper &#x3D; new UpdateWrapper&lt;&gt;();</span><br><span class="line">    userUpdateWrapper</span><br><span class="line">        .like(&quot;name&quot;, &quot;h&quot;)</span><br><span class="line">        .or(i -&gt; i.eq(&quot;name&quot;, &quot;李白&quot;).ne(&quot;age&quot;, 20));</span><br><span class="line">    int result &#x3D; userMapper.update(user, userUpdateWrapper);</span><br><span class="line">    System.out.println(result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>UPDATE user SET name=?, age=?, update_time=? </p>
 <p>WHERE deleted=0 AND name LIKE ? </p>
 <p>OR ( name = ? AND age &lt;&gt; ? ) </p>
-<h2 id="9、orderBy、orderByDesc、orderByAsc"><a href="#9、orderBy、orderByDesc、orderByAsc" class="headerlink" title="9、orderBy、orderByDesc、orderByAsc"></a><strong>9、orderBy、orderByDesc、orderByAsc</strong></h2><pre><code>@Test
-public void testSelectListOrderBy() &#123;
-    QueryWrapper&lt;User&gt; queryWrapper = new QueryWrapper&lt;&gt;();
-    queryWrapper.orderByDesc(&quot;id&quot;);
-    List&lt;User&gt; users = userMapper.selectList(queryWrapper);
-    users.forEach(System.out::println);
-&#125;
-</code></pre>
+<h2 id="9、orderBy、orderByDesc、orderByAsc"><a href="#9、orderBy、orderByDesc、orderByAsc" class="headerlink" title="9、orderBy、orderByDesc、orderByAsc"></a><strong>9、orderBy、orderByDesc、orderByAsc</strong></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void testSelectListOrderBy() &#123;</span><br><span class="line">    QueryWrapper&lt;User&gt; queryWrapper &#x3D; new QueryWrapper&lt;&gt;();</span><br><span class="line">    queryWrapper.orderByDesc(&quot;id&quot;);</span><br><span class="line">    List&lt;User&gt; users &#x3D; userMapper.selectList(queryWrapper);</span><br><span class="line">    users.forEach(System.out::println);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>SELECT id,name,age,email,create_time,update_time,deleted,version </p>
 <p>FROM user WHERE deleted=0 ORDER BY id DESC </p>
 <h2 id="10、last"><a href="#10、last" class="headerlink" title="10、last"></a><strong>10、last</strong></h2><p>直接拼接到 sql 的最后</p>
 <p><strong>注意：</strong>只能调用一次,多次调用以最后一次为准 有sql注入的风险,请谨慎使用</p>
-<pre><code>@Test
-public void testSelectListLast() &#123;
-    QueryWrapper&lt;User&gt; queryWrapper = new QueryWrapper&lt;&gt;();
-    queryWrapper.last(&quot;limit 1&quot;);
-    List&lt;User&gt; users = userMapper.selectList(queryWrapper);
-    users.forEach(System.out::println);
-&#125;
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void testSelectListLast() &#123;</span><br><span class="line">    QueryWrapper&lt;User&gt; queryWrapper &#x3D; new QueryWrapper&lt;&gt;();</span><br><span class="line">    queryWrapper.last(&quot;limit 1&quot;);</span><br><span class="line">    List&lt;User&gt; users &#x3D; userMapper.selectList(queryWrapper);</span><br><span class="line">    users.forEach(System.out::println);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>SELECT id,name,age,email,create_time,update_time,deleted,version </p>
 <p>FROM user WHERE deleted=0 limit 1 </p>
-<h2 id="11、指定要查询的列"><a href="#11、指定要查询的列" class="headerlink" title="11、指定要查询的列"></a><strong>11、</strong>指定要查询的列</h2><pre><code>@Test
-public void testSelectListColumn() &#123;
-    QueryWrapper&lt;User&gt; queryWrapper = new QueryWrapper&lt;&gt;();
-    queryWrapper.select(&quot;id&quot;, &quot;name&quot;, &quot;age&quot;);
-    List&lt;User&gt; users = userMapper.selectList(queryWrapper);
-    users.forEach(System.out::println);
-&#125;
-</code></pre>
+<h2 id="11、指定要查询的列"><a href="#11、指定要查询的列" class="headerlink" title="11、指定要查询的列"></a><strong>11、</strong>指定要查询的列</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void testSelectListColumn() &#123;</span><br><span class="line">    QueryWrapper&lt;User&gt; queryWrapper &#x3D; new QueryWrapper&lt;&gt;();</span><br><span class="line">    queryWrapper.select(&quot;id&quot;, &quot;name&quot;, &quot;age&quot;);</span><br><span class="line">    List&lt;User&gt; users &#x3D; userMapper.selectList(queryWrapper);</span><br><span class="line">    users.forEach(System.out::println);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>SELECT id,name,age FROM user WHERE deleted=0 </p>
 <h2 id="12、set、setSql"><a href="#12、set、setSql" class="headerlink" title="12、set、setSql"></a><strong>12、set、setSql</strong></h2><p>最终的sql会合并 user.setAge()，以及 userUpdateWrapper.set()  和 setSql() 中 的字段</p>
-<pre><code>@Test
-public void testUpdateSet() &#123;
-    //修改值
-    User user = new User();
-    user.setAge(99);
-    //修改条件
-    UpdateWrapper&lt;User&gt; userUpdateWrapper = new UpdateWrapper&lt;&gt;();
-    userUpdateWrapper
-        .like(&quot;name&quot;, &quot;h&quot;)
-        .set(&quot;name&quot;, &quot;老李头&quot;)//除了可以查询还可以使用set设置修改的字段
-        .setSql(&quot; email = &#39;123@qq.com&#39;&quot;);//可以有子查询
-    int result = userMapper.update(user, userUpdateWrapper);
-&#125;
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void testUpdateSet() &#123;</span><br><span class="line">    &#x2F;&#x2F;修改值</span><br><span class="line">    User user &#x3D; new User();</span><br><span class="line">    user.setAge(99);</span><br><span class="line">    &#x2F;&#x2F;修改条件</span><br><span class="line">    UpdateWrapper&lt;User&gt; userUpdateWrapper &#x3D; new UpdateWrapper&lt;&gt;();</span><br><span class="line">    userUpdateWrapper</span><br><span class="line">        .like(&quot;name&quot;, &quot;h&quot;)</span><br><span class="line">        .set(&quot;name&quot;, &quot;老李头&quot;)&#x2F;&#x2F;除了可以查询还可以使用set设置修改的字段</span><br><span class="line">        .setSql(&quot; email &#x3D; &#39;123@qq.com&#39;&quot;);&#x2F;&#x2F;可以有子查询</span><br><span class="line">    int result &#x3D; userMapper.update(user, userUpdateWrapper);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>UPDATE user SET age=?, update_time=?, name=?, email = ‘123@qq.com’ WHERE deleted=0 AND name LIKE ? </p>
 </blockquote>
 
@@ -1612,12 +1150,12 @@ public void testUpdateSet() &#123;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Java/">
-                        <span class="chip bg-color">Java</span>
-                    </a>
-                    
                     <a href="/tags/%E5%90%8E%E7%AB%AF/">
                         <span class="chip bg-color">后端</span>
+                    </a>
+                    
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
                     </a>
                     
                 </div>

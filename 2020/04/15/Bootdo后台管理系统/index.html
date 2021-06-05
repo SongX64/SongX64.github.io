@@ -419,12 +419,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Java/">
-                                <span class="chip bg-color">Java</span>
-                            </a>
-                        
                             <a href="/tags/%E5%90%8E%E7%AB%AF/">
                                 <span class="chip bg-color">后端</span>
+                            </a>
+                        
+                            <a href="/tags/Java/">
+                                <span class="chip bg-color">Java</span>
                             </a>
                         
                     </div>
@@ -493,60 +493,8 @@
 <h4 id="前端页面"><a href="#前端页面" class="headerlink" title="前端页面"></a>前端页面</h4><p>​    把前端页面放入Bootdo项目中，前端页面目录分为静态资源和html网页文件。静态资源放在resources/static下，网页放在resources/templates文件夹下（如附录中所示）。</p>
 <p>​    一定要注意路径对应。不对的路径一定要改过来。</p>
 <p>​    放完之后是访问不到静态资源和网页的，因为Spring会拦截所有的请求。所以说自己写了一个Controller来对网页进行映射：</p>
-<pre><code class="java">package com.bootdo.company.controller;
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bootdo.company.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/company&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CommonController</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 自己添加的controller</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/index.html&quot;)</span></span><br><span class="line">    <span class="function">String <span class="title">indexHtml</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;company/index&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/staffInfo_add.html&quot;)</span></span><br><span class="line">    <span class="function">String <span class="title">staffInfoAdd</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;company/staffInfo_add&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@GetMapping(&quot;/staffInfo.html&quot;)</span></span><br><span class="line">    <span class="function">String <span class="title">staffInfo</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;company/staffInfo&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/clientInfo_add.html&quot;)</span></span><br><span class="line">    <span class="function">String <span class="title">clientInfoAdd</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;company/clientInfo_add&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@GetMapping(&quot;/clientInfo.html&quot;)</span></span><br><span class="line">    <span class="function">String <span class="title">clientInfo</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;company/clientInfo&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/pre_cusInfo_add .html&quot;)</span></span><br><span class="line">    <span class="function">String <span class="title">preCusInfoAdd</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;company/pre_cusInfo_add&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@GetMapping(&quot;/pre_cusInfo.html&quot;)</span></span><br><span class="line">    <span class="function">String <span class="title">preCusInfo</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;company/pre_cusInfo&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/cusInfo_add.html&quot;)</span></span><br><span class="line">    <span class="function">String <span class="title">cusInfoAdd</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;company/cusInfo_add&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@GetMapping(&quot;/cusInfo.html&quot;)</span></span><br><span class="line">    <span class="function">String <span class="title">cusInfo</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;company/cusInfo&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-@Controller
-@RequestMapping(&quot;/company&quot;)
-public class CommonController &#123;
-    /**
-     * 自己添加的controller
-     */
-    @GetMapping(&quot;/index.html&quot;)
-    String indexHtml()&#123;
-        return &quot;company/index&quot;;
-    &#125;
-
-    @GetMapping(&quot;/staffInfo_add.html&quot;)
-    String staffInfoAdd()&#123;
-        return &quot;company/staffInfo_add&quot;;
-    &#125;
-    @GetMapping(&quot;/staffInfo.html&quot;)
-    String staffInfo()&#123;
-        return &quot;company/staffInfo&quot;;
-    &#125;
-
-    @GetMapping(&quot;/clientInfo_add.html&quot;)
-    String clientInfoAdd()&#123;
-        return &quot;company/clientInfo_add&quot;;
-    &#125;
-    @GetMapping(&quot;/clientInfo.html&quot;)
-    String clientInfo()&#123;
-        return &quot;company/clientInfo&quot;;
-    &#125;
-
-    @GetMapping(&quot;/pre_cusInfo_add .html&quot;)
-    String preCusInfoAdd()&#123;
-        return &quot;company/pre_cusInfo_add&quot;;
-    &#125;
-    @GetMapping(&quot;/pre_cusInfo.html&quot;)
-    String preCusInfo()&#123;
-        return &quot;company/pre_cusInfo&quot;;
-    &#125;
-
-    @GetMapping(&quot;/cusInfo_add.html&quot;)
-    String cusInfoAdd()&#123;
-        return &quot;company/cusInfo_add&quot;;
-    &#125;
-    @GetMapping(&quot;/cusInfo.html&quot;)
-    String cusInfo()&#123;
-        return &quot;company/cusInfo&quot;;
-    &#125;
-&#125;
-</code></pre>
 <p>就是根据超链接的链接来映射一下文件目录下的网页。之后还要做前后端对接。</p>
 <h2 id="附录："><a href="#附录：" class="headerlink" title="附录："></a>附录：</h2><h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h3><blockquote>
 <p> java代码的对应：<br>   <img src="https://gitee.com/songx86/SongPicBed/raw/master/img/1571491889408.png" alt="1571491889408">    <img src="https://gitee.com/songx86/SongPicBed/raw/master/img/1571492049781.png" alt="1571491920683"></p>
@@ -566,11 +514,7 @@ public class CommonController &#123;
 </li>
 <li><p>SpringBoot中Controller返回的路径：</p>
 <p>会自动到templates文件夹下找html，所以说返回直接路径直接从templates下开始写就行。</p>
-<pre><code class="java"> @GetMapping(&quot;/company/index&quot;)
-    String CompanyIndex()&#123;
-        return &quot;company/index&quot;;
-    &#125;
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping(&quot;/company/index&quot;)</span></span><br><span class="line">   <span class="function">String <span class="title">CompanyIndex</span><span class="params">()</span></span>&#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="string">&quot;company/index&quot;</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 <p>这个就会自动去找templates/company/index.html。好像是什么静态资源自动解析。</p>
 </li>
 <li><p>在“授中添加“页面”，左侧菜单栏的展开，不管用</p>
@@ -580,10 +524,7 @@ public class CommonController &#123;
 </li>
 <li><p>Bootdo的文件上传路径？</p>
 <p>在application-dev.yml里面</p>
-<pre><code class="yml">bootdo:
-  uploadPath: c:/var/uploaded_files/
-</code></pre>
-</li>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">bootdo:</span></span><br><span class="line">  <span class="attr">uploadPath:</span> <span class="string">c:/var/uploaded_files/</span></span><br></pre></td></tr></table></figure></li>
 </ol>
 
                 
@@ -649,12 +590,12 @@ public class CommonController &#123;
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Java/">
-                                    <span class="chip bg-color">Java</span>
-                                </a>
-                            
                                 <a href="/tags/%E5%90%8E%E7%AB%AF/">
                                     <span class="chip bg-color">后端</span>
+                                </a>
+                            
+                                <a href="/tags/Java/">
+                                    <span class="chip bg-color">Java</span>
                                 </a>
                             
                         </div>

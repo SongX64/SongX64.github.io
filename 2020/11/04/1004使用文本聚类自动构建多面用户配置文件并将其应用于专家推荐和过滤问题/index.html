@@ -645,12 +645,10 @@
 <p>一旦文档被聚类并且相关文档被放置在同一组中，给定由用户提交的查询，这将面对聚类的代表，并且系统将返回属于那些其代表最接近查询的聚类的文档。</p>
 <p>应用这种基于聚类的检索模型的基本假设是<strong>聚类假设，即“紧密关联的文档往往与相同的请求相关”</strong>[36]。</p>
 <p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20201005151946809.png" alt="image-20201005151946809"></p>
-<pre><code class="mermaid">graph TD
- 1(文档集合)--&gt;A&gt;预处理] --&gt;2(预处理后的集合)--&gt;B&gt;特征选择]--&gt;
- 
- 3(降维后的集合)--&gt;c&gt;文档术语矩阵格式]--&gt;4(文档划分矩阵)--&gt;d&gt;聚类]--&gt;5(文档聚类)--&gt;e&gt;信息检索任务] 
- 
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line"> 1(文档集合)--&gt;A&gt;预处理] --&gt;2(预处理后的集合)--&gt;B&gt;特征选择]--&gt;</span><br><span class="line"> </span><br><span class="line"> 3(降维后的集合)--&gt;c&gt;文档术语矩阵格式]--&gt;4(文档划分矩阵)--&gt;d&gt;聚类]--&gt;5(文档聚类)--&gt;e&gt;信息检索任务] </span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
+
+
 <p>图1示出了应用于信息检索聚类的一般过程。</p>
 <p>给定要对其执行聚类的文档集合，第一步是对其进行==预处理==，这可能包括标记化(提取标记或术语，通常在非字母字符处进行拆分)、停止单词移除(移除集合中最常见的单词，如虚词)和词干(移除单词后缀，并将单词保留在其词汇词干中)。</p>
 <p>下一步可能是==特征(术语)的降维==，因为我们正在处理一个高维问题[37]，通常移除非常罕见的术语(那些出现在少于给定百分比的文档中的术语)。</p>
