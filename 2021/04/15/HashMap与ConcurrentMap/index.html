@@ -29,7 +29,10 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="SongX64" type="application/atom+xml">
+</head>
 
 
 
@@ -419,12 +422,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%90%8E%E7%AB%AF/">
-                                <span class="chip bg-color">后端</span>
-                            </a>
-                        
                             <a href="/tags/Java/">
                                 <span class="chip bg-color">Java</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%90%8E%E7%AB%AF/">
+                                <span class="chip bg-color">后端</span>
                             </a>
                         
                             <a href="/tags/Java%E5%9F%BA%E7%A1%80/">
@@ -461,7 +464,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.4k
+                    2.1k
                 </div>
                 
 
@@ -482,8 +485,8 @@
 <p>首先了解一下HashMap<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/21673805">https://zhuanlan.zhihu.com/p/21673805</a></p>
 <p>顺便附两个《小灰漫画》，感觉讲的不错：</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzIxMjE5MTE1Nw==&mid=2653191907&idx=1&sn=876860c5a9a6710ead5dd8de37403ffc&chksm=8c990c39bbee852f71c9dfc587fd70d10b0eab1cca17123c0a68bf1e16d46d71717712b91509&scene=21#wechat_redirect">什么是HashMap</a></li>
-<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzIxMjE5MTE1Nw==&mid=2653192000&idx=1&sn=118cee6d1c67e7b8e4f762af3e61643e&chksm=8c990d9abbee848c739aeaf25893ae4382eca90642f65fc9b8eb76d58d6e7adebe65da03f80d&scene=21#wechat_redirect">多线程下的HashMap</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzIxMjE5MTE1Nw==&amp;mid=2653191907&amp;idx=1&amp;sn=876860c5a9a6710ead5dd8de37403ffc&amp;chksm=8c990c39bbee852f71c9dfc587fd70d10b0eab1cca17123c0a68bf1e16d46d71717712b91509&amp;scene=21#wechat_redirect">什么是HashMap</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzIxMjE5MTE1Nw==&amp;mid=2653192000&amp;idx=1&amp;sn=118cee6d1c67e7b8e4f762af3e61643e&amp;chksm=8c990d9abbee848c739aeaf25893ae4382eca90642f65fc9b8eb76d58d6e7adebe65da03f80d&amp;scene=21#wechat_redirect">多线程下的HashMap</a></li>
 </ul>
 </blockquote>
 <h5 id="Map接口四个常用实现类"><a href="#Map接口四个常用实现类" class="headerlink" title="Map接口四个常用实现类"></a>Map接口四个常用实现类</h5><p>Java为数据结构中的映射定义了一个接口<code>java.util.Map</code>，此接口主要有四个常用的实现类：</p>
@@ -545,7 +548,7 @@
 <p>所以说要在<strong>空间（Hash桶）</strong>和<strong>时间（Hash散列算法）</strong>成本之间进行衡量。</p>
 <p>==要做到碰撞概率小且空间少，好的Hash算法和扩容机制。==</p>
 <h6 id="扩容"><a href="#扩容" class="headerlink" title="扩容"></a>扩容</h6><p>如何扩容：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> threshold;             <span class="comment">// 所能容纳的key-value对极限 </span></span><br><span class="line"><span class="keyword">final</span> <span class="keyword">float</span> loadFactor;    <span class="comment">// 负载因子</span></span><br><span class="line"><span class="keyword">int</span> modCount;  	<span class="comment">// hashmap内部结构变化的次数(不包含key对应value被覆盖的情况)</span></span><br><span class="line"><span class="keyword">int</span> size;	<span class="comment">// 实际存储的数量</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> threshold;             <span class="comment">// 所能容纳的key-value对极限 </span></span><br><span class="line"><span class="keyword">final</span> <span class="keyword">float</span> loadFactor;    <span class="comment">// 负载因子</span></span><br><span class="line"><span class="keyword">int</span> modCount;  	<span class="comment">// hashmap内部结构变化的次数(不包含key对应value被覆盖的情况)</span></span><br><span class="line"><span class="keyword">int</span> size;	<span class="comment">// 实际存储的数量</span></span><br></pre></td></tr></tbody></table></figure>
 
 <ul>
 <li><code>Node[] table</code> 的默认length为16</li>
@@ -574,12 +577,44 @@
 <p>(3) HashMap是线程不安全的，不要在并发的环境中同时操作HashMap，建议使用ConcurrentHashMap。</p>
 <p>(4) JDK1.8引入红黑树大程度优化了HashMap的性能。</p>
 <p>(5) 还没升级JDK1.8的，现在开始升级吧。HashMap的性能提升仅仅是JDK1.8的冰山一角。</p>
-<h4 id="线程安全的ConcurrentHashMap"><a href="#线程安全的ConcurrentHashMap" class="headerlink" title="线程安全的ConcurrentHashMap"></a>线程安全的ConcurrentHashMap</h4><p>前面提过的Hashtable和这里的ConcurrentHashMap，都是线程安全的。</p>
+<h4 id="线程安全的ConcurrentHashMap"><a href="#线程安全的ConcurrentHashMap" class="headerlink" title="线程安全的ConcurrentHashMap"></a>线程安全的ConcurrentHashMap</h4><blockquote>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/AHWzboztt53ZfFZmsSnMSw">还不懂 ConcurrentHashMap ？这份源码分析了解一下 (qq.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44460333/article/details/86770169">HashMap？ConcurrentHashMap？相信看完这篇没人能难住你！_Java团长的博客-CSDN博客</a></p>
+</blockquote>
+<p>前面提过的Hashtable和这里的ConcurrentHashMap，都是线程安全的。</p>
 <p>怎么保证线程安全呢，答案就是==加锁==。</p>
 <p>Hashtable中，直接使用了<code>synchronized</code>关键字来对<code>put()</code>和<code>get()</code>方法加锁。但是在竞争强烈的情况下，其效率非常低下。</p>
 <p>而ConcurrenHashMap中，使用了一个“分段锁”的东西。</p>
-<h5 id="a-ConcurrentHashMap的put方法"><a href="#a-ConcurrentHashMap的put方法" class="headerlink" title="a.ConcurrentHashMap的put方法"></a>a.ConcurrentHashMap的put方法</h5><p>==<del>待填坑</del>==</p>
-<h5 id="b-ConcurrentHashMap的Hash碰撞"><a href="#b-ConcurrentHashMap的Hash碰撞" class="headerlink" title="b.ConcurrentHashMap的Hash碰撞"></a>b.ConcurrentHashMap的Hash碰撞</h5>
+<p>简单来说，JDK1.7使用Segment分段锁，结构是segemtn数组加HashEntiy；JDK8采用 <code>synchronized</code> 加 CAS锁的方式，结构是Node数组加链表/红黑树。 </p>
+<h5 id="JDK1-7中的ConcurrentHashMap"><a href="#JDK1-7中的ConcurrentHashMap" class="headerlink" title="JDK1.7中的ConcurrentHashMap"></a>JDK1.7中的ConcurrentHashMap</h5><p><img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/QCu849YTaIPf1sDCN5zcDdGsibZwyzy9rmnTSzibQ6VEBXUhicBWHFae47ShkNzCRB7SZibuUN6gDmGkfeB5saAMQQ/640?wx_fmt=png" alt="JDK1.7的ConcurrentHashMap结构图"></p>
+<p>如图所示，<strong>是由 Segment 数组、HashEntry 组成</strong>，和 HashMap 一样，仍然是数组加链表。</p>
+<p>ConcurrentHashMap的核心成员变量，主要就是这里的segments数组：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">*&nbsp;Segment&nbsp;数组，存放数据时首先需要定位到具体的&nbsp;Segment&nbsp;中。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">final</span>&nbsp;Segment&lt;K,V&gt;[]&nbsp;segments;</span><br><span class="line"></span><br><span class="line"><span class="keyword">transient</span>&nbsp;Set&lt;K&gt;&nbsp;keySet;</span><br><span class="line"><span class="keyword">transient</span>&nbsp;Set&lt;Map.Entry&lt;K,V&gt;&gt;&nbsp;entrySet;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>然后去看Segment对象，ConcurrentMap的内部类，主要是table数组：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span>&nbsp;<span class="keyword">final</span>&nbsp;<span class="class"><span class="keyword">class</span>&nbsp;<span class="title">Segment</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;&nbsp;<span class="keyword">extends</span>&nbsp;<span class="title">ReentrantLock</span>&nbsp;<span class="keyword">implements</span>&nbsp;<span class="title">Serializable</span>&nbsp;</span>{</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>&nbsp;<span class="keyword">static</span>&nbsp;<span class="keyword">final</span>&nbsp;<span class="keyword">long</span>&nbsp;serialVersionUID&nbsp;=&nbsp;<span class="number">2249069246763182397L</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//&nbsp;和&nbsp;HashMap&nbsp;中的&nbsp;HashEntry&nbsp;作用一样，真正存放数据的桶</span></span><br><span class="line"> <span class="keyword">transient</span>&nbsp;<span class="keyword">volatile</span>&nbsp;HashEntry&lt;K,V&gt;[]&nbsp;table;</span><br><span class="line"></span><br><span class="line"><span class="keyword">transient</span>&nbsp;<span class="keyword">int</span>&nbsp;count;</span><br><span class="line"><span class="keyword">transient</span>&nbsp;<span class="keyword">int</span>&nbsp;modCount;</span><br><span class="line"><span class="keyword">transient</span>&nbsp;<span class="keyword">int</span>&nbsp;threshold;</span><br><span class="line"><span class="keyword">final</span>&nbsp;<span class="keyword">float</span>&nbsp;loadFactor;</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>然后看一下HashEntry的组成：</p>
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210618110453148.png" alt="image-20210618110453148"></p>
+<p>HashEntry跟HashMap差不多的，但是不同点是，他使用 <strong>volatile</strong> 去修饰了他的数据 <strong>Value 还有下一个节点 next</strong>，保证了获取时的可见性。</p>
+<h6 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h6><p>分为无参构造和有参构造，主要设置以下三个参数：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 默认初始化容量</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_INITIAL_CAPACITY = <span class="number">16</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 默认负载因子</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">float</span> DEFAULT_LOAD_FACTOR = <span class="number">0.75f</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 默认并发级别</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_CONCURRENCY_LEVEL = <span class="number">16</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<h6 id="put方法"><a href="#put方法" class="headerlink" title="put方法"></a>put方法</h6><p>尝试获取锁，如果获取失败就表明有其他线程在竞争，利用自旋获取锁。自旋达到一定次数则阻塞。</p>
+<h6 id="get方法"><a href="#get方法" class="headerlink" title="get方法"></a>get方法</h6><p>直接将 <code>key</code> 进行hash之后，定位到Segment上，再Hash一次定位到具体元素上。</p>
+<p>因为 value 是通过 <code>volatile</code> 修饰的，保证了内存的可见性，所以说每次获取都是新值。</p>
+<h5 id="JDK1-8中的ConcurrentHashMap"><a href="#JDK1-8中的ConcurrentHashMap" class="headerlink" title="JDK1.8中的ConcurrentHashMap"></a>JDK1.8中的ConcurrentHashMap</h5><p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/java8_concurrenthashmap.png" alt="Java8 ConcurrentHashMap 存储结构（图片来自 javadoop）"></p>
+<h6 id="put方法-1"><a href="#put方法-1" class="headerlink" title="put方法"></a>put方法</h6><ol>
+<li><strong>Hash</strong>：根据 key 计算出 hashcode 。</li>
+<li>判断是否需要进行<strong>初始化</strong></li>
+<li>即为当前 key 定位出的 Node，如果为空表示当前位置可以写入数据，利用 CAS 尝试写入，失败则自旋保证成功。</li>
+<li>如果当前位置的 hashcode == MOVED == -1,则需要进行扩容。</li>
+<li>如果都不满足，则利用 synchronized 锁写入数据。如果数量大于 TREEIFY_THRESHOLD 则要转换为红黑树。</li>
+</ol>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">hashcode = Hash(Key);</span><br><span class="line"><span class="keyword">for</span>(遍历Node数组){</span><br><span class="line">    <span class="keyword">if</span>(Node数组为空){</span><br><span class="line">        初始化(Node数组);</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>( key 对应的 Node[hashcode] 的 value 为空){</span><br><span class="line">        <span class="keyword">if</span>( CAS写入(Node[hashcode]) ) <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">else</span> 自旋；</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>( Node[hashcode] 不存在){</span><br><span class="line">    	扩容；</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">else</span>{</span><br><span class="line">        <span class="keyword">synchronized</span>锁写入;</span><br><span class="line">        <span class="keyword">if</span>(判断链表长度)</span><br><span class="line">            是否要转换为红黑树;</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/20210304170631489.png" alt="JDK1.8的ConcurrentMap.put()"></p>
+
                 
             </div>
             <hr/>
@@ -643,12 +678,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%90%8E%E7%AB%AF/">
-                                    <span class="chip bg-color">后端</span>
-                                </a>
-                            
                                 <a href="/tags/Java/">
                                     <span class="chip bg-color">Java</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%90%8E%E7%AB%AF/">
+                                    <span class="chip bg-color">后端</span>
                                 </a>
                             
                                 <a href="/tags/Java%E5%9F%BA%E7%A1%80/">
@@ -915,12 +950,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%90%8E%E7%AB%AF/">
-                        <span class="chip bg-color">后端</span>
-                    </a>
-                    
                     <a href="/tags/Java/">
                         <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%90%8E%E7%AB%AF/">
+                        <span class="chip bg-color">后端</span>
                     </a>
                     
                     <a href="/tags/JVM/">

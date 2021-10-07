@@ -29,7 +29,10 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="SongX64" type="application/atom+xml">
+</head>
 
 
 
@@ -419,12 +422,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%90%8E%E7%AB%AF/">
-                                <span class="chip bg-color">后端</span>
-                            </a>
-                        
                             <a href="/tags/Java/">
                                 <span class="chip bg-color">Java</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%90%8E%E7%AB%AF/">
+                                <span class="chip bg-color">后端</span>
                             </a>
                         
                             <a href="/tags/JVM/">
@@ -481,7 +484,7 @@
                 <blockquote>
 <p>《Offer来了-Java基础篇》第1.8章</p>
 </blockquote>
-<h3 id="1-8垃圾收集器"><a href="#1-8垃圾收集器" class="headerlink" title="1.8垃圾收集器"></a>1.8垃圾收集器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">subgraph 新生代 </span><br><span class="line">n(新生代)---1(Serial:单线程复制算法)</span><br><span class="line">n---2(ParNew:多线程复制算法)</span><br><span class="line">n---3(Parallel Scavenge:多线程复制算法)</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">subgraph 老年代 </span><br><span class="line">老年代---CMS(CMS:多线程标记清除算法)</span><br><span class="line">老年代---SO(Serial Old:单线程标记整理算法)</span><br><span class="line">老年代---PO(Parallel Old:多线程标记整理算法)</span><br><span class="line">老年代---GI(GI:多线程表标记整理算法)</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h3 id="1-8垃圾收集器"><a href="#1-8垃圾收集器" class="headerlink" title="1.8垃圾收集器"></a>1.8垃圾收集器</h3><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">subgraph 新生代 </span><br><span class="line">n(新生代)---1(Serial:单线程复制算法)</span><br><span class="line">n---2(ParNew:多线程复制算法)</span><br><span class="line">n---3(Parallel Scavenge:多线程复制算法)</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">subgraph 老年代 </span><br><span class="line">老年代---CMS(CMS:多线程标记清除算法)</span><br><span class="line">老年代---SO(Serial Old:单线程标记整理算法)</span><br><span class="line">老年代---PO(Parallel Old:多线程标记整理算法)</span><br><span class="line">老年代---GI(GI:多线程表标记整理算法)</span><br><span class="line">end</span><br></pre></td></tr></tbody></table></figure>
 
 <h4 id="1-8-1-Serial收集器"><a href="#1-8-1-Serial收集器" class="headerlink" title="1.8.1 Serial收集器"></a>1.8.1 Serial收集器</h4><p>单线程</p>
 <p>停止所有其他线程，Stop The World（Dio表示很赞，砸瓦鲁多），只启用GC线程。</p>
@@ -640,12 +643,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%90%8E%E7%AB%AF/">
-                                    <span class="chip bg-color">后端</span>
-                                </a>
-                            
                                 <a href="/tags/Java/">
                                     <span class="chip bg-color">Java</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%90%8E%E7%AB%AF/">
+                                    <span class="chip bg-color">后端</span>
                                 </a>
                             
                                 <a href="/tags/JVM/">
@@ -859,12 +862,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Java/">
-                        <span class="chip bg-color">Java</span>
-                    </a>
-                    
                     <a href="/tags/%E7%AE%97%E6%B3%95/">
                         <span class="chip bg-color">算法</span>
+                    </a>
+                    
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
                     </a>
                     
                 </div>
@@ -912,12 +915,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%90%8E%E7%AB%AF/">
-                        <span class="chip bg-color">后端</span>
-                    </a>
-                    
                     <a href="/tags/Java/">
                         <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%90%8E%E7%AB%AF/">
+                        <span class="chip bg-color">后端</span>
                     </a>
                     
                 </div>

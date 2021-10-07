@@ -29,7 +29,10 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="SongX64" type="application/atom+xml">
+</head>
 
 
 
@@ -419,12 +422,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%90%8E%E7%AB%AF/">
-                                <span class="chip bg-color">后端</span>
-                            </a>
-                        
                             <a href="/tags/Java/">
                                 <span class="chip bg-color">Java</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%90%8E%E7%AB%AF/">
+                                <span class="chip bg-color">后端</span>
                             </a>
                         
                             <a href="/tags/Linux/">
@@ -489,7 +492,7 @@
 <hr>
 <h2 id="java1-8安装"><a href="#java1-8安装" class="headerlink" title="java1.8安装"></a>java1.8安装</h2><p>1.华为镜像下载jdk1.8，jdk-8u151-linux-x64.tar.gz：<a target="_blank" rel="noopener" href="https://repo.huaweicloud.com/java/jdk/8u151-b12/">https://repo.huaweicloud.com/java/jdk/8u151-b12/</a></p>
 <p>2.Linux下新建用户javaapp，并切换到此用户：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">useradd javaapp</span><br><span class="line">su javaapp</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">useradd javaapp</span><br><span class="line">su javaapp</span><br></pre></td></tr></tbody></table></figure>
 
 <p>3.新建文件夹，路径在/home/javaapp下</p>
 <p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210309212430195.png" alt="image-20210309212430195"></p>
@@ -500,17 +503,17 @@
 <ol start="4">
 <li>改变目录的拥有者为javaapp :</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R javaapp:javaapp app </span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R javaapp:javaapp app </span><br></pre></td></tr></tbody></table></figure>
 
 <p>5.上传安装包到soft下，然后解压</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf jdk-8u251-linux-x64.tar.gz</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf jdk-8u251-linux-x64.tar.gz</span><br></pre></td></tr></tbody></table></figure>
 
 <p>6.编辑配置文件</p>
 <p>修改配置文件 vi /etc/profile<br>放在配置文件的最下方</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">JAVA_HOME</span>=<span class="string">/home/javaapp/soft/jdk1.8.0_251 </span></span><br><span class="line"><span class="attr">JAVA_BIN</span>=<span class="string">$JAVA_HOME/bin</span></span><br><span class="line"><span class="attr">JAVA_LIB</span>=<span class="string">$JAVA_HOME/lib</span></span><br><span class="line"><span class="attr">CLASSPATH</span>=<span class="string">.:$JAVA_LIB/tools.jar:$JAVA_LIB/dt.rar</span></span><br><span class="line"><span class="attr">export</span> <span class="string">PATH=$JAVA_BIN:$PATH:JAVA_HOME:JAVA_LIB:CLASSPATH</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight properties"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">JAVA_HOME</span>=<span class="string">/home/javaapp/soft/jdk1.8.0_251 </span></span><br><span class="line"><span class="attr">JAVA_BIN</span>=<span class="string">$JAVA_HOME/bin</span></span><br><span class="line"><span class="attr">JAVA_LIB</span>=<span class="string">$JAVA_HOME/lib</span></span><br><span class="line"><span class="attr">CLASSPATH</span>=<span class="string">.:$JAVA_LIB/tools.jar:$JAVA_LIB/dt.rar</span></span><br><span class="line"><span class="attr">export</span> <span class="string">PATH=$JAVA_BIN:$PATH:JAVA_HOME:JAVA_LIB:CLASSPATH</span></span><br></pre></td></tr></tbody></table></figure>
 
 <p>配置文件生效</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></tbody></table></figure>
 
 <p>7.测试，java -version,成功!</p>
 <p><img src="https://gitee.com/songx86/SongPicBed/raw/master/img/image-20210309212937183.png" alt="image-20210309212937183"></p>
@@ -524,7 +527,7 @@
 <hr>
 <h2 id="redis安装"><a href="#redis安装" class="headerlink" title="redis安装"></a>redis安装</h2><p>下载redis：<a target="_blank" rel="noopener" href="https://redis.io/download">https://redis.io/download</a></p>
 <p>官网写了安装方法了：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://download.redis.io/releases/redis-6.2.1.tar.gz</span><br><span class="line">$ tar xzf redis-6.2.1.tar.gz</span><br><span class="line">$ <span class="built_in">cd</span> redis-6.2.1</span><br><span class="line">$ make</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://download.redis.io/releases/redis-6.2.1.tar.gz</span><br><span class="line">$ tar xzf redis-6.2.1.tar.gz</span><br><span class="line">$ <span class="built_in">cd</span> redis-6.2.1</span><br><span class="line">$ make</span><br></pre></td></tr></tbody></table></figure>
 
 <p>解压文件，切换路径，编译</p>
 <p>遇到错误两个：</p>
@@ -532,19 +535,19 @@
 <li><p>cc command not found<br>这个是因为gcc没有安装，yum install gcc就行</p>
 </li>
 <li><p>jemalloc/jemalloc.h: No such file or directory<br>这是因为之前编译错误，有残余文件。<br>正确解决办法(针对2.2以上的版本)：清理上次编译残留文件，重新编译</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make distclean  &amp;&amp; make</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make distclean  &amp;&amp; make</span><br></pre></td></tr></tbody></table></figure></li>
 </ol>
 <p>src/redis-server运行redis就行了</p>
 <hr>
 <h2 id="开放端口"><a href="#开放端口" class="headerlink" title="开放端口"></a>开放端口</h2><p>Centos7之后系统默认是firewalld，用firewalld代替了iptables；</p>
 <p>安装 firewalld和firewalld-config：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install firewalld</span><br><span class="line">yum install firewall-config</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install firewalld</span><br><span class="line">yum install firewall-config</span><br></pre></td></tr></tbody></table></figure>
 
 <p>启动firewalld防火墙</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start firewalld.service</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start firewalld.service</span><br></pre></td></tr></tbody></table></figure>
 
 <p>查看firewalld防火墙运行状态:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --state</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --state</span><br></pre></td></tr></tbody></table></figure>
 
 
 
@@ -678,7 +681,7 @@
 <li></li>
 </ul>
 <h3 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h3><h4 id="source-命令导入"><a href="#source-命令导入" class="headerlink" title="source  命令导入"></a>source  命令导入</h4><p>source 命令导入数据库需要先登录到数库终端：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">create</span> database abc;      # 创建数据库</span><br><span class="line">mysql<span class="operator">&gt;</span> use abc;                  # 使用已创建的数据库 </span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">set</span> names utf8;           # 设置编码</span><br><span class="line">mysql<span class="operator">&gt;</span> source <span class="operator">/</span>home<span class="operator">/</span>abc<span class="operator">/</span>abc.sql  # 导入备份数据库</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">create</span> database abc;      # 创建数据库</span><br><span class="line">mysql<span class="operator">&gt;</span> use abc;                  # 使用已创建的数据库 </span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">set</span> names utf8;           # 设置编码</span><br><span class="line">mysql<span class="operator">&gt;</span> source <span class="operator">/</span>home<span class="operator">/</span>abc<span class="operator">/</span>abc.sql  # 导入备份数据库</span><br></pre></td></tr></tbody></table></figure>
 
 <h2 id="Ubuntu常用命令"><a href="#Ubuntu常用命令" class="headerlink" title="Ubuntu常用命令"></a>Ubuntu常用命令</h2><p>i386就是32位，amd64就是64位</p>
 <h3 id="系统"><a href="#系统" class="headerlink" title="系统"></a>系统</h3><ul>
@@ -738,10 +741,10 @@
 <p>方法二：java -jar jar包名  &amp;   (&amp;表示在后台运行，ssh窗口不被锁定，但窗口关闭程序终止运行)</p>
 <p>方法三： nohup java -jar jar包名 &amp;  （关闭窗口，用户退出登录程序仍然运行，但执行nohup命令时，缺省情况下输出作业被重定向到nohup.out文件中，除非指定文件位置）</p>
 <p>方法四: nohup java -jar jar包名 &amp; &gt;a.txt</p>
-<h4 id="解释下-gt-temp-txt"><a href="#解释下-gt-temp-txt" class="headerlink" title="解释下 &gt;temp.txt"></a>解释下 &gt;temp.txt</h4><p><code>command &gt;out.fil</code></p>
+<h4 id="解释下-gt-temp-txt"><a href="#解释下-gt-temp-txt" class="headerlink" title="解释下 >temp.txt"></a>解释下 &gt;temp.txt</h4><p><code>command &gt;out.fil</code></p>
 <p>command &gt;out.file是将command的输出重定向到out.file文件，即输出内容不打印到屏幕上，而是输出到out.file文件中。</p>
 <p>可通过jobs命令查看后台运行任务</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">jobs</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">jobs</span></span><br></pre></td></tr></tbody></table></figure>
 
 <p>那么就会列出所有后台执行的作业，并且每个作业前面都有个编号。<br>如果想将某个作业调回前台控制，只需要 fg + 编号即可：<code>fg 23</code></p>
 <ul>
@@ -755,8 +758,8 @@
 <p>dpkg –list | grep mysql</p>
 <p>将列出的mysql相关都删掉，apt-get autoremove</p>
 <p>以及apt-get autoremove –purge</p>
-<p>清除残留数据：<code>dpkg -l|grep ^rc|awk &#39;&#123;print$2&#125;&#39;|sudo xargs dpkg -P</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt purge mysql-server mysql-server-5.7</span><br></pre></td></tr></table></figure>
+<p>清除残留数据：<code>dpkg -l|grep ^rc|awk '{print$2}'|sudo xargs dpkg -P</code></p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt purge mysql-server mysql-server-5.7</span><br></pre></td></tr></tbody></table></figure>
 
 <hr>
 <p>防火墙：</p>
@@ -826,12 +829,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%90%8E%E7%AB%AF/">
-                                    <span class="chip bg-color">后端</span>
-                                </a>
-                            
                                 <a href="/tags/Java/">
                                     <span class="chip bg-color">Java</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%90%8E%E7%AB%AF/">
+                                    <span class="chip bg-color">后端</span>
                                 </a>
                             
                                 <a href="/tags/Linux/">
